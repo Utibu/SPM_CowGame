@@ -1,0 +1,109 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "PlayerStateMachine/DashState")]
+public class DashState : PlayerBaseState
+{
+    private float addToFOV = 20f;
+    private float fovChangeVelocity = 10f;
+    private float originalFOV;
+    private float originalSens;
+    private float divideSens = 10f;
+
+    public override void Enter()
+    {
+        base.Enter();
+        originalFOV = Camera.main.fieldOfView;
+        originalSens = ((PlayerStateMachine)owner).mouseSensitivity;
+        ((PlayerStateMachine)owner).mouseSensitivity /= divideSens;
+    }
+
+    public override void Leave()
+    {
+        owner.velocity /= 2f;
+        Camera.main.fieldOfView = originalFOV;
+        ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
+
+        base.Leave();
+    }
+
+    public override void ActOnCollision(Collider hitCollider)
+    {
+        base.ActOnCollision(hitCollider);
+        if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude >= hitCollider.GetComponent<Dashable>().requiredMagnitude)
+        {
+            if(hitCollider.GetComponent<DroppingObject>() != null)
+            {
+                hitCollider.GetComponent<DroppingObject>().OnEnter(((PlayerStateMachine)owner).playerValues);
+            }
+            Destroy(hitCollider.gameObject);
+        }
+        else if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude < hitCollider.GetComponent<Dashable>().requiredMagnitude)
+
+        {
+            owner.velocity *= -1;
+            owner.Transition<JumpState>();
+        }
+
+        if(hitCollider.tag.Equals("DashFallable"))
+        {
+            hitCollider.GetComponent<FallingObject>().SetFalling(owner.velocity.normalized);
+        }
+
+        if(hitCollider.tag.Equals("Enemy"))
+        {
+            //Destroy(hitCollider.gameObject);
+            Bonde bonde = hitCollider.GetComponent<Bonde>();
+            bonde.PlayerDash();
+        }
+        if (hitCollider.tag.Equals("Bounce"))
+        {
+            owner.velocity *= -1;
+            owner.Transition<JumpState>();
+        }
+
+    }
+
+    public override void Update()
+    {
+
+        base.Update();
+
+        if (!Input.GetKey(KeyCode.LeftShift) || !IsGrounded())
+        {
+            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
+            owner.Transition<WalkState>();
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            owner.Transition<JumpState>();
+            return;
+        }
+
+        if(owner.velocity.magnitude < ((PlayerStateMachine)owner).velocityToDash)
+        {
+            owner.Transition<ChargeState>();
+        }
+
+        if (Camera.main.fieldOfView <= originalFOV + addToFOV)
+        {
+            Camera.main.fieldOfView += fovChangeVelocity * Time.deltaTime;
+        }
+
+
+        
+
+        if(owner.velocity.magnitude > 30)
+            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
+    
+        else
+            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.black;
+
+
+        
+
+    }
+}
