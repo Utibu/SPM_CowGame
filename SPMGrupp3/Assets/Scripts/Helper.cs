@@ -25,4 +25,11 @@ public static class Helper
         Vector3 projection = dot * normal;
         return -projection;
     }
+
+
+    //https://answers.unity.com/questions/532297/rotate-a-vector-around-a-certain-point.html
+    public static Vector3 RotateAroundPivot(Vector3 position, Vector3 pivotPoint, Vector3 angles)
+    {
+        return Quaternion.Euler(angles) * (position - pivotPoint) + pivotPoint;
+    }
 }
