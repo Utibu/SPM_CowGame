@@ -22,7 +22,7 @@ public class PlayerValues : MonoBehaviour
     {
         if(health >= 0)
         {
-            healthBar.fillAmount = health / maxHealth;
+            //healthBar.fillAmount = health / maxHealth;
         }
         
     }
