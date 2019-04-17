@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     public Vector3 direction;
+    public Vector3 rotationDirection;
     public bool isFalling = false;
     public float acceleration;
     public LayerMask layerMask;
@@ -13,16 +14,23 @@ public class FallingObject : MonoBehaviour
     public MeshRenderer meshRenderer;
     private float smallestValue = -1; //To not overshoot
     private bool hasFallen = false;
+    public GameObject pivot;
+    private Vector3 size;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        size = meshRenderer.bounds.size;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(isFalling)
+        {
+            isFalling = false;
+            SetFalling(direction);
+        }
     }
 
     public void SetFalling(Vector3 matchDirection)
@@ -31,6 +39,16 @@ public class FallingObject : MonoBehaviour
         {
             //direction = matchDirection;
             isFalling = true;
+            matchDirection.y = 0f;
+            direction = matchDirection;
+            Debug.Log("DIR: " + direction.normalized);
+            rotationDirection = new Vector3(direction.z, 0f, direction.x * -1);
+            Vector3 tempSize = size;
+            tempSize.y = 0f;
+            //pivot.transform.position += (tempDir.normalized + (tempSize / 2));
+            //collisionCheck.transform.rotation = Quaternion.Euler(tempDir);
+            pivot.transform.position += new Vector3(tempSize.x / 2 * rotationDirection.z * -1, 0f, tempSize.z / 2 * rotationDirection.x);
+            
         }
         
     }
@@ -64,7 +82,10 @@ public class FallingObject : MonoBehaviour
     public Vector3 DistanceToGround(Vector3 rotThisFrame)
     {
         RaycastHit hit;
-        bool ray = Physics.Raycast(collisionCheck.transform.position, collisionCheck.transform.forward, out hit, float.MaxValue, layerMask);
+        //collisionCheck.transform.forward
+        //new Vector3(direction.z * -1, direction.y, direction.x)
+        Vector3 tempDir = transform.rotation * direction;
+        bool ray = Physics.Raycast(collisionCheck.transform.position, tempDir, out hit, float.MaxValue, layerMask);
         
         if(ray)
         {
@@ -86,19 +107,27 @@ public class FallingObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isFalling)
+        Vector3 tempDir = transform.rotation * direction;
+        Debug.DrawLine(collisionCheck.transform.position, collisionCheck.transform.position + tempDir * 10f, Color.blue);
+        if (isFalling)
         {
             Vector3 rot = direction.normalized * acceleration * Time.deltaTime;
             Vector3 toRot = DistanceToGround(rot);
-            /*if(HitGround())
-            {
-                isFalling = false;
-                return;
-            }*/
 
-           
-            transform.parent.Rotate(toRot.z, 0f, toRot.x);
             
+
+            //Debug.Log("ROT " + rot);
+            //Vector3 r = Helper.RotateAroundPivot(transform.position, pivot.transform.position, rot);
+            //Debug.Log(r);
+            //transform.Rotate(r.z, 0f, r.x);
+            transform.RotateAround(pivot.transform.position, rotationDirection.normalized, rot.magnitude);
+            //transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 0f, transform.rotation.eulerAngles.z));
+            Debug.Log(rotationDirection.normalized);
+            //collisionCheck.transform.LookAt(transform.rotation * Vector3.forward);
+            //Debug.Log(collisionCheck.transform.rotation);
+            //transform.rotation = Quaternion.Euler(r);
+            //transform.Rotate(r);
+
             //transform.parent.Rotate(10f, 10f, 10f);
         }
     }
