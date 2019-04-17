@@ -16,6 +16,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float dashCooldown = 5f;
     public float velocityToDash;
     [HideInInspector] public float countdown;
+    [HideInInspector] public float waitWhenInteracting;
 
     public float mouseSensitivity;
     float rotationX;
@@ -32,6 +33,16 @@ public class PlayerStateMachine : PhysicsStateMachine
         cameraCollider = Camera.main.GetComponent<SphereCollider>();
         playerValues = GetComponent<PlayerValues>();
         countdown = dashCooldown;
+    }
+
+    private void Start()
+    {
+        EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
+    }
+
+    private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)
+    {
+        Transition<WalkState>();
     }
 
     public override void Update()

@@ -108,7 +108,12 @@ public class PhysicsBaseState : State
     {
         //Vector3 p1 = owner.transform.position + (Vector3.up * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         // Vector3 p2 = owner.transform.position + (Vector3.down * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
-        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.objectCollider.bounds.size / 2, owner.velocity.normalized, owner.transform.rotation, 0.2f, owner.triggerMask);
+        Vector3 dir = owner.velocity.normalized;
+        if (owner.velocity.magnitude <= 0f)
+        {
+            dir = owner.transform.forward;
+        }
+        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.objectCollider.bounds.size / 2, dir, owner.transform.rotation, 0.2f, owner.triggerMask);
         foreach (RaycastHit hit in hits)
         {
             //Debug.Log("hit");

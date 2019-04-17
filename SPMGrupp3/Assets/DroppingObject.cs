@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class DroppingObject : MonoBehaviour
 {
-    public DroppableObject drop;
+    public GameObject drop;
 
     public void OnEnter(PlayerValues player)
     {
         GameObject go = Instantiate(drop.gameObject, this.transform.position, Quaternion.identity);
-        go.GetComponent<DroppableObject>().OnCreate(player);
     }
 }

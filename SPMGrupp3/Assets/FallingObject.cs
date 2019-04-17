@@ -16,6 +16,7 @@ public class FallingObject : MonoBehaviour
     private bool hasFallen = false;
     public GameObject pivot;
     private Vector3 size;
+    public bool freeFall = true;
 
     private void Awake()
     {
@@ -40,7 +41,11 @@ public class FallingObject : MonoBehaviour
             //direction = matchDirection;
             isFalling = true;
             matchDirection.y = 0f;
-            direction = matchDirection;
+            if(freeFall)
+            {
+                direction = matchDirection;
+            }
+            
             Debug.Log("DIR: " + direction.normalized);
             rotationDirection = new Vector3(direction.z, 0f, direction.x * -1);
             Vector3 tempSize = size;
