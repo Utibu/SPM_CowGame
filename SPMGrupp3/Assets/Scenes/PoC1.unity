@@ -4730,6 +4730,7 @@ MonoBehaviour:
   collisionCheck: {fileID: 1784145973}
   meshRenderer: {fileID: 0}
   pivot: {fileID: 0}
+  freeFall: 1
 --- !u!1 &1768476160
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,6 +5081,7 @@ MonoBehaviour:
   collisionCheck: {fileID: 631834924}
   meshRenderer: {fileID: 0}
   pivot: {fileID: 0}
+  freeFall: 1
 --- !u!65 &1867675007
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6367,6 +6369,21 @@ PrefabInstance:
     - target: {fileID: 748845690410377900, guid: 15f9649d3650f054da4056267d3f1818,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447581259408156996, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: direction.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447581259408156996, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: direction.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447581259408156996, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: freeFall
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
