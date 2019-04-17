@@ -67,5 +67,21 @@ public class WalkState : PlayerBaseState
         }
             
     }
-    
+
+    public override void ActOnTrigger(Collider hitCollider)
+    {
+        base.ActOnTrigger(hitCollider);
+        Interactable interactable = hitCollider.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            //Show E-button on screen
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                owner.Transition<InteractState>();
+                interactable.InvokeInteraction();
+            }
+            
+        }
+    }
+
 }

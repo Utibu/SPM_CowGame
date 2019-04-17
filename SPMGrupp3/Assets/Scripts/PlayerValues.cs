@@ -14,7 +14,7 @@ public class PlayerValues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnHayEatingFinished);
     }
 
     // Update is called once per frame
@@ -25,5 +25,11 @@ public class PlayerValues : MonoBehaviour
             //healthBar.fillAmount = health / maxHealth;
         }
         
+    }
+
+    public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)
+    {
+        health += 20;
+        Debug.Log(eventInfo.eventDescription);
     }
 }
