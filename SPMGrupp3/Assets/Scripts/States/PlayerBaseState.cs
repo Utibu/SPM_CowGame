@@ -8,6 +8,7 @@ public class PlayerBaseState : PhysicsBaseState
     public float horizontalPercentage = 0.5f;
     protected Vector3 direction;
     protected bool takeInput = true;
+    public float jumpForce = 5f;
 
 
     public override void Enter()
@@ -17,9 +18,31 @@ public class PlayerBaseState : PhysicsBaseState
 
     public override void Update()
     {
-        if(takeInput)
-            HandleInput();
         base.Update();
+        if (takeInput)
+            HandleInput();
+
+        if(!IsGrounded() && owner.GetCurrentState().GetType() != typeof(AirState))
+        {
+            owner.Transition<AirState>();
+        }
+
+        /*
+         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            owner.Transition<JumpState>();
+        }
+         */
+
+        
+    }
+
+    public virtual void Jump()
+    {
+        Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
+        owner.velocity += jumpMovement;
+        //Debug.Log("velocity: " + owner.velocity);
+        owner.Transition<AirState>();
     }
 
     protected void HandleInput()
@@ -27,7 +50,7 @@ public class PlayerBaseState : PhysicsBaseState
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         //Normalized (direction)
-        direction = new Vector3(horizontal, 0f, vertical);
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
         direction = (Camera.main.transform.rotation * direction).normalized;
         //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);
         Vector3 projectedPlane = direction;

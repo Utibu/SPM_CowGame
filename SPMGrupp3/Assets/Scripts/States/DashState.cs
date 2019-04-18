@@ -24,6 +24,8 @@ public class DashState : PlayerBaseState
         owner.velocity /= 2f;
         Camera.main.fieldOfView = originalFOV;
         ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
+        ((PlayerStateMachine)owner).lastGravity = gravityConstant;
+        ((PlayerStateMachine)owner).lastAcceleration = acceleration;
 
         base.Leave();
     }
@@ -68,24 +70,30 @@ public class DashState : PlayerBaseState
     public override void Update()
     {
 
+        
+
         base.Update();
 
-        if (!Input.GetKey(KeyCode.LeftShift) || !IsGrounded())
-        {
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
-            owner.Transition<WalkState>();
-            return;
-        }
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            owner.Transition<JumpState>();
+            Jump();
+            Debug.Log("JUMPING");
+            return;
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift) || !IsGrounded())
+        {
+            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
+            owner.Transition<WalkState>();
+            Debug.Log("WALKING NOW");
             return;
         }
 
-        if(owner.velocity.magnitude < ((PlayerStateMachine)owner).velocityToDash)
+
+        if (owner.velocity.magnitude < ((PlayerStateMachine)owner).velocityToDash)
         {
             owner.Transition<ChargeState>();
+            Debug.Log("CARGNING NOW");
         }
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)

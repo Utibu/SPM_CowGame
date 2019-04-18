@@ -6,13 +6,13 @@ using UnityEngine;
 public class JumpState : PlayerBaseState
 {
 
-    public float jumpForce = 5f;
+    //public float jumpForce = 5f;
 
     public override void Enter()
     {
         base.Enter();
-        Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
-        owner.velocity += jumpMovement;
+        //Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
+        //owner.velocity += jumpMovement;
     }
 
     public override void Leave()
@@ -22,7 +22,6 @@ public class JumpState : PlayerBaseState
 
     public override void Update()
     {
-
         base.Update();
 
         if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
