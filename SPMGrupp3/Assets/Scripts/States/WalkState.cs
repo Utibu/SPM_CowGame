@@ -21,10 +21,11 @@ public class WalkState : PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            owner.Transition<JumpState>();
+            //owner.Transition<JumpState>();
+            Jump();
         }
 
-        if(Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }

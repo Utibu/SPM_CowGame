@@ -36,10 +36,9 @@ public class ChargeState : PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            owner.Transition<JumpState>();
+            //owner.Transition<JumpState>();
+            Jump();
         }
-
-
 
     }
 }

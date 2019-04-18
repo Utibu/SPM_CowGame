@@ -9,13 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e413c6630c7477d4997c4b55ca890aea, type: 3}
-  m_Name: WalkState
+  m_Script: {fileID: 11500000, guid: bca608647e658eb438c0b5b821c3df16, type: 3}
+  m_Name: AirState
   m_EditorClassIdentifier: 
-  acceleration: 40
+  acceleration: 10
   airResistance: 0.4
-  gravityConstant: 30
-  staticFrictionForce: 0.9
-  dynamicFrictionPercentage: 0.9
+  gravityConstant: 50
+  staticFrictionForce: 0.6
+  dynamicFrictionPercentage: 0.6
   horizontalPercentage: 0.8
   jumpForce: 2500
+  distanceToTakeFalldamage: 10
+  dashJumpAcceleration: 30
+  normalJumpAcceleration: 20
+  fallDamage: 10

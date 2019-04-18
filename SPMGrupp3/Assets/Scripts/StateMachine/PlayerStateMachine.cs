@@ -17,6 +17,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float velocityToDash;
     [HideInInspector] public float countdown;
     [HideInInspector] public float waitWhenInteracting;
+    [HideInInspector] public float lastAcceleration;
+    [HideInInspector] public float lastGravity;
+    
 
     public float mouseSensitivity;
     float rotationX;
