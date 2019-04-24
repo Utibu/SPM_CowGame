@@ -7,7 +7,7 @@ public class PlayerBaseState : PhysicsBaseState
 
     public float horizontalPercentage = 0.5f;
     protected Vector3 direction;
-    protected bool takeInput = true;
+    public bool takeInput = true;
     public float jumpForce = 5f;
 
 
@@ -41,7 +41,7 @@ public class PlayerBaseState : PhysicsBaseState
     {
         Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
         owner.velocity += jumpMovement;
-        //Debug.Log("velocity: " + owner.velocity);
+        Debug.Log("gravity: " + gravityConstant);
         owner.Transition<AirState>();
     }
 
