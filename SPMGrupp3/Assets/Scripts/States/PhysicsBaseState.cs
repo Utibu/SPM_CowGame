@@ -26,7 +26,7 @@ public class PhysicsBaseState : State
 
         PreventCollision();
         CheckTriggers();
-
+        Debug.Log("GRAVITY: " + gravityConstant);
         //Debug.Log(owner.velocity.magnitude);
 
     }

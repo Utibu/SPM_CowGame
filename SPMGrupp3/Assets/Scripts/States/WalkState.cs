@@ -9,6 +9,8 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("enter walkstate");
+        Debug.Log("velocity: " + owner.velocity);
     }
 
     public override void Leave()
