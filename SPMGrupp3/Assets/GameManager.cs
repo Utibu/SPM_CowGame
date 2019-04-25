@@ -1,0 +1,49 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance = null;
+    [HideInInspector] public Transform currentCheckpoint;
+    public int deathCount = 0;
+    public PlayerStateMachine player;
+    public Transform originalSpawnTransform;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void CheckpointTaken(Transform checkPointTransform)
+    {
+        currentCheckpoint = checkPointTransform.Find("SpawnPoint");
+        checkPointTransform.gameObject.SetActive(false);
+    }
+
+    void Respawn(OnPlayerDiedEvent eventInfo)
+    {
+        deathCount++;
+        if(deathCount <= 3 && currentCheckpoint != null)
+        {
+            player.Respawn(currentCheckpoint.transform.position);
+        } else
+        {
+            player.Respawn(originalSpawnTransform.position);
+        }
+    }
+}

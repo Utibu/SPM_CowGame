@@ -122,4 +122,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         return dashCooldown;
     }
+
+    public void Respawn(Vector3 position)
+    {
+        this.transform.position = position;
+    }
 }

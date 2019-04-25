@@ -20,11 +20,26 @@ public class PlayerValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health >= 0)
+        if(health > 0)
         {
             healthBar.fillAmount = health / maxHealth;
+        } else
+        {
+            Die();
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Die();
         }
         
+    }
+
+    void Die()
+    {
+        health = 100;
+        healthBar.fillAmount = health / maxHealth;
+        EventSystem.Current.FireEvent(new OnPlayerDiedEvent(this.gameObject, "Player died"));
     }
 
     public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)
