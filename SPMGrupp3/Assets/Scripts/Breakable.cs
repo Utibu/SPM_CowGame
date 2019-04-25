@@ -6,7 +6,7 @@ public class Breakable : MonoBehaviour
 {
     private Collider colli;
     public LayerMask masken;
-    public float fallTime = 1.2f;
+    public float fallTime = 1.0f;
     private bool broke = false;
     private bool falling = false;
     private float speed = 0.1f;
