@@ -99,6 +99,14 @@ public class PlayerBaseState : PhysicsBaseState
         {
             hitCollider.transform.parent.GetComponent<Breakable>().SetFall();
         }
+
+        if (hitCollider.tag.Equals("Button"))
+        {
+            if (hitCollider.transform.parent.GetComponent<MakeRampButton>() != null && Input.GetKeyDown(KeyCode.E))
+            {
+                hitCollider.transform.parent.GetComponent<MakeRampButton>().Act();
+            }
+        }
     }
 
     public override void ActOnCollision(Collider hitCollider)
@@ -113,6 +121,8 @@ public class PlayerBaseState : PhysicsBaseState
         {
             hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
         }
+
+        
 
     }
 }

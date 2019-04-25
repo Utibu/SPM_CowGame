@@ -26,7 +26,7 @@ public class PhysicsBaseState : State
 
         PreventCollision();
         CheckTriggers();
-        Debug.Log("GRAVITY: " + gravityConstant);
+        //Debug.Log("GRAVITY: " + gravityConstant);
         //Debug.Log(owner.velocity.magnitude);
 
     }
@@ -129,6 +129,11 @@ public class PhysicsBaseState : State
         if (hitCollider.tag.Equals("Droppable"))
         {
             hitCollider.GetComponent<DroppableObject>().OnEnter();
+        }
+
+        if(hitCollider.tag.Equals("Checkpoint"))
+        {
+            GameManager.instance.CheckpointTaken(hitCollider.transform);
         }
     }
 
