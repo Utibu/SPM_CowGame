@@ -6,18 +6,18 @@ public class Breakable : MonoBehaviour
 {
     private Collider colli;
     public LayerMask masken;
-    public float fallTime = 1f;
+    public float fallTime = 1.2f;
     private bool broke = false;
     private bool falling = false;
     private float speed = 0.1f;
-    private float countdown;
+    public float countdown;
     Vector3 toGround;
 
     // Start is called before the first frame update
     void Start()
     {
         colli = GetComponent<BoxCollider>();
-        countdown = fallTime;
+        //countdown = fallTime;
     }
 
     // Update is called once per frame
