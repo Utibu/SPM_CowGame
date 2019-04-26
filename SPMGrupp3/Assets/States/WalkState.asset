@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: WalkState
   m_EditorClassIdentifier: 
   acceleration: 60
-  airResistance: 0.4
+  airResistance: 0.2
   gravityConstant: 50
   staticFrictionForce: 0.9
   dynamicFrictionPercentage: 0.9
   horizontalPercentage: 0.8
   takeInput: 1
   jumpForce: 30
+  maxSpeed: 15
   dashThreshold: 3
