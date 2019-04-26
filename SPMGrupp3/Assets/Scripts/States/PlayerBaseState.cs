@@ -39,7 +39,7 @@ public class PlayerBaseState : PhysicsBaseState
 
     public virtual void Jump()
     {
-        Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
+        Vector3 jumpMovement = Vector2.up * jumpForce;
         owner.velocity += jumpMovement;
         Debug.Log("gravity: " + gravityConstant);
         owner.Transition<AirState>();
