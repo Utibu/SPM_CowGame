@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 45;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -26,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void CheckpointTaken(Transform checkPointTransform)

@@ -22,7 +22,11 @@ public class PlayerValues : MonoBehaviour
     {
         if(health > 0)
         {
-            healthBar.fillAmount = health / maxHealth;
+            if(healthBar != null)
+            {
+                healthBar.fillAmount = health / maxHealth;
+            }
+            
         } else
         {
             Die();
@@ -38,7 +42,10 @@ public class PlayerValues : MonoBehaviour
     void Die()
     {
         health = 100;
-        healthBar.fillAmount = health / maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = health / maxHealth;
+        }
         EventSystem.Current.FireEvent(new OnPlayerDiedEvent(this.gameObject, "Player died"));
     }
 
