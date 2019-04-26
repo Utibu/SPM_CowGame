@@ -10,9 +10,11 @@ public class DashState : PlayerBaseState
     private float originalFOV;
     private float originalSens;
     public float divideSens = 10f;
+
     public float dashStateLength = 1f;
 
     private float timer;
+
 
     public override void Enter()
     {
