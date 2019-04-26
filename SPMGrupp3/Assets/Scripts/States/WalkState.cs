@@ -5,12 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStateMachine/WalkState")]
 public class WalkState : PlayerBaseState
 {
-
+    private bool allowDash = true;
+    public float dashThreshold = 10f;
+    private float time = 0f;
     public override void Enter()
     {
         base.Enter();
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
+        time = 0f;
+        if (owner.lastState != null && owner.lastState.GetType() == typeof(DashState))
+        {
+            allowDash = false;
+        }
     }
 
     public override void Leave()
@@ -20,6 +27,14 @@ public class WalkState : PlayerBaseState
 
     public override void Update()
     {
+        if(!allowDash)
+        {
+            time += Time.deltaTime;
+            if(time % 60 > dashThreshold)
+            {
+                allowDash = true;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -27,7 +42,7 @@ public class WalkState : PlayerBaseState
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && allowDash)
         {
             owner.Transition<ChargeState>();
         }
