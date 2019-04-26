@@ -10,10 +10,18 @@ public class DashState : PlayerBaseState
     private float originalFOV;
     private float originalSens;
     public float divideSens = 10f;
+<<<<<<< HEAD
+=======
+    public float dashStateLength = 1f;
+
+    private float timer;
+>>>>>>> d10297f79ad202c6136b20db8f958a065106a714
 
     public override void Enter()
     {
         base.Enter();
+        airResistance = ((PlayerStateMachine)owner).dashAirResistance;
+        timer = 0.0f;
         originalFOV = Camera.main.fieldOfView;
         originalSens = ((PlayerStateMachine)owner).mouseSensitivity;
         ((PlayerStateMachine)owner).mouseSensitivity /= divideSens;
@@ -69,10 +77,16 @@ public class DashState : PlayerBaseState
 
     public override void Update()
     {
-
-        
-
         base.Update();
+
+        if(timer % 60 > dashStateLength)
+        {
+            owner.Transition<WalkState>();
+
+        } else
+        {
+            timer += Time.deltaTime;
+        }
 
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
@@ -98,7 +112,7 @@ public class DashState : PlayerBaseState
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)
         {
-            Camera.main.fieldOfView += fovChangeVelocity * Time.deltaTime;
+           // Camera.main.fieldOfView += fovChangeVelocity * Time.deltaTime;
         }
 
 

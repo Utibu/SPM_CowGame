@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e413c6630c7477d4997c4b55ca890aea, type: 3}
   m_Name: WalkState
   m_EditorClassIdentifier: 
-  acceleration: 40
-  airResistance: 0.4
-  gravityConstant: 30
+  acceleration: 60
+  airResistance: 0.2
+  gravityConstant: 50
   staticFrictionForce: 0.9
   dynamicFrictionPercentage: 0.9
   horizontalPercentage: 0.8
   takeInput: 1
   jumpForce: 30
+  maxSpeed: 15
+  dashThreshold: 3
