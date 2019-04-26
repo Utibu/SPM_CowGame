@@ -9,7 +9,7 @@ public class DashState : PlayerBaseState
     private float fovChangeVelocity = 10f;
     private float originalFOV;
     private float originalSens;
-    private float divideSens = 10f;
+    public float divideSens = 10f;
 
     public override void Enter()
     {
