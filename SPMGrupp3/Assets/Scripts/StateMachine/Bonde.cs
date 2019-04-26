@@ -41,6 +41,7 @@ public class Bonde : StateMachine
 
     public virtual void PlayerDash()
     {
+        Debug.Log("DASH");
         Transition<BondeStunState>();
     }
 }

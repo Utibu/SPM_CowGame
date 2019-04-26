@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7578379273770255064}
   - component: {fileID: 7578379273770255068}
   - component: {fileID: 7578379273770255065}
+  - component: {fileID: 5053778765053651794}
   m_Layer: 9
   m_Name: Ranged
   m_TagString: Enemy
@@ -91,7 +92,7 @@ BoxCollider:
   m_GameObject: {fileID: 7578379273770255078}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1, z: 1.77}
   m_Center: {x: 0, y: 0, z: 0}
@@ -144,8 +145,24 @@ MonoBehaviour:
   stunTime: 60
   toAttack: 20
   maxVisibility: 25
+  customAttackDamage: 0
+  attackDamage: 0
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
+--- !u!136 &5053778765053651794
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578379273770255078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.72
+  m_Height: 1.33
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7578379274678033344
 GameObject:
   m_ObjectHideFlags: 0

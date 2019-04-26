@@ -10,7 +10,10 @@ public class BondeRangedStunState : BondeRangedBaseState
     public override void Enter()
     {
         base.Enter();
+        time = 0.0f;
         owner.agnes.isStopped = true;
+        owner.agnes.enabled = false;
+        owner.GetComponent<Collider>().enabled = false;
     }
 
     public override void Update()
@@ -20,8 +23,15 @@ public class BondeRangedStunState : BondeRangedBaseState
         time += Time.deltaTime;
         if (time % 60 >= owner.stunTime)
         {
-            owner.agnes.isStopped = false;
             owner.Transition<BondeRangedPatrolState>();
         }
+    }
+
+    public override void Leave()
+    {
+        base.Leave();
+        owner.agnes.enabled = true;
+        owner.GetComponent<Collider>().enabled = true;
+        owner.agnes.isStopped = false;
     }
 }
