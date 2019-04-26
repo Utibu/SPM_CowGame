@@ -107,6 +107,11 @@ public class PlayerBaseState : PhysicsBaseState
                 hitCollider.transform.parent.GetComponent<MakeRampButton>().Act();
             }
         }
+
+        if (hitCollider.GetComponent<LoadScene>() != null)
+        {
+            GameManager.instance.LoadScene(hitCollider.GetComponent<LoadScene>().sceneIndex);
+        }
     }
 
     public override void ActOnCollision(Collider hitCollider)
