@@ -9,6 +9,7 @@ public class PlayerBaseState : PhysicsBaseState
     protected Vector3 direction;
     public bool takeInput = true;
     public float jumpForce = 5f;
+    public float maxSpeed;
 
 
     public override void Enter()
@@ -72,14 +73,20 @@ public class PlayerBaseState : PhysicsBaseState
         {
             movement *= horizontalPercentage;
         }
+
+        /*if (maxSpeed <= 0)
+        {
+            maxSpeed = ((PlayerStateMachine)owner).maxSpeed;
+        }
+        if (movement.magnitude > maxSpeed)
+        {
+            movement = movement.normalized * maxSpeed;
+        }*/
+
         owner.velocity += movement;
 
         
-
-        if (owner.velocity.magnitude > ((PlayerStateMachine)owner).maxSpeed)
-        {
-            owner.velocity = owner.velocity.normalized * ((PlayerStateMachine)owner).maxSpeed;
-        }
+        
     }
 
     public override void Leave()
