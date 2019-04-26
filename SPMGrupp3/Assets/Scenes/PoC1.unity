@@ -767,6 +767,7 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   skinWidth: 0.01
   groundCheckDistance: 0.2
+  moveMultiplier: 0
 --- !u!1 &305666470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,6 +4081,8 @@ MonoBehaviour:
   stunTime: 60
   toAttack: 20
   maxVisibility: 25
+  customAttackDamage: 0
+  attackDamage: 0
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 554816770}
 --- !u!65 &1698221473
@@ -5960,6 +5963,16 @@ PrefabInstance:
         type: 3}
       propertyPath: toAttack
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929106447677307337, guid: 18cf9e71a9f129443a1cacda874c6ab3,
+        type: 3}
+      propertyPath: attackDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929106447677307337, guid: 18cf9e71a9f129443a1cacda874c6ab3,
+        type: 3}
+      propertyPath: customAttackDamage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cf9e71a9f129443a1cacda874c6ab3, type: 3}

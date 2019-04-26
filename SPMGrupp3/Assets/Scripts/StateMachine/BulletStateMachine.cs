@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BulletStateMachine : PhysicsStateMachine
 {
-    public float bulletDamage = 10f;
-    public void SendBullet(Vector3 vel)
+    [HideInInspector] public float bulletDamage;
+    public void SendBullet(Vector3 vel, float damage)
     {
         velocity += vel;
+        bulletDamage = damage;
        // Debug.Log(velocity);
     }
 

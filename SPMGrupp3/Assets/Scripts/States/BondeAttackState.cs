@@ -6,13 +6,13 @@ using UnityEngine;
 public class BondeAttackState : BondeBaseState
 {
 
-    private float atk = 20.0f;
     private float cooldown = 1.2f;
     private float countdown;
     private bool attacking;
     private float rotation;
     private Quaternion originalPosition;
     Vector3 lookPos;
+    public float damage;
 
     public override void Enter()
     {
@@ -21,8 +21,12 @@ public class BondeAttackState : BondeBaseState
         rotation = 0;
         //owner.agnes.Stop();
         owner.agnes.speed = 0f;
-        
-        
+
+        if (!owner.customAttackDamage)
+        {
+            owner.attackDamage = damage;
+        }
+
         countdown = cooldown;
         attacking = false;
         attack();
@@ -81,7 +85,7 @@ public class BondeAttackState : BondeBaseState
         //{
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack / 2)
         {
-            owner.player.playerValues.health -= atk;
+            owner.player.playerValues.health -= owner.attackDamage;
             owner.player.velocity += owner.transform.forward * 20f;
             Debug.Log("HIT!");
         }

@@ -16,6 +16,8 @@ public class Bonde : StateMachine
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
+    public bool customAttackDamage;
+    public float attackDamage;
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -24,6 +26,11 @@ public class Bonde : StateMachine
         boxref = GetComponent<BoxCollider>();
         agnes = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStateMachine>();
+    }
+
+    public void Start()
+    {
+        
     }
 
     // Update is called once per frame

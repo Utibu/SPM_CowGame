@@ -29,11 +29,10 @@ public class BulletState : PhysicsBaseState
         if (hitCollider.tag.Equals("Player"))
         {
             //Debug.Log("HIT");
-            hitCollider.GetComponent<PlayerValues>().health -= 10;
+            hitCollider.GetComponent<PlayerValues>().health -= ((BulletStateMachine)owner).bulletDamage;
             hitCollider.GetComponent<PhysicsStateMachine>().velocity = Vector3.zero;
             Destroy(owner.gameObject);
-        } else if(hitCollider.tag.Equals("PlayerCollision"))
-        {
+        } else {
             Destroy(owner.gameObject);
         }
         base.ActOnCollision(hitCollider);

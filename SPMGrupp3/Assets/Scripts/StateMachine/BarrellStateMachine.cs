@@ -9,15 +9,12 @@ public class BarrellStateMachine : PhysicsStateMachine
 
     public void Move(Vector3 playerVelocity)
     {
-        //Debug.Log("MOVE" + playerVelocity);
-
         if(moveMultiplier <= 0)
         {
             moveMultiplier = 1;
         }
 
         velocity += playerVelocity.normalized * playerVelocity.magnitude * moveMultiplier;
-        //Debug.Log(velocity);
     }
 
 }
