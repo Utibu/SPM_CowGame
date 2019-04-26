@@ -11,6 +11,7 @@ public class BarrellState : PhysicsBaseState
     public override void Enter()
     {
         base.Enter();
+        ((BarrellStateMachine)owner).moveMultiplier = moveMultiplier;
     }
 
     public override void Update()

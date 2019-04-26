@@ -8,6 +8,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private State[] states;
     private Dictionary<Type, State> allStates = new Dictionary<Type, State>();
     private State currentState;
+    [HideInInspector] public State lastState;
 
     protected virtual void Awake()
     {
@@ -38,6 +39,7 @@ public class StateMachine : MonoBehaviour
     public void Transition<T>() where T: State
     {
         currentState.Leave();
+        lastState = currentState;
         currentState = allStates[typeof(T)];
         currentState.Enter();
     }

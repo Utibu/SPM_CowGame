@@ -17,7 +17,7 @@ public class SideDashState : PlayerBaseState
         base.Enter();
         HandleInput();
         inputDirection = new Vector3(direction.x, 0.0f, direction.z);
-        owner.velocity = inputDirection * dashDistance * Time.deltaTime;
+        owner.velocity = inputDirection * dashDistance;
         takeInput = false;
         
     }

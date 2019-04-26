@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18356c7ff9d9984995005bc5cf2a6a9, type: 3}
   m_Name: SideDashState
   m_EditorClassIdentifier: 
-  acceleration: 80
+  acceleration: 200
   airResistance: 0.5
-  gravityConstant: 8
+  gravityConstant: 20
   staticFrictionForce: 0.8
   dynamicFrictionPercentage: 0.9
   horizontalPercentage: 1
-  dashDistance: 1200
+  takeInput: 1
+  jumpForce: 5
+  dashDistance: 100
   exitDashSpeed: 10

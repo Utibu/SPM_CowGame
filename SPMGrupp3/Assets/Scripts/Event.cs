@@ -45,3 +45,12 @@ public class HayEatingFinishedEvent: OnInteractionFinishedEvent
     {
     }
 }
+
+public class OnPlayerDiedEvent: DebugEvent
+{
+    public GameObject gameObject;
+    public OnPlayerDiedEvent(GameObject gameObject, string eventDescription = "") : base(eventDescription)
+    {
+        this.gameObject = gameObject;
+    }
+}

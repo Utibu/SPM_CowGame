@@ -9,6 +9,8 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("enter walkstate");
+        Debug.Log("velocity: " + owner.velocity);
     }
 
     public override void Leave()
@@ -21,10 +23,11 @@ public class WalkState : PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            owner.Transition<JumpState>();
+            //owner.Transition<JumpState>();
+            Jump();
         }
 
-        if(Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }

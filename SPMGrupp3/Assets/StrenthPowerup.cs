@@ -9,7 +9,7 @@ public class StrenthPowerup : DroppableObject
     {
         base.OnEnter();
         Debug.Log("LEVEL");
-        player.GetComponent<PlayerStateMachine>().maxSpeed += 10;
+        player.GetComponent<PlayerStateMachine>().maxSpeed += 5;
 
     }
 }

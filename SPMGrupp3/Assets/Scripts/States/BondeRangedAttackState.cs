@@ -9,9 +9,16 @@ public class BondeRangedAttackState : BondeRangedBaseState
     public float bulletAcceleration = 20f;
     public float cooldown = 1.2f;
     private float countdown;
+    public float damage;
 
     public override void Enter()
     {
+
+        if (!owner.customAttackDamage)
+        {
+            owner.attackDamage = damage;
+        }
+
         countdown = cooldown;
         attack();
     }
@@ -56,7 +63,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
     {
         GameObject bullet = Instantiate(owner.bullet, owner.gun.transform.position, Quaternion.identity);
         BulletStateMachine stateMachine = bullet.GetComponent<BulletStateMachine>();
-        stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration);
+        stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
        // Debug.Log("pew");
     }
 

@@ -110,11 +110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: 6d40043baec377a4588d0a07dd3e25d7, type: 2}
-  - {fileID: 11400000, guid: 87b085206cd7f524dbc19b3cee99f1a0, type: 2}
+  - {fileID: 11400000, guid: 38a64d1713c892549a415c3e71cd3e29, type: 2}
   - {fileID: 11400000, guid: bb8a51ef334262348abffd7d4465b8de, type: 2}
   - {fileID: 11400000, guid: 143677cbc7ba4dd4897e51de4f74b14c, type: 2}
   - {fileID: 11400000, guid: b3606ae1f2e0bf740b544c26086d5a21, type: 2}
   - {fileID: 11400000, guid: b697097d16d28494dba69f244b362217, type: 2}
+  - {fileID: 11400000, guid: ee87e9d82df7010489f041b929afb44b, type: 2}
+  lastState: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   collisionMask:
     serializedVersion: 2
@@ -131,9 +133,12 @@ MonoBehaviour:
   dashCooldown: 2
   velocityToDash: 10
   countdown: 0
+  waitWhenInteracting: 0
+  lastAcceleration: 0
+  lastGravity: 0
   mouseSensitivity: 2
-  minAngle: -90
-  maxAngle: 90
+  minAngle: -45
+  maxAngle: 45
   cameraPositionRelativeToPlayer: {x: 0, y: 1, z: -5}
   cameraType: 1
 --- !u!114 &499345691420650960

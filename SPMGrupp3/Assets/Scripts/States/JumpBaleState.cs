@@ -12,7 +12,7 @@ public class JumpBaleState : PlayerBaseState
     {
         base.Update();
         
-        Vector3 bounce = Vector3.up * jumpHeight * Time.deltaTime;
+        Vector3 bounce = Vector3.up * jumpHeight;
         owner.velocity += bounce;
     }
 

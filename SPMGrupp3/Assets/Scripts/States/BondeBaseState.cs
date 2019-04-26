@@ -8,6 +8,7 @@ public class BondeBaseState : EnemyGeneralState
     protected Bonde owner;
     public float speed;
 
+
     // for collision
     private Vector3 movement;
 
@@ -22,8 +23,8 @@ public class BondeBaseState : EnemyGeneralState
         owner = (Bonde)stateMachine;
     }
 
-    public override  void Enter()
+    public override void Enter()
     {
-
+        
     }
 }

@@ -26,7 +26,7 @@ public class PhysicsBaseState : State
 
         PreventCollision();
         CheckTriggers();
-
+        //Debug.Log("GRAVITY: " + gravityConstant);
         //Debug.Log(owner.velocity.magnitude);
 
     }
@@ -35,10 +35,13 @@ public class PhysicsBaseState : State
     {
         //Vector3 p1 = owner.transform.position + (Vector3.up * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         //Vector3 p2 = owner.transform.position + (Vector3.down * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
+
+        //owner.groundCheckDistance + owner.skinWidth
         RaycastHit hit;
-        bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.extents, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
+        bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.extents, Vector3.down, out hit, owner.transform.rotation, float.MaxValue, owner.collisionMask);
         if (ray)
         {
+            //Debug.Log("RAY");
             if (hit.collider != null)
             {
                 return hit.normal;
@@ -126,6 +129,11 @@ public class PhysicsBaseState : State
         if (hitCollider.tag.Equals("Droppable"))
         {
             hitCollider.GetComponent<DroppableObject>().OnEnter();
+        }
+
+        if(hitCollider.tag.Equals("Checkpoint"))
+        {
+            GameManager.instance.CheckpointTaken(hitCollider.transform);
         }
     }
 

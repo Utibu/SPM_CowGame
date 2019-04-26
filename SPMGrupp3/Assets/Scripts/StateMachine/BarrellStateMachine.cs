@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class BarrellStateMachine : PhysicsStateMachine
 {
+
+    [HideInInspector] public float moveMultiplier;
+
     public void Move(Vector3 playerVelocity)
     {
-        //Debug.Log("MOVE" + playerVelocity);
-        velocity += playerVelocity.normalized * playerVelocity.magnitude;
-        //Debug.Log(velocity);
+        if(moveMultiplier <= 0)
+        {
+            moveMultiplier = 1;
+        }
+
+        velocity += playerVelocity.normalized * playerVelocity.magnitude * moveMultiplier;
     }
 
 }
