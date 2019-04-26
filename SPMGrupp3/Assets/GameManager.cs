@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public PlayerStateMachine player;
     public Transform originalSpawnTransform;
     public Text velocityText;
+    public bool debug;
 
     void Awake()
     {
@@ -28,7 +29,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
-        player.transform.position = originalSpawnTransform.position;
+        if(!debug)
+        {
+            player.transform.position = originalSpawnTransform.position;
+        }
+        
     }
 
     // Update is called once per frame
