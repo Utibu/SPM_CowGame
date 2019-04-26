@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int deathCount = 0;
     public PlayerStateMachine player;
     public Transform originalSpawnTransform;
+    public Text velocityText;
 
     void Awake()
     {
@@ -31,7 +33,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(velocityText != null)
+        {
+            velocityText.text = "Velocity: " + player.velocity.magnitude;
+        }
     }
 
     public void CheckpointTaken(Transform checkPointTransform)

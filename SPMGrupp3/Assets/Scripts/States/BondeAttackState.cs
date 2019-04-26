@@ -64,7 +64,8 @@ public class BondeAttackState : BondeBaseState
             rotation += -2;
             owner.weapon.transform.localRotation = Quaternion.Euler(90 + rotation, 0, 0);
         }
-        
+
+        Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack)
         {
             owner.agnes.updateRotation = true;

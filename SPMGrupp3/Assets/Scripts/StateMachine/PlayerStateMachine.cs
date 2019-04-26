@@ -19,6 +19,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public float waitWhenInteracting;
     [HideInInspector] public float lastAcceleration;
     [HideInInspector] public float lastGravity;
+
+    private float originalFOV;
+    public float maxFOV;
     
 
     public float mouseSensitivity;
@@ -41,6 +44,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     private void Start()
     {
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
+        originalFOV = Camera.main.fieldOfView;
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)
@@ -52,7 +56,19 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         base.Update();
 
-        if(countdown > 0)
+        //0 = 10
+        //1 = maxSpeed
+        if(!(GetCurrentState().GetType() == typeof(AirState)))
+        {
+            float normalizedFOV = velocity.magnitude / maxSpeed;
+            Camera.main.fieldOfView = Mathf.Lerp(originalFOV, maxFOV, normalizedFOV);
+        } else
+        {
+
+        }
+        
+
+        if (countdown > 0)
             countdown -= Time.deltaTime;
 
         if(cameraType == CameraType.First)
