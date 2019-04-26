@@ -15,6 +15,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float maxSpeed;
     public float dashCooldown = 5f;
     public float velocityToDash;
+    public float dashAirResistance;
     [HideInInspector] public float countdown;
     [HideInInspector] public float waitWhenInteracting;
     [HideInInspector] public float lastAcceleration;

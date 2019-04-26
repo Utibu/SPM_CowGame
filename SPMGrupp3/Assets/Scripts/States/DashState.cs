@@ -17,6 +17,7 @@ public class DashState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        airResistance = ((PlayerStateMachine)owner).dashAirResistance;
         timer = 0.0f;
         originalFOV = Camera.main.fieldOfView;
         originalSens = ((PlayerStateMachine)owner).mouseSensitivity;

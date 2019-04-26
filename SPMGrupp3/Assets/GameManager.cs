@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
+        player.transform.position = originalSpawnTransform.position;
     }
 
     // Update is called once per frame
