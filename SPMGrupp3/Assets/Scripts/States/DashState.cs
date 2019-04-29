@@ -21,15 +21,15 @@ public class DashState : PlayerBaseState
         base.Enter();
         airResistance = ((PlayerStateMachine)owner).dashAirResistance;
         timer = 0.0f;
-        originalFOV = Camera.main.fieldOfView;
+        //originalFOV = Camera.main.fieldOfView;
         originalSens = ((PlayerStateMachine)owner).mouseSensitivity;
         ((PlayerStateMachine)owner).mouseSensitivity /= divideSens;
     }
 
     public override void Leave()
     {
-        owner.velocity /= 2f;
-        Camera.main.fieldOfView = originalFOV;
+        //owner.velocity /= 2f;
+        //Camera.main.fieldOfView = originalFOV;
         ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
         ((PlayerStateMachine)owner).lastGravity = gravityConstant;
         ((PlayerStateMachine)owner).lastAcceleration = acceleration;
@@ -78,7 +78,7 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        if(timer % 60 > dashStateLength)
+        if(timer % 60 > dashStateLength && !((PlayerStateMachine)owner).hasFreeDash)
         {
             owner.Transition<WalkState>();
 

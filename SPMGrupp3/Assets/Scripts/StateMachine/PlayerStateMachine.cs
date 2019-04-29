@@ -33,6 +33,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public Vector3 cameraPositionRelativeToPlayer;
     public CameraType cameraType;
     
+    [HideInInspector] public bool hasFreeDash = false;
 
     override protected void Awake()
     {
@@ -46,6 +47,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
+        hasFreeDash = false;
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)

@@ -10,6 +10,7 @@ public class PlayerBaseState : PhysicsBaseState
     public bool takeInput = true;
     public float jumpForce = 5f;
     public float maxSpeed;
+    
 
 
     public override void Enter()
@@ -124,6 +125,10 @@ public class PlayerBaseState : PhysicsBaseState
         {
             GameManager.instance.player.playerValues.Die();
         }
+
+        if(hitCollider.GetComponent<BaseTrigger>() != null) {
+            hitCollider.GetComponent<BaseTrigger>().OnTriggerEnter();
+        }  
     }
 
     public override void ActOnCollision(Collider hitCollider)

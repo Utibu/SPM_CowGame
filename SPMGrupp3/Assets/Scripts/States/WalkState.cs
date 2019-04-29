@@ -42,7 +42,7 @@ public class WalkState : PlayerBaseState
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && allowDash)
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && (allowDash || ((PlayerStateMachine)owner).hasFreeDash))
         {
             owner.Transition<ChargeState>();
         }
