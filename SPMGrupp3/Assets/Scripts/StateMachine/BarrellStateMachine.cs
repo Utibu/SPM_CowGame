@@ -14,6 +14,8 @@ public class BarrellStateMachine : PhysicsStateMachine
             moveMultiplier = 1;
         }
 
+        playerVelocity = new Vector3(playerVelocity.x, 0f, playerVelocity.z);
+
         velocity += playerVelocity.normalized * playerVelocity.magnitude * moveMultiplier;
     }
 
