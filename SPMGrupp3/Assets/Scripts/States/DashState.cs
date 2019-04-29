@@ -20,6 +20,7 @@ public class DashState : PlayerBaseState
     {
         base.Enter();
         airResistance = ((PlayerStateMachine)owner).dashAirResistance;
+        ((PlayerStateMachine)owner).isDashing = true;
         timer = 0.0f;
         //originalFOV = Camera.main.fieldOfView;
         originalSens = ((PlayerStateMachine)owner).mouseSensitivity;
@@ -30,6 +31,7 @@ public class DashState : PlayerBaseState
     {
         //owner.velocity /= 2f;
         //Camera.main.fieldOfView = originalFOV;
+        ((PlayerStateMachine)owner).isDashing = false;
         ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
         ((PlayerStateMachine)owner).lastGravity = gravityConstant;
         ((PlayerStateMachine)owner).lastAcceleration = acceleration;
