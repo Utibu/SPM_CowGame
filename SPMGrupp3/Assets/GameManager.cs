@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 45;
+        //QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        //Application.targetFrameRate = 45;
 
     }
     // Start is called before the first frame update

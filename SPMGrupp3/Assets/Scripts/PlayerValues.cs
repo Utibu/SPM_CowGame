@@ -39,7 +39,7 @@ public class PlayerValues : MonoBehaviour
         
     }
 
-    void Die()
+    public void Die()
     {
         health = 100;
         if (healthBar != null)

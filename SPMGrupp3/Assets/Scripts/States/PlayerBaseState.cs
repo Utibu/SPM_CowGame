@@ -118,6 +118,11 @@ public class PlayerBaseState : PhysicsBaseState
         if (hitCollider.GetComponent<LoadScene>() != null)
         {
             GameManager.instance.LoadScene(hitCollider.GetComponent<LoadScene>().sceneIndex);
+        } 
+
+        if(hitCollider.tag.Equals("Killzone"))
+        {
+            GameManager.instance.player.playerValues.Die();
         }
     }
 
