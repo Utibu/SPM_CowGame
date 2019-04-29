@@ -17,6 +17,8 @@ public class BondeRangedPatrolState : BondeRangedBaseState
         {
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;
+            owner.GetComponent<MeshRenderer>().material.color = Color.white;
+
             //Debug.Log("DESTINATION: " + owner.agnes.destination);
             //Debug.Log(owner.agnes.updateRotation);
         }

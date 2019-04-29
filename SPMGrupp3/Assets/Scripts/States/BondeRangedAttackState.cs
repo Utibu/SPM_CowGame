@@ -53,7 +53,6 @@ public class BondeRangedAttackState : BondeRangedBaseState
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack + 2)
         {
-            owner.agnes.updateRotation = true;
             owner.Transition<BondeRangedChaseState>();
         }
     }
@@ -65,6 +64,13 @@ public class BondeRangedAttackState : BondeRangedBaseState
         BulletStateMachine stateMachine = bullet.GetComponent<BulletStateMachine>();
         stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
        // Debug.Log("pew");
+    }
+
+    public override void Leave()
+    {
+        base.Leave();
+        owner.agnes.updateRotation = true;
+        owner.gun.transform.rotation = owner.transform.rotation;
     }
 
 }

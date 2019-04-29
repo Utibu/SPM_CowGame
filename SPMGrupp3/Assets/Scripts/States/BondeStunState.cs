@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Bonde/BondeStunState")]
 public class BondeStunState : BondeBaseState
 {
+
     private float time = 0.0f;
 
     public override void Enter()
@@ -14,12 +15,13 @@ public class BondeStunState : BondeBaseState
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
+        owner.GetComponent<MeshRenderer>().material.color = Color.black;
+
     }
 
     public override void Update()
     {
         base.Update();
-        owner.GetComponent<MeshRenderer>().material.color = Color.black;
         time += Time.deltaTime;
         if(time % 60 >= owner.stunTime)
         {
@@ -33,5 +35,6 @@ public class BondeStunState : BondeBaseState
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;
+
     }
 }

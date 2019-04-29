@@ -68,7 +68,6 @@ public class BondeAttackState : BondeBaseState
         Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack)
         {
-            owner.agnes.updateRotation = true;
             owner.Transition<BondeChaseState>();
         }
     }
@@ -99,6 +98,8 @@ public class BondeAttackState : BondeBaseState
         rotation = 0;
         
     }
+
+ // LEAVE
     
    
 }
