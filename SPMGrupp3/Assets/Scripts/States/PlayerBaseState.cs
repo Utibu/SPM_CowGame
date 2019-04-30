@@ -145,13 +145,14 @@ public class PlayerBaseState : PhysicsBaseState
         if (hitCollider.tag.Equals("Key"))
         {
             owner.GetComponentInParent<PlayerValues>().gotKey1 = true;
-        }
-
-        if (hitCollider.tag.Equals("Gate1"))
-        {
-            owner.GetComponentInParent<GateScript>().Open();
             Debug.Log("you have a key (actOnCollision)");
             Destroy(hitCollider);
+        }
+
+        if (hitCollider.tag.Equals("Gate1") && owner.GetComponent<PlayerValues>().gotKey1)
+        {
+            hitCollider.GetComponentInParent<GateScript>().Open();
+           
         }
 
         if (hitCollider.GetComponent<BarrellStateMachine>() != null)
