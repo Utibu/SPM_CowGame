@@ -13,7 +13,8 @@ public class BondePatrolState : BondeBaseState
     // Start is called before the first frame update
     public override void Enter()
     {
-        if(owner.patrolPoints.Length > 0)
+        owner.GetComponent<MeshRenderer>().material.color = Color.white;
+        if (owner.patrolPoints.Length > 0)
         {
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;

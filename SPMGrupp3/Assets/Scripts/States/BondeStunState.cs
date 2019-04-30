@@ -16,7 +16,7 @@ public class BondeStunState : BondeBaseState
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
-
+        
     }
 
     public override void Update()

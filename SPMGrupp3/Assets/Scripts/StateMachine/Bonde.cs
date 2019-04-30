@@ -11,6 +11,7 @@ public class Bonde : StateMachine
     public NavMeshAgent agnes;
     public GameObject[] patrolPoints;
     public GameObject weapon;
+    public GameObject itemDrop;
     //public GameObject player;
     public PlayerStateMachine player;
     public float stunTime;
@@ -18,6 +19,7 @@ public class Bonde : StateMachine
     public float maxVisibility;
     public bool customAttackDamage;
     public float attackDamage;
+
 
     // Start is called before the first frame update
     protected override void Awake()
