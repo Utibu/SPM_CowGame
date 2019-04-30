@@ -24,6 +24,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     private float originalFOV;
     public float maxFOV;
     
+    public bool isDashing = false;
 
     public float mouseSensitivity;
     float rotationX;

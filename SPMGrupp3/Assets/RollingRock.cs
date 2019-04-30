@@ -7,6 +7,7 @@ public class RollingRock : MonoBehaviour
 
     private Rigidbody rb;
     private float time;
+    public float rockVelocityToHurtPlayer = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,8 @@ public class RollingRock : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision col) {
-        if(col.collider.tag.Equals("Player") && rb.velocity.magnitude > 10f) {
+        
+        if(col.collider.tag.Equals("Player") && rb.velocity.magnitude > rockVelocityToHurtPlayer) {
             GameManager.instance.player.playerValues.health -= 25;
             Destroy(this.gameObject);
         }
