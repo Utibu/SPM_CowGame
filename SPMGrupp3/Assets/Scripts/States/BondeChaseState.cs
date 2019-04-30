@@ -25,11 +25,7 @@ public class BondeChaseState : BondeBaseState
             owner.Transition<BondePatrolState>();
         }
         else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack){
-            // om owner är miniboss, anropa annat attack script
-            if (owner.itemDrop != null)
-            {
-                owner.Transition<MinibossAttackState>();
-            }
+           
             owner.Transition<BondeAttackState>();
             
         }

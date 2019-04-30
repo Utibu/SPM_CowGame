@@ -38,7 +38,7 @@ public class MinibossAttackState : BondeBaseState
 
     private void Attack()
     {
-
+        owner.player.playerValues.health -= 30f;
     }
 
     public override void Leave()

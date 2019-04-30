@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dashable : MonoBehaviour
+public class GateScript : MonoBehaviour
 {
-    public float requiredMagnitude = 10;
+
+    public GameObject gateKey;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void Open()
+    {
+
     }
 
     // Update is called once per frame

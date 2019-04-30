@@ -16,6 +16,13 @@ public class BondeStunState : BondeBaseState
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
+
+        if(owner.itemDrop != null)
+        {
+            Instantiate(owner.itemDrop);
+            owner.itemDrop.transform.position = owner.transform.position + new Vector3(1.0f, 0.0f, 1.0f);
+        }
+
         
     }
 

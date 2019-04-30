@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3848457860605461702}
   - component: {fileID: 8156665671920949935}
   - component: {fileID: 10700794318206054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 5882809749290158749}
   - component: {fileID: 2388424268634132197}
   - component: {fileID: 446883454165038491}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,9 +196,10 @@ GameObject:
   - component: {fileID: 739950546450209362}
   - component: {fileID: 4538583382278427937}
   - component: {fileID: 68321145003123774}
-  m_Layer: 0
+  - component: {fileID: 9172109032396666012}
+  m_Layer: 9
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3521892299646790981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82.81, y: 4.88, z: 13.050435}
+  m_LocalPosition: {x: 44.228912, y: 2.7025046, z: -4.2021723}
   m_LocalScale: {x: 0.19206, y: 1.7898, z: 0.21196869}
   m_Children:
   - {fileID: 3665701180775746830}
@@ -273,12 +274,24 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3521892299646790981}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &9172109032396666012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521892299646790981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172243aeef8ccd942b1a9dd6c9415415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6624885335392603576
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +304,7 @@ GameObject:
   - component: {fileID: 389442875695341986}
   - component: {fileID: 2434840378677052774}
   - component: {fileID: 3939909613938263085}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
