@@ -7,7 +7,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
 {
 
     public float bulletAcceleration = 20f;
-    public float cooldown = 1.2f;
+    //public float cooldown = 1.2f;
     private float countdown;
     public float damage;
 
@@ -19,7 +19,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
             owner.attackDamage = damage;
         }
 
-        countdown = cooldown;
+        countdown = owner.attackSpeed;
         attack();
     }
 
@@ -47,7 +47,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
         if (countdown <= 0)
         {
             attack();
-            countdown = cooldown;
+            countdown = owner.attackSpeed;
 
         }
 

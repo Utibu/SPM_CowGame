@@ -6,6 +6,7 @@ public class BondeRangedStateMachine : Bonde
 {
     public GameObject bullet;
     public GameObject gun;
+    public float attackSpeed;
 
     public override void PlayerDash()
     {
