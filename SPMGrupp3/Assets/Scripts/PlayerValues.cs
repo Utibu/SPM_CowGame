@@ -10,6 +10,7 @@ public class PlayerValues : MonoBehaviour
     public float maxHealth;
     public int dashLevel;
     public Image healthBar;
+    public bool gotKey1 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class PlayerValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if(health > 0)
         {
             if(healthBar != null)

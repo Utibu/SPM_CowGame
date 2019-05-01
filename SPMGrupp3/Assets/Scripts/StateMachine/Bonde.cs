@@ -14,6 +14,7 @@ public class Bonde : StateMachine
     public GameObject itemDrop;
     //public GameObject player;
     public PlayerStateMachine player;
+    public int toughness = 1;
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
@@ -43,7 +44,12 @@ public class Bonde : StateMachine
 
     public virtual void PlayerDash()
     {
-        Debug.Log("DASH");
-        Transition<BondeStunState>();
+        toughness -= 1;
+        if(toughness <= 0)
+        {
+            Debug.Log("DASH");
+            Transition<BondeStunState>();
+        }
+        
     }
 }

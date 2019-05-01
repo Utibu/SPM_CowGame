@@ -125,10 +125,13 @@ public class PlayerBaseState : PhysicsBaseState
         {
             GameManager.instance.player.playerValues.Die();
         }
+        
 
-        if(hitCollider.GetComponent<BaseTrigger>() != null) {
+        if (hitCollider.GetComponent<BaseTrigger>() != null) {
             hitCollider.GetComponent<BaseTrigger>().OnTriggerEnter();
-        }  
+        }
+
+        
     }
 
     public override void ActOnCollision(Collider hitCollider)
@@ -139,7 +142,20 @@ public class PlayerBaseState : PhysicsBaseState
             //hitCollider.GetComponent<Breakable>().SetFall();
         }
 
-        if(hitCollider.GetComponent<BarrellStateMachine>() != null)
+        if (hitCollider.tag.Equals("Key"))
+        {
+            owner.GetComponentInParent<PlayerValues>().gotKey1 = true;
+            Debug.Log("you have a key (actOnCollision)");
+            Destroy(hitCollider);
+        }
+
+        if (hitCollider.tag.Equals("Gate1") && owner.GetComponent<PlayerValues>().gotKey1)
+        {
+            hitCollider.GetComponentInParent<GateScript>().Open();
+           
+        }
+
+        if (hitCollider.GetComponent<BarrellStateMachine>() != null)
         {
             hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
         }

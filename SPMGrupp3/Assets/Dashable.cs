@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Dashable : MonoBehaviour
 {
-
     public float requiredMagnitude = 10;
 
     // Start is called before the first frame update
