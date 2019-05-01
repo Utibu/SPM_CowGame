@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b66044e204ee418b5ecba5f151daa, type: 3}
   m_Name: ChargeState
   m_EditorClassIdentifier: 
-  acceleration: 50
-  airResistance: 0.4
-  gravityConstant: 15
+  acceleration: 60
+  airResistance: 0.2
+  gravityConstant: 50
   staticFrictionForce: 0.7
   dynamicFrictionPercentage: 0.9
   horizontalPercentage: 0.3
-  velocityToDash: 10
+  takeInput: 1
+  jumpForce: 30
+  maxSpeed: 0

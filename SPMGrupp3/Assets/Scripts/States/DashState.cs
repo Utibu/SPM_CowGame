@@ -32,6 +32,7 @@ public class DashState : PlayerBaseState
         //owner.velocity /= 2f;
         //Camera.main.fieldOfView = originalFOV;
         ((PlayerStateMachine)owner).isDashing = false;
+        ((PlayerStateMachine)owner).ResetDash();
         ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
         ((PlayerStateMachine)owner).lastGravity = gravityConstant;
         ((PlayerStateMachine)owner).lastAcceleration = acceleration;

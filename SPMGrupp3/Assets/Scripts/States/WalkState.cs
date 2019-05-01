@@ -13,11 +13,11 @@ public class WalkState : PlayerBaseState
         base.Enter();
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
-        time = 0f;
+        /*time = 0f;
         if (owner.lastState != null && owner.lastState.GetType() == typeof(DashState))
         {
             allowDash = false;
-        }
+        }*/
     }
 
     public override void Leave()
@@ -27,14 +27,14 @@ public class WalkState : PlayerBaseState
 
     public override void Update()
     {
-        if(!allowDash)
+        /*if(!allowDash)
         {
             time += Time.deltaTime;
             if(time % 60 > dashThreshold)
             {
                 allowDash = true;
             }
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -42,7 +42,7 @@ public class WalkState : PlayerBaseState
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && (allowDash || ((PlayerStateMachine)owner).hasFreeDash))
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }

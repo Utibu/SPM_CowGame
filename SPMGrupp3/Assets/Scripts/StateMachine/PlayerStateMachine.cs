@@ -13,7 +13,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public SphereCollider cameraCollider;
     [HideInInspector] public PlayerValues playerValues;
     public float maxSpeed;
-    public float dashCooldown = 5f;
+    
     public float velocityToDash;
     public float dashAirResistance;
     [HideInInspector] public float countdown;
@@ -25,6 +25,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float maxFOV;
     
     public bool isDashing = false;
+    [HideInInspector] public float elapsedDashTime;
+    public bool allowedToDash = true;
+    public float dashCooldown = 5f;
 
     public float mouseSensitivity;
     float rotationX;
@@ -56,6 +59,12 @@ public class PlayerStateMachine : PhysicsStateMachine
         Transition<WalkState>();
     }
 
+    public void ResetDash()
+    {
+        elapsedDashTime = 0f;
+        allowedToDash = false;
+    }
+
     public override void Update()
     {
         base.Update();
@@ -69,6 +78,19 @@ public class PlayerStateMachine : PhysicsStateMachine
         } else
         {
 
+        }
+
+
+        if(!allowedToDash)
+        {
+            if(elapsedDashTime % 60 >= dashCooldown)
+            {
+                allowedToDash = true;
+                elapsedDashTime = 0f;
+            } else
+            {
+                elapsedDashTime += Time.deltaTime;
+            }
         }
         
 

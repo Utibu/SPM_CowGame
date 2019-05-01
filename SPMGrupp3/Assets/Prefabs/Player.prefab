@@ -130,7 +130,6 @@ MonoBehaviour:
   cameraCollider: {fileID: 0}
   playerValues: {fileID: 0}
   maxSpeed: 30
-  dashCooldown: 2
   velocityToDash: 10
   dashAirResistance: 0.1
   countdown: 0
@@ -138,11 +137,16 @@ MonoBehaviour:
   lastAcceleration: 0
   lastGravity: 0
   maxFOV: 80
+  isDashing: 0
+  elapsedDashTime: 0
+  allowedToDash: 1
+  dashCooldown: 2
   mouseSensitivity: 2
   minAngle: -45
   maxAngle: 45
   cameraPositionRelativeToPlayer: {x: 0, y: 1, z: -5}
   cameraType: 1
+  hasFreeDash: 0
 --- !u!114 &499345691420650960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +163,7 @@ MonoBehaviour:
   maxHealth: 100
   dashLevel: 1
   healthBar: {fileID: 0}
+  gotKey1: 0
 --- !u!65 &499345691420650963
 BoxCollider:
   m_ObjectHideFlags: 0
