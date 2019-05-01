@@ -23,7 +23,7 @@ public class ChargeState : PlayerBaseState
         base.Update();
         owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.magenta;
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && owner.velocity.magnitude > ((PlayerStateMachine)owner).velocityToDash)
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && owner.velocity.magnitude > ((PlayerStateMachine)owner).velocityToDash && (((PlayerStateMachine)owner).allowedToDash || ((PlayerStateMachine)owner).hasFreeDash))
         {
             owner.Transition<DashState>();
         }
@@ -63,6 +63,13 @@ public class ChargeState : PlayerBaseState
                     }
                 }
             }
+        }
+
+        if (hitCollider.tag.Equals("Enemy"))
+        {
+            //Destroy(hitCollider.gameObject);
+            Bonde bonde = hitCollider.GetComponent<Bonde>();
+            bonde.PlayerDash();
         }
 
     }
