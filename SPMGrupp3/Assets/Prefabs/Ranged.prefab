@@ -135,6 +135,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bc7eb88c0a173047a798b4b091d8a3b, type: 2}
   - {fileID: 11400000, guid: c51be643163fc634eb51810306e05dd0, type: 2}
   - {fileID: 11400000, guid: 92ce2a120f8b4fb4e8d7911822ccb275, type: 2}
+  - {fileID: 11400000, guid: 90f15db846681844ca88f44e1e80de95, type: 2}
   lastState: {fileID: 0}
   agnes: {fileID: 7578379273770255068}
   patrolPoints:
@@ -143,6 +144,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   itemDrop: {fileID: 0}
   player: {fileID: 0}
+  toughness: 1
   stunTime: 60
   toAttack: 20
   maxVisibility: 25
@@ -150,7 +152,10 @@ MonoBehaviour:
   attackDamage: 0
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
-  attackSpeed: 3
+  attackSpeed: 2
+  reloadTime: 3
+  bulletsBeforeReload: 3
+  bulletsShotSinceReload: 0
 --- !u!136 &5053778765053651794
 CapsuleCollider:
   m_ObjectHideFlags: 0
