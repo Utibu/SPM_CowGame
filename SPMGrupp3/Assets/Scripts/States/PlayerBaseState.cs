@@ -146,13 +146,13 @@ public class PlayerBaseState : PhysicsBaseState
         {
             owner.GetComponentInParent<PlayerValues>().gotKey1 = true;
             Debug.Log("you have a key (actOnCollision)");
-            Destroy(hitCollider);
+            GameObject key = hitCollider.transform.gameObject;
+            Destroy(key);
         }
 
         if (hitCollider.tag.Equals("Gate1") && owner.GetComponent<PlayerValues>().gotKey1)
         {
             hitCollider.GetComponentInParent<GateScript>().Open();
-           
         }
 
         

@@ -20,6 +20,8 @@ public class KeyScript : MonoBehaviour
 
     }
 
+    // iden här är att flytta ut pickup logiken till objektet självt. så den kan ta bort sig själv, spela eget pickup-ljud eller liknande
+
     /*
     private void OnTriggerEnter(Collider other)
     {
