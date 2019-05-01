@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public PlayerStateMachine player;
     public Transform originalSpawnTransform;
     public Text velocityText;
+    public Image dashCooldownImage;
     public bool debug;
 
     void Awake()
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = originalSpawnTransform.position;
         }
-        
+
     }
 
     // Update is called once per frame
@@ -42,6 +43,18 @@ public class GameManager : MonoBehaviour
         if(velocityText != null)
         {
             velocityText.text = "Velocity: " + player.velocity.magnitude;
+        }
+
+        if(dashCooldownImage != null)
+        {
+            if(player.allowedToDash)
+            {
+                dashCooldownImage.fillAmount = 1;
+            } else
+            {
+                dashCooldownImage.fillAmount = (player.elapsedDashTime % 60) / player.dashCooldown;
+            }
+            
         }
     }
 
