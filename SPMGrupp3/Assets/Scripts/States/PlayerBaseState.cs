@@ -155,10 +155,7 @@ public class PlayerBaseState : PhysicsBaseState
            
         }
 
-        if (hitCollider.GetComponent<BarrellStateMachine>() != null)
-        {
-            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
-        }
+        
 
         //if(hitCollider.tag.Equals("Rock")) {
             //Destroy(hitCollider.gameObject);
