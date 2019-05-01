@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -4267,7 +4267,9 @@ MonoBehaviour:
   - {fileID: 2024832248}
   - {fileID: 1243297010}
   weapon: {fileID: 0}
+  itemDrop: {fileID: 0}
   player: {fileID: 0}
+  toughness: 1
   stunTime: 60
   toAttack: 20
   maxVisibility: 25
@@ -4275,6 +4277,7 @@ MonoBehaviour:
   attackDamage: 0
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 554816770}
+  attackSpeed: 0
 --- !u!65 &1698221473
 BoxCollider:
   m_ObjectHideFlags: 0
