@@ -3851,6 +3851,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1567146569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567146570}
+  m_Layer: 0
+  m_Name: Underling Spawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567146570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567146569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.737185, y: 3.1, z: 178.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 73
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575511939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,7 +4342,7 @@ GameObject:
   - component: {fileID: 1669741461}
   - component: {fileID: 1669741460}
   m_Layer: 9
-  m_Name: Ranged (1)
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4349,13 +4379,19 @@ MonoBehaviour:
   maxVisibility: 25
   customAttackDamage: 0
   attackDamage: 0
-  bullet: {fileID: 0}
-  gun: {fileID: 0}
+  bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
+  gun: {fileID: 186095423}
   attackSpeed: 2
   reloadTime: 3
   bulletsBeforeReload: 3
   bulletsShotSinceReload: 0
   health: 100
+  damageOnDash: 25
+  underlingPrefab: {fileID: 2929106447677307340, guid: 18cf9e71a9f129443a1cacda874c6ab3,
+    type: 3}
+  underlingSpawnpoint: {fileID: 1567146569}
+  timeBetweenSpawns: 0.2
+  underlingQuantityPerWave: 4
 --- !u!195 &1669741461
 NavMeshAgent:
   m_ObjectHideFlags: 0

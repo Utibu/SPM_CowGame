@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2929106447677307336
 Transform:
   m_ObjectHideFlags: 0
@@ -106,7 +106,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   weapon: {fileID: 7884128622072384701}
+  itemDrop: {fileID: 0}
   player: {fileID: 0}
+  toughness: 1
   stunTime: 60
   toAttack: 5
   maxVisibility: 25

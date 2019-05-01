@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/BossPatrolState")]
-public class BossPatrolState : BondeRangedBaseState
+public class BossPatrolState : BossBaseState
 {
 
     private GameObject target;
