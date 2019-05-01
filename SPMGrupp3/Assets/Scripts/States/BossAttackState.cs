@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/BossAttackState")]
-public class BossAttackState : BondeRangedBaseState
+public class BossAttackState : BossBaseState
 {
 
     public float bulletAcceleration = 20f;

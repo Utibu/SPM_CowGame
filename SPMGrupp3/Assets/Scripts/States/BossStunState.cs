@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/BossStunState")]
-public class BossStunState : BondeRangedBaseState
+public class BossStunState : BossBaseState
 {
     private float time = 0.0f;
 
