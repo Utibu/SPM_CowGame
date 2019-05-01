@@ -73,6 +73,26 @@ public class DashState : PlayerBaseState
             owner.Transition<JumpState>();
         }
 
+        if (hitCollider.tag.Equals("JumpBale"))
+        {
+            Collider col = GetGroundCollider();
+            if (col != null)
+            {
+                if (col.tag.Equals("JumpBale"))
+                {
+                    owner.Transition<JumpBaleState>();
+
+                }
+                else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                    }
+                }
+            }
+        }
+
     }
 
     public override void Update()

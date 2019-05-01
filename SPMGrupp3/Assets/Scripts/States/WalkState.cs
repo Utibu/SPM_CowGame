@@ -80,6 +80,12 @@ public class WalkState : PlayerBaseState
                 {
                     owner.Transition<JumpBaleState>();
 
+                } else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                    }
                 }
             }
         }
