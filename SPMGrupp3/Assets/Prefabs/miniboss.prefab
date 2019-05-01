@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4662916041227471980}
   - component: {fileID: 6080084750784524630}
   - component: {fileID: 7749563411660537487}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: miniboss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,9 +142,9 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 0}
   toughness: 3
-  stunTime: 15
-  toAttack: 3
-  maxVisibility: 7
+  stunTime: 90
+  toAttack: 6
+  maxVisibility: 10
   customAttackDamage: 0
   attackDamage: 0
 --- !u!1 &4534354192491293615
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 1686595785724911358}
   - component: {fileID: 695087613715728175}
   - component: {fileID: 6299636091203339160}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,6 +319,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0819321
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845690890800271, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845690569965510, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845690666365863, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845690815172996, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845691967081184, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 748845691979567250, guid: 15f9649d3650f054da4056267d3f1818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f9649d3650f054da4056267d3f1818, type: 3}

@@ -18,7 +18,8 @@ public class GateScript : MonoBehaviour
     {
         // do a nice gate open rotation or start anim or whatever
         // but for now: just move it aside so player can pass
-        transform.position += new Vector3(0.0f, 5.0f, 0.0f);
+        transform.position += new Vector3(0.0f, 50.0f, 0.0f);
+        Destroy(this.gameObject);
 
     }
 

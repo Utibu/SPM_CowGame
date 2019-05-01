@@ -16,17 +16,14 @@ public class BondeAttackState : BondeBaseState
 
     public override void Enter()
     {
-        
         originalPosition = owner.weapon.transform.rotation;
         rotation = 0;
         //owner.agnes.Stop();
         owner.agnes.speed = 0f;
-
         if (!owner.customAttackDamage)
         {
             owner.attackDamage = damage;
         }
-
         countdown = cooldown;
         attacking = false;
         attack();
@@ -56,6 +53,10 @@ public class BondeAttackState : BondeBaseState
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && countdown <= 0)
         {
             //owner.weapon.transform.localRotation = originalPosition;
+            if (owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
+            {
+                BossAttack();
+            }
             attack();
         }
 
@@ -96,10 +97,27 @@ public class BondeAttackState : BondeBaseState
         countdown = cooldown;
         attacking = false;
         rotation = 0;
-        
     }
 
- // LEAVE
+
+    private void BossAttack()
+    {
+        attacking = true;
+        owner.weapon.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack / 2)
+        {
+            owner.player.playerValues.health -= owner.attackDamage;
+            owner.player.velocity += owner.transform.forward * 45f;
+            owner.player.velocity += new Vector3(0.0f, 3.0f, 0.0f);
+            Debug.Log("HIT!");
+        }
+        // reset cd and move up weapon
+        countdown = cooldown;
+        attacking = false;
+        rotation = 0;
+    }
+
+    //LEAVE
     
    
 }
