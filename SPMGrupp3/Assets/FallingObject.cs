@@ -84,6 +84,22 @@ public class FallingObject : MonoBehaviour
         return false;
     }
 
+    public void CheckEnemyHits(Vector3 rotThisFrame)
+    {
+        //collisionCheck.transform.forward
+        //new Vector3(direction.z * -1, direction.y, direction.x)
+        Vector3 tempDir = transform.rotation * direction;
+        RaycastHit[] hits = Physics.BoxCastAll(transform.position, meshRenderer.bounds.size / 2, tempDir, Quaternion.identity, float.MaxValue, layerMask);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.distance < rotThisFrame.magnitude && hit.collider.tag.Equals("Enemy"))
+            {
+                Debug.Log("DISTANCE: " + hit.distance);
+                Destroy(hit.collider.gameObject);
+            }
+        }
+    }
+
     public Vector3 DistanceToGround(Vector3 rotThisFrame)
     {
         RaycastHit hit;
@@ -91,6 +107,7 @@ public class FallingObject : MonoBehaviour
         //new Vector3(direction.z * -1, direction.y, direction.x)
         Vector3 tempDir = transform.rotation * direction;
         bool ray = Physics.Raycast(collisionCheck.transform.position, tempDir, out hit, float.MaxValue, layerMask);
+        //bool ray = Physics.BoxCast(new Vector3(collisionCheck.transform.position.x, collisionCheck.transform.position.y - meshRenderer.bounds.size.y / 3, collisionCheck.transform.position.z), new Vector3(meshRenderer.bounds.size.x, meshRenderer.bounds.size.y / 3, meshRenderer.bounds.size.z), tempDir, out hit, Quaternion.identity, float.MaxValue, layerMask);
         
         if(ray)
         {
@@ -98,7 +115,6 @@ public class FallingObject : MonoBehaviour
             {
                 isFalling = false;
                 hasFallen = true;
-                Debug.LogWarning("NHHH");
                 return rotThisFrame.normalized * (rotThisFrame.magnitude - hit.distance);
             } else
             {
@@ -118,7 +134,7 @@ public class FallingObject : MonoBehaviour
         {
             Vector3 rot = direction.normalized * acceleration * Time.deltaTime;
             Vector3 toRot = DistanceToGround(rot);
-
+            CheckEnemyHits(rot);
             
 
             //Debug.Log("ROT " + rot);
