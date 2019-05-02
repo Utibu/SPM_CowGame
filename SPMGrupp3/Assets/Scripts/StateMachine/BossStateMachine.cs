@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossStateMachine : Bonde
 {
@@ -22,6 +23,8 @@ public class BossStateMachine : Bonde
     public int underlingQuantityPerWave = 4;
     private int count = 0;
 
+    public Image healthBar;
+
     private bool graceTime = false;
 
     public override void PlayerDash()
@@ -37,6 +40,7 @@ public class BossStateMachine : Bonde
         count = 0;
         SpawnUnderling();
         graceTime = true;
+        healthBar.fillAmount = health / 100f;
     }
 
     public void SpawnUnderling()
