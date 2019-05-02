@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Transform originalSpawnTransform;
     public Text velocityText;
     public Image dashCooldownImage;
+    [SerializeField] private int coinsToHPIncrease = 5;
+    [HideInInspector] public int coinCount = 0;
     public bool debug;
 
     void Awake()
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
         if(!debug)
         {
@@ -55,6 +59,13 @@ public class GameManager : MonoBehaviour
                 dashCooldownImage.fillAmount = (player.elapsedDashTime % 60) / player.dashCooldown;
             }
             
+        }
+
+        if(coinCount >= coinsToHPIncrease)
+        {
+            player.playerValues.maxHealth += 20;
+            player.playerValues.health = player.playerValues.maxHealth;
+            coinCount = 0;
         }
     }
 

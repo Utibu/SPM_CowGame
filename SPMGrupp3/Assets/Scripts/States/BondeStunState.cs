@@ -30,7 +30,7 @@ public class BondeStunState : BondeBaseState
     {
         base.Update();
         time += Time.deltaTime;
-        if(time % 60 >= owner.stunTime)
+        if(time >= owner.stunTime)
         {
             owner.Transition<BondePatrolState>();
         }
