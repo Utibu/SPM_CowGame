@@ -103,16 +103,17 @@ public class PlayerBaseState : PhysicsBaseState
     public override void ActOnTrigger(Collider hitCollider)
     {
         base.ActOnTrigger(hitCollider);
+
         if (hitCollider.tag.Equals("FragilePlatform"))
         {
             hitCollider.transform.parent.GetComponent<Breakable>().SetFall();
         }
-
+        
         if (hitCollider.tag.Equals("Button"))
         {
-            if (hitCollider.transform.parent.GetComponent<MakeRampButton>() != null && Input.GetKeyDown(KeyCode.E))
+            if (hitCollider.transform.GetComponent<ButtonScript>() != null && Input.GetKeyDown(KeyCode.E))
             {
-                hitCollider.transform.parent.GetComponent<MakeRampButton>().Act();
+                hitCollider.transform.GetComponent<ButtonScript>().Act();
             }
         }
 
@@ -154,14 +155,11 @@ public class PlayerBaseState : PhysicsBaseState
         {
             hitCollider.GetComponentInParent<GateScript>().Open();
         }
-
         
-
         //if(hitCollider.tag.Equals("Rock")) {
             //Destroy(hitCollider.gameObject);
         //}
 
         
-
     }
 }
