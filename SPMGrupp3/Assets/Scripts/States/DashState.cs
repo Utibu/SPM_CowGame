@@ -19,6 +19,7 @@ public class DashState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        jumpForce = ((PlayerStateMachine)owner).dashJumpForce;
         airResistance = ((PlayerStateMachine)owner).dashAirResistance;
         ((PlayerStateMachine)owner).isDashing = true;
         timer = 0.0f;

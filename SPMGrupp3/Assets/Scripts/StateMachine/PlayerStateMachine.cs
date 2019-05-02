@@ -29,6 +29,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
 
+    public float normalJumpForce;
+    public float dashJumpForce;
+
     public float mouseSensitivity;
     float rotationX;
     float rotationY;

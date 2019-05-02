@@ -8,8 +8,8 @@ public class PlayerBaseState : PhysicsBaseState
     public float horizontalPercentage = 0.5f;
     protected Vector3 direction;
     public bool takeInput = true;
-    public float jumpForce = 5f;
-    public float maxSpeed;
+    protected float jumpForce = 5f;
+    protected float maxSpeed;
     
 
 
