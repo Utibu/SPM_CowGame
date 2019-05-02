@@ -88,8 +88,11 @@ public class WalkState : PlayerBaseState
                     }
                 }
             }
+        } else if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+        {
+            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
         }
-            
+
     }
 
     public override void ActOnTrigger(Collider hitCollider)

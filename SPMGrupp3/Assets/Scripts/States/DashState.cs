@@ -92,6 +92,9 @@ public class DashState : PlayerBaseState
                     }
                 }
             }
+        } else if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+        {
+            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
         }
 
     }

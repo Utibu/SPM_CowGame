@@ -53,7 +53,7 @@ public class BondeAttackState : BondeBaseState
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && countdown <= 0)
         {
             //owner.weapon.transform.localRotation = originalPosition;
-            if (owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
+            if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
             {
                 BossAttack();
             }

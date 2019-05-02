@@ -64,6 +64,10 @@ public class ChargeState : PlayerBaseState
                 }
             }
         }
+        else if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+        {
+            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+        }
 
         if (hitCollider.tag.Equals("Enemy"))
         {

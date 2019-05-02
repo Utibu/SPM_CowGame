@@ -83,7 +83,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         if(!allowedToDash)
         {
-            if(elapsedDashTime % 60 >= dashCooldown)
+            if(elapsedDashTime >= dashCooldown)
             {
                 allowedToDash = true;
                 //elapsedDashTime = 0f;
