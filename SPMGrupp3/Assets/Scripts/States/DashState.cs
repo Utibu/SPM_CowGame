@@ -75,6 +75,11 @@ public class DashState : PlayerBaseState
             owner.Transition<JumpState>();
         }
 
+        if(hitCollider.tag.Equals("Rock"))
+        {
+            Debug.Log("ROCK");
+        }
+
         if (hitCollider.tag.Equals("JumpBale"))
         {
             Collider col = GetGroundCollider();
