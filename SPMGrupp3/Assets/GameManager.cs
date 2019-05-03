@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int coinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
     public bool debug;
+    public InputManager inputManager;
 
     void Awake()
     {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+
+        inputManager = new InputManager();
 
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled
         //Application.targetFrameRate = 45;

@@ -40,12 +40,12 @@ public class RollingBallState : PhysicsBaseState
         {
             if(hit.collider.tag.Equals("Player"))
             {
-                Debug.Log(hit.distance);
+                //Debug.Log(hit.distance);
                 //if (((owner.transform.position + (owner.velocity * Time.deltaTime)) - (owner.transform.position + (hit.collider.GetComponent<PlayerStateMachine>().velocity * Time.deltaTime))).magnitude >= (owner.velocity * Time.deltaTime).magnitude)
                 //Vector3.Distance(hit.collider.transform.position, owner.transform.position)
                 if (hit.distance < 1f)
                 {
-                    Debug.LogWarning("HEYO BIA");
+                    //Debug.LogWarning("HEYO BIA");
                     ActOnPlayerCollision(hit.collider);
                 }
                 

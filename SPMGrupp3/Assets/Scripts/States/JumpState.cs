@@ -24,7 +24,7 @@ public class JumpState : PlayerBaseState
     {
         base.Update();
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }

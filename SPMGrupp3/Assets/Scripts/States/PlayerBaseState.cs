@@ -111,7 +111,7 @@ public class PlayerBaseState : PhysicsBaseState
         
         if (hitCollider.tag.Equals("Button"))
         {
-            if (hitCollider.transform.GetComponent<ButtonScript>() != null && Input.GetKeyDown(KeyCode.E))
+            if (hitCollider.transform.GetComponent<ButtonScript>() != null && GameManager.instance.inputManager.EventKeyDown())
             {
                 hitCollider.transform.GetComponent<ButtonScript>().Act();
             }

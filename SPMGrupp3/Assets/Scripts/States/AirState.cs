@@ -47,7 +47,7 @@ public class AirState : PlayerBaseState
             topYPosition = owner.transform.position.y;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }
