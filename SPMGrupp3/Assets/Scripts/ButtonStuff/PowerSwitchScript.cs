@@ -15,7 +15,7 @@ public class PowerSwitchScript : ButtonScript
 
     public override void Act()
     {
-        PowerBox.GetComponent<PowerBoxScript>().toggleLightButton(colorOfControlledLight);
+        PowerBox.GetComponent<PowerBoxScript>().ToggleLightButton(colorOfControlledLight);
     }
 
     

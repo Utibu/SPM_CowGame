@@ -26,12 +26,25 @@ public class PowerBoxScript : MonoBehaviour
         
     }
 
-    public void toggleLightButton(string color)
+    public void ToggleLightButton(string color)
     {
         Debug.Log("light should be togglin'");
+        
         bool lightIsOn = transform.Find(color).GetComponent<Light>().enabled;
         lightIsOn = !lightIsOn;
         transform.Find(color).GetComponent<Light>().enabled = lightIsOn;
+        
+        // Ifall man vill pröva ha emissive material och välxla mellan sånt ist för ljus
+        /*
+        Color finalValue =  * someValue; // someValue adjust the scale of emission
+        DynamicGI.SetEmissive(GetComponent<Renderer>(), finalValue);
+        */
+
+        /*
+        transform.Find(color).GetComponent<Material>().color *= 0f;
+        transform.Find(color)
+        */
+
         CheckAllLights();
     }
 
