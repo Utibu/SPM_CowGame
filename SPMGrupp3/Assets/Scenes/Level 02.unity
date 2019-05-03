@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.6084906, g: 0.8322101, b: 1, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.25569597, g: 0.27738222, b: 0.3207547, a: 1}
@@ -26,11 +26,11 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7d1430089afb5854892670b854d1d684, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
-  m_HaloTexture: {fileID: 0}
+  m_HaloTexture: {fileID: 2800000, guid: c0428893629c1404f990e1c9667aa5f3, type: 3}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
@@ -23297,11 +23297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: dashLevel
@@ -23312,36 +23307,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 552695498}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
-      propertyPath: maxSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: cameraType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: maxFOV
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: dashAirResistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: states.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: bb8a51ef334262348abffd7d4465b8de,
-        type: 2}
-    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: triggerMask.m_Bits
-      value: 1040
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -23397,6 +23366,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: cameraType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: maxFOV
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: dashAirResistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: states.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: bb8a51ef334262348abffd7d4465b8de,
+        type: 2}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: triggerMask.m_Bits
+      value: 1040
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}
