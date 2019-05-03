@@ -12,6 +12,7 @@ public class DashState : PlayerBaseState
     public float divideSens = 10f;
 
     public float dashStateLength = 1f;
+    public float toSuperDash = 30f;
 
     private float timer;
 
@@ -111,7 +112,10 @@ public class DashState : PlayerBaseState
         } else
         {
             timer += Time.deltaTime;
-            GameManager.instance.dashCooldownImage.fillAmount -= timer / dashStateLength;
+            if (GameManager.instance.dashCooldownImage != null)
+            {
+                GameManager.instance.dashCooldownImage.fillAmount -= timer / dashStateLength;
+            }
         }
 
 
@@ -144,7 +148,7 @@ public class DashState : PlayerBaseState
 
         
 
-        if(owner.velocity.magnitude > 30)
+        if(owner.velocity.magnitude > toSuperDash)
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
     
         else

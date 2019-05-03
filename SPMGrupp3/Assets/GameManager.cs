@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour
     public Transform originalSpawnTransform;
     public Text velocityText;
     public Image dashCooldownImage;
+    public Image dashSpeedImage;
     [HideInInspector] public int coinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
     public bool debug;
     public InputManager inputManager;
+
+    private Vector3 horizontalSpeed = new Vector3();
 
     void Awake()
     {
@@ -60,6 +63,26 @@ public class GameManager : MonoBehaviour
                 dashCooldownImage.fillAmount = (player.elapsedDashTime % 60) / player.dashCooldown;
             }
             
+        }
+
+        if(dashSpeedImage != null)
+        {
+            //horizontalSpeed = new Vector3(player.velocity.x, 0.0f, player.velocity.z);
+            dashSpeedImage.fillAmount = player.velocity.magnitude / player.maxSpeed;
+            //if (player.velocity.magnitude > player.GetComponent<DashState>().toSuperDash)
+            //{
+              //  dashSpeedImage.color = Color.red;
+            //}
+            if (player.velocity.magnitude > player.velocityToDash)
+            {
+                dashSpeedImage.color = Color.yellow;
+            }
+            
+            //else if()
+            else
+            {
+                dashSpeedImage.color = Color.green;
+            }
         }
 
         if(coinCount >= coinsToHPIncrease)
