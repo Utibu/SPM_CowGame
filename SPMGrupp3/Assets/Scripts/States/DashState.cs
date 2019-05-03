@@ -104,13 +104,14 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        if(timer % 60 > dashStateLength && !((PlayerStateMachine)owner).hasFreeDash)
+        if(timer > dashStateLength && !((PlayerStateMachine)owner).hasFreeDash)
         {
             owner.Transition<WalkState>();
 
         } else
         {
             timer += Time.deltaTime;
+            GameManager.instance.dashCooldownImage.fillAmount -= timer / dashStateLength;
         }
 
 
