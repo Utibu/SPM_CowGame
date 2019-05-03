@@ -10,7 +10,7 @@ public class BondeRangedChaseState : BondeRangedBaseState
 
     public override void Enter()
     {
-        owner.agnes.speed = speed;
+        base.Enter();
     }
 
 

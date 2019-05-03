@@ -13,6 +13,7 @@ public class BondeRangedPatrolState : BondeRangedBaseState
     // Start is called before the first frame update
     public override void Enter()
     {
+        base.Enter();
         if (owner.patrolPoints.Length > 0)
         {
             target = owner.patrolPoints[point];

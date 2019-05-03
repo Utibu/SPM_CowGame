@@ -24,6 +24,6 @@ public class BondeRangedBaseState : EnemyGeneralState
 
     public override void Enter()
     {
-        
+        owner.agnes.speed = speed;
     }
 }

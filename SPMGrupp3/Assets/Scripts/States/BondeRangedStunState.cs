@@ -21,7 +21,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         base.Update();
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
         time += Time.deltaTime;
-        Debug.Log(time);
+        //Debug.Log(time);
         if (time >= owner.stunTime)
         {
             Debug.Log("LEAVING");

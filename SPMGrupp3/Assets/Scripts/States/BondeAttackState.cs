@@ -16,10 +16,11 @@ public class BondeAttackState : BondeBaseState
 
     public override void Enter()
     {
+        base.Enter();
         originalPosition = owner.weapon.transform.rotation;
         rotation = 0;
         //owner.agnes.Stop();
-        owner.agnes.speed = 0f;
+        //owner.agnes.speed = 0f;
         if (!owner.customAttackDamage)
         {
             owner.attackDamage = damage;
