@@ -18,6 +18,7 @@ public class BossStateMachine : Bonde
 
     public GameObject underlingPrefab;
     public GameObject underlingSpawnpoint;
+    public GameObject snipeLocation;
 
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
