@@ -5,11 +5,19 @@ using UnityEngine;
 public class PowerBoxScript : MonoBehaviour
 {
     public GameObject RampSwitch;
-    ArrayList lamps = new ArrayList();
+    ArrayList lamps;
+    private Dictionary<string , Color> colors; // sparar alla originella emission färger för toggling
+    private Dictionary<string, bool> lampStatuses;
+
+    private Color  keeper;
 
     // Start is called before the first frame update
     void Start()
     {
+        lamps = new ArrayList();
+        colors = new Dictionary<string, Color>();
+        lampStatuses = new Dictionary<string, bool>();
+
         lamps.Add("Red");
         lamps.Add("Blue");
         lamps.Add("Green");
@@ -18,6 +26,30 @@ public class PowerBoxScript : MonoBehaviour
         lamps.Add("Pink");
         lamps.Add("Yellow");
         lamps.Add("Purple");
+
+        //Debug.Log(transform.Find("Turquoise").GetComponent<MeshRenderer>().material.GetColor("_EmissionColor"));
+
+        foreach (string color in lamps)
+        {
+            // save each original color from editor
+            //keeper = transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor");
+            Debug.Log(keeper + " " + color);
+            colors.Add(color, transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor"));
+
+            // set light statuses to correct bool according to if lamp is emissive or not
+            lampStatuses.Add(color, true);
+        }
+
+        // TEMPORARY: 
+        //(these colored lights will be turned off at start)
+        transform.Find("Green").GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.black);
+        lampStatuses["Green"] = false;
+        transform.Find("Pink").GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.black);
+        lampStatuses["Pink"] = false;
+        transform.Find("Red").GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.black);
+        lampStatuses["Red"] = false;
+
+
     }
 
     // Update is called once per frame
@@ -26,35 +58,35 @@ public class PowerBoxScript : MonoBehaviour
         
     }
 
-    public void ToggleLightButton(string color)
+    public void ToggleLightButton(string colorName)
     {
-        Debug.Log("light should be togglin'");
-        
-        bool lightIsOn = transform.Find(color).GetComponent<Light>().enabled;
-        lightIsOn = !lightIsOn;
-        transform.Find(color).GetComponent<Light>().enabled = lightIsOn;
-        
-        // Ifall man vill pröva ha emissive material och välxla mellan sånt ist för ljus
-        /*
-        Color finalValue =  * someValue; // someValue adjust the scale of emission
-        DynamicGI.SetEmissive(GetComponent<Renderer>(), finalValue);
-        */
+        Material mat = transform.Find(colorName).GetComponent<MeshRenderer>().material;
+        bool isEmissive;
+        lampStatuses.TryGetValue(colorName, out isEmissive);
+        if (!isEmissive)
+        {
+            Color EmissionColor;
+            colors.TryGetValue(colorName, out EmissionColor);
+            mat.SetColor("_EmissionColor", EmissionColor);
+            lampStatuses[colorName] = true;
+        }
+        else
+        {
+            mat.SetColor("_EmissionColor", Color.black);
+            lampStatuses[colorName] = false;
+        }
 
-        /*
-        transform.Find(color).GetComponent<Material>().color *= 0f;
-        transform.Find(color)
-        */
-
+        
         CheckAllLights();
     }
 
     private void CheckAllLights()
     {
         Debug.Log("Checking all lights");
-       
-        foreach (string color in lamps)
+        foreach (string colorName in lamps)
         {
-            if(transform.Find(color).GetComponent<Light>().enabled == false)
+            Material mat = transform.Find(colorName).GetComponent<MeshRenderer>().material;
+            if (mat.GetColor("_EmissionColor") == Color.black)
             {
                 RampSwitch.GetComponent<MakeRampButton>().SetUnactive();
                 return;

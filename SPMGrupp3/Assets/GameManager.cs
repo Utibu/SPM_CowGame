@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
         if(!debug)
         {
