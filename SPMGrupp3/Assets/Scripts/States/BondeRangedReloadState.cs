@@ -10,12 +10,13 @@ public class BondeRangedReloadState : BondeRangedBaseState
 
     public override void Enter()
     {
+        base.Enter();
         time = 0f;
     }
 
     public override void Update()
     {
-        if(time % 60 > owner.reloadTime)
+        if(time > owner.reloadTime)
         {
             owner.Transition<BondeRangedPatrolState>();
         } else

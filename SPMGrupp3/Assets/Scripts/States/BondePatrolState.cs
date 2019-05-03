@@ -13,14 +13,18 @@ public class BondePatrolState : BondeBaseState
     // Start is called before the first frame update
     public override void Enter()
     {
-        owner.GetComponent<MeshRenderer>().material.color = Color.white;
+        base.Enter();
         if (owner.patrolPoints.Length > 0)
         {
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;
+            owner.GetComponent<MeshRenderer>().material.color = Color.white;
+
+            //Debug.Log("DESTINATION: " + owner.agnes.destination);
+            //Debug.Log(owner.agnes.updateRotation);
         }
-        
-        
+
+
     }
 
   
@@ -28,18 +32,19 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
-        
-        if(Vector3.Distance(owner.transform.position, target.transform.position) <= owner.toAttack)
+        if (Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
         {
             point = (point + 1) % owner.patrolPoints.Length;
-            
+
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;
-            
         }
 
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility - owner.toAttack)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility)
+        {
+            //Debug.Log("TRANSITION");
             owner.Transition<BondeChaseState>();
+        }
     }
 
 }

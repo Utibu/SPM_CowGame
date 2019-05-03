@@ -13,7 +13,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
 
     public override void Enter()
     {
-
+        base.Enter();
         if (!owner.customAttackDamage)
         {
             owner.attackDamage = damage;
