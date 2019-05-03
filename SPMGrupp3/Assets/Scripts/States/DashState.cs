@@ -12,7 +12,6 @@ public class DashState : PlayerBaseState
     public float divideSens = 10f;
 
     public float dashStateLength = 1f;
-    public float toSuperDash = 30f;
 
     private float timer;
 
@@ -148,7 +147,7 @@ public class DashState : PlayerBaseState
 
         
 
-        if(owner.velocity.magnitude > toSuperDash)
+        if(owner.velocity.magnitude > ((PlayerStateMachine)owner).toSuperDash)
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
     
         else

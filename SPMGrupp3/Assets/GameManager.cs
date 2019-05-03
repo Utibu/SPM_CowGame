@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
                 dashCooldownImage.fillAmount = 1;
             } else
             {
-                dashCooldownImage.fillAmount = (player.elapsedDashTime % 60) / player.dashCooldown;
+                dashCooldownImage.fillAmount = (player.elapsedDashTime) / player.dashCooldown;
             }
             
         }
@@ -71,9 +71,17 @@ public class GameManager : MonoBehaviour
             dashSpeedImage.fillAmount = player.velocity.magnitude / player.maxSpeed;
             //if (player.velocity.magnitude > player.GetComponent<DashState>().toSuperDash)
             //{
-              //  dashSpeedImage.color = Color.red;
+            //  dashSpeedImage.color = Color.red;
             //}
-            if (player.velocity.magnitude > player.velocityToDash)
+            if (player.GetCurrentState().GetType() == typeof(AirState))
+            {
+                dashSpeedImage.fillAmount = 0;
+            }
+
+            if (player.velocity.magnitude > player.toSuperDash)
+            {
+                dashSpeedImage.color = Color.red;
+            } else if (player.velocity.magnitude > player.velocityToDash)
             {
                 dashSpeedImage.color = Color.yellow;
             }

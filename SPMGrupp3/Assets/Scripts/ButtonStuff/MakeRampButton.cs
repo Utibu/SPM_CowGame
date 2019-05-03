@@ -54,7 +54,7 @@ public class MakeRampButton : ButtonScript
         }
 
         // knappen har inte ström
-        AudioSource.PlayClipAtPoint(errorSound, transform.position);
+        //AudioSource.PlayClipAtPoint(errorSound, transform.position);
         // visa bild på display
 
 
