@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviour
             //{
             //  dashSpeedImage.color = Color.red;
             //}
+            if (player.GetCurrentState().GetType() == typeof(AirState))
+            {
+                dashSpeedImage.fillAmount = 0;
+            }
+
             if (player.velocity.magnitude > player.toSuperDash)
             {
                 dashSpeedImage.color = Color.red;
