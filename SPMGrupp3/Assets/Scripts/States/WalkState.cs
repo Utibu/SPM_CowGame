@@ -37,18 +37,18 @@ public class WalkState : PlayerBaseState
             }
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
         {
             //owner.Transition<JumpState>();
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.Transition<ChargeState>();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded() && ((PlayerStateMachine)owner).countdown <= 0)
+        if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && ((PlayerStateMachine)owner).countdown <= 0)
         {
             //sideDash();
             owner.Transition<SideDashState>();
@@ -103,7 +103,7 @@ public class WalkState : PlayerBaseState
         if (interactable != null)
         {
             //Show E-button on screen
-            if(Input.GetKeyDown(KeyCode.E))
+            if(GameManager.instance.inputManager.EventKeyDown())
             {
                 owner.Transition<InteractState>();
                 interactable.InvokeInteraction();

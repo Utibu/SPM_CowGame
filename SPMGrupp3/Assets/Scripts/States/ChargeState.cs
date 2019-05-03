@@ -24,18 +24,18 @@ public class ChargeState : PlayerBaseState
         base.Update();
         owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.magenta;
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && owner.velocity.magnitude > ((PlayerStateMachine)owner).velocityToDash && (((PlayerStateMachine)owner).allowedToDash || ((PlayerStateMachine)owner).hasFreeDash))
+        if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > ((PlayerStateMachine)owner).velocityToDash && (((PlayerStateMachine)owner).allowedToDash || ((PlayerStateMachine)owner).hasFreeDash))
         {
             owner.Transition<DashState>();
         }
 
-        if (!Input.GetKey(KeyCode.LeftShift) || !IsGrounded())
+        if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
             owner.Transition<WalkState>();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
         {
             //owner.Transition<JumpState>();
             Jump();

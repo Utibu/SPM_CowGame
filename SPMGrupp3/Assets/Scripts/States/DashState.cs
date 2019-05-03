@@ -114,13 +114,13 @@ public class DashState : PlayerBaseState
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
         {
             Jump();
             Debug.Log("JUMPING");
             return;
         }
-        else if (!Input.GetKey(KeyCode.LeftShift) || !IsGrounded())
+        else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
             owner.Transition<WalkState>();
