@@ -212,7 +212,24 @@ public class PhysicsBaseState : State
 
         } while (shouldRun && runTimes > 0);
 
+        if(owner.tag.Equals("Player"))
+        {
+            Debug.Log("Velocity before: " + owner.velocity.magnitude);
+            Debug.Log("Air resistance: " + airResistance);
+            Debug.Log("Acceleration: " + acceleration);
+            Debug.Log("Gravity: " + gravityConstant);
+            Debug.Log("Deltatime: " + Time.deltaTime);
+            
+        }
+        
         owner.velocity *= Mathf.Pow(airResistance, Time.deltaTime);
+
+        if (owner.tag.Equals("Player"))
+        {
+            Debug.Log("POW: " + Mathf.Pow(airResistance, Time.deltaTime));
+            Debug.Log("Velocity after: " + owner.velocity.magnitude);
+        }
+
         owner.transform.position += owner.velocity.normalized * (owner.velocity.magnitude * Time.deltaTime - snapChange);
 
     }
