@@ -28,6 +28,7 @@ public class PlayerValues : MonoBehaviour
             if(healthBar != null)
             {
                 healthBar.fillAmount = health / maxHealth;
+                healthBar.rectTransform.sizeDelta = new Vector2(maxHealth + 350, 50f);
             }
             
         } else
@@ -38,6 +39,11 @@ public class PlayerValues : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            health = maxHealth;
         }
         
     }

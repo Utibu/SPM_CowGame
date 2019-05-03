@@ -8,4 +8,6 @@ public class RollingBallStateMachine : PhysicsStateMachine
     public int currentPoint;
     public float speed;
 
+    public LayerMask playerMask;
+
 }
