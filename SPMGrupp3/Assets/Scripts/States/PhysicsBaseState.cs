@@ -11,6 +11,10 @@ public class PhysicsBaseState : State
     public float staticFrictionForce = 0.6f;
     public float dynamicFrictionPercentage = 0.6f;
 
+    public float terminalVelocity;
+    private Vector3 normalForce;
+    private float currentFriction;
+
     protected PhysicsStateMachine owner;
 
     public override void Enter()
@@ -21,11 +25,20 @@ public class PhysicsBaseState : State
     public override void Update()
     {
         base.Update();
+        normalForce = Vector3.zero;
 
         ApplyGravity();
 
         PreventCollision();
         CheckTriggers();
+
+        if(owner.tag.Equals("Player"))
+        {
+            
+            terminalVelocity = ((gravityConstant * Time.deltaTime) + (acceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(airResistance, Time.deltaTime));
+            Debug.Log(terminalVelocity);
+        }
+        
         //Debug.Log("GRAVITY: " + gravityConstant);
         //Debug.Log(owner.velocity.magnitude);
 
@@ -64,6 +77,7 @@ public class PhysicsBaseState : State
     void DoFriction(float normalForceMagnitude, out Vector3 vel, Vector3 originalVel)
     {
         float staticFriction = normalForceMagnitude * staticFrictionForce;
+        //currentFriction = (normalForce.normalized * staticFrictionForce * dynamicFrictionPercentage).magnitude;
         vel = originalVel;
         if (owner.velocity.magnitude < staticFriction)
         {
@@ -179,7 +193,7 @@ public class PhysicsBaseState : State
                     Calculate new velocity
                 */
                 Vector3 projection = Helper.getNormal(owner.velocity, hit.normal);
-
+                normalForce += projection;
 
                 Debug.DrawLine(owner.transform.position, owner.transform.position + (owner.velocity + projection), Color.red);
                 Debug.DrawLine(hit.point, hit.point + hit.normal, Color.blue);
