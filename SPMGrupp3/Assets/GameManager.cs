@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int coinsToHPIncrease = 20;
     public bool debug;
     public InputManager inputManager;
+    public bool showCursor;
 
     private Vector3 horizontalSpeed = new Vector3();
 
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
         if(!debug)
         {
             player.transform.position = originalSpawnTransform.position;
+        }
+        if (!showCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
     }
