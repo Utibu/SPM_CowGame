@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/BossSnipeState")]
-public class BossSnipeState : BossAttackState
+public class BossSnipeState : BossBaseState
 {
-    private float bulletsToReloadBefore = 1000;
+    private float countdown;
 
     public override void Enter()
     {
+        Debug.Log("in snipe");
         base.Enter();
-        bulletsToReloadBefore = owner.bulletsBeforeReload;
-        owner.transform.position = owner.snipeLocation.transform.position;
-        Debug.Log("enter snipe");
-        
+        owner.bulletsShotSinceReload = 0;
+        owner.agnes.isStopped = true;
+
+
     }
 
     public override void Update()
     {
         base.Update();
-        owner.agnes.isStopped = true;
-        
+        owner.transform.position = owner.snipeLocation.transform.position;
+        lookAt();
+
+        countdown -= Time.deltaTime;
+        //Vector3.Distance(owner.transform.position, owner.player.transform.position) < 4 && 
+        if (countdown <= 0)
+        {
+            attack();
+            countdown = owner.attackSpeed + 0.5f;
+
+        }
+
+        if (owner.bulletsShotSinceReload >= owner.bulletsBeforeReload)
+        {
+            owner.bulletsShotSinceReload = 0;
+            owner.Transition<BossAttackState>();
+        }
+
     }
 
     public override void Leave()
@@ -28,6 +45,5 @@ public class BossSnipeState : BossAttackState
         Debug.Log("leaving snipe");
         base.Leave();
         owner.agnes.isStopped = false;
-        owner.bulletsBeforeReload = bulletsToReloadBefore;
     }
 }

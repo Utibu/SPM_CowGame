@@ -13,6 +13,8 @@ public class BossPatrolState : BossBaseState
     // Start is called before the first frame update
     public override void Enter()
     {
+        Debug.Log("in patrol");
+
         if (owner.patrolPoints.Length > 0)
         {
             target = owner.patrolPoints[point];
