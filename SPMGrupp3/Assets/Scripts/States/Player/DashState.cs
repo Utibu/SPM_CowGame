@@ -83,7 +83,7 @@ public class DashState : PlayerBaseState
         if (hitCollider.tag.Equals("Bounce"))
         {
             owner.velocity *= -1;
-            owner.Transition<JumpState>();
+            owner.Transition<JumpBaleState>();
         }
 
         if (hitCollider.tag.Equals("JumpBale"))

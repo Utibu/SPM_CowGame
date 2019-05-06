@@ -12,6 +12,7 @@ public class PlayerBaseState : PhysicsBaseState
     protected float maxSpeed;
     protected PlayerStateMachine player;
     protected float terminalVelocity;
+    private float speedPercentage;
 
 
     public override void Enter()
@@ -80,11 +81,19 @@ public class PlayerBaseState : PhysicsBaseState
             movement *= horizontalPercentage;
         }
 
-        player.anim.SetFloat("Speed", vertical);
-        player.anim.SetFloat("Direction", horizontal);
+        /*player.anim.SetFloat("Speed", vertical);
+        player.anim.SetFloat("Direction", horizontal);*/
+        float newSpeedPercentage = player.velocity.magnitude / player.maxSpeed;
+        /*if(Mathf.Abs(newSpeedPercentage - speedPercentage) > 0.1f)
+        {
+            speedPercentage = newSpeedPercentage;
+        }*/
+        speedPercentage = newSpeedPercentage;
+        player.anim.SetFloat("Speed", vertical * speedPercentage);
+        player.anim.SetFloat("Direction", horizontal * speedPercentage);
+        player.anim.speed = player.animationSpeed;
         //player.transform.rotation = Quaternion.Euler((Camera.main.transform.rotation * direction).normalized);
-        player.transform.rotation = Quaternion.Euler(Camera.main.transform.forward);
-
+        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
         /*if (maxSpeed <= 0)
         {

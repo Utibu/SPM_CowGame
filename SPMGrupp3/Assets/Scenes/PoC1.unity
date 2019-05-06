@@ -3964,17 +3964,7 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: b82f51ae9cd6b914baf52cf034422a18,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed by
-        Humanoid clips.\n\tTransform 'root'\n\tTransform 'Hips'\n\tTransform 'RightFoot'\n\tTransform
-        'LeftFoot'\n\tTransform 'LeftHandRing2'\n\tTransform 'Head'\n\tTransform 'LeftHandPinky2'\n\tTransform
-        'LeftHandIndex2'\n\tTransform 'root'\n\tTransform 'Neck'\n\tand more ...\n\tFrom
-        animation clip '2Handed_Walk_Fwd'\n\tFrom animation clip '2Handed_Walk_Bwd'\n\tFrom
-        animation clip '2Handed_Walk_Right'\n\tFrom animation clip '2Handed_Walk_45_Right'\n\tFrom
-        animation clip '2Handed_Walk_135_Right'\n\tFrom animation clip '2Handed_Walk_Left'\n\tFrom
-        animation clip '2Handed_Walk_45_Left'\n\tFrom animation clip '2Handed_Walk_135_Left'\n\tFrom
-        animation clip '2Handed_Run_Fwd'\n\tFrom animation clip '2Handed_Run_Bwd'\n\tand
-        more ..."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b82f51ae9cd6b914baf52cf034422a18,
         type: 3}
@@ -4174,12 +4164,32 @@ MonoBehaviour:
   dashAirResistance: 0.1
   terminalVelocity: 0
   anim: {fileID: 0}
+  animationSpeed: 2
   mouseSensitivity: 2
   minAngle: -45
   maxAngle: 45
   cameraPositionRelativeToPlayer: {x: 0, y: 1, z: -5}
   cameraType: 1
   hasFreeDash: 0
+--- !u!95 &1370756290
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370756284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a2e973ff0614c6145863a8bad58cdd2b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3c5113a98abece549bdbc43cd8ed3977, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1387253624
 GameObject:
   m_ObjectHideFlags: 0
@@ -8061,6 +8071,7 @@ MonoBehaviour:
   dashAirResistance: 0.1
   terminalVelocity: 0
   anim: {fileID: 0}
+  animationSpeed: 0
   mouseSensitivity: 2
   minAngle: -45
   maxAngle: 45

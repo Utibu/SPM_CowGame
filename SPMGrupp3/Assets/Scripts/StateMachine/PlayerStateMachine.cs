@@ -39,6 +39,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float terminalVelocity;
 
     [HideInInspector] public Animator anim;
+    public float animationSpeed;
 
     public float mouseSensitivity;
     float rotationX;
