@@ -36,7 +36,7 @@ public class PhysicsBaseState : State
         {
             
             terminalVelocity = ((gravityConstant * Time.deltaTime) + (acceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(airResistance, Time.deltaTime));
-            Debug.Log(terminalVelocity);
+            //Debug.Log(terminalVelocity);
         }
         
         //Debug.Log("GRAVITY: " + gravityConstant);

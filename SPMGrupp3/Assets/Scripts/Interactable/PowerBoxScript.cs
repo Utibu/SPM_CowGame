@@ -6,7 +6,7 @@ public class PowerBoxScript : MonoBehaviour
 {
     public GameObject RampSwitch;
     ArrayList lamps;
-    private Dictionary<string , Color> colors; // sparar alla originella emission färger för toggling
+    private Dictionary<string , Color> colors; // sparar alla originella emission-färger för toggling
     private Dictionary<string, bool> lampStatuses;
 
     private Color  keeper;
@@ -34,6 +34,7 @@ public class PowerBoxScript : MonoBehaviour
             // save each original color from editor
             //keeper = transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor");
             Debug.Log(keeper + " " + color);
+            Debug.Log(transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor").ToString());
             colors.Add(color, transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor"));
 
             // set light statuses to correct bool according to if lamp is emissive or not
