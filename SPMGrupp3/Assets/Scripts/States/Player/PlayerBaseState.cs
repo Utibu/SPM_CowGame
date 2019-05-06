@@ -10,7 +10,8 @@ public class PlayerBaseState : PhysicsBaseState
     public bool takeInput = true;
     protected float jumpForce = 5f;
     protected float maxSpeed;
-    
+    protected PlayerStateMachine player;
+    protected float terminalVelocity;
 
 
     public override void Enter()
@@ -29,6 +30,10 @@ public class PlayerBaseState : PhysicsBaseState
             owner.Transition<AirState>();
         }
 
+        //terminalVelocity = ((player.dashStateGravity * Time.deltaTime) + (player.dashStateAcceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(player.dashAirResistance, Time.deltaTime));
+        //player.terminalVelocity = terminalVelocity;
+        //Debug.Log(terminalVelocity);
+
         /*
          if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -36,7 +41,7 @@ public class PlayerBaseState : PhysicsBaseState
         }
          */
 
-        
+
     }
 
     public virtual void Jump()
@@ -77,7 +82,7 @@ public class PlayerBaseState : PhysicsBaseState
 
         /*if (maxSpeed <= 0)
         {
-            maxSpeed = ((PlayerStateMachine)owner).maxSpeed;
+            maxSpeed = player.maxSpeed;
         }
         if (movement.magnitude > maxSpeed)
         {
@@ -97,7 +102,8 @@ public class PlayerBaseState : PhysicsBaseState
 
     public override void Initialize(StateMachine stateMachine)
     {
-        owner = (PlayerStateMachine)stateMachine;
+        owner = (PhysicsStateMachine)stateMachine;
+        player = (PlayerStateMachine)stateMachine;
     }
 
     public override void ActOnTrigger(Collider hitCollider)

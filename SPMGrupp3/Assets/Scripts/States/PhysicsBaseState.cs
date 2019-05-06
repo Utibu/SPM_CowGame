@@ -11,9 +11,9 @@ public class PhysicsBaseState : State
     public float staticFrictionForce = 0.6f;
     public float dynamicFrictionPercentage = 0.6f;
 
-    public float terminalVelocity;
-    private Vector3 normalForce;
-    private float currentFriction;
+    //public float terminalVelocity;
+    protected Vector3 normalForce;
+    protected float currentFriction;
 
     protected PhysicsStateMachine owner;
 
@@ -32,12 +32,7 @@ public class PhysicsBaseState : State
         PreventCollision();
         CheckTriggers();
 
-        if(owner.tag.Equals("Player"))
-        {
-            
-            terminalVelocity = ((gravityConstant * Time.deltaTime) + (acceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(airResistance, Time.deltaTime));
-            Debug.Log(terminalVelocity);
-        }
+        
         
         //Debug.Log("GRAVITY: " + gravityConstant);
         //Debug.Log(owner.velocity.magnitude);

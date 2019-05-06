@@ -16,7 +16,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     
     public float velocityToDash;
     public float toSuperDash = 30f;
-    public float dashAirResistance;
+    
     [HideInInspector] public float countdown;
     [HideInInspector] public float waitWhenInteracting;
     [HideInInspector] public float lastAcceleration;
@@ -32,6 +32,11 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public float normalJumpForce;
     public float dashJumpForce;
+
+    public float dashStateAcceleration;
+    public float dashStateGravity;
+    public float dashAirResistance;
+    public float terminalVelocity;
 
     public float mouseSensitivity;
     float rotationX;
@@ -73,9 +78,11 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         base.Update();
 
+        terminalVelocity = (dashStateAcceleration * Time.deltaTime) / (1 - Mathf.Pow(dashAirResistance, Time.deltaTime));
+
         //0 = 10
         //1 = maxSpeed
-        if(!(GetCurrentState().GetType() == typeof(AirState)))
+        if (!(GetCurrentState().GetType() == typeof(AirState)))
         {
             float normalizedFOV = velocity.magnitude / maxSpeed;
             Camera.main.fieldOfView = Mathf.Lerp(originalFOV, maxFOV, normalizedFOV);

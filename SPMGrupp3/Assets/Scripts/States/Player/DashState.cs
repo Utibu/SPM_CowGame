@@ -15,28 +15,39 @@ public class DashState : PlayerBaseState
 
     private float timer;
 
+    public override void Initialize(StateMachine stateMachine)
+    {
+        base.Initialize(stateMachine);
+        player.dashAirResistance = airResistance;
+        player.dashStateAcceleration = acceleration;
+        player.dashStateGravity = gravityConstant;
+    }
 
     public override void Enter()
     {
         base.Enter();
-        jumpForce = ((PlayerStateMachine)owner).dashJumpForce;
-        airResistance = ((PlayerStateMachine)owner).dashAirResistance;
-        ((PlayerStateMachine)owner).isDashing = true;
+        jumpForce = player.dashJumpForce;
+        airResistance = player.dashAirResistance;
+        player.isDashing = true;
         timer = 0.0f;
         //originalFOV = Camera.main.fieldOfView;
-        originalSens = ((PlayerStateMachine)owner).mouseSensitivity;
-        ((PlayerStateMachine)owner).mouseSensitivity /= divideSens;
+        originalSens = player.mouseSensitivity;
+        player.mouseSensitivity /= divideSens;
+
+        player.dashAirResistance = airResistance;
+        player.dashStateAcceleration = acceleration;
+        player.dashStateGravity = gravityConstant;
     }
 
     public override void Leave()
     {
         //owner.velocity /= 2f;
         //Camera.main.fieldOfView = originalFOV;
-        ((PlayerStateMachine)owner).isDashing = false;
-        ((PlayerStateMachine)owner).ResetDash();
-        ((PlayerStateMachine)owner).mouseSensitivity = originalSens;
-        ((PlayerStateMachine)owner).lastGravity = gravityConstant;
-        ((PlayerStateMachine)owner).lastAcceleration = acceleration;
+        player.isDashing = false;
+        player.ResetDash();
+        player.mouseSensitivity = originalSens;
+        player.lastGravity = gravityConstant;
+        player.lastAcceleration = acceleration;
 
         base.Leave();
     }
@@ -48,7 +59,7 @@ public class DashState : PlayerBaseState
         {
             if(hitCollider.GetComponent<DroppingObject>() != null)
             {
-                hitCollider.GetComponent<DroppingObject>().OnEnter(((PlayerStateMachine)owner).playerValues);
+                hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             Destroy(hitCollider.gameObject);
         }
@@ -104,7 +115,7 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        if(timer > dashStateLength && !((PlayerStateMachine)owner).hasFreeDash)
+        if(timer > dashStateLength && !player.hasFreeDash)
         {
             owner.Transition<WalkState>();
 
@@ -133,7 +144,7 @@ public class DashState : PlayerBaseState
         }
 
 
-        if (owner.velocity.magnitude < ((PlayerStateMachine)owner).velocityToDash)
+        if (owner.velocity.magnitude < player.velocityToDash)
         {
             owner.Transition<ChargeState>();
             Debug.Log("CARGNING NOW");
@@ -147,7 +158,7 @@ public class DashState : PlayerBaseState
 
         
 
-        if(owner.velocity.magnitude > ((PlayerStateMachine)owner).toSuperDash)
+        if(owner.velocity.magnitude > player.toSuperDash)
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
     
         else

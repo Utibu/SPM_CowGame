@@ -44,7 +44,7 @@ public class SideDashState : PlayerBaseState
         {
             if (hitCollider.GetComponent<DroppingObject>() != null)
             {
-                hitCollider.GetComponent<DroppingObject>().OnEnter(((PlayerStateMachine)owner).playerValues);
+                hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             Destroy(hitCollider.gameObject);
         }
