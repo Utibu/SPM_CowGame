@@ -34,7 +34,6 @@ public class PowerBoxScript : MonoBehaviour
             // save each original color from editor
             //keeper = transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor");
             Debug.Log(keeper + " " + color);
-            Debug.Log(transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor").ToString());
             colors.Add(color, transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor"));
 
             // set light statuses to correct bool according to if lamp is emissive or not
