@@ -39,6 +39,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float terminalVelocity;
 
     [HideInInspector] public Animator anim;
+    public float animationSpeed;
 
     public float mouseSensitivity;
     float rotationX;
@@ -123,7 +124,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
         RaycastHit hit;
-        bool okHit = Physics.SphereCast(transform.position, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
+        bool okHit = Physics.SphereCast(transform.position + objectCollider.center, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
         if (okHit)
         {
             if (hit.collider != null)
@@ -136,6 +137,24 @@ public class PlayerStateMachine : PhysicsStateMachine
         return goalVector;
     }
 
+    /*Vector3 GetAllowedCameraMovement(Vector3 goalVector)
+    {*/
+        /*RaycastHit[] hits = Physics.SphereCastAll(transform.position, cameraCollider.radius, goalVector.normalized, goalVector.magnitude, collisionMask);
+        foreach(RaycastHit hit in hits)
+        {
+            Vector3 allowedMovement = goalVector.normalized * (hit.distance - cameraCollider.radius);
+            return allowedMovement;
+        }*/
+        //Physics.CheckSphere(cameraCollider.transform.position, cameraCollider.radius, collisionMask);
+  /*      Collider[] hits = Physics.OverlapSphere(cameraCollider.transform.position, cameraCollider.radius, collisionMask);
+        foreach(Collider hit in hits)
+        {
+            
+        }
+
+        return goalVector;
+    }
+    */
     void HandleCameraFirstPerson()
     {
         float horizontal = Input.GetAxisRaw("Mouse X");
@@ -165,7 +184,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
-        Camera.main.transform.position = transform.position + okToMove;
+        Camera.main.transform.position = transform.position + objectCollider.center + okToMove;
 
     }
 

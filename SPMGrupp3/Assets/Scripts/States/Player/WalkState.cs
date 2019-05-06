@@ -89,9 +89,25 @@ public class WalkState : PlayerBaseState
                     }
                 }
             }
-        } else if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+        }
+
+        if (hitCollider.tag.Equals("Barrell"))
         {
-            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+            Collider col = GetGroundCollider();
+            if (col != null)
+            {
+                if (col.tag.Equals("Barrell"))
+                {
+                    //hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                }
+                else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                    }
+                }
+            }
         }
 
     }

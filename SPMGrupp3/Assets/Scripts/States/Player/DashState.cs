@@ -83,7 +83,7 @@ public class DashState : PlayerBaseState
         if (hitCollider.tag.Equals("Bounce"))
         {
             owner.velocity *= -1;
-            owner.Transition<JumpState>();
+            owner.Transition<JumpBaleState>();
         }
 
         if (hitCollider.tag.Equals("JumpBale"))
@@ -104,9 +104,25 @@ public class DashState : PlayerBaseState
                     }
                 }
             }
-        } else if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+        }
+
+        if (hitCollider.tag.Equals("Barrell"))
         {
-            hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+            Collider col = GetGroundCollider();
+            if (col != null)
+            {
+                if (col.tag.Equals("Barrell"))
+                {
+                    //hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                }
+                else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                    }
+                }
+            }
         }
 
     }
