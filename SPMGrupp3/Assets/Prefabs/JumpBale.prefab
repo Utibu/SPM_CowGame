@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: cf6322cb3bf10694d882fb804d4578c5, type: 2}
+  lastState: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   collisionMask:
     serializedVersion: 2
@@ -104,6 +105,8 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   skinWidth: 0.01
   groundCheckDistance: 0.2
+  moveMultiplier: 0
+  movable: 1
 --- !u!65 &1406374047660973344
 BoxCollider:
   m_ObjectHideFlags: 0
