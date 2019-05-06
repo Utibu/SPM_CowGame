@@ -23,7 +23,6 @@ public class AirState : PlayerBaseState
             acceleration = normalJumpAcceleration;
         }
             topYPosition = owner.transform.position.y;
-        owner.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
     public override void Leave()
@@ -35,7 +34,6 @@ public class AirState : PlayerBaseState
             //Debug.Log("Falldamage");
             player.playerValues.health -= fallDamage;
         }
-        owner.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
     public override void Update()

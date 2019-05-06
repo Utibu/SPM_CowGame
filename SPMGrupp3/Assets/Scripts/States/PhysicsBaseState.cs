@@ -46,7 +46,7 @@ public class PhysicsBaseState : State
 
         //owner.groundCheckDistance + owner.skinWidth
         RaycastHit hit;
-        bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.extents, Vector3.down, out hit, owner.transform.rotation, float.MaxValue, owner.collisionMask);
+        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, Vector3.down, out hit, owner.transform.rotation, float.MaxValue, owner.collisionMask);
         if (ray)
         {
             //Debug.Log("RAY");
@@ -99,7 +99,7 @@ public class PhysicsBaseState : State
         //Vector3 p1 = owner.transform.position + (Vector3.up * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         //Vector3 p2 = owner.transform.position + (Vector3.down * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         RaycastHit hit;
-        bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
+        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
         if (!ray)
             return false;
         return true;
@@ -110,7 +110,7 @@ public class PhysicsBaseState : State
         //Vector3 p1 = owner.transform.position + (Vector3.up * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         //Vector3 p2 = owner.transform.position + (Vector3.down * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         RaycastHit hit;
-        bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
+        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
         if (!ray)
             return null;
         return hit.collider;
@@ -125,7 +125,7 @@ public class PhysicsBaseState : State
         {
             dir = owner.transform.forward;
         }
-        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position, owner.objectCollider.bounds.size / 2, dir, owner.transform.rotation, 0.2f, owner.triggerMask);
+        RaycastHit[] hits = Physics.BoxCastAll(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, dir, owner.transform.rotation, 0.2f, owner.triggerMask);
         foreach (RaycastHit hit in hits)
         {
             //Debug.Log("hit");
@@ -161,7 +161,7 @@ public class PhysicsBaseState : State
             runTimes--;
             RaycastHit hit;
             //bool ray = Physics.CapsuleCast(p1, p2, owner.objectCollider.radius, owner.velocity.normalized, out hit, float.PositiveInfinity, owner.collisionMask);
-            bool ray = Physics.BoxCast(owner.transform.position, owner.objectCollider.bounds.extents, owner.velocity.normalized, out hit, Quaternion.identity, float.PositiveInfinity, owner.collisionMask);
+            bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, owner.velocity.normalized, out hit, Quaternion.identity, float.PositiveInfinity, owner.collisionMask);
             if (!ray || owner.velocity.magnitude < 0.001f)
             {
                 break;

@@ -75,10 +75,16 @@ public class PlayerBaseState : PhysicsBaseState
         //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
 
         //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (horizontal != 0)
         {
             movement *= horizontalPercentage;
         }
+
+        player.anim.SetFloat("Speed", vertical);
+        player.anim.SetFloat("Direction", horizontal);
+        //player.transform.rotation = Quaternion.Euler((Camera.main.transform.rotation * direction).normalized);
+        player.transform.rotation = Quaternion.Euler(Camera.main.transform.forward);
+
 
         /*if (maxSpeed <= 0)
         {

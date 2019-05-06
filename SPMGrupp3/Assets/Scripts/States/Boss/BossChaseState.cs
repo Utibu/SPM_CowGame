@@ -17,16 +17,13 @@ public class BossChaseState : BossBaseState
     // Update is called once per frame
     public override void Update()
     {
-        owner.GetComponent<MeshRenderer>().material.color = Color.blue;
         owner.agnes.SetDestination(owner.player.transform.position);
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility + 1)
         {
-            owner.GetComponent<MeshRenderer>().material.color = Color.white;
             owner.Transition<BossPatrolState>();
         }
         else if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
-            owner.GetComponent<MeshRenderer>().material.color = Color.red;
             owner.Transition<BossAttackState>();
 
         }

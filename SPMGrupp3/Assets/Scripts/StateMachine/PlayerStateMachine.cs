@@ -38,6 +38,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float dashAirResistance;
     public float terminalVelocity;
 
+    [HideInInspector] public Animator anim;
+
     public float mouseSensitivity;
     float rotationX;
     float rotationY;
@@ -61,6 +63,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
+        anim = GetComponent<Animator>();
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)

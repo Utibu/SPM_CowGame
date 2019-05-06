@@ -137,7 +137,6 @@ public class DashState : PlayerBaseState
         }
         else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
             owner.Transition<WalkState>();
             Debug.Log("WALKING NOW");
             return;
@@ -158,11 +157,11 @@ public class DashState : PlayerBaseState
 
         
 
-        if(owner.velocity.magnitude > player.toSuperDash)
+        /*if(owner.velocity.magnitude > player.toSuperDash)
             owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
     
         else
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.black;
+            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.black;*/
 
 
         

@@ -22,7 +22,6 @@ public class ChargeState : PlayerBaseState
     public override void Update()
     {
         base.Update();
-        owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.magenta;
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > player.velocityToDash && (player.allowedToDash || (player.hasFreeDash)))
         {
@@ -31,7 +30,6 @@ public class ChargeState : PlayerBaseState
 
         if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.white;
             owner.Transition<WalkState>();
         }
 
