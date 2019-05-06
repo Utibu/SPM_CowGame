@@ -11,7 +11,7 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = ((PlayerStateMachine)owner).normalJumpForce;
+        jumpForce = player.normalJumpForce;
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
         /*time = 0f;
@@ -48,11 +48,11 @@ public class WalkState : PlayerBaseState
             owner.Transition<ChargeState>();
         }
 
-        if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && ((PlayerStateMachine)owner).countdown <= 0)
+        if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
         {
             //sideDash();
             owner.Transition<SideDashState>();
-            ((PlayerStateMachine)owner).ResetCooldown();
+            player.ResetCooldown();
         }
 
         base.Update();

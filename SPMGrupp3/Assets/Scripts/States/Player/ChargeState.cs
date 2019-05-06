@@ -11,7 +11,7 @@ public class ChargeState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = ((PlayerStateMachine)owner).normalJumpForce;
+        jumpForce = player.normalJumpForce;
     }
 
     public override void Leave()
@@ -24,7 +24,7 @@ public class ChargeState : PlayerBaseState
         base.Update();
         owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.magenta;
 
-        if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > ((PlayerStateMachine)owner).velocityToDash && (((PlayerStateMachine)owner).allowedToDash || ((PlayerStateMachine)owner).hasFreeDash))
+        if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > player.velocityToDash && (player.allowedToDash || (player.hasFreeDash)))
         {
             owner.Transition<DashState>();
         }
@@ -81,7 +81,7 @@ public class ChargeState : PlayerBaseState
         {
             if (hitCollider.GetComponent<DroppingObject>() != null)
             {
-                hitCollider.GetComponent<DroppingObject>().OnEnter(((PlayerStateMachine)owner).playerValues);
+                hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             Destroy(hitCollider.gameObject);
         }

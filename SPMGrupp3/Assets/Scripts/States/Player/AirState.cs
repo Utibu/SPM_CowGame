@@ -33,7 +33,7 @@ public class AirState : PlayerBaseState
         if (topYPosition - owner.transform.position.y > distanceToTakeFalldamage)
         {
             //Debug.Log("Falldamage");
-            ((PlayerStateMachine)owner).playerValues.health -= fallDamage;
+            player.playerValues.health -= fallDamage;
         }
         owner.GetComponent<MeshRenderer>().material.color = Color.red;
     }

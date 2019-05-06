@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
         if(dashSpeedImage != null)
         {
             //horizontalSpeed = new Vector3(player.velocity.x, 0.0f, player.velocity.z);
-            dashSpeedImage.fillAmount = player.velocity.magnitude / player.maxSpeed;
+            //dashSpeedImage.fillAmount = player.velocity.magnitude / player.maxSpeed;
+            dashSpeedImage.fillAmount = player.velocity.magnitude / player.terminalVelocity;
             //if (player.velocity.magnitude > player.GetComponent<DashState>().toSuperDash)
             //{
             //  dashSpeedImage.color = Color.red;
