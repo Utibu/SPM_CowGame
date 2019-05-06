@@ -14,22 +14,43 @@ public class GameManager : MonoBehaviour
     public Text velocityText;
     public Image dashCooldownImage;
     public Image dashSpeedImage;
+    public Text coinCountText;
     [HideInInspector] public int coinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
     public bool debug;
     public InputManager inputManager;
     public bool showCursor;
+    public Canvas UI;
+    public Camera cam;
 
     private Vector3 horizontalSpeed = new Vector3();
 
     void Awake()
     {
+        Debug.Log("in awake");
+
         if (instance == null)
             instance = this;
         else if (instance != this)
+        {
+            Debug.Log(originalSpawnTransform);
+            instance.originalSpawnTransform = originalSpawnTransform;
+            
+            Destroy(player.gameObject);           
+            Destroy(UI.gameObject);
+            Destroy(cam.gameObject);
             Destroy(gameObject);
+        }
+        Debug.Log(debug);
+        Debug.Log(instance.originalSpawnTransform);
 
         inputManager = new InputManager();
+
+        if (!debug)
+        {
+            Debug.Log("hello");
+            instance.player.transform.position = instance.originalSpawnTransform.position;
+        }
 
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled
         //Application.targetFrameRate = 45;
@@ -38,12 +59,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("in start");
+
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(UI.gameObject);
+        DontDestroyOnLoad(player.gameObject);
+        DontDestroyOnLoad(cam.gameObject);
+
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
-        if(!debug)
-        {
-            player.transform.position = originalSpawnTransform.position;
-        }
+        
+        
         if (!showCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -51,13 +76,22 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
+        
         if(velocityText != null)
         {
             velocityText.text = "Velocity: " + player.velocity.magnitude;
+            //Debug.Log(player.velocity.magnitude);
+            //Debug.Log(velocityText.text);
+        }
+
+        if(coinCountText != null)
+        {
+
+            coinCountText.text = "Coins: " + coinCount;
         }
 
         if(dashCooldownImage != null)
@@ -71,6 +105,7 @@ public class GameManager : MonoBehaviour
             }
             
         }
+
 
         if(dashSpeedImage != null)
         {
