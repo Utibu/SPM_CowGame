@@ -57,20 +57,5 @@ public class BossBaseState : EnemyGeneralState
         owner.gun.transform.rotation = gunRotation;
     }
 
-    public override void PlayerDash()
-    {
-        //if (graceTime)
-          //  return;
-
-        owner.health -= owner.damageOnDash;
-        if (owner.health <= 0)
-        {
-            owner.Transition<BossStunState>();
-        }
-        owner.count = 0;
-        owner.SpawnUnderling();
-        //owner.graceTime = true;
-        owner.healthBar.fillAmount = owner.health / 100f;
-        owner.Transition<BossSnipeState>();
-    }
+    
 }
