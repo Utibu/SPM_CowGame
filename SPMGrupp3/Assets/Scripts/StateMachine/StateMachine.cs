@@ -7,7 +7,7 @@ public class StateMachine : MonoBehaviour
 {
     [SerializeField] private State[] states;
     private Dictionary<Type, State> allStates = new Dictionary<Type, State>();
-    private State currentState;
+    [SerializeField] private State currentState;
     [HideInInspector] public State lastState;
 
     protected virtual void Awake()
