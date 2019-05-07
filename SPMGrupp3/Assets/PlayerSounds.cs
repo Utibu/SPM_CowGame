@@ -14,7 +14,7 @@ public class PlayerSounds : MonoBehaviour
 
     private AudioSource[] sources;
     private AudioSource source1;
-    private AudioSource source2;
+    //private AudioSource source2;
 
     public AudioClip[] pick_up_sounds;
     public AudioClip dash_hit_sound;
@@ -29,13 +29,13 @@ public class PlayerSounds : MonoBehaviour
     {
         sources = GetComponents<AudioSource>();
         source1 = sources[0];
-        source2 = sources[1];
+        //source2 = sources[1];
     }
 
     void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.CompareTag("Pick Up"))
+        Debug.Log("COIN SOUND");
+        if (other.gameObject.CompareTag("Droppable"))
         {
             other.gameObject.SetActive(false);
             count++;
