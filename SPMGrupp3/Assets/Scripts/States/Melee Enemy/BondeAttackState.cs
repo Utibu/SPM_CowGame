@@ -17,6 +17,7 @@ public class BondeAttackState : BondeBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("ENTER ATTACK STATE");
         originalPosition = owner.weapon.transform.rotation;
         rotation = 0;
         //owner.agnes.Stop();

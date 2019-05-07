@@ -19,15 +19,17 @@ public class BondeChaseState : BondeBaseState
         if(owner.agnes != null && owner.agnes.isActiveAndEnabled) {
             owner.agnes.SetDestination(owner.player.transform.position);
         }
-        
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility)
+
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
+        {
+
+            owner.Transition<BondeAttackState>();
+
+        }
+        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility)
         {
             owner.Transition<BondePatrolState>();
         }
-        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack){
-           
-            owner.Transition<BondeAttackState>();
-            
-        }
+        
     }
 }

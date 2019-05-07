@@ -42,7 +42,11 @@ public class Bonde : StateMachine
     // Update is called once per frame
     public override void Update()
     {
-        timeSinceLastHit += Time.deltaTime;
+        if(timeSinceLastHit < 10.0f)
+        {
+            timeSinceLastHit += Time.deltaTime;
+        }
+        
         base.Update();
     }
 
