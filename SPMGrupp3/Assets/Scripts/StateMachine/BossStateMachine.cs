@@ -22,7 +22,7 @@ public class BossStateMachine : Bonde
 
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
-    private int count = 0;
+    [HideInInspector] public int count = 0;
 
     public Image healthBar;
 
@@ -31,10 +31,10 @@ public class BossStateMachine : Bonde
     public override void PlayerDash()
     {
         if (graceTime)
-            return;
+          return;
 
         health -= damageOnDash;
-        if(health <= 0)
+        if (health <= 0)
         {
             Transition<BossStunState>();
         }
@@ -42,6 +42,7 @@ public class BossStateMachine : Bonde
         SpawnUnderling();
         graceTime = true;
         healthBar.fillAmount = health / 100f;
+        Transition<BossSnipeState>();
     }
 
     public void SpawnUnderling()

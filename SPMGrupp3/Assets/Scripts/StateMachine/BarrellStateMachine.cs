@@ -6,9 +6,15 @@ public class BarrellStateMachine : PhysicsStateMachine
 {
 
     [HideInInspector] public float moveMultiplier;
+    public bool movable;
 
     public void Move(Vector3 playerVelocity)
     {
+        if(!movable)
+        {
+            return;
+        }
+
         if(moveMultiplier <= 0)
         {
             moveMultiplier = 1;
