@@ -10,6 +10,7 @@ public class PlayerValues : MonoBehaviour
     public float maxHealth;
     public int dashLevel;
     public Image healthBar;
+    public Text healthText;
     public bool gotKey1 = false;
 
     // Start is called before the first frame update
@@ -25,10 +26,11 @@ public class PlayerValues : MonoBehaviour
 
         if(health > 0)
         {
-            if(healthBar != null)
+            if(healthBar != null && healthText != null)
             {
                 healthBar.fillAmount = health / maxHealth;
                 healthBar.rectTransform.sizeDelta = new Vector2(maxHealth + 350, 50f);
+                healthText.text = health + "/" + maxHealth;
             }
             
         } else
