@@ -180,7 +180,6 @@ public class GameManager : MonoBehaviour
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
         currentSceneIndex = index;
-        Debug.LogWarning("DONE");
         isLoadingScene = false;
     }
 

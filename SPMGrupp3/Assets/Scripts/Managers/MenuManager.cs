@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
 
     public int playIndex;
+    private bool isLoadingScene = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,39 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButtonClicked()
     {
-        SceneManager.LoadScene(playIndex);
+        LoadScene(1);
     }
+
+    public void LoadScene(int index)
+    {
+        /*SceneManager.UnloadSceneAsync(currentSceneIndex);
+        SceneManager.LoadScene(index, LoadSceneMode.Additive);*/
+        if (!isLoadingScene)
+        {
+
+            
+
+            IEnumerator coroutine = LoadSceneRoutine(index);
+            isLoadingScene = true;
+            StartCoroutine(coroutine);
+
+            SceneManager.LoadScene(3, LoadSceneMode.Additive);
+            SceneManager.UnloadScene(0);
+        }
+
+    }
+    
+    IEnumerator LoadSceneRoutine(int index)
+    {
+        
+        var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        yield return loading;
+        var scene = SceneManager.GetSceneByBuildIndex(index);
+        SceneManager.SetActiveScene(scene);
+        isLoadingScene = false;
+    }
+
+    
 
     public void QuitButtonClicked()
     {
