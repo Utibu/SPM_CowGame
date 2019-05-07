@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinPickup : DroppableObject
 {
 
+
     public override void OnEnter()
     {
         base.OnEnter();
