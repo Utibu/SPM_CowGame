@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     public float normalJumpForce;
     public float dashJumpForce;
 
+    public float playerScale = 1f;
+
     void Awake()
     {
         if (instance == null)
@@ -33,6 +35,8 @@ public class LevelManager : MonoBehaviour
             Debug.Log("hello");
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
+
+        GameManager.instance.player.transform.localScale = Vector3.one * playerScale;
     }
 
     // Update is called once per frame
