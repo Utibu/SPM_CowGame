@@ -64,7 +64,14 @@ public class PlayerValues : MonoBehaviour
 
     public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)
     {
-        health += 20;
+        if(health < maxHealth)
+        {
+            health += 20;
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
         Debug.Log(eventInfo.eventDescription);
     }
 }
