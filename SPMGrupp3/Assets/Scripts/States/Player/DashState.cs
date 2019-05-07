@@ -80,8 +80,8 @@ public class DashState : PlayerBaseState
         }
         if (hitCollider.tag.Equals("Bounce"))
         {
-            owner.velocity *= -1;
-            owner.Transition<JumpBaleState>();
+            owner.velocity *= -0.8f;
+            //owner.Transition<JumpBaleState>();
         }
 
         if (hitCollider.tag.Equals("JumpBale"))
@@ -122,6 +122,8 @@ public class DashState : PlayerBaseState
                 }
             }
         }
+
+        
 
     }
 
