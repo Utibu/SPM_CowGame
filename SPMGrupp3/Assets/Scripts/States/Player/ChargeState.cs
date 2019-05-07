@@ -11,7 +11,6 @@ public class ChargeState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = LevelManager.instance.normalJumpForce;
     }
 
     public override void Leave()
@@ -22,6 +21,12 @@ public class ChargeState : PlayerBaseState
     public override void Update()
     {
         base.Update();
+
+        if (!hasCorrectJump)
+        {
+            hasCorrectJump = true;
+            jumpForce = LevelManager.instance.normalJumpForce;
+        }
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > player.velocityToDash && (player.allowedToDash || (player.hasFreeDash)))
         {

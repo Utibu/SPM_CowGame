@@ -98,7 +98,6 @@ public class FallingObject : MonoBehaviour
             {
                 isFalling = false;
                 hasFallen = true;
-                Debug.LogWarning("NHHH");
                 return rotThisFrame.normalized * (rotThisFrame.magnitude - hit.distance);
             } else
             {

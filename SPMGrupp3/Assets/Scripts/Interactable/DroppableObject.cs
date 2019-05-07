@@ -11,6 +11,11 @@ public class DroppableObject : MonoBehaviour
         this.player = player;
     }
 
+    private void Start()
+    {
+        player = GameManager.instance.player.playerValues;
+    }
+
     public virtual void OnEnter()
     {
         Destroy(this.gameObject);

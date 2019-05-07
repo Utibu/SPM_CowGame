@@ -18,7 +18,7 @@ public class RockSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(time % 60 > secondsBetweenSpawns) {
+        if(time > secondsBetweenSpawns) {
             time = 0.0f;
             GameObject go = Instantiate(rockPrefab, this.transform.position, Quaternion.identity);
         } else {

@@ -26,7 +26,6 @@ public class DashState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = LevelManager.instance.dashJumpForce;
         airResistance = player.dashAirResistance;
         player.isDashing = true;
         timer = 0.0f;
@@ -130,7 +129,13 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        if(timer > dashStateLength && !player.hasFreeDash)
+        if (!hasCorrectJump)
+        {
+            hasCorrectJump = true;
+            jumpForce = LevelManager.instance.dashJumpForce;
+        }
+
+        if (timer > dashStateLength && !player.hasFreeDash)
         {
             owner.Transition<WalkState>();
 

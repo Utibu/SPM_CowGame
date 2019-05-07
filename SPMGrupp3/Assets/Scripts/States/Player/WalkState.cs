@@ -11,7 +11,7 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = LevelManager.instance.normalJumpForce;
+        
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
         /*time = 0f;
@@ -28,6 +28,11 @@ public class WalkState : PlayerBaseState
 
     public override void Update()
     {
+        if(!hasCorrectJump)
+        {
+            hasCorrectJump = true;
+            jumpForce = LevelManager.instance.normalJumpForce;
+        }
         /*if(!allowDash)
         {
             time += Time.deltaTime;

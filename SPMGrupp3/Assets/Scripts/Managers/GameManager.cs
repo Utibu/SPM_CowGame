@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Canvas UI;
     public Camera cam;
     private int currentSceneIndex;
+    private bool isLoadingScene = false;
 
     private Vector3 horizontalSpeed = new Vector3();
 
@@ -160,7 +161,27 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
-        SceneManager.UnloadSceneAsync(currentSceneIndex);
-        SceneManager.LoadScene(index, LoadSceneMode.Additive);
+        /*SceneManager.UnloadSceneAsync(currentSceneIndex);
+        SceneManager.LoadScene(index, LoadSceneMode.Additive);*/
+        if(!isLoadingScene)
+        {
+            IEnumerator coroutine = LoadSceneRoutine(index);
+            isLoadingScene = true;
+            StartCoroutine(coroutine);
+        }
+        
     }
+
+    IEnumerator LoadSceneRoutine(int index)
+    {
+        SceneManager.UnloadSceneAsync(currentSceneIndex);
+        var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        yield return loading;
+        var scene = SceneManager.GetSceneByBuildIndex(index);
+        SceneManager.SetActiveScene(scene);
+        currentSceneIndex = index;
+        Debug.LogWarning("DONE");
+        isLoadingScene = false;
+    }
+
 }

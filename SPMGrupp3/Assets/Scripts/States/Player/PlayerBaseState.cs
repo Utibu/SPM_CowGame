@@ -13,6 +13,7 @@ public class PlayerBaseState : PhysicsBaseState
     protected PlayerStateMachine player;
     protected float terminalVelocity;
     private float speedPercentage;
+    protected bool hasCorrectJump = false;
 
 
     public override void Enter()
