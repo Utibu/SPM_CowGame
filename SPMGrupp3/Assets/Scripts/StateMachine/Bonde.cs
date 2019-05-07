@@ -28,12 +28,12 @@ public class Bonde : StateMachine
         base.Awake();
         boxref = GetComponent<BoxCollider>();
         agnes = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStateMachine>();
+        
     }
 
     public void Start()
     {
-        
+        player = GameManager.instance.player;
     }
 
     // Update is called once per frame

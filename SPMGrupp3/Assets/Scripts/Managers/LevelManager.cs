@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
     public Transform originalSpawnTransform;
     private List<Transform> checkpoints = new List<Transform>();
 
+    public float normalJumpForce;
+    public float dashJumpForce;
+
     void Awake()
     {
         if (instance == null)

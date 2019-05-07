@@ -11,7 +11,7 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = player.normalJumpForce;
+        jumpForce = LevelManager.instance.normalJumpForce;
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
         /*time = 0f;

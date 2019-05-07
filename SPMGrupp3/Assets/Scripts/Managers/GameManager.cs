@@ -7,10 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    //[HideInInspector] public Transform currentCheckpoint;
     public int deathCount = 0;
     public PlayerStateMachine player;
-    //public Transform originalSpawnTransform;
     public Text velocityText;
     public Image dashCooldownImage;
     public Image dashSpeedImage;
@@ -34,29 +32,19 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
         {
-            //Debug.Log(originalSpawnTransform);
-            //instance.originalSpawnTransform = originalSpawnTransform;
-            
-            Destroy(player.gameObject);           
-            Destroy(UI.gameObject);
-            Destroy(cam.gameObject);
+            //Destroy(player.gameObject);           
+           // Destroy(UI.gameObject);
+            //Destroy(cam.gameObject);
             Destroy(gameObject);
         }
 
         Debug.Log(debug);
-        //Debug.Log(instance.originalSpawnTransform);
 
         inputManager = new InputManager();
 
-        if (!debug)
-        {
-            Debug.Log("hello");
-           // instance.player.transform.position = instance.originalSpawnTransform.position;
-        }
-
-        //QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        //Application.targetFrameRate = 45;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
+        
 
     }
     // Start is called before the first frame update
@@ -64,12 +52,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("in start");
 
-        DontDestroyOnLoad(gameObject);
+        /*DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(UI.gameObject);
         DontDestroyOnLoad(player.gameObject);
-        DontDestroyOnLoad(cam.gameObject);
+        DontDestroyOnLoad(cam.gameObject);*/
         
-        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
+        
         
         
         if (!showCursor)
@@ -87,8 +75,6 @@ public class GameManager : MonoBehaviour
         if(velocityText != null)
         {
             velocityText.text = "Velocity: " + player.velocity.magnitude;
-            //Debug.Log(player.velocity.magnitude);
-            //Debug.Log(velocityText.text);
         }
 
         if(coinCountText != null)
@@ -130,10 +116,7 @@ public class GameManager : MonoBehaviour
             } else if (player.velocity.magnitude > player.velocityToDash)
             {
                 dashSpeedImage.color = Color.yellow;
-            }
-            
-            //else if()
-            else
+            } else
             {
                 dashSpeedImage.color = Color.green;
             }
@@ -151,15 +134,17 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
-        Debug.Log("RESPAWN");
+        Debug.Log("RESPAWN DC " + deathCount);
         deathCount++;
         if(deathCount <= 3)
         {
             if(LevelManager.instance.currentCheckpoint != null)
             {
+                Debug.Log("OO:" + player.name);
                 player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
             } else
             {
+                Debug.Log("NN:" + player.name);
                 player.Respawn(LevelManager.instance.originalSpawnTransform.position);
             }
             
@@ -175,6 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
-        SceneManager.LoadScene(index);
+        SceneManager.UnloadSceneAsync(currentSceneIndex);
+        SceneManager.LoadScene(index, LoadSceneMode.Additive);
     }
 }

@@ -11,7 +11,7 @@ public class ChargeState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        jumpForce = player.normalJumpForce;
+        jumpForce = LevelManager.instance.normalJumpForce;
     }
 
     public override void Leave()

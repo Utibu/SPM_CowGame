@@ -30,8 +30,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
 
-    public float normalJumpForce;
-    public float dashJumpForce;
+    
 
     public float dashStateAcceleration;
     public float dashStateGravity;
@@ -200,6 +199,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public void Respawn(Vector3 position)
     {
-        this.transform.position = position;
+        Debug.Log("Finns");
+        transform.position = position;
     }
 }
