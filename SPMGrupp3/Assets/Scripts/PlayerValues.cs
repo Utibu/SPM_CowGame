@@ -13,6 +13,8 @@ public class PlayerValues : MonoBehaviour
     public Text healthText;
     public Image healthBarBackground;
     public bool gotKey1 = false;
+    [SerializeField] private float healhBarSizeX;
+    [SerializeField] private float healthBarSizeY;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class PlayerValues : MonoBehaviour
             if(healthBar != null && healthText != null)
             {
                 healthBar.fillAmount = health / maxHealth;
-                healthBar.rectTransform.sizeDelta = new Vector2(maxHealth + 350, 50f);
+                healthBar.rectTransform.sizeDelta = new Vector2(maxHealth + healhBarSizeX, healthBarSizeY);
                 healthText.text = health + "/" + maxHealth;
                 healthBarBackground.rectTransform.sizeDelta = healthBar.rectTransform.sizeDelta;
             }
