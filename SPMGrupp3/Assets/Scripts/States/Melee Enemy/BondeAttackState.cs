@@ -106,12 +106,12 @@ public class BondeAttackState : BondeBaseState
     {
         attacking = true;
         owner.weapon.transform.localRotation = Quaternion.Euler(90, 0, 0);
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack / 2)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
             owner.player.playerValues.health -= owner.attackDamage;
-            owner.player.velocity += owner.transform.forward * 45f;
-            owner.player.velocity += new Vector3(0.0f, 3.0f, 0.0f);
-            Debug.Log("HIT!");
+            owner.player.velocity += owner.transform.forward * 25f;
+            owner.player.velocity += new Vector3(0.0f, 30.0f, 0.0f);
+            Debug.Log("BOSSHIT!");
         }
         // reset cd and move up weapon
         countdown = cooldown;
