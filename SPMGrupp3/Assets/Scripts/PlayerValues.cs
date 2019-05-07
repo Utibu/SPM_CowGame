@@ -11,6 +11,7 @@ public class PlayerValues : MonoBehaviour
     public int dashLevel;
     public Image healthBar;
     public Text healthText;
+    public Image healthBarBackground;
     public bool gotKey1 = false;
 
     // Start is called before the first frame update
@@ -31,6 +32,7 @@ public class PlayerValues : MonoBehaviour
                 healthBar.fillAmount = health / maxHealth;
                 healthBar.rectTransform.sizeDelta = new Vector2(maxHealth + 350, 50f);
                 healthText.text = health + "/" + maxHealth;
+                healthBarBackground.rectTransform.sizeDelta = healthBar.rectTransform.sizeDelta;
             }
             
         } else
