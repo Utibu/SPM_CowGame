@@ -8,7 +8,6 @@ public class BondeAttackState : BondeBaseState
 
     private float cooldown = 1.2f;
     private float countdown;
-    private bool attacking;
     private float rotation;
     private Quaternion originalPosition;
     Vector3 lookPos;
@@ -27,7 +26,6 @@ public class BondeAttackState : BondeBaseState
             owner.attackDamage = damage;
         }
         countdown = cooldown;
-        attacking = false;
         attack();
     }
     public override void Leave()
@@ -59,7 +57,10 @@ public class BondeAttackState : BondeBaseState
             {
                 BossAttack();
             }
-            attack();
+            else
+            {
+                attack();
+            }
         }
 
         if (0.1 <= countdown && countdown <= cooldown/2)
@@ -78,7 +79,6 @@ public class BondeAttackState : BondeBaseState
 
     private void attack()
     {
-        attacking = true;
         // move weapon, see if hit
         //owner.weapon.transform.Rotate(110, 0, 0);
         owner.weapon.transform.localRotation = Quaternion.Euler(90,0,0);
@@ -97,25 +97,22 @@ public class BondeAttackState : BondeBaseState
 
         // reset cd and move up weapon
         countdown = cooldown;
-        attacking = false;
         rotation = 0;
     }
 
 
     private void BossAttack()
     {
-        attacking = true;
-        owner.weapon.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        //owner.weapon.transform.localRotation = Quaternion.Euler(90, 0, 0);
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
             owner.player.playerValues.health -= owner.attackDamage;
             owner.player.velocity += owner.transform.forward * 25f;
-            owner.player.velocity += new Vector3(0.0f, 30.0f, 0.0f);
+            owner.player.velocity += new Vector3(0.0f, 15.0f, 0.0f);
             Debug.Log("BOSSHIT!");
         }
         // reset cd and move up weapon
         countdown = cooldown;
-        attacking = false;
         rotation = 0;
     }
 
