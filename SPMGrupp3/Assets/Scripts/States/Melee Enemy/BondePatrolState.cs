@@ -10,7 +10,7 @@ public class BondePatrolState : BondeBaseState
     private GameObject target;
     private bool hasTarget = false;
 
-    int point = 0;
+    int point = 1;
 
     // Start is called before the first frame update
     public override void Enter()
@@ -36,8 +36,7 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
-        Debug.Log(Vector3.Distance(owner.transform.position, target.transform.position) + target.name);
-        if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= patrolPointRange)
+        if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= 2.0f)
         {
             
             point = (point + 1) % owner.patrolPoints.Length;

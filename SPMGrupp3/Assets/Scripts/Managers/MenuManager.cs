@@ -37,11 +37,12 @@ public class MenuManager : MonoBehaviour
             
 
             IEnumerator coroutine = LoadSceneRoutine(index);
+            SceneManager.LoadScene(3);
             isLoadingScene = true;
             StartCoroutine(coroutine);
 
-            SceneManager.LoadScene(3, LoadSceneMode.Additive);
-            SceneManager.UnloadScene(0);
+            //SceneManager.UnloadSceneAsync(0);
+            
         }
 
     }

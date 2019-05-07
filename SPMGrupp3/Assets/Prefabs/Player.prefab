@@ -133,12 +133,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499345691420650961}
-  - component: {fileID: 499345691420650963}
   - component: {fileID: 499345691420650962}
   - component: {fileID: 1446421165778509226}
   - component: {fileID: 1446421165778509269}
   - component: {fileID: 499345691420650960}
   - component: {fileID: 499345691420650965}
+  - component: {fileID: 447841027557854455}
+  - component: {fileID: 447841027557854444}
+  - component: {fileID: 499345691420650963}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -153,28 +155,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499345691420650954}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.969675, y: 3.15, z: -33.38}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2653104782835005029}
-  - {fileID: 4395138435992153332}
+  - {fileID: 1307650732549804909}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &499345691420650963
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499345691420650954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!208 &499345691420650962
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -238,6 +226,8 @@ MonoBehaviour:
   maxHealth: 100
   dashLevel: 1
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
+  healthBarBackground: {fileID: 0}
   gotKey1: 0
 --- !u!114 &499345691420650965
 MonoBehaviour:
@@ -283,21 +273,148 @@ MonoBehaviour:
   isDashing: 0
   elapsedDashTime: 0
   allowedToDash: 1
-  dashCooldown: 2
-  normalJumpForce: 30
-  dashJumpForce: 30
+  dashCooldown: 3
   dashStateAcceleration: 0
   dashStateGravity: 0
   dashAirResistance: 0.1
   terminalVelocity: 0
+  meshParent: {fileID: 1307650732549804908}
   anim: {fileID: 0}
   animationSpeed: 2
   mouseSensitivity: 2
   minAngle: -45
   maxAngle: 45
-  cameraPositionRelativeToPlayer: {x: 0, y: 1, z: -5}
+  cameraPositionRelativeToPlayer: {x: 0, y: 0, z: -5}
   cameraType: 1
   hasFreeDash: 0
+--- !u!82 &447841027557854455
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499345691420650954}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &447841027557854444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499345691420650954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb347e0e3e84b4f4dbca271c40f4167a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countText: {fileID: 0}
+  winText: {fileID: 0}
+  pick_up_sounds:
+  - {fileID: 8300000, guid: a94ae8b0704f7b043ade7dbe89c0a142, type: 3}
+  - {fileID: 8300000, guid: ef5ad53483171f445a6ffb25401c15e0, type: 3}
+  - {fileID: 8300000, guid: c3445a94d7d6d7343b5106eb4c85b6e1, type: 3}
+  dash_hit_sound: {fileID: 8300000, guid: ccb9d93bdf2164d419a1db682e264c06, type: 3}
+--- !u!65 &499345691420650963
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499345691420650954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &529793934710159171
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +507,38 @@ Transform:
   - {fileID: 4376404814156164732}
   m_Father: {fileID: 3100929880985927697}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1307650732549804908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307650732549804909}
+  m_Layer: 11
+  m_Name: MeshParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307650732549804909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307650732549804908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2653104782835005029}
+  - {fileID: 4395138435992153332}
+  m_Father: {fileID: 499345691420650961}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598668488038279625
 GameObject:
@@ -2259,12 +2408,12 @@ Transform:
   m_GameObject: {fileID: 8650251078664090512}
   m_LocalRotation: {x: -3.83636e-24, y: 0.000000006686674, z: -0.000000034100523,
     w: 1}
-  m_LocalPosition: {x: -2.878354e-10, y: 0, z: -9.76411e-12}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2894733633321232809}
   - {fileID: 5540809160070739296}
-  m_Father: {fileID: 499345691420650961}
+  m_Father: {fileID: 1307650732549804909}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8997747993552752032
@@ -2290,11 +2439,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8997747993552752032}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.594, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.594, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6820861895272862761}
-  m_Father: {fileID: 499345691420650961}
+  m_Father: {fileID: 1307650732549804909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

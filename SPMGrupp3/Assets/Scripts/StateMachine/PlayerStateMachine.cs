@@ -37,6 +37,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float dashAirResistance;
     public float terminalVelocity;
 
+    public GameObject meshParent;
+
     [HideInInspector] public Animator anim;
     public float animationSpeed;
 
@@ -53,6 +55,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     override protected void Awake()
     {
         base.Awake();
+        //objectCollider = transform.parent.GetComponent<BoxCollider>();
         cameraCollider = Camera.main.GetComponent<SphereCollider>();
         playerValues = GetComponent<PlayerValues>();
         countdown = dashCooldown;

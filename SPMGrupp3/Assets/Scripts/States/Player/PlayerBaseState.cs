@@ -94,7 +94,7 @@ public class PlayerBaseState : PhysicsBaseState
         player.anim.SetFloat("Direction", horizontal * speedPercentage);
         player.anim.speed = player.animationSpeed;
         //player.transform.rotation = Quaternion.Euler((Camera.main.transform.rotation * direction).normalized);
-        player.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+        player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
         /*if (maxSpeed <= 0)
         {
