@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
             instance = this;
         else if (instance != this)
         {
-            instance.originalSpawnTransform = originalSpawnTransform;
+            Destroy(gameObject);
         }
 
         checkpoints.Clear();
@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         if (!GameManager.instance.debug)
         {
             Debug.Log("hello");
-            GameManager.instance.player.transform.position = instance.originalSpawnTransform.position;
+            GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
     }
 
