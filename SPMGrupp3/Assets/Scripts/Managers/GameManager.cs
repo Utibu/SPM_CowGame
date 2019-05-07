@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool showCursor;
     public Canvas UI;
     public Camera cam;
+    private int currentSceneIndex;
 
     private Vector3 horizontalSpeed = new Vector3();
 
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled
         //Application.targetFrameRate = 45;
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
     }
     // Start is called before the first frame update
@@ -149,14 +151,24 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
+        Debug.Log("RESPAWN");
         deathCount++;
-        if(deathCount <= 3 && LevelManager.instance.currentCheckpoint != null)
+        if(deathCount <= 3)
         {
-            player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
+            if(LevelManager.instance.currentCheckpoint != null)
+            {
+                player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
+            } else
+            {
+                player.Respawn(LevelManager.instance.originalSpawnTransform.position);
+            }
+            
         } else
         {
-            player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-            LevelManager.instance.ResetCheckpoints();
+            //player.Respawn(LevelManager.instance.originalSpawnTransform.position);
+            //LevelManager.instance.ResetCheckpoints();
+            deathCount = 0;
+            LoadScene(currentSceneIndex);
         }
 
     }
