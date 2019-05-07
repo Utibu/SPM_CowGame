@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    [HideInInspector] public Transform currentCheckpoint;
+    //[HideInInspector] public Transform currentCheckpoint;
     public int deathCount = 0;
     public PlayerStateMachine player;
-    public Transform originalSpawnTransform;
+    //public Transform originalSpawnTransform;
     public Text velocityText;
     public Image dashCooldownImage;
     public Image dashSpeedImage;
@@ -33,23 +33,24 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
         {
-            Debug.Log(originalSpawnTransform);
-            instance.originalSpawnTransform = originalSpawnTransform;
+            //Debug.Log(originalSpawnTransform);
+            //instance.originalSpawnTransform = originalSpawnTransform;
             
             Destroy(player.gameObject);           
             Destroy(UI.gameObject);
             Destroy(cam.gameObject);
             Destroy(gameObject);
         }
+
         Debug.Log(debug);
-        Debug.Log(instance.originalSpawnTransform);
+        //Debug.Log(instance.originalSpawnTransform);
 
         inputManager = new InputManager();
 
         if (!debug)
         {
             Debug.Log("hello");
-            instance.player.transform.position = instance.originalSpawnTransform.position;
+           // instance.player.transform.position = instance.originalSpawnTransform.position;
         }
 
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(UI.gameObject);
         DontDestroyOnLoad(player.gameObject);
         DontDestroyOnLoad(cam.gameObject);
-
+        
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
         
         
@@ -144,22 +145,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckpointTaken(Transform checkPointTransform)
-    {
-        currentCheckpoint = checkPointTransform.Find("SpawnPoint");
-        checkPointTransform.gameObject.SetActive(false);
-    }
+    
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
         deathCount++;
-        if(deathCount <= 3 && currentCheckpoint != null)
+        if(deathCount <= 3 && LevelManager.instance.currentCheckpoint != null)
         {
-            player.Respawn(currentCheckpoint.transform.position);
+            player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
         } else
         {
-            player.Respawn(originalSpawnTransform.position);
+            player.Respawn(LevelManager.instance.originalSpawnTransform.position);
+            LevelManager.instance.ResetCheckpoints();
         }
+
     }
 
     public void LoadScene(int index)

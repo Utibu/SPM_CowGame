@@ -142,7 +142,7 @@ public class PhysicsBaseState : State
 
         if(hitCollider.tag.Equals("Checkpoint"))
         {
-            GameManager.instance.CheckpointTaken(hitCollider.transform);
+            LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
         }
     }
 
