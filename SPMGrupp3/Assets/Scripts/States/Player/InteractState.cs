@@ -8,13 +8,13 @@ public class InteractState : PlayerBaseState
 
     public override void Enter()
     {
-        owner.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        //owner.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
         base.Enter();
     }
 
     public override void Leave()
     {
-        owner.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        //owner.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         base.Leave();
     }
 

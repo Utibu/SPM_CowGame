@@ -32,15 +32,15 @@ public class PlayerSounds : MonoBehaviour
         //source2 = sources[1];
     }
 
-    void OnTriggerEnter(Collider other)
+    public void PlayTriggerSound(Collider other)
     {
-        Debug.Log("COIN SOUND");
-        if (other.gameObject.CompareTag("Droppable"))
+        
+        if (other.GetComponent<CoinPickup>() != null)
         {
-            other.gameObject.SetActive(false);
-            count++;
-            SetCountText();
-
+            //other.gameObject.SetActive(false);
+            //count++;
+            //SetCountText();
+            Debug.Log("COIN SOUND");
             clipIndex = Random.Range(0, pick_up_sounds.Length);
             source1.PlayOneShot(pick_up_sounds[clipIndex]);
         }
@@ -48,7 +48,8 @@ public class PlayerSounds : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        
+        //countText.text = "Count: " + count.ToString();
         if (count >= 14)
         {
             // Här ska vi se till att om spelaren har plockat upp X antal mynt så ska dennes HP höjas
@@ -57,7 +58,7 @@ public class PlayerSounds : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void PlayCollisionSound(Collider collision)
     {
         if (collision.gameObject.CompareTag("Dashable"))
         {

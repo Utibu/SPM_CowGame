@@ -6,6 +6,7 @@ using UnityEngine;
 public class BondePatrolState : BondeBaseState
 {
 
+    [SerializeField] private float patrolPointRange = 1f;
     private GameObject target;
     private bool hasTarget = false;
 
@@ -35,8 +36,10 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
-        if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
+        Debug.Log(Vector3.Distance(owner.transform.position, target.transform.position) + target.name);
+        if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= patrolPointRange)
         {
+            
             point = (point + 1) % owner.patrolPoints.Length;
 
             target = owner.patrolPoints[point];

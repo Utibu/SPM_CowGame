@@ -154,6 +154,12 @@ public class PlayerBaseState : PhysicsBaseState
             hitCollider.GetComponent<BaseTrigger>().OnTriggerEnter();
         }
 
+        PlayerSounds playerSounds = player.GetComponent<PlayerSounds>();
+        if (playerSounds != null)
+        {
+            playerSounds.PlayTriggerSound(hitCollider);
+        }
+
         
     }
 
@@ -177,11 +183,17 @@ public class PlayerBaseState : PhysicsBaseState
         {
             hitCollider.GetComponentInParent<GateScript>().Open();
         }
-        
+
+        PlayerSounds playerSounds = player.GetComponent<PlayerSounds>();
+        if (playerSounds != null)
+        {
+            playerSounds.PlayCollisionSound(hitCollider);
+        }
+
         //if(hitCollider.tag.Equals("Rock")) {
-            //Destroy(hitCollider.gameObject);
+        //Destroy(hitCollider.gameObject);
         //}
 
-        
+
     }
 }
