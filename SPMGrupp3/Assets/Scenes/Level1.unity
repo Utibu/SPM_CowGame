@@ -29884,11 +29884,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1405386824}
     - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: m_Name
@@ -29945,6 +29940,11 @@ PrefabInstance:
       propertyPath: skinWidth
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1405386824}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30015,21 +30015,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.9920285
       objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650967, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650967, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650964, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650963, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: m_Size.x
@@ -30054,6 +30039,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Extents.z
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650967, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650967, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650964, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}
