@@ -7,6 +7,7 @@ public class BondePatrolState : BondeBaseState
 {
 
     private GameObject target;
+    private bool hasTarget = false;
 
     int point = 0;
 
@@ -19,10 +20,12 @@ public class BondePatrolState : BondeBaseState
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;
             owner.GetComponent<MeshRenderer>().material.color = Color.white;
+            hasTarget = true;
 
             //Debug.Log("DESTINATION: " + owner.agnes.destination);
             //Debug.Log(owner.agnes.updateRotation);
         }
+        
 
 
     }
@@ -32,7 +35,7 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
-        if (Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
+        if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
         {
             point = (point + 1) % owner.patrolPoints.Length;
 

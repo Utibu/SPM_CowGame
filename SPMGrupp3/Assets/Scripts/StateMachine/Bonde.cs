@@ -21,6 +21,9 @@ public class Bonde : StateMachine
     public bool customAttackDamage;
     public float attackDamage;
 
+    public float graceTime = 2f;
+    private float timeSinceLastHit = 0f;
+
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -39,15 +42,21 @@ public class Bonde : StateMachine
     // Update is called once per frame
     public override void Update()
     {
+        timeSinceLastHit += Time.deltaTime;
         base.Update();
     }
 
     public virtual void PlayerDash()
     {
-        toughness -= 1;
+        
+        if(timeSinceLastHit > graceTime)
+        {
+            toughness -= 1;
+            timeSinceLastHit = 0;
+        }
         if(toughness <= 0)
         {
-            Debug.Log("DASH");
+            Debug.Log("DASHED");
             Transition<BondeStunState>();
         }
         
