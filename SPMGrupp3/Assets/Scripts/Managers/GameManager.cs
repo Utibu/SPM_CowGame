@@ -33,9 +33,6 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
         {
-            //Destroy(player.gameObject);           
-           // Destroy(UI.gameObject);
-            //Destroy(cam.gameObject);
             Destroy(gameObject);
         }
 
@@ -53,14 +50,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("in start");
 
-        /*DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(UI.gameObject);
-        DontDestroyOnLoad(player.gameObject);
-        DontDestroyOnLoad(cam.gameObject);*/
-        
-        
-        
-        
         if (!showCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
