@@ -66,7 +66,6 @@ public class DashState : PlayerBaseState
         else if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude < hitCollider.GetComponent<Dashable>().requiredMagnitude)
         {
             owner.velocity *= -1;
-            owner.Transition<JumpState>();
         }
 
         if(hitCollider.tag.Equals("DashFallable"))
