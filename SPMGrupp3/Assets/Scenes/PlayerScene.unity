@@ -156,7 +156,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1446421167096301928}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1446421167096301929}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00e150e02e1e44212969b76da06dfdc5, type: 3}
@@ -330,13 +330,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617973538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.072752215, y: -0, z: -0, w: 0.9973501}
+  m_LocalPosition: {x: 141.7, y: 17.7, z: -3.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.344001, y: 0, z: 0}
 --- !u!135 &1617973542
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -474,6 +474,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 637621084}
     - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: cameraPositionRelativeToPlayer.y
@@ -484,11 +489,6 @@ PrefabInstance:
       propertyPath: dashCooldown
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 637621084}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -546,6 +546,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}
+--- !u!1 &1446421167096301929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1446421167096301928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1446421167096301930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446421167096301929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb347e0e3e84b4f4dbca271c40f4167a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countText: {fileID: 0}
+  winText: {fileID: 0}
+  pick_up_sounds:
+  - {fileID: 8300000, guid: a94ae8b0704f7b043ade7dbe89c0a142, type: 3}
+  - {fileID: 8300000, guid: ef5ad53483171f445a6ffb25401c15e0, type: 3}
+  - {fileID: 8300000, guid: c3445a94d7d6d7343b5106eb4c85b6e1, type: 3}
+  dash_hit_sound: {fileID: 8300000, guid: ccb9d93bdf2164d419a1db682e264c06, type: 3}
 --- !u!1001 &3962709825412096643
 PrefabInstance:
   m_ObjectHideFlags: 0
