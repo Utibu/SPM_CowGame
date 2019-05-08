@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4705515349652507659}
   - component: {fileID: 2868797660037211302}
   - component: {fileID: -4986738094404652403}
+  - component: {fileID: 6859752305239613970}
   m_Layer: 10
   m_Name: Coin
   m_TagString: Droppable
@@ -106,3 +107,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}
+--- !u!114 &6859752305239613970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027153688573620829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aa6544a0936594bb2139e2124e1b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 50
