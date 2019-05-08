@@ -62,6 +62,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            LoadScene(2);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadMenu();
+        }
         
         if(velocityText != null)
         {
@@ -123,6 +133,7 @@ public class GameManager : MonoBehaviour
             player.playerValues.maxHealth += 20;
             player.playerValues.health = player.playerValues.maxHealth;
             coinCount = 0;
+            LevelManager.instance.pickedCoins = 0;
         }
     }
 
@@ -133,17 +144,14 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
-        Debug.Log("RESPAWN DC " + deathCount);
         deathCount++;
         if(deathCount <= 3)
         {
             if(LevelManager.instance.currentCheckpoint != null)
             {
-                Debug.Log("OO:" + player.name);
                 player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
             } else
             {
-                Debug.Log("NN:" + player.name);
                 player.Respawn(LevelManager.instance.originalSpawnTransform.position);
             }
             
@@ -151,6 +159,7 @@ public class GameManager : MonoBehaviour
         {
             deathCount = 0;
             LoadScene(SceneManager.GetActiveScene().buildIndex);
+            coinCount -= LevelManager.instance.pickedCoins;
         }
 
     }
@@ -164,6 +173,24 @@ public class GameManager : MonoBehaviour
             StartCoroutine(coroutine);
         }
         
+    }
+
+    public void LoadMenu()
+    {
+        StartCoroutine("LoadMenuRoutine");
+    }
+
+    IEnumerator LoadMenuRoutine()
+    {
+        var loading = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+        yield return loading;
+        //var unloading = SceneManager.UnloadSceneAsync(3);
+        //yield return unloading;
+
+
+        var scene = SceneManager.GetSceneByBuildIndex(0);
+        SceneManager.SetActiveScene(scene);
+        isLoadingScene = false;
     }
 
     IEnumerator LoadSceneRoutine(int index)

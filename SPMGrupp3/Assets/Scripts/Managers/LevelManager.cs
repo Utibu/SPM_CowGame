@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     public float normalJumpForce;
     public float dashJumpForce;
+    public int pickedCoins = 0;
 
     public float playerScale = 1f;
 

@@ -6,8 +6,8 @@ using UnityEngine;
 public class BondeAttackState : BondeBaseState
 {
 
-    private float cooldown = 1.2f;
-    private float countdown;
+    
+    
     private float rotation;
     private Quaternion originalPosition;
     Vector3 lookPos;
@@ -25,8 +25,6 @@ public class BondeAttackState : BondeBaseState
         {
             owner.attackDamage = damage;
         }
-        countdown = cooldown;
-        attack();
     }
     public override void Leave()
     {
@@ -48,22 +46,24 @@ public class BondeAttackState : BondeBaseState
             owner.transform.rotation = rot;
         }
 
-        countdown -= Time.deltaTime;
+        owner.countdown -= Time.deltaTime;
 
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && countdown <= 0)
+        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && owner.countdown <= 0)
         {
             //owner.weapon.transform.localRotation = originalPosition;
             if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
             {
                 BossAttack();
+                Debug.Log("ATTACK1");
             }
             else
             {
                 attack();
+                Debug.Log("ATTACK2");
             }
         }
 
-        if (0.1 <= countdown && countdown <= cooldown/2)
+        if (0.1 <= owner.countdown && owner.countdown <= owner.cooldown / 2)
         {
             rotation += -2;
             owner.weapon.transform.localRotation = Quaternion.Euler(90 + rotation, 0, 0);
@@ -86,17 +86,17 @@ public class BondeAttackState : BondeBaseState
         // if hit, do dmg
         //if (owner.weapon.GetComponent<Collider>().bounds.Intersects(owner.player.objectCollider.bounds))
         //{
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack / 2)
+        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
             owner.player.playerValues.health -= owner.attackDamage;
             owner.player.velocity += owner.transform.forward * 20f;
             Debug.Log("HIT!");
         }
-            
+
         //}
 
         // reset cd and move up weapon
-        countdown = cooldown;
+        owner.countdown = owner.cooldown;
         rotation = 0;
     }
 
@@ -112,7 +112,7 @@ public class BondeAttackState : BondeBaseState
             Debug.Log("BOSSHIT!");
         }
         // reset cd and move up weapon
-        countdown = cooldown;
+        owner.countdown = owner.cooldown;
         rotation = 0;
     }
 
