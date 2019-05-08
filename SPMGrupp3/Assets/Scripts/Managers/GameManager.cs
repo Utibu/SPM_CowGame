@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool showCursor;
     public Canvas UI;
     public Camera cam;
+    public GameObject controlsUI;
     private bool isLoadingScene = false;
 
     private Vector3 horizontalSpeed = new Vector3();
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("in start");
+        controlsUI.SetActive(true);
+        Invoke("HideControlsUI", 6f);
 
         if (!showCursor)
         {
@@ -118,7 +120,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    void HideControlsUI()
+    {
+        controlsUI.SetActive(false);
+    }
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
