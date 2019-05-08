@@ -67,6 +67,7 @@ public class RollingBallState : PhysicsBaseState
         {
             
             GameManager.instance.player.playerValues.health -= 25;
+            GameManager.instance.player.velocity = Vector3.zero;
             Destroy(owner.gameObject);
         }
     }
