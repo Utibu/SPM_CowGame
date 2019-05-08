@@ -56,7 +56,6 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         base.Awake();
         //objectCollider = transform.parent.GetComponent<BoxCollider>();
-        cameraCollider = Camera.main.GetComponent<SphereCollider>();
         playerValues = GetComponent<PlayerValues>();
         countdown = dashCooldown;
     }
@@ -67,6 +66,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
         anim = GetComponent<Animator>();
+        cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)

@@ -37,23 +37,32 @@ public class MenuManager : MonoBehaviour
             
 
             IEnumerator coroutine = LoadSceneRoutine(index);
-            SceneManager.LoadScene(3);
+
+            //SceneManager.LoadScene(3);
             isLoadingScene = true;
+
             StartCoroutine(coroutine);
 
-            //SceneManager.UnloadSceneAsync(0);
             
+
+            //SceneManager.UnloadSceneAsync(0);
+
         }
 
     }
     
     IEnumerator LoadSceneRoutine(int index)
     {
-        
+        var loadingPlayer = SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+        yield return loadingPlayer;
         var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         yield return loading;
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
+        Debug.LogWarning("FDF");
+        var unloadCurrent = SceneManager.UnloadSceneAsync(0);
+        yield return unloadCurrent;
+        
         isLoadingScene = false;
     }
 

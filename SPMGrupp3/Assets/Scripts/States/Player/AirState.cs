@@ -29,7 +29,7 @@ public class AirState : PlayerBaseState
     {
         base.Leave();
         //Debug.Log(topYPosition - owner.transform.position.y);
-        if (topYPosition - owner.transform.position.y > distanceToTakeFalldamage)
+        if (topYPosition - owner.transform.position.y > distanceToTakeFalldamage && Time.time % 60 > 10f)
         {
             //Debug.Log("Falldamage");
             player.playerValues.health -= fallDamage;

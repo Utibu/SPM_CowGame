@@ -129,9 +129,8 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        if (!hasCorrectJump)
+        if (jumpForce != LevelManager.instance.dashJumpForce)
         {
-            hasCorrectJump = true;
             jumpForce = LevelManager.instance.dashJumpForce;
         }
 

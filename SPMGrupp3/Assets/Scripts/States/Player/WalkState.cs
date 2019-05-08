@@ -28,9 +28,8 @@ public class WalkState : PlayerBaseState
 
     public override void Update()
     {
-        if(!hasCorrectJump)
+        if(LevelManager.instance != null && jumpForce != LevelManager.instance.normalJumpForce)
         {
-            hasCorrectJump = true;
             jumpForce = LevelManager.instance.normalJumpForce;
         }
         /*if(!allowDash)

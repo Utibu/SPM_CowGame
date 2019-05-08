@@ -22,11 +22,11 @@ public class ChargeState : PlayerBaseState
     {
         base.Update();
 
-        if (!hasCorrectJump)
+        if(jumpForce != LevelManager.instance.normalJumpForce)
         {
-            hasCorrectJump = true;
             jumpForce = LevelManager.instance.normalJumpForce;
         }
+        
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded() && owner.velocity.magnitude > player.velocityToDash && (player.allowedToDash || (player.hasFreeDash)))
         {

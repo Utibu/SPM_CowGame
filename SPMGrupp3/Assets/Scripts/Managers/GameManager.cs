@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public bool showCursor;
     public Canvas UI;
     public Camera cam;
-    private int currentSceneIndex;
     private bool isLoadingScene = false;
 
     private Vector3 horizontalSpeed = new Vector3();
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
 
         inputManager = new InputManager();
 
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
         
 
@@ -140,18 +138,14 @@ public class GameManager : MonoBehaviour
             
         } else
         {
-            //player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-            //LevelManager.instance.ResetCheckpoints();
             deathCount = 0;
-            LoadScene(currentSceneIndex);
+            LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }
 
     public void LoadScene(int index)
     {
-        /*SceneManager.UnloadSceneAsync(currentSceneIndex);
-        SceneManager.LoadScene(index, LoadSceneMode.Additive);*/
         if(!isLoadingScene)
         {
             IEnumerator coroutine = LoadSceneRoutine(index);
@@ -163,12 +157,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadSceneRoutine(int index)
     {
-        SceneManager.UnloadSceneAsync(currentSceneIndex);
+        var unloading = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        yield return unloading;
         var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         yield return loading;
+        
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
-        currentSceneIndex = index;
         isLoadingScene = false;
     }
 
