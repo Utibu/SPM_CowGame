@@ -36,7 +36,7 @@ public class BossStateMachine : Bonde
         health -= damageOnDash;
         if (health <= 0)
         {
-            Transition<BossStunState>();
+            GameManager.instance.LoadScene(0);
         }
         count = 0;
         SpawnUnderling();
