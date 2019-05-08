@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MakeRampButton : ButtonScript
 {
@@ -14,11 +15,14 @@ public class MakeRampButton : ButtonScript
     public int timeInCutScene = 2;
     public AudioClip errorSound;
     private AudioSource AudioSrc;
+    public Canvas descriptorCanvas;
+    public Text descriptorText;
 
    
     // Start is called before the first frame update
     void Start()
     {
+        descriptorCanvas.gameObject.SetActive(false);
         AudioSrc = GetComponent<AudioSource>();
 
         gameObjectToHide.SetActive(true);
@@ -39,12 +43,14 @@ public class MakeRampButton : ButtonScript
     public override void Act()
     {
         Debug.Log("ramp button is acting");
+        descriptorCanvas.gameObject.SetActive(true);
         //knappen har ström
         if (isActive)
         {
             Debug.Log("and is active.");
             gameObjectToHide.SetActive(false);
             gameObjectToShow.SetActive(true);
+            descriptorText.text = "I think I heard something in the room before!";
             /*if(cutSceneCamera != null)
             {
                 cutSceneCamera.enabled = true;
