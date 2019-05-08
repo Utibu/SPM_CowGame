@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Canvas UI;
     public Camera cam;
     public GameObject controlsUI;
+    public Text livesText;
     private bool isLoadingScene = false;
 
     private Vector3 horizontalSpeed = new Vector3();
@@ -71,6 +72,11 @@ public class GameManager : MonoBehaviour
         {
 
             coinCountText.text = "Coins: " + coinCount;
+        }
+
+        if(livesText != null)
+        {
+            livesText.text = "Lives: " + (3 - deathCount);
         }
 
         if(dashCooldownImage != null)
