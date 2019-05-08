@@ -50,8 +50,6 @@ public class FallingObject : MonoBehaviour
             rotationDirection = new Vector3(direction.z, 0f, direction.x * -1);
             Vector3 tempSize = size;
             tempSize.y = 0f;
-            //pivot.transform.position += (tempDir.normalized + (tempSize / 2));
-            //collisionCheck.transform.rotation = Quaternion.Euler(tempDir);
             pivot.transform.position += new Vector3(tempSize.x / 2 * rotationDirection.z * -1, 0f, tempSize.z / 2 * rotationDirection.x);
             
         }
@@ -117,22 +115,8 @@ public class FallingObject : MonoBehaviour
         {
             Vector3 rot = direction.normalized * acceleration * Time.deltaTime;
             Vector3 toRot = DistanceToGround(rot);
-
-            
-
-            //Debug.Log("ROT " + rot);
-            //Vector3 r = Helper.RotateAroundPivot(transform.position, pivot.transform.position, rot);
-            //Debug.Log(r);
-            //transform.Rotate(r.z, 0f, r.x);
             transform.RotateAround(pivot.transform.position, rotationDirection.normalized, rot.magnitude);
-            //transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 0f, transform.rotation.eulerAngles.z));
             Debug.Log(rotationDirection.normalized);
-            //collisionCheck.transform.LookAt(transform.rotation * Vector3.forward);
-            //Debug.Log(collisionCheck.transform.rotation);
-            //transform.rotation = Quaternion.Euler(r);
-            //transform.Rotate(r);
-
-            //transform.parent.Rotate(10f, 10f, 10f);
         }
     }
 }
