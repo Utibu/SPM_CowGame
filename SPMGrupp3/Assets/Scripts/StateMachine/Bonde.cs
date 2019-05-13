@@ -12,6 +12,7 @@ public class Bonde : StateMachine
     public GameObject[] patrolPoints;
     public GameObject weapon;
     public GameObject itemDrop;
+    public LayerMask layermask;
     //public GameObject player;
     public PlayerStateMachine player;
     public int toughness = 1;

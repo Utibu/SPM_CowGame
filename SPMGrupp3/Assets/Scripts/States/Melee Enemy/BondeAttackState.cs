@@ -69,8 +69,9 @@ public class BondeAttackState : BondeBaseState
             owner.weapon.transform.localRotation = Quaternion.Euler(90 + rotation, 0, 0);
         }
 
-//        Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || !Physics.BoxCast(owner.transform.position, owner.GetComponent<BoxCollider>().center, (owner.transform.position - owner.player.transform.position), owner.transform.rotation, owner.toAttack)  )
+        //        Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
+        bool seeEnemy = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position), owner.toAttack, owner.layermask);
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || !seeEnemy)
         {
             owner.Transition<BondeChaseState>();
         }
