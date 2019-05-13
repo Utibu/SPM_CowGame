@@ -13,8 +13,7 @@ public class MakeRampButton : ButtonScript
     public Camera cutSceneCamera;
     public Camera originalCamera;
     public int timeInCutScene = 2;
-    public AudioClip errorSound;
-    private AudioSource AudioSrc;
+    public AudioClip turnOnSound;
     public Canvas descriptorCanvas;
     public Text descriptorText;
 
@@ -23,7 +22,6 @@ public class MakeRampButton : ButtonScript
     void Start()
     {
         descriptorCanvas.gameObject.SetActive(false);
-        AudioSrc = GetComponent<AudioSource>();
 
         gameObjectToHide.SetActive(true);
         gameObjectToShow.SetActive(false);
@@ -42,12 +40,13 @@ public class MakeRampButton : ButtonScript
 
     public override void Act()
     {
-        Debug.Log("ramp button is acting");
         descriptorCanvas.gameObject.SetActive(true);
+        // för testing. ljud ska emittas var gång knapp interageras med oavsett om den är på eller ej.
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, gameObject, turnOnSound));
+
         //knappen har ström
         if (isActive)
         {
-            Debug.Log("and is active.");
             gameObjectToHide.SetActive(false);
             gameObjectToShow.SetActive(true);
             descriptorText.text = "I think I heard something in the room before!";
@@ -58,11 +57,7 @@ public class MakeRampButton : ButtonScript
                 Invoke("TurnOnCamera", timeInCutScene);
             }*/
         }
-
-        // knappen har inte ström
-        //AudioSource.PlayClipAtPoint(errorSound, transform.position);
-        // visa bild på display
-
+        
 
     }
 
@@ -74,7 +69,7 @@ public class MakeRampButton : ButtonScript
 
     public void SetActive()
     {
-        Debug.Log("RAMP IS ACTIVATEBELLELEFDGFRGFG");
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, gameObject, turnOnSound));
         isActive = true;
     }
 

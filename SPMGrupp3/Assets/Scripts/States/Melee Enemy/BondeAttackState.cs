@@ -70,7 +70,7 @@ public class BondeAttackState : BondeBaseState
         }
 
 //        Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack)
+        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || !Physics.BoxCast(owner.transform.position, owner.GetComponent<BoxCollider>().center, (owner.transform.position - owner.player.transform.position), owner.transform.rotation, owner.toAttack)  )
         {
             owner.Transition<BondeChaseState>();
         }
