@@ -50,7 +50,7 @@ public class MakeRampButton : ButtonScript
             Debug.Log("and is active.");
             gameObjectToHide.SetActive(false);
             gameObjectToShow.SetActive(true);
-            descriptorText.text = "I think I heard something in the room before!";
+            descriptorText.text = "I think I heard something in the previous room!";
             /*if(cutSceneCamera != null)
             {
                 cutSceneCamera.enabled = true;
@@ -74,7 +74,7 @@ public class MakeRampButton : ButtonScript
 
     public void SetActive()
     {
-        Debug.Log("RAMP IS ACTIVATEBELLELEFDGFRGFG");
+        Debug.Log("RAMP IS ACTIVE");
         isActive = true;
     }
 
