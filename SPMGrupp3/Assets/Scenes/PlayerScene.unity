@@ -485,13 +485,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617973538}
-  m_LocalRotation: {x: 0.072752215, y: -0, z: -0, w: 0.9973501}
-  m_LocalPosition: {x: 141.7, y: 17.7, z: -3.8}
+  m_LocalRotation: {x: 0.08322167, y: -0.09625566, z: 0.008076471, w: 0.9918387}
+  m_LocalPosition: {x: 147.7, y: 17.59, z: -3.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.344001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.593, y: -11.086, z: 0}
 --- !u!135 &1617973542
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ PrefabInstance:
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 141.88
+      value: 148.09
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -906,6 +906,11 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerMask.m_Bits
       value: 1040
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820861895272862761, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}
