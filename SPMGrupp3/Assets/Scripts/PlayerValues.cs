@@ -56,7 +56,7 @@ public class PlayerValues : MonoBehaviour
 
     public void Die()
     {
-        health = 100;
+        health = maxHealth;
         if (healthBar != null)
         {
             healthBar.fillAmount = health / maxHealth;
