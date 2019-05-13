@@ -30,7 +30,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
 
-    private string[] camIgnoreTags;
+    public string[] CameraIgnoreTags;
 
     public float dashStateAcceleration;
     public float dashStateGravity;
@@ -68,7 +68,6 @@ public class PlayerStateMachine : PhysicsStateMachine
         hasFreeDash = false;
         anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
-        camIgnoreTags = GameManager.instance.cam.GetComponent<CameraCollision>().IgnoreTags;
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)
@@ -143,7 +142,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     private bool isTagged(Collider col)
     {
-        foreach(string tag in camIgnoreTags)
+        foreach(string tag in CameraIgnoreTags)
         {
             if (col.tag.Equals(tag))
             {
