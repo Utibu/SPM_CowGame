@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: DashState
   m_EditorClassIdentifier: 
   acceleration: 70
-  airResistance: 0.1
-  gravityConstant: 15
-  staticFrictionForce: 0.6
+  airResistance: 0.2
+  gravityConstant: 30
+  staticFrictionForce: 0.7
   dynamicFrictionPercentage: 0.9
-  horizontalPercentage: 1
+  horizontalPercentage: 0.5
   takeInput: 1
-  jumpForce: 30
-  maxSpeed: 0
   divideSens: 10
   dashStateLength: 2
+  ramBuildupTime: 0

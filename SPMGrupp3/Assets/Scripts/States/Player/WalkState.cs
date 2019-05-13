@@ -49,7 +49,7 @@ public class WalkState : PlayerBaseState
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
-            owner.Transition<ChargeState>();
+            owner.Transition<DashState>();
         }
 
         if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
@@ -58,7 +58,7 @@ public class WalkState : PlayerBaseState
             owner.Transition<SideDashState>();
             player.ResetCooldown();
         }
-
+        
         base.Update();
 
     }

@@ -39,4 +39,13 @@ public class InputManager
         }
         return false;
     }
+
+    public bool ForwardKey()
+    {
+        if(Input.GetKey(KeyCode.W) && Input.GetAxisRaw("Vertical") == 1)
+        {
+            return true;
+        }
+        return false;
+    }
 }
