@@ -35,6 +35,7 @@ public class PlayerSounds : MonoBehaviour
     public void PlayTriggerSound(Collider other)
     {
         
+        /*
         if (other.GetComponent<CoinPickup>() != null)
         {
             //other.gameObject.SetActive(false);
@@ -44,6 +45,7 @@ public class PlayerSounds : MonoBehaviour
             clipIndex = Random.Range(0, pick_up_sounds.Length);
             source1.PlayOneShot(pick_up_sounds[clipIndex]);
         }
+        */
     }
 
     void SetCountText()

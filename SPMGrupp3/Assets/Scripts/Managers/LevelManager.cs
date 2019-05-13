@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public float normalJumpForce;
     public float dashJumpForce;
     public int pickedCoins = 0;
+    public AudioClip checkpointSound;
 
     public float playerScale = 1f;
 
@@ -46,6 +47,7 @@ public class LevelManager : MonoBehaviour
 
     public void RegisterCheckpointTaken(Transform checkPointTransform)
     {
+        EventSystem.Current.FireEvent(new PlaySoundEvent(checkPointTransform.position, checkpointSound, 1f, 1f,1f));
         currentCheckpoint = checkPointTransform.Find("SpawnPoint");
         checkPointTransform.gameObject.SetActive(false);
 

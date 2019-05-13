@@ -126,6 +126,16 @@ public class PlayerBaseState : PhysicsBaseState
     {
         base.ActOnTrigger(hitCollider);
 
+        if (hitCollider.tag.Equals("Droppable"))
+        {
+            hitCollider.GetComponent<DroppableObject>().OnEnter();
+        }
+
+        if (hitCollider.tag.Equals("Checkpoint"))
+        {
+            LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
+        }
+
         if (hitCollider.tag.Equals("FragilePlatform"))
         {
             hitCollider.transform.parent.GetComponent<Breakable>().SetFall();

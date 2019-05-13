@@ -56,17 +56,22 @@ public class OnPlayerDiedEvent: DebugEvent
 }
 
 
-//  GÖRA EVENT FÖR LJUD EVENT?  behöver göra och regga lyssnare för detta
 public class PlaySoundEvent : Event
 {
     public Vector3 position;
-    public GameObject soundCauser;
     public AudioClip sound;
+    public float volume;
+    public float pitchMin;
+    public float pitchMax;
 
-    public PlaySoundEvent(Vector3 position, GameObject soundCauser, AudioClip sound)
+    public PlaySoundEvent(Vector3 position, AudioClip sound, float volume, float pitchMin, float pitchMax)
     {
         this.position = position;
-        this.soundCauser = soundCauser;
         this.sound = sound;
+        this.volume = volume;
+        this.pitchMin = pitchMin;
+        this.pitchMax = pitchMax;
     }
+
+    
 }

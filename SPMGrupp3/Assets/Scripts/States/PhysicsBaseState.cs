@@ -137,15 +137,7 @@ public class PhysicsBaseState : State
 
     public virtual void ActOnTrigger(Collider hitCollider)
     {
-        if (hitCollider.tag.Equals("Droppable"))
-        {
-            hitCollider.GetComponent<DroppableObject>().OnEnter();
-        }
-
-        if(hitCollider.tag.Equals("Checkpoint"))
-        {
-            LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
-        }
+       
     }
 
     public virtual void ActOnCollision(Collider hitCollider)

@@ -212,7 +212,9 @@ public class GameManager : MonoBehaviour
     // inte nödvändigtvis permanent plats för sound events. 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
-        AudioSource.PlayClipAtPoint(SoundEvent.sound, SoundEvent.position);
+        auSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+        auSource.volume = SoundEvent.volume;
+        auSource.PlayOneShot(SoundEvent.sound);
     }
 
 }

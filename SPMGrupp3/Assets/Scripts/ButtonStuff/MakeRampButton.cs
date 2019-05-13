@@ -41,9 +41,6 @@ public class MakeRampButton : ButtonScript
     public override void Act()
     {
         descriptorCanvas.gameObject.SetActive(true);
-        // för testing. ljud ska emittas var gång knapp interageras med oavsett om den är på eller ej.
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, gameObject, turnOnSound));
-
         //knappen har ström
         if (isActive)
         {
@@ -69,7 +66,7 @@ public class MakeRampButton : ButtonScript
 
     public void SetActive()
     {
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, gameObject, turnOnSound));
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, turnOnSound, 1f, 1f, 1f));
         Debug.Log("RAMP IS ACTIVE");
         isActive = true;
     }
