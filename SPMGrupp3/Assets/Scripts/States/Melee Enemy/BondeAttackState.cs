@@ -70,8 +70,9 @@ public class BondeAttackState : BondeBaseState
         }
 
         //        Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
-        bool seeEnemy = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position), owner.toAttack, owner.layermask);
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || !seeEnemy)
+        RaycastHit rayHit;
+        bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.toAttack);
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || (hit && !rayHit.collider.transform.tag.Equals("Player")))
         {
             owner.Transition<BondeChaseState>();
         }
