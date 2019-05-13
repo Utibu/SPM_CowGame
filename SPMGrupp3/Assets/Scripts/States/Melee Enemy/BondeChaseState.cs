@@ -20,12 +20,12 @@ public class BondeChaseState : BondeBaseState
             owner.agnes.SetDestination(owner.player.transform.position);
         }
 
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
+        // can only go to attack if raycast hits player, thus it can not hit through walls.
+        if (Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, owner.toAttack, owner.layermask))
         {
-
             owner.Transition<BondeAttackState>();
-
         }
+        
         else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility)
         {
             owner.Transition<BondePatrolState>();

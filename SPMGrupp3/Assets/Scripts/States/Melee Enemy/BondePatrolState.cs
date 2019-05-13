@@ -52,11 +52,13 @@ public class BondePatrolState : BondeBaseState
             SetPatrolPoint();
         }
 
+        
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility)
         {
             //Debug.Log("TRANSITION");
             owner.Transition<BondeChaseState>();
         }
+        
     }
 
 }

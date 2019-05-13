@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2929106447677307336
 Transform:
   m_ObjectHideFlags: 0
@@ -108,6 +108,9 @@ MonoBehaviour:
   - {fileID: 0}
   weapon: {fileID: 7884128622072384701}
   itemDrop: {fileID: 0}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 2048
   player: {fileID: 0}
   toughness: 1
   stunTime: 60
@@ -115,6 +118,8 @@ MonoBehaviour:
   maxVisibility: 12
   customAttackDamage: 0
   attackDamage: 0
+  countdown: 0
+  cooldown: 1.2
   graceTime: 2
 --- !u!195 &2929106447677307446
 NavMeshAgent:

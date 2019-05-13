@@ -8,8 +8,10 @@ public class PhysicsBaseState : State
     public float airResistance = 0.5f;
     public float gravityConstant = 2f;
 
+    
     public float staticFrictionForce = 0.6f;
     public float dynamicFrictionPercentage = 0.6f;
+    
 
     //public float terminalVelocity;
     protected Vector3 normalForce;

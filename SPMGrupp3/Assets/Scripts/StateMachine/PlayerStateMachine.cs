@@ -30,7 +30,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
 
-    
+    public string[] CameraIgnoreTags;
 
     public float dashStateAcceleration;
     public float dashStateGravity;
@@ -58,6 +58,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         //objectCollider = transform.parent.GetComponent<BoxCollider>();
         playerValues = GetComponent<PlayerValues>();
         countdown = dashCooldown;
+
     }
 
     private void Start()
@@ -129,7 +130,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         bool okHit = Physics.SphereCast(transform.position + objectCollider.center, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
         if (okHit)
         {
-            if (hit.collider != null)
+            if (hit.collider != null && !isTagged(hit.collider))
             {
                 Vector3 allowedMovement = goalVector.normalized * (hit.distance - cameraCollider.radius);
                 return allowedMovement;
@@ -137,6 +138,18 @@ public class PlayerStateMachine : PhysicsStateMachine
         }
 
         return goalVector;
+    }
+
+    private bool isTagged(Collider col)
+    {
+        foreach(string tag in CameraIgnoreTags)
+        {
+            if (col.tag.Equals(tag))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*Vector3 GetAllowedCameraMovement(Vector3 goalVector)

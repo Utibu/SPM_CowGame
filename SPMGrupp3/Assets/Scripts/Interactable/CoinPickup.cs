@@ -11,5 +11,6 @@ public class CoinPickup : DroppableObject
         base.OnEnter();
         GameManager.instance.coinCount++;
         LevelManager.instance.pickedCoins++;
+        // sound event here instead??
     }
 }
