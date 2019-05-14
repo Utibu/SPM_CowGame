@@ -92,17 +92,7 @@ public class GameManager : MonoBehaviour
             livesText.text = "Lives: " + (3 - deathCount);
         }
 
-        if(dashCooldownImage != null)
-        {
-            if(player.allowedToDash)
-            {
-                dashCooldownImage.fillAmount = 1;
-            } else
-            {
-                dashCooldownImage.fillAmount = (player.elapsedDashTime) / player.dashCooldown;
-            }
-            
-        }
+        
 
 
         if(dashSpeedImage != null)

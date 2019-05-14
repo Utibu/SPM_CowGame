@@ -32,6 +32,8 @@ public class PlayerBaseState : PhysicsBaseState
             owner.Transition<AirState>();
         }
 
+        
+
         //terminalVelocity = ((player.dashStateGravity * Time.deltaTime) + (player.dashStateAcceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(player.dashAirResistance, Time.deltaTime));
         //player.terminalVelocity = terminalVelocity;
         //Debug.Log(terminalVelocity);

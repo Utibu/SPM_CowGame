@@ -48,7 +48,7 @@ public class WalkState : PlayerBaseState
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
-            owner.velocity *= 0.6f;
+            owner.velocity *= 1f;
             if (dashTimer.IsCompleted(Time.deltaTime, false))
             {
                 owner.Transition<DashState>();
@@ -63,7 +63,20 @@ public class WalkState : PlayerBaseState
             owner.Transition<SideDashState>();
             player.ResetCooldown();
         }
-        
+
+        if (GameManager.instance.dashCooldownImage != null)
+        {
+            if (player.allowedToDash)
+            {
+                GameManager.instance.dashCooldownImage.fillAmount = 1;
+            }
+            else
+            {
+                GameManager.instance.dashCooldownImage.fillAmount = dashTimer.GetPercentage();
+            }
+
+        }
+
         base.Update();
 
     }
