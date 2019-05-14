@@ -62,13 +62,12 @@ public class DashState : PlayerBaseState
                 hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             dashable = hitCollider.GetComponent<Dashable>();
-            
-            Destroy(hitCollider.gameObject);
             if (dashable.GetClip() != null)
             {
                 Debug.Log("object ram");
                 EventSystem.Current.FireEvent(new PlaySoundEvent(dashable.gameObject.transform.position, dashable.GetClip(), 1f, 0.8f, 1.1f));
             }
+            Destroy(hitCollider.gameObject);
             skipCollision = true;
         }
         else if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude < hitCollider.GetComponent<Dashable>().requiredMagnitude)
