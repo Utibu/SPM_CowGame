@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public bool debug;
     public InputManager inputManager;
     public bool showCursor;
-    public Canvas UI;
-    public Camera cam;
+    //public Canvas UI;
+    //public Camera cam;
     public GameObject controlsUI;
     public Text livesText;
     private bool isLoadingScene = false;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        
         Debug.Log("in awake");
 
         if (instance == null)
