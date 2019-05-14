@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class UIMessageTrigger : Triggable
 {
-    [SerializeField] private string textToShow;
+    [SerializeField] private string title;
+    [SerializeField] private string description;
+    [SerializeField] private Sprite sprite;
     [SerializeField] private bool shouldPause;
     private bool isShowing = false;
 
     protected override void CustomStart()
     {
         base.CustomStart();
-        Debug.Log("F");
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        UIManager.instance.ShowMessage(textToShow);
+        UIManager.instance.ShowSmallMessage(title, description, sprite);
         isShowing = true;
         EventSystem.Current.FireEvent(new PauseEvent(""));
     }

@@ -8,8 +8,12 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [SerializeField] private Image dashCooldownImage;
-    [SerializeField] private Text messageText;
-    [SerializeField] private Image messageContainer;
+
+
+    [SerializeField] private Text smallMessageTitle;
+    [SerializeField] private Text smallMessageDescription;
+    [SerializeField] private Image smallMessageImage;
+    [SerializeField] private Image smallMessageContainer;
 
     void Awake()
     {
@@ -23,7 +27,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        messageContainer.gameObject.SetActive(false);
+        smallMessageContainer.gameObject.SetActive(false);
     }
 
     public void SetDashFillAmount(float val)
@@ -40,14 +44,16 @@ public class UIManager : MonoBehaviour
         SetDashFillAmount(dashCooldownImage.fillAmount + val);
     }
 
-    public void ShowMessage(string textToShow)
+    public void ShowSmallMessage(string title, string desc, Sprite sprite)
     {
-        messageContainer.gameObject.SetActive(true);
-        messageText.text = textToShow;
+        smallMessageContainer.gameObject.SetActive(true);
+        smallMessageTitle.text = title;
+        smallMessageDescription.text = desc;
+        smallMessageImage.sprite = sprite;
     }
 
     public void HideMessage()
     {
-        messageContainer.gameObject.SetActive(false);
+        smallMessageContainer.gameObject.SetActive(false);
     }
 }

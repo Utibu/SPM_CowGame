@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public InputManager inputManager;
     public bool showCursor;
     //public Canvas UI;
-    //public Camera cam;
+    public Camera cam;
     public GameObject controlsUI;
     public Text livesText;
     private bool isLoadingScene = false;
