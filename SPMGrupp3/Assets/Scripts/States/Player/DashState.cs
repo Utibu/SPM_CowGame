@@ -34,6 +34,7 @@ public class DashState : PlayerBaseState
         player.dashAirResistance = airResistance;
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
+        UIManager.instance.SetDashFillAmount(1f);
         dashTimer.Reset();
     }
 
@@ -172,7 +173,9 @@ public class DashState : PlayerBaseState
             Debug.Log("TO WALKSTATE");
         } else
         {
-            UIManager.instance.SetDashFillAmountAdd(-dashTimer.GetPercentage());
+            //UIManager.instance.SetDashFillAmountAdd(-dashTimer.GetPercentage());
+            UIManager.instance.SetDashFillAmount(1f - dashTimer.GetPercentage());
+            //Debug.Log("DASHSTATE GETPERCENTAGE: " + -dashTimer.GetPercentage());
         }
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)
