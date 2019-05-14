@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppableObject : MonoBehaviour
+public class DroppableObject : Triggable
 {
     public PlayerValues player;
 
@@ -16,8 +16,9 @@ public class DroppableObject : MonoBehaviour
         player = GameManager.instance.player.playerValues;
     }
 
-    public virtual void OnEnter()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        base.OnPlayerTriggerEnter(hitCollider);
         Destroy(this.gameObject);
     }
 }

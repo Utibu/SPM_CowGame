@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : MonoBehaviour
+public class Breakable : Triggable
 {
     private Collider colli;
     public LayerMask masken;
@@ -49,8 +49,9 @@ public class Breakable : MonoBehaviour
         }
     }
 
-    public void SetFall()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        base.OnPlayerTriggerEnter(hitCollider);
         falling = true;
             
     }

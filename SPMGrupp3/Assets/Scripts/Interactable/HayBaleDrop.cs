@@ -11,9 +11,9 @@ public class HayBaleDrop : DroppableObject
         
     }
 
-    public override void OnEnter()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        base.OnEnter();
+        base.OnPlayerTriggerEnter(hitCollider);
         Debug.Log("HAYBALE");
         player.health += healthPoints;
     }

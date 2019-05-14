@@ -131,27 +131,9 @@ public class PlayerBaseState : PhysicsBaseState
     {
         base.ActOnTrigger(hitCollider);
 
-        if (hitCollider.tag.Equals("Droppable"))
+        if(hitCollider.GetComponent<Triggable>() != null)
         {
-            hitCollider.GetComponent<DroppableObject>().OnEnter();
-        }
-
-        if (hitCollider.tag.Equals("Checkpoint"))
-        {
-            LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
-        }
-
-        if (hitCollider.tag.Equals("FragilePlatform"))
-        {
-            hitCollider.transform.parent.GetComponent<Breakable>().SetFall();
-        }
-        
-        if (hitCollider.tag.Equals("Button"))
-        {
-            if (hitCollider.transform.GetComponent<ButtonScript>() != null && GameManager.instance.inputManager.EventKeyDown())
-            {
-                hitCollider.transform.GetComponent<ButtonScript>().Act();
-            }
+            hitCollider.GetComponent<Triggable>().OnPlayerTriggerEnter(hitCollider);
         }
 
         if (hitCollider.GetComponent<LoadScene>() != null)
@@ -162,11 +144,6 @@ public class PlayerBaseState : PhysicsBaseState
         if(hitCollider.tag.Equals("Killzone"))
         {
             GameManager.instance.player.playerValues.Die();
-        }
-        
-
-        if (hitCollider.GetComponent<BaseTrigger>() != null) {
-            hitCollider.GetComponent<BaseTrigger>().OnTriggerEnter();
         }
 
         PlayerSounds playerSounds = player.GetComponent<PlayerSounds>();

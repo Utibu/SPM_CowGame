@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseTrigger : MonoBehaviour
+public class BaseTrigger : Triggable
 {
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class BaseTrigger : MonoBehaviour
         
     }
 
-    public virtual void OnTriggerEnter() {
+    public virtual void OnPlayerTriggerEnter() {
         
     }
 }
