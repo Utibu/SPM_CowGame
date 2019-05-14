@@ -80,6 +80,9 @@ public class PlayerBaseState : PhysicsBaseState
         if (horizontal != 0)
         {
             movement *= horizontalPercentage;
+        } else if(vertical < 0)
+        {
+            movement *= horizontalPercentage;
         }
 
         /*player.anim.SetFloat("Speed", vertical);
