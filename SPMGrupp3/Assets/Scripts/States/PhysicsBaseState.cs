@@ -140,9 +140,9 @@ public class PhysicsBaseState : State
        
     }
 
-    public virtual void ActOnCollision(Collider hitCollider)
+    public virtual void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
-
+        skipCollision = false;
     }
 
     void SetAllowedMovement(float snapChange, int runTimes)
@@ -166,7 +166,13 @@ public class PhysicsBaseState : State
             if (distanceToSnap < owner.velocity.magnitude * Time.deltaTime)
             {
                 //Debug.Log("HIT");
-                ActOnCollision(hit.collider);
+                bool skipCollision = false;
+                ActOnCollision(hit.collider, out skipCollision);
+
+                if(skipCollision)
+                {
+                    continue;
+                }
                 //Debug.Log(distanceToSnap);
                 //No snapping backwards 
                 if (distanceToSnap > 0)

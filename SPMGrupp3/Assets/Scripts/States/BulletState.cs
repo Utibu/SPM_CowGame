@@ -24,7 +24,7 @@ public class BulletState : PhysicsBaseState
         base.Leave();
     }
 
-    public override void ActOnCollision(Collider hitCollider)
+    public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         if (hitCollider.tag.Equals("Player"))
         {
@@ -35,6 +35,6 @@ public class BulletState : PhysicsBaseState
         } else {
             Destroy(owner.gameObject);
         }
-        base.ActOnCollision(hitCollider);
+        base.ActOnCollision(hitCollider, out skipCollision);
     }
 }

@@ -6,11 +6,13 @@ using UnityEngine;
 public class WalkState : PlayerBaseState
 {
     public float dashThreshold = 10f;
-    private BasicTimer dashTimer = new BasicTimer(1f);
+    [SerializeField] private float dashCooldown = 1f;
+    private BasicTimer dashTimer;
     public override void Enter()
     {
         base.Enter();
-        dashTimer.Reset();
+        dashTimer = new BasicTimer(dashCooldown);
+        //dashTimer.Reset();
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
         /*time = 0f;
@@ -91,9 +93,9 @@ public class WalkState : PlayerBaseState
     }
     */
 
-    public override void ActOnCollision(Collider hitCollider)
+    public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
-        base.ActOnCollision(hitCollider);
+        base.ActOnCollision(hitCollider, out skipCollision);
         if (hitCollider.tag.Equals("JumpBale"))
         {
             Collider col = GetGroundCollider();

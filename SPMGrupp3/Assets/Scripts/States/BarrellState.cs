@@ -28,7 +28,7 @@ public class BarrellState : PhysicsBaseState
         base.Leave();
     }
 
-    public override void ActOnCollision(Collider hitCollider)
+    public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         if (hitCollider.tag.Equals("Enemy"))
         {
@@ -36,7 +36,7 @@ public class BarrellState : PhysicsBaseState
             bonde.PlayerDash();
         }
         
-        base.ActOnCollision(hitCollider);
+        base.ActOnCollision(hitCollider, out skipCollision);
     }
 
     public override void ActOnTrigger(Collider hitCollider)

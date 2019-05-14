@@ -50,9 +50,9 @@ public class DashState : PlayerBaseState
         base.Leave();
     }
 
-    public override void ActOnCollision(Collider hitCollider)
+    public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
-        base.ActOnCollision(hitCollider);
+        base.ActOnCollision(hitCollider, out skipCollision);
         if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude >= hitCollider.GetComponent<Dashable>().requiredMagnitude)
         {
             if(hitCollider.GetComponent<DroppingObject>() != null)
@@ -60,6 +60,7 @@ public class DashState : PlayerBaseState
                 hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             Destroy(hitCollider.gameObject);
+            skipCollision = true;
         }
         else if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude < hitCollider.GetComponent<Dashable>().requiredMagnitude)
         {
