@@ -75,3 +75,20 @@ public class PlaySoundEvent : Event
 
     
 }
+
+
+public class PauseEvent : DebugEvent
+{
+    public PauseEvent(string eventDescription) : base(eventDescription)
+    {
+        
+    }
+}
+
+public class ResumeEvent : DebugEvent
+{
+    public ResumeEvent(string eventDescription) : base(eventDescription)
+    {
+
+    }
+}

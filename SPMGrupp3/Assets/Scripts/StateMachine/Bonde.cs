@@ -26,6 +26,7 @@ public class Bonde : StateMachine
 
     public float graceTime = 2f;
     private float timeSinceLastHit = 0f;
+    private bool isPaused = false;
 
 
     // Start is called before the first frame update
@@ -41,11 +42,30 @@ public class Bonde : StateMachine
     {
         player = GameManager.instance.player;
         countdown = cooldown;
+        EventSystem.Current.RegisterListener<PauseEvent>(Pause);
+        EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
+    }
+
+    private void Pause(PauseEvent eventInfo)
+    {
+        isPaused = true;
+        agnes.isStopped = true;
+    }
+
+    private void Resume(ResumeEvent eventInfo)
+    {
+        isPaused = false;
+        agnes.isStopped = false;
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        if(isPaused)
+        {
+            return;
+        }
+
         if(timeSinceLastHit < 10.0f)
         {
             timeSinceLastHit += Time.deltaTime;

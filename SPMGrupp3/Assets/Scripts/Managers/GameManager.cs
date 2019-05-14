@@ -63,6 +63,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            EventSystem.Current.FireEvent(new PauseEvent(""));
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            EventSystem.Current.FireEvent(new ResumeEvent(""));
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {

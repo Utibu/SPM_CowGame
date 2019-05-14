@@ -54,6 +54,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     
     [HideInInspector] public bool hasFreeDash = false;
 
+    private bool isPaused = false;
+
     override protected void Awake()
     {
         base.Awake();
@@ -63,6 +65,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     }
 
+
     private void Start()
     {
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
@@ -70,7 +73,20 @@ public class PlayerStateMachine : PhysicsStateMachine
         hasFreeDash = false;
         anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
+        EventSystem.Current.RegisterListener<PauseEvent>(Pause);
+        EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
     }
+
+    private void Pause(PauseEvent eventInfo)
+    {
+        isPaused = true;
+    }
+
+    private void Resume(ResumeEvent eventInfo)
+    {
+        isPaused = false;
+    }
+
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)
     {
@@ -85,6 +101,12 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public override void Update()
     {
+
+        if(isPaused)
+        {
+            return;
+        }
+
         base.Update();
 
         terminalVelocity = (dashStateAcceleration * Time.deltaTime) / (1 - Mathf.Pow(dashAirResistance, Time.deltaTime));

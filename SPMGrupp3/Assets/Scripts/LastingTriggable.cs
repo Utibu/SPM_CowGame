@@ -6,18 +6,16 @@ public class LastingTriggable : Triggable
 {
 
     private Transform currentPlayer;
-    private Collider triggerCollider;
     private float distanceToLeave;
 
     private void Start()
     {
-        triggerCollider = GetComponent<Collider>();
-        if(triggerCollider.bounds.size.x < triggerCollider.bounds.size.z)
+        if(TriggerCollider.bounds.size.x < TriggerCollider.bounds.size.z)
         {
-            distanceToLeave = triggerCollider.bounds.size.x / 2;
+            distanceToLeave = TriggerCollider.bounds.size.x / 2;
         } else
         {
-            distanceToLeave = triggerCollider.bounds.size.z / 2;
+            distanceToLeave = TriggerCollider.bounds.size.z / 2;
         }
     }
 

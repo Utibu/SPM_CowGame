@@ -48,4 +48,13 @@ public class InputManager
         }
         return false;
     }
+
+    public bool ContinueKeyDown()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            return true;
+        }
+        return false;
+    }
 }
