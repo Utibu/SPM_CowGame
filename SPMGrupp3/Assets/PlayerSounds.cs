@@ -27,8 +27,8 @@ public class PlayerSounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sources = GetComponents<AudioSource>();
-        source1 = sources[0];
+        //sources = GetComponents<AudioSource>();
+        //source1 = sources[0];
         //source2 = sources[1];
     }
 
@@ -65,9 +65,9 @@ public class PlayerSounds : MonoBehaviour
         if (collision.gameObject.CompareTag("Dashable"))
         {
 
-            source1.pitch = Random.Range(lowPitchRange, highPitchRange);
-            float vol = Random.Range(volLowRange, volHighRange);
-            source1.PlayOneShot(dash_hit_sound, vol);
+            //source1.pitch = Random.Range(lowPitchRange, highPitchRange);
+            //float vol = Random.Range(volLowRange, volHighRange);
+            //source1.PlayOneShot(dash_hit_sound, vol);
         }
     }
 
