@@ -172,10 +172,7 @@ public class DashState : PlayerBaseState
             Debug.Log("TO WALKSTATE");
         } else
         {
-            if (GameManager.instance.dashCooldownImage != null)
-            {
-                GameManager.instance.dashCooldownImage.fillAmount -= dashTimer.GetPercentage();
-            }
+            UIManager.instance.SetDashFillAmountAdd(-dashTimer.GetPercentage());
         }
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)

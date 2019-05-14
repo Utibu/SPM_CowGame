@@ -12,6 +12,7 @@ public class WalkState : PlayerBaseState
     {
         base.Enter();
         dashTimer = new BasicTimer(dashCooldown);
+        UIManager.instance.SetDashFillAmount(0f);
         //dashTimer.Reset();
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
@@ -25,6 +26,7 @@ public class WalkState : PlayerBaseState
     public override void Leave()
     {
         base.Leave();
+        UIManager.instance.SetDashFillAmount(0f);
     }
 
     public override void Update()
@@ -51,12 +53,17 @@ public class WalkState : PlayerBaseState
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.velocity *= 1f;
+            UIManager.instance.SetDashFillAmount(dashTimer.GetPercentage());
             if (dashTimer.IsCompleted(Time.deltaTime, false))
             {
                 owner.Transition<DashState>();
                 dashTimer.Reset();
             }
             
+        } else
+        {
+            dashTimer.Reset();
+            UIManager.instance.SetDashFillAmount(0f);
         }
 
         if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
@@ -66,7 +73,7 @@ public class WalkState : PlayerBaseState
             player.ResetCooldown();
         }
 
-        if (GameManager.instance.dashCooldownImage != null)
+        /*if (GameManager.instance.dashCooldownImage != null)
         {
             if (player.allowedToDash)
             {
@@ -77,7 +84,7 @@ public class WalkState : PlayerBaseState
                 GameManager.instance.dashCooldownImage.fillAmount = dashTimer.GetPercentage();
             }
 
-        }
+        }*/
 
         base.Update();
 

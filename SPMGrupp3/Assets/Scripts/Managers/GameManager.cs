@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public int deathCount = 0;
     public PlayerStateMachine player;
     public Text velocityText;
-    public Image dashCooldownImage;
     public Image dashSpeedImage;
     public Text coinCountText;
     [HideInInspector] public int coinCount;
