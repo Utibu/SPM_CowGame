@@ -21,8 +21,6 @@ public class Bonde : StateMachine
     public float maxVisibility;
     public bool customAttackDamage;
     public float attackDamage;
-    [HideInInspector] public float countdown;
-    public float cooldown = 1.2f;
 
     public float graceTime = 2f;
     private float timeSinceLastHit = 0f;
@@ -41,7 +39,6 @@ public class Bonde : StateMachine
     public void Start()
     {
         player = GameManager.instance.player;
-        countdown = cooldown;
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
     }

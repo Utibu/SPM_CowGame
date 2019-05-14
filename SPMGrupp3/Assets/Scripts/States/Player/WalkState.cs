@@ -54,7 +54,7 @@ public class WalkState : PlayerBaseState
         {
             owner.velocity *= 1f;
             UIManager.instance.SetDashFillAmount(dashTimer.GetPercentage());
-            if (dashTimer.IsCompleted(Time.deltaTime, false))
+            if (dashTimer.IsCompleted(Time.deltaTime, false) && owner.velocity.magnitude >= dashThreshold) // sista villkoret så att man inte kan dasha när man står still.
             {
                 owner.Transition<DashState>();
                 dashTimer.Reset();
