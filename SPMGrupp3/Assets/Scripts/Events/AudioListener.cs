@@ -30,6 +30,7 @@ public class AudioListener : MonoBehaviour
 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
+        transform.position = SoundEvent.position;
         auSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
         auSource.volume = SoundEvent.volume;
         if(soundTimer.IsCompleted(Time.deltaTime, false))

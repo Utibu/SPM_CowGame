@@ -1278,10 +1278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldownImage: {fileID: 1896502559}
-  smallMessageTitle: {fileID: 128033168}
-  smallMessageDescription: {fileID: 834319893}
-  smallMessageImage: {fileID: 526905799}
-  smallMessageContainer: {fileID: 198982693}
+  messageText: {fileID: 0}
+  messageContainer: {fileID: 0}
 --- !u!4 &1891166605
 Transform:
   m_ObjectHideFlags: 0
@@ -1572,6 +1570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraRotationOffset.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: allowFriction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6820861895272862761, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}

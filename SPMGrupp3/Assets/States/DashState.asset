@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d63b906cc2c914d937befa3daae11e, type: 3}
   m_Name: DashState
   m_EditorClassIdentifier: 
-  acceleration: 70
+  acceleration: 90
   airResistance: 0.2
   gravityConstant: 30
   staticFrictionForce: 0.7
   dynamicFrictionPercentage: 0.9
   horizontalPercentage: 0.5
+  diagonalPercentage: 0.8
   takeInput: 1
   divideSens: 10
-  dashStateLength: 2
-  ramBuildupTime: 0

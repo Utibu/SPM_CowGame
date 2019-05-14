@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PhysicsBaseState : State
 {
-    public float acceleration;
-    public float airResistance = 0.5f;
-    public float gravityConstant = 2f;
+    [SerializeField] protected float acceleration;
+    [SerializeField] protected float airResistance = 0.5f;
+    [SerializeField] protected float gravityConstant = 2f;
 
     
-    public float staticFrictionForce = 0.6f;
-    public float dynamicFrictionPercentage = 0.6f;
+    [SerializeField] protected float staticFrictionForce = 0.6f;
+    [SerializeField] protected float dynamicFrictionPercentage = 0.6f;
     
 
     //public float terminalVelocity;

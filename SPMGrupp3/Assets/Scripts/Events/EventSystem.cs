@@ -61,6 +61,7 @@ public class EventSystem : MonoBehaviour
             foreach(EventListener el in eventListeners[trueEventType])
             {
                 el(eventInfo);
+            // destroy event info?
             }
         }
 

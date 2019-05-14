@@ -110,6 +110,8 @@ public class WalkState : PlayerBaseState
             {
                 if(col.tag.Equals("JumpBale"))
                 {
+                    BarrellStateMachine jumpBale = hitCollider.GetComponent<BarrellStateMachine>();
+                    EventSystem.Current.FireEvent(new PlaySoundEvent(jumpBale.gameObject.transform.position, jumpBale.GetClip(), 1f, 0.8f, 1.1f));
                     owner.Transition<JumpBaleState>();
 
                 } else

@@ -104,10 +104,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   objectCollider: {fileID: 0}
+  allowFriction: 1
   skinWidth: 0.01
   groundCheckDistance: 0.2
   moveMultiplier: 0
   movable: 1
+  bounceSounds:
+  - {fileID: 8300000, guid: 8178960cccfe4624594d90dedd69effd, type: 3}
+  - {fileID: 8300000, guid: 337ed9b0693308b448757eccf4a3a7b3, type: 3}
+  - {fileID: 8300000, guid: 3e5d6512bf883dd48b9eebaddd6eb3aa, type: 3}
 --- !u!65 &1406374047660973344
 BoxCollider:
   m_ObjectHideFlags: 0
