@@ -11,9 +11,8 @@ public class DashState : PlayerBaseState
     private float originalSens;
     public float divideSens = 10f;
 
-    public float dashStateLength = 1f;
+    private BasicTimer dashTimer = new BasicTimer(2f);
 
-    private float timer;
 
     public override void Initialize(StateMachine stateMachine)
     {
@@ -28,7 +27,6 @@ public class DashState : PlayerBaseState
         base.Enter();
         airResistance = player.dashAirResistance;
         player.isDashing = true;
-        timer = 0.0f;
         //originalFOV = Camera.main.fieldOfView;
         originalSens = player.mouseSensitivity;
         player.mouseSensitivity /= divideSens;
@@ -36,6 +34,7 @@ public class DashState : PlayerBaseState
         player.dashAirResistance = airResistance;
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
+        dashTimer.Reset();
     }
 
     public override void Leave()
@@ -117,7 +116,7 @@ public class DashState : PlayerBaseState
                 {
                     if (hitCollider.GetComponent<BarrellStateMachine>() != null)
                     {
-                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity * 2f);
                     }
                 }
             }
@@ -129,12 +128,14 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
+        Debug.Log("DASH");
+
         if (jumpForce != LevelManager.instance.dashJumpForce)
         {
             jumpForce = LevelManager.instance.dashJumpForce;
         }
 
-        if (timer > dashStateLength && !player.hasFreeDash)
+        /*if (timer > dashStateLength && !player.hasFreeDash)
         {
             owner.Transition<WalkState>();
 
@@ -145,7 +146,7 @@ public class DashState : PlayerBaseState
             {
                 GameManager.instance.dashCooldownImage.fillAmount -= timer / dashStateLength;
             }
-        }
+        }*/
 
 
         if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
@@ -156,16 +157,24 @@ public class DashState : PlayerBaseState
         }
         else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
+            dashTimer.Reset();
             owner.Transition<WalkState>();
             Debug.Log("WALKING NOW");
             return;
         }
 
 
-        if (owner.velocity.magnitude < player.velocityToDash)
+        //if (owner.velocity.magnitude < player.velocityToDash)
+        if((dashTimer.IsCompleted(Time.deltaTime, true) && !player.hasFreeDash))
         {
-            owner.Transition<ChargeState>();
-            Debug.Log("CARGNING NOW");
+            owner.Transition<WalkState>();
+            Debug.Log("TO WALKSTATE");
+        } else
+        {
+            if (GameManager.instance.dashCooldownImage != null)
+            {
+                GameManager.instance.dashCooldownImage.fillAmount -= dashTimer.GetPercentage();
+            }
         }
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)

@@ -91,14 +91,14 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         //0 = 10
         //1 = maxSpeed
-        if (!(GetCurrentState().GetType() == typeof(AirState)))
+        /*if (!(GetCurrentState().GetType() == typeof(AirState)))
         {
             float normalizedFOV = velocity.magnitude / maxSpeed;
             Camera.main.fieldOfView = Mathf.Lerp(originalFOV, maxFOV, normalizedFOV);
         } else
         {
 
-        }
+        }*/
 
 
         if(!allowedToDash)

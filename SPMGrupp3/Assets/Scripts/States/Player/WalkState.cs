@@ -5,13 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStateMachine/WalkState")]
 public class WalkState : PlayerBaseState
 {
-    private bool allowDash = true;
     public float dashThreshold = 10f;
-    private float time = 0f;
+    private BasicTimer dashTimer = new BasicTimer(1f);
     public override void Enter()
     {
         base.Enter();
-        
+        dashTimer.Reset();
         Debug.Log("enter walkstate");
         Debug.Log("velocity: " + owner.velocity);
         /*time = 0f;
@@ -49,7 +48,13 @@ public class WalkState : PlayerBaseState
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
-            owner.Transition<DashState>();
+            owner.velocity *= 0.6f;
+            if (dashTimer.IsCompleted(Time.deltaTime, false))
+            {
+                owner.Transition<DashState>();
+                dashTimer.Reset();
+            }
+            
         }
 
         if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
