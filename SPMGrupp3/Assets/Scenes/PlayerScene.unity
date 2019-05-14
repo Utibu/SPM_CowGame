@@ -797,11 +797,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: healthBar
@@ -831,6 +826,11 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBarSizeY
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -917,11 +917,6 @@ PrefabInstance:
       propertyPath: triggerMask.m_Bits
       value: 1040
       objectReference: {fileID: 0}
-    - target: {fileID: 6820861895272862761, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: isDashing
@@ -961,6 +956,26 @@ PrefabInstance:
         type: 3}
       propertyPath: CameraIgnoreTags.Array.data[3]
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: cameraPositionRelativeToPlayer.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: cameraRotationPoint.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650965, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: cameraRotationOffset.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820861895272862761, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e37617e3b18dc142a2359d89e22562c, type: 3}

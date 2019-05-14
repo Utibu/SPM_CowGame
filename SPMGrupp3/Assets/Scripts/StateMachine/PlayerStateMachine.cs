@@ -49,6 +49,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float maxAngle;
     public Vector3 cameraPositionRelativeToPlayer;
     public CameraType cameraType;
+
+    [SerializeField] private Vector3 cameraRotationOffset;
     
     [HideInInspector] public bool hasFreeDash = false;
 
@@ -199,7 +201,8 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
-        Camera.main.transform.position = transform.position + objectCollider.center + okToMove;
+        //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
+        Camera.main.transform.position = transform.position + cameraRotationOffset + objectCollider.center + okToMove;
 
     }
 
