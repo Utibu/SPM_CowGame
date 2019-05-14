@@ -5,11 +5,14 @@ using UnityEngine;
 public class AudioListener : MonoBehaviour
 {
     private AudioSource auSource;
-    private BasicTimer soundTimer = new BasicTimer(3f);
+    private BasicTimer soundTimer;
+    [SerializeField] private float audioDelay;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        soundTimer = new BasicTimer(audioDelay);
         EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
     }
 
