@@ -21,6 +21,13 @@ public class Dashable : MonoBehaviour
 
     public AudioClip GetClip()
     {
-        return destructionSounds[Random.Range(0, destructionSounds.Length)];
+        if(destructionSounds.Length == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return destructionSounds[Random.Range(0, destructionSounds.Length)];
+        }
     }
 }

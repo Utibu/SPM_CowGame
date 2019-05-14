@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerBaseState : PhysicsBaseState
 {
 
-    public float horizontalPercentage = 0.5f;
+    [SerializeField] private float horizontalPercentage = 0.5f;
+    [SerializeField] private float diagonalPercentage = 0.8f;
     protected Vector3 direction;
     public bool takeInput = true;
     protected float jumpForce = 5f;
@@ -79,12 +80,17 @@ public class PlayerBaseState : PhysicsBaseState
         //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
 
         //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
-        if (horizontal != 0)
+        if (vertical > 0 && horizontal != 0)
         {
-            movement *= horizontalPercentage;
-        } else if(vertical < 0)
+            //Debug.Log("diagonal");
+            movement *= diagonalPercentage;
+        }
+
+        else if (horizontal != 0 || vertical < 0)
         {
+            //Debug.Log("Horizontal");
             movement *= horizontalPercentage;
+
         }
 
         /*player.anim.SetFloat("Speed", vertical);
