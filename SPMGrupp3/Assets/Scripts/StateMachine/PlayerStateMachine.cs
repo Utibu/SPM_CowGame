@@ -69,7 +69,8 @@ public class PlayerStateMachine : PhysicsStateMachine
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
         anim = GetComponent<Animator>();
-        cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
+        //cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
+        cameraCollider = Camera.main.GetComponent<SphereCollider>();
     }
 
     private void OnInteractionFinished(HayEatingFinishedEvent eventInfo)
