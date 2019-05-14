@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public PlayerStateMachine player;
     public Text velocityText;
     public Image dashCooldownImage;
-    public Image dashSpeedImage;
     public Text coinCountText;
     [HideInInspector] public int coinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
@@ -66,68 +65,36 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             LoadScene(2);
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             LoadMenu();
         }
-        
-        if(velocityText != null)
-        {
-            velocityText.text = "Velocity: " + player.velocity.magnitude;
-        }
 
-        if(coinCountText != null)
-        {
+        UpdateUIText();
+        CheckCoins();
+    }
 
-            coinCountText.text = "Coins: " + coinCount;
-        }
-
-        if(livesText != null)
-        {
-            livesText.text = "Lives: " + (3 - deathCount);
-        }
-
-        
-
-
-        if(dashSpeedImage != null)
-        {
-            //horizontalSpeed = new Vector3(player.velocity.x, 0.0f, player.velocity.z);
-            //dashSpeedImage.fillAmount = player.velocity.magnitude / player.maxSpeed;
-            dashSpeedImage.fillAmount = player.velocity.magnitude / player.terminalVelocity;
-            //if (player.velocity.magnitude > player.GetComponent<DashState>().toSuperDash)
-            //{
-            //  dashSpeedImage.color = Color.red;
-            //}
-            if (player.GetCurrentState().GetType() == typeof(AirState))
-            {
-                dashSpeedImage.fillAmount = 0;
-            }
-
-            if (player.velocity.magnitude > player.toSuperDash)
-            {
-                dashSpeedImage.color = Color.red;
-            } else if (player.velocity.magnitude > player.velocityToDash)
-            {
-                dashSpeedImage.color = Color.yellow;
-            } else
-            {
-                dashSpeedImage.color = Color.green;
-            }
-        }
-
-        if(coinCount >= coinsToHPIncrease)
+    private void CheckCoins()
+    {
+        if (coinCount >= coinsToHPIncrease)
         {
             player.playerValues.maxHealth += 20;
             player.playerValues.health = player.playerValues.maxHealth;
             coinCount = 0;
             LevelManager.instance.pickedCoins = 0;
         }
+    }
+
+    private void UpdateUIText()
+    {
+        velocityText.text = "Velocity: " + player.velocity.magnitude;
+        coinCountText.text = "Coins: " + coinCount;
+        livesText.text = "Lives: " + (3 - deathCount);
     }
 
     void HideControlsUI()
@@ -198,7 +165,7 @@ public class GameManager : MonoBehaviour
         isLoadingScene = false;
     }
 
-
+    
     // inte nödvändigtvis permanent plats för sound events. 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
@@ -206,5 +173,5 @@ public class GameManager : MonoBehaviour
         auSource.volume = SoundEvent.volume;
         auSource.PlayOneShot(SoundEvent.sound);
     }
-
+    
 }
