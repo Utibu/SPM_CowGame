@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointObject : MonoBehaviour
+public class CheckpointObject : Triggable
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,11 @@ public class CheckpointObject : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
+    {
+        base.OnPlayerTriggerEnter(hitCollider);
+        LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
     }
 }

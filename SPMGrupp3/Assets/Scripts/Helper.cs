@@ -26,6 +26,17 @@ public static class Helper
         return -projection;
     }
 
+    public static bool IsWithinDistance(Vector3 currentPosition, Vector3 otherPosition, float distance)
+    {
+        Debug.Log("offset: " + GetDistanceOffset(currentPosition, otherPosition) + " distance * distance: " + distance * distance);
+        return GetDistanceOffset(currentPosition, otherPosition) < distance * distance;
+    }
+
+    private static float GetDistanceOffset(Vector3 currentPosition, Vector3 otherPosition)
+    {
+        return (otherPosition - currentPosition).sqrMagnitude;
+    }
+
 
     //https://answers.unity.com/questions/532297/rotate-a-vector-around-a-certain-point.html
     public static Vector3 RotateAroundPivot(Vector3 position, Vector3 pivotPoint, Vector3 angles)

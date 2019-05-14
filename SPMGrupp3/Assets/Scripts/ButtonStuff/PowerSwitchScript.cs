@@ -13,8 +13,9 @@ public class PowerSwitchScript : ButtonScript
        
     }
 
-    public override void Act()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        base.OnPlayerTriggerEnter(hitCollider);
         PowerBox.GetComponent<PowerBoxScript>().ToggleLightButton(colorOfControlledLight);
     }
 

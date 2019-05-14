@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [SerializeField] private Image dashCooldownImage;
+    [SerializeField] private Text messageText;
+    [SerializeField] private Image messageContainer;
 
     void Awake()
     {
@@ -17,6 +19,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        messageContainer.gameObject.SetActive(false);
     }
 
     public void SetDashFillAmount(float val)
@@ -31,5 +38,16 @@ public class UIManager : MonoBehaviour
     public void SetDashFillAmountAdd(float val)
     {
         SetDashFillAmount(dashCooldownImage.fillAmount + val);
+    }
+
+    public void ShowMessage(string textToShow)
+    {
+        messageContainer.gameObject.SetActive(true);
+        messageText.text = textToShow;
+    }
+
+    public void HideMessage()
+    {
+        messageContainer.gameObject.SetActive(false);
     }
 }

@@ -38,8 +38,9 @@ public class MakeRampButton : ButtonScript
         
     }
 
-    public override void Act()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        base.OnPlayerTriggerEnter(hitCollider);
         descriptorCanvas.gameObject.SetActive(true);
         //knappen har ström
         if (isActive)

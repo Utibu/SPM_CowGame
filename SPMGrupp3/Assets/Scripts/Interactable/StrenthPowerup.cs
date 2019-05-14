@@ -5,9 +5,9 @@ using UnityEngine;
 public class StrenthPowerup : DroppableObject
 {
 
-    public override void OnEnter()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        base.OnEnter();
+        base.OnPlayerTriggerEnter(hitCollider);
         Debug.Log("LEVEL");
         player.GetComponent<PlayerStateMachine>().dashAirResistance = 0.2f;
 

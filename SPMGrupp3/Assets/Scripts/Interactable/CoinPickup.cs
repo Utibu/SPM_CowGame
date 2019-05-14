@@ -6,9 +6,9 @@ public class CoinPickup : DroppableObject
 {
     public AudioClip CoinSound;
 
-    public override void OnEnter()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        base.OnEnter();
+        base.OnPlayerTriggerEnter(hitCollider);
         GameManager.instance.coinCount++;
         LevelManager.instance.pickedCoins++;
         EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, CoinSound, 0.8f, 1.0f, 1.4f));
