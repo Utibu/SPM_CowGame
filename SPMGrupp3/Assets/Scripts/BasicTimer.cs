@@ -15,7 +15,7 @@ public class BasicTimer
         isCompleted = false;
     }
 
-    private void Update(float deltaTime)
+    public void Update(float deltaTime)
     {
         if(isCompleted == false)
         {
@@ -51,4 +51,5 @@ public class BasicTimer
     {
         return elapsedTime / length;
     }
+   
 }

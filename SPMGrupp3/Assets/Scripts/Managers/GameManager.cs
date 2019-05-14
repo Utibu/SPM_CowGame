@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private bool isLoadingScene = false;
 
     private Vector3 horizontalSpeed = new Vector3();
-    private AudioSource auSource;
+    //private AudioSource auSource;
 
     void Awake()
     {
@@ -39,10 +39,10 @@ public class GameManager : MonoBehaviour
         Debug.Log(debug);
 
         inputManager = new InputManager();
-        auSource = GetComponent<AudioSource>();
+        //auSource = GetComponent<AudioSource>();
 
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(Respawn);
-        EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
+        //EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
         
 
     }
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
         isLoadingScene = false;
     }
 
-    
+    /*
     // inte nödvändigtvis permanent plats för sound events. 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
@@ -172,5 +172,5 @@ public class GameManager : MonoBehaviour
         auSource.volume = SoundEvent.volume;
         auSource.PlayOneShot(SoundEvent.sound);
     }
-    
+    */
 }

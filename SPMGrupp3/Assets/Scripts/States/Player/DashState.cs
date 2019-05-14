@@ -12,6 +12,7 @@ public class DashState : PlayerBaseState
     public float divideSens = 10f;
 
     private BasicTimer dashTimer = new BasicTimer(2f);
+    private Dashable dashable;
 
 
     public override void Initialize(StateMachine stateMachine)
@@ -59,6 +60,12 @@ public class DashState : PlayerBaseState
             if(hitCollider.GetComponent<DroppingObject>() != null)
             {
                 hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
+            }
+            dashable = hitCollider.GetComponent<Dashable>();
+            if (dashable.GetClip() != null)
+            {
+                Debug.Log("object ram");
+                EventSystem.Current.FireEvent(new PlaySoundEvent(dashable.gameObject.transform.position, dashable.GetClip(), 1f, 0.8f, 1.1f));
             }
             Destroy(hitCollider.gameObject);
             skipCollision = true;
@@ -130,7 +137,7 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        Debug.Log("DASH");
+        //Debug.Log("DASH");
 
         if (jumpForce != LevelManager.instance.dashJumpForce)
         {

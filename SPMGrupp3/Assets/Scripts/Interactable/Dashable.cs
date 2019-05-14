@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dashable : MonoBehaviour
 {
     public float requiredMagnitude = 10;
+    [SerializeField] private AudioClip[] destructionSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -16,5 +17,10 @@ public class Dashable : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public AudioClip GetClip()
+    {
+        return destructionSounds[Random.Range(0, destructionSounds.Length)];
     }
 }
