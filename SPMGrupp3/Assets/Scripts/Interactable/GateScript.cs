@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateScript : MonoBehaviour
+public class GateScript : Triggable
 {
 
     public GameObject gateKey;
-    
 
-    // Start is called before the first frame update
-    void Start()
+
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        
+        if(LevelManager.instance.hasGateKey)
+            Open();
     }
 
-    public void Open()
+    private void Open()
     {
         // do a nice gate open rotation or start anim or whatever
         // but for now: just move it aside so player can pass
@@ -23,9 +23,5 @@ public class GateScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

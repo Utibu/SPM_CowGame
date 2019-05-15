@@ -33,8 +33,9 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
-        
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility)
+        RaycastHit rayHit;
+        bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.maxVisibility);
+        if (hit && rayHit.collider.tag.Equals("Player"))
         {
             owner.Transition<BondeChaseState>();
         }

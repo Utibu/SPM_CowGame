@@ -8,7 +8,7 @@ public class Bonde : StateMachine
 
     //bondevariabler
     private BoxCollider boxref;
-    public NavMeshAgent agnes;
+    [HideInInspector]public NavMeshAgent agnes;
     public GameObject[] patrolPoints;
     public GameObject weapon;
     public GameObject itemDrop;

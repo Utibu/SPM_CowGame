@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: cf6322cb3bf10694d882fb804d4578c5, type: 2}
+  currentState: {fileID: 0}
   lastState: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   collisionMask:
@@ -119,3 +120,4 @@ MonoBehaviour:
   groundCheckDistance: 0.2
   moveMultiplier: 0
   movable: 1
+  bounceSounds: []

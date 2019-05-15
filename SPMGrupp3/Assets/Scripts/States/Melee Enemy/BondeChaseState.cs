@@ -31,7 +31,7 @@ public class BondeChaseState : BondeBaseState
             owner.Transition<BondeAttackState>();
         }
         
-        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility)
+        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility * 1.2f) // *1.2f för att bonden inte ska flimra mellan states när den står på gränsen.
         {
             owner.Transition<BondePatrolState>();
         }

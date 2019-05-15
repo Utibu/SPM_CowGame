@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public Transform currentCheckpoint;
     public Transform originalSpawnTransform;
     private List<Transform> checkpoints = new List<Transform>();
-
+    public bool hasGateKey = false;
     public float normalJumpForce;
     public float dashJumpForce;
     public int pickedCoins = 0;

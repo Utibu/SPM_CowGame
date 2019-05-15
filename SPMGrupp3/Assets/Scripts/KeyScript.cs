@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyScript : MonoBehaviour
+public class KeyScript : Triggable
 {
     private Collider keyCollider;
 
@@ -12,23 +12,12 @@ public class KeyScript : MonoBehaviour
         keyCollider = GetComponent<CapsuleCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-
-        
-
+        // ge key = true till level manager? eller playerValues? sen: destroy
+        LevelManager.instance.hasGateKey = true;
+        Destroy(this);
     }
 
-    // iden här är att flytta ut pickup logiken till objektet självt. så den kan ta bort sig själv, spela eget pickup-ljud eller liknande
-
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-
-        }
-    }
-    */
+    
 }

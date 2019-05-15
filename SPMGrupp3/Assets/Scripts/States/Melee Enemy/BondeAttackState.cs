@@ -10,15 +10,15 @@ public class BondeAttackState : BondeBaseState
     private Quaternion originalPosition;
     Vector3 lookPos;
     public float damage;
-
     private float countdown;
-    [SerializeField]private float cooldown = 1.2f;
+    [SerializeField]private float cooldown = 1.7f;
 
     public override void Enter()
     {
         base.Enter();
         Debug.Log("ENTER ATTACK STATE");
         originalPosition = owner.weapon.transform.rotation;
+        countdown = cooldown / 2; // så att denne inte attackerar på en gång
         rotation = 0;
         if (!owner.customAttackDamage)
         {
