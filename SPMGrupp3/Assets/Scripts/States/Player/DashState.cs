@@ -11,7 +11,7 @@ public class DashState : PlayerBaseState
     private float originalSens;
     public float divideSens = 10f;
 
-    private BasicTimer dashTimer = new BasicTimer(2f);
+    //private BasicTimer dashTimer = new BasicTimer(2f);
     private Dashable dashable;
 
 
@@ -36,7 +36,7 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         UIManager.instance.SetDashFillAmount(1f);
-        dashTimer.Reset();
+        player.DashCooldownTimer.Reset();
     }
 
     public override void Leave()
@@ -48,6 +48,19 @@ public class DashState : PlayerBaseState
         player.mouseSensitivity = originalSens;
         player.lastGravity = gravityConstant;
         player.lastAcceleration = acceleration;
+
+        Debug.LogWarning("DashDurationTimer: " + player.DashDurationTimer.GetPercentage() + "    DashCooldownTimerDuration: " + player.DashCooldownTimer.GetDuration());
+        Debug.LogWarning(1 - player.DashDurationTimer.GetPercentage());
+        player.DashCooldownTimer.Reset();
+        if(player.DashDurationTimer.GetPercentage() > 0)
+        {
+            player.DashCooldownTimer.SetStartTime((1 - player.DashDurationTimer.GetPercentage()) * player.DashCooldownTimer.GetDuration());
+        } else
+        {
+            player.DashCooldownTimer.SetStartTime(0);
+        }
+        
+        player.DashDurationTimer.Reset();
 
         base.Leave();
     }
@@ -64,7 +77,7 @@ public class DashState : PlayerBaseState
             dashable = hitCollider.GetComponent<Dashable>();
             if (dashable.GetClip() != null)
             {
-                Debug.Log("object ram");
+                //Debug.Log("object ram");
                 EventSystem.Current.FireEvent(new PlaySoundEvent(dashable.gameObject.transform.position, dashable.GetClip(), 1f, 0.8f, 1.1f));
             }
             Destroy(hitCollider.gameObject);
@@ -166,7 +179,7 @@ public class DashState : PlayerBaseState
         }
         else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
-            dashTimer.Reset();
+            //player.DashCooldownTimer.Reset();
             owner.Transition<WalkState>();
             Debug.Log("WALKING NOW");
             return;
@@ -174,14 +187,14 @@ public class DashState : PlayerBaseState
 
 
         //if (owner.velocity.magnitude < player.velocityToDash)
-        if((dashTimer.IsCompleted(Time.deltaTime, true) && !player.hasFreeDash))
+        if(player.DashDurationTimer.IsCompleted(Time.deltaTime, true) && !player.hasFreeDash)
         {
             owner.Transition<WalkState>();
             Debug.Log("TO WALKSTATE");
         } else
         {
             //UIManager.instance.SetDashFillAmountAdd(-dashTimer.GetPercentage());
-            UIManager.instance.SetDashFillAmount(1f - dashTimer.GetPercentage());
+            UIManager.instance.SetDashFillAmount(1f - player.DashDurationTimer.GetPercentage());
             //Debug.Log("DASHSTATE GETPERCENTAGE: " + -dashTimer.GetPercentage());
         }
 
