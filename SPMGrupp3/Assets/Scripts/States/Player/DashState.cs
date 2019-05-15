@@ -66,10 +66,6 @@ public class DashState : PlayerBaseState
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
-        if(hitCollider.tag.Equals("Dashable"))
-        {
-            Debug.Log("DASHLEVEL: " + player.DashLevel);
-        }
         if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
         {
             if(hitCollider.GetComponent<DroppingObject>() != null)

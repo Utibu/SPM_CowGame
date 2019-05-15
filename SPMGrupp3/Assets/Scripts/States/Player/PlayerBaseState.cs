@@ -83,13 +83,13 @@ public class PlayerBaseState : PhysicsBaseState
         if (vertical > 0 && horizontal != 0)
         {
             //Debug.Log("diagonal");
-            movement *= diagonalPercentage;
+            //movement *= diagonalPercentage;
         }
 
         else if (horizontal != 0 || vertical < 0)
         {
             //Debug.Log("Horizontal");
-            movement *= horizontalPercentage;
+            //movement *= horizontalPercentage;
 
         }
 
@@ -101,12 +101,17 @@ public class PlayerBaseState : PhysicsBaseState
             speedPercentage = newSpeedPercentage;
         }*/
         speedPercentage = newSpeedPercentage;
-        player.anim.SetFloat("Speed", vertical * speedPercentage);
-        player.anim.SetFloat("Direction", horizontal * speedPercentage);
-        player.anim.speed = player.animationSpeed;
-        //player.transform.rotation = Quaternion.Euler((Camera.main.transform.rotation * direction).normalized);
-        player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
-
+        //player.anim.SetFloat("Speed", vertical * speedPercentage);
+        //player.anim.SetFloat("Direction", horizontal * speedPercentage);
+        //player.anim.speed = player.animationSpeed;
+        //player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+        Vector3 tempVelocity = direction;
+        tempVelocity.y = 0f;
+        if(tempVelocity.magnitude > 0)
+        {
+            player.meshParent.transform.rotation = Quaternion.LookRotation(tempVelocity);
+        }
+        
         /*if (maxSpeed <= 0)
         {
             maxSpeed = player.maxSpeed;

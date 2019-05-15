@@ -188,7 +188,7 @@ public class PhysicsBaseState : State
 
                 if(skipCollision)
                 {
-                    //continue;
+                    continue;
                 }
                 //Debug.Log(distanceToSnap);
                 //No snapping backwards 
