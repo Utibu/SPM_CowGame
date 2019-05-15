@@ -47,7 +47,7 @@ public class AirState : PlayerBaseState
 
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
-            owner.Transition<ChargeState>();
+            owner.Transition<DashState>();
         }
 
         if (IsGrounded())
