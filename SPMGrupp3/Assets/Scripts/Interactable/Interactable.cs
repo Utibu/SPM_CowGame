@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class Interactable : Triggable
 {
     public float interactionFreezeTime;
     public bool playerIsInteracting = false;

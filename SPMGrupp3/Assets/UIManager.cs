@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [SerializeField] private Image dashCooldownImage;
+    [SerializeField] private GameObject interactionIndicator;
 
     [SerializeField] private SmallMessageContainer smallMessageContainer;
     [SerializeField] private BigMessageContainer bigMessageContainer;
@@ -24,7 +25,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        smallMessageContainer.gameObject.SetActive(false);
+        HideMessages();
+        HideInteractionIndicator();
     }
 
     public void SetDashFillAmount(float val)
@@ -57,5 +59,15 @@ public class UIManager : MonoBehaviour
     {
         smallMessageContainer.gameObject.SetActive(false);
         bigMessageContainer.gameObject.SetActive(false);
+    }
+
+    public void ShowInteractionIndicator()
+    {
+        interactionIndicator.SetActive(true);
+    }
+
+    public void HideInteractionIndicator()
+    {
+        interactionIndicator.SetActive(false);
     }
 }

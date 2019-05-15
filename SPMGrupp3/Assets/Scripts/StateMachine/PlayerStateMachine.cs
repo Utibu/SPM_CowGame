@@ -50,6 +50,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float maxAngle;
     public Vector3 cameraPositionRelativeToPlayer;
     public CameraType cameraType;
+    public bool IsWithinTriggerRange { get; set; } = false;
 
     [SerializeField] private Vector3 cameraRotationOffset;
     
@@ -110,6 +111,8 @@ public class PlayerStateMachine : PhysicsStateMachine
         {
             return;
         }
+
+        IsWithinTriggerRange = false;
 
         base.Update();
 
@@ -252,5 +255,13 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         Debug.Log("Finns");
         transform.position = position;
+    }
+
+    private void LateUpdate()
+    {
+        if (!IsWithinTriggerRange)
+        {
+            UIManager.instance.HideInteractionIndicator();
+        }
     }
 }

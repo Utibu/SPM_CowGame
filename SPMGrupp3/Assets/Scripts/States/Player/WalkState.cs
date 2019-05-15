@@ -8,6 +8,7 @@ public class WalkState : PlayerBaseState
     public float dashThreshold = 10f;
     [SerializeField] private float dashCooldown = 1f;
     private BasicTimer dashTimer;
+
     public override void Enter()
     {
         base.Enter();
@@ -31,7 +32,7 @@ public class WalkState : PlayerBaseState
 
     public override void Update()
     {
-        if(LevelManager.instance != null && jumpForce != LevelManager.instance.normalJumpForce)
+        if (LevelManager.instance != null && jumpForce != LevelManager.instance.normalJumpForce)
         {
             jumpForce = LevelManager.instance.normalJumpForce;
         }
@@ -148,6 +149,8 @@ public class WalkState : PlayerBaseState
         if (interactable != null)
         {
             //Show E-button on screen
+            UIManager.instance.ShowInteractionIndicator();
+            player.IsWithinTriggerRange = true;
             if(GameManager.instance.inputManager.EventKeyDown())
             {
                 owner.Transition<InteractState>();
@@ -156,5 +159,7 @@ public class WalkState : PlayerBaseState
             
         }
     }
+
+    
 
 }
