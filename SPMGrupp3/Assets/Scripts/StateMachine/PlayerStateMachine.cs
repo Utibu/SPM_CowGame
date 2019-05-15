@@ -30,6 +30,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
     public float dashDuration = 2f;
+    public int DashLevel { get; set; }
 
     public string[] CameraIgnoreTags;
 
@@ -50,7 +51,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float maxAngle;
     public Vector3 cameraPositionRelativeToPlayer;
     public CameraType cameraType;
-    public bool IsWithinTriggerRange { get; set; } = false;
+    public bool IsWithinTriggerRange { get; set; }
 
     [SerializeField] private Vector3 cameraRotationOffset;
     
@@ -68,6 +69,8 @@ public class PlayerStateMachine : PhysicsStateMachine
         countdown = dashCooldown;
         DashCooldownTimer = new BasicTimer(dashCooldown);
         DashDurationTimer = new BasicTimer(dashDuration);
+        IsWithinTriggerRange = false;
+        DashLevel = 1;
     }
 
 

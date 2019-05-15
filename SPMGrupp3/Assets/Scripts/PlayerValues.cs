@@ -8,7 +8,6 @@ public class PlayerValues : MonoBehaviour
 
     public float health;
     public float maxHealth;
-    public int dashLevel;
     public Image healthBar;
     public Text healthText;
     public Image healthBarBackground;
