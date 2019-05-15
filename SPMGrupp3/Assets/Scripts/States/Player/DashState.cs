@@ -49,8 +49,8 @@ public class DashState : PlayerBaseState
         player.lastGravity = gravityConstant;
         player.lastAcceleration = acceleration;
 
-        Debug.LogWarning("DashDurationTimer: " + player.DashDurationTimer.GetPercentage() + "    DashCooldownTimerDuration: " + player.DashCooldownTimer.GetDuration());
-        Debug.LogWarning(1 - player.DashDurationTimer.GetPercentage());
+        //Debug.LogWarning("DashDurationTimer: " + player.DashDurationTimer.GetPercentage() + "    DashCooldownTimerDuration: " + player.DashCooldownTimer.GetDuration());
+        //Debug.LogWarning(1 - player.DashDurationTimer.GetPercentage());
         player.DashCooldownTimer.Reset();
         if(player.DashDurationTimer.GetPercentage() > 0)
         {
