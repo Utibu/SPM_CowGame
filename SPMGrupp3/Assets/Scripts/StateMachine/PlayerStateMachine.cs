@@ -126,16 +126,11 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         }*/
 
-        if (GetCurrentState().GetType() == typeof(DashState))
+        if (GetCurrentState().GetType() != typeof(DashState))
         {
-            float timeToFill = 1 - DashCooldownTimer.GetPercentage();
-        } else
-        {
-            
             DashCooldownTimer.Update(Time.deltaTime);
             UIManager.instance.SetDashFillAmount(DashCooldownTimer.GetPercentage());
         }
-        
 
 
         if (!allowedToDash)

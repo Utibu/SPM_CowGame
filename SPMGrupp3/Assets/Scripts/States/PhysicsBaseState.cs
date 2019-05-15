@@ -100,11 +100,28 @@ public class PhysicsBaseState : State
     {
         //Vector3 p1 = owner.transform.position + (Vector3.up * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
         //Vector3 p2 = owner.transform.position + (Vector3.down * ((owner.objectCollider.height / 2) - owner.objectCollider.radius));
+        //owner.groundCheckDistance + owner.skinWidth
+        /*RaycastHit hit;
+        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, float.MaxValue, owner.collisionMask);
+        if (!ray)
+        {
+            return false;
+        }
+        Debug.Log("DISTANCE: " + hit.distance);
+        Debug.Log("MAXDISTANCE: " + (owner.groundCheckDistance + owner.skinWidth + owner.objectCollider.center.magnitude));
+        Debug.Log("HIT POINT: " + hit.point);
+        if(hit.distance < owner.groundCheckDistance + owner.skinWidth + owner.objectCollider.center.magnitude)
+        {
+            return true;
+        }
+        return false;*/
+
         RaycastHit hit;
         bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
         if (!ray)
             return false;
         return true;
+
     }
 
     public Collider GetGroundCollider()
@@ -171,7 +188,7 @@ public class PhysicsBaseState : State
 
                 if(skipCollision)
                 {
-                    continue;
+                    //continue;
                 }
                 //Debug.Log(distanceToSnap);
                 //No snapping backwards 
