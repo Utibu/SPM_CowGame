@@ -5,9 +5,15 @@ using UnityEngine;
 public class UIMessageTrigger : Triggable
 {
     [SerializeField] private string title;
+    [SerializeField] private bool shouldPause;
+
     [SerializeField] private string description;
     [SerializeField] private Sprite sprite;
-    [SerializeField] private bool shouldPause;
+    [Header("If these are filled in the message becomes 2 side by side")]
+    [SerializeField] private string rightDescription;
+    [SerializeField] private Sprite rightSprite;
+
+    
     private bool isShowing = false;
 
     protected override void CustomStart()
@@ -18,9 +24,20 @@ public class UIMessageTrigger : Triggable
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        UIManager.instance.ShowSmallMessage(title, description, sprite);
+        if(rightDescription.Length > 0 && rightSprite != null)
+        {
+            UIManager.instance.ShowBigMessage(title, description, sprite, rightDescription, rightSprite);
+        } else
+        {
+            UIManager.instance.ShowSmallMessage(title, description, sprite);
+        }
+        
         isShowing = true;
-        EventSystem.Current.FireEvent(new PauseEvent(""));
+        if(shouldPause)
+        {
+            EventSystem.Current.FireEvent(new PauseEvent(""));
+        }
+        
     }
 
     public override void CustomUpdate()
@@ -29,7 +46,7 @@ public class UIMessageTrigger : Triggable
         if(isShowing && GameManager.instance.inputManager.ContinueKeyDown())
         {
             EventSystem.Current.FireEvent(new ResumeEvent(""));
-            UIManager.instance.HideMessage();
+            UIManager.instance.HideMessages();
             TriggerCollider.gameObject.SetActive(false);
         }
     }

@@ -9,11 +9,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image dashCooldownImage;
 
-
-    [SerializeField] private Text smallMessageTitle;
-    [SerializeField] private Text smallMessageDescription;
-    [SerializeField] private Image smallMessageImage;
-    [SerializeField] private Image smallMessageContainer;
+    [SerializeField] private SmallMessageContainer smallMessageContainer;
+    [SerializeField] private BigMessageContainer bigMessageContainer;
 
     void Awake()
     {
@@ -46,14 +43,19 @@ public class UIManager : MonoBehaviour
 
     public void ShowSmallMessage(string title, string desc, Sprite sprite)
     {
-        smallMessageContainer.gameObject.SetActive(true);
-        smallMessageTitle.text = title;
-        smallMessageDescription.text = desc;
-        smallMessageImage.sprite = sprite;
+        HideMessages();
+        smallMessageContainer.Show(title, desc, sprite);
     }
 
-    public void HideMessage()
+    public void ShowBigMessage(string title, string leftDesc, Sprite leftSprite, string rightDesc, Sprite rightSprite)
+    {
+        HideMessages();
+        bigMessageContainer.Show(title, leftDesc, leftSprite, rightDesc, rightSprite);
+    }
+
+    public void HideMessages()
     {
         smallMessageContainer.gameObject.SetActive(false);
+        bigMessageContainer.gameObject.SetActive(false);
     }
 }
