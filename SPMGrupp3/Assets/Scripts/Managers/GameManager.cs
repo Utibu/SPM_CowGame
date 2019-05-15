@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Text coinCountText;
     [HideInInspector] public int coinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
+    [SerializeField] private int HPIncreaseAmount = 20;
     public bool debug;
     public InputManager inputManager;
     public bool showCursor;
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         if (coinCount >= coinsToHPIncrease)
         {
-            player.playerValues.maxHealth += 20;
+            player.playerValues.maxHealth += HPIncreaseAmount;
             player.playerValues.health = player.playerValues.maxHealth;
             coinCount = 0;
             LevelManager.instance.pickedCoins = 0;

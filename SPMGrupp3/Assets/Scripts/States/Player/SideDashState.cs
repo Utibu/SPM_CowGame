@@ -26,8 +26,6 @@ public class SideDashState : PlayerBaseState
     {
         base.Update();
 
-        Debug.Log(owner.velocity.magnitude);
-
        
 
         if (IsGrounded() && owner.velocity.magnitude < exitDashSpeed)

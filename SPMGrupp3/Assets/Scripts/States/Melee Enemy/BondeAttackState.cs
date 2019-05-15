@@ -11,12 +11,11 @@ public class BondeAttackState : BondeBaseState
     Vector3 lookPos;
     public float damage;
     private float countdown;
-    [SerializeField]private float cooldown = 1.7f;
+    [SerializeField]private float cooldown = 2.0f;
 
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("ENTER ATTACK STATE");
         originalPosition = owner.weapon.transform.rotation;
         countdown = cooldown / 2; // så att denne inte attackerar på en gång
         rotation = 0;
@@ -50,12 +49,11 @@ public class BondeAttackState : BondeBaseState
             if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
             {
                 BossAttack();
-                Debug.Log("ATTACK1");
             }
             else
             {
                 attack();
-                Debug.Log("ATTACK2");
+
             }
         }
 
@@ -83,7 +81,6 @@ public class BondeAttackState : BondeBaseState
         {
             owner.player.playerValues.health -= owner.attackDamage;
             owner.player.velocity += owner.transform.forward * 20f;
-            Debug.Log("HIT!");
         }
         
         // reset cd and move up weapon

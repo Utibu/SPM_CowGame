@@ -8,7 +8,7 @@ public class Bonde : StateMachine
 
     //bondevariabler
     private BoxCollider boxref;
-    [HideInInspector]public NavMeshAgent agnes;
+    [HideInInspector] public NavMeshAgent agnes;
     public GameObject[] patrolPoints;
     public GameObject weapon;
     public GameObject itemDrop;
@@ -36,11 +36,12 @@ public class Bonde : StateMachine
         
     }
 
-    public void Start()
+    public override void Start()
     {
         player = GameManager.instance.player;
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
+
     }
 
     private void Pause(PauseEvent eventInfo)
@@ -77,11 +78,13 @@ public class Bonde : StateMachine
         if(timeSinceLastHit > graceTime)
         {
             toughness -= 1;
+            transform.position += transform.forward * -2;
             timeSinceLastHit = 0;
         }
         if(toughness <= 0)
         {
             Debug.Log("DASHED");
+            EventSystem.Current.FireEvent(new EnemyDieEvent("enemy stunned", gameObject));
             Transition<BondeStunState>();
         }
         

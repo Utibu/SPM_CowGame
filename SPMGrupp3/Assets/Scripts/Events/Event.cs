@@ -92,3 +92,12 @@ public class ResumeEvent : DebugEvent
 
     }
 }
+
+public class EnemyDieEvent : DebugEvent
+{
+    public GameObject enemy;
+    public EnemyDieEvent(string eventDescription, GameObject enemy) : base(eventDescription)
+    {
+        this.enemy = enemy;
+    }
+}

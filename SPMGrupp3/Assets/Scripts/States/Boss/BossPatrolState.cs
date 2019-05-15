@@ -34,6 +34,11 @@ public class BossPatrolState : BossBaseState
     public override void Update()
     {
 
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility)
+        {
+            //Debug.Log("TRANSITION");
+            owner.Transition<BossChaseState>();
+        }
 
         if (Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
         {
@@ -45,11 +50,6 @@ public class BossPatrolState : BossBaseState
 
         }
 
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.maxVisibility)
-        {
-            //Debug.Log("TRANSITION");
-            owner.Transition<BossChaseState>();
-        }
 
     }
 

@@ -6,13 +6,17 @@ using UnityEngine;
 public class BossSnipeState : BossBaseState
 {
     private float countdown;
+    private Vector3 originalPosition;
 
     public override void Enter()
     {
         Debug.Log("in snipe");
         base.Enter();
+        originalPosition = owner.transform.position;
         owner.bulletsShotSinceReload = 0;
         owner.agnes.isStopped = true;
+        owner.agnes.Warp(owner.snipeLocation.transform.position);
+
 
 
     }
@@ -20,24 +24,22 @@ public class BossSnipeState : BossBaseState
     public override void Update()
     {
         base.Update();
-        owner.transform.position = owner.snipeLocation.transform.position;
         lookAt();
 
         countdown -= Time.deltaTime;
-        //Vector3.Distance(owner.transform.position, owner.player.transform.position) < 4 && 
         if (countdown <= 0)
         {
             attack();
             countdown = owner.attackSpeed + 0.5f;
 
         }
-
+        /*
         if (owner.bulletsShotSinceReload >= owner.bulletsBeforeReload)
         {
             owner.bulletsShotSinceReload = 0;
             owner.Transition<BossAttackState>();
         }
-
+        */
     }
 
     public override void Leave()
@@ -45,5 +47,6 @@ public class BossSnipeState : BossBaseState
         Debug.Log("leaving snipe");
         base.Leave();
         owner.agnes.isStopped = false;
+        owner.agnes.Warp(originalPosition);
     }
 }
