@@ -57,7 +57,7 @@ public class EventSystem : MonoBehaviour
                 return;
             }
 
-            Debug.LogWarning("LISTENERS: " + eventListeners[trueEventType].Count);
+            //Debug.LogWarning("LISTENERS: " + eventListeners[trueEventType].Count);
             foreach(EventListener el in eventListeners[trueEventType])
             {
                 el(eventInfo);

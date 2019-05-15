@@ -29,6 +29,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public float elapsedDashTime;
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
+    public float dashDuration = 2f;
 
     public string[] CameraIgnoreTags;
 
@@ -53,6 +54,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     [SerializeField] private Vector3 cameraRotationOffset;
     
     [HideInInspector] public bool hasFreeDash = false;
+    [HideInInspector] public BasicTimer DashCooldownTimer { get; private set; }
+    [HideInInspector] public BasicTimer DashDurationTimer { get; private set; }
 
     private bool isPaused = false;
 
@@ -62,7 +65,8 @@ public class PlayerStateMachine : PhysicsStateMachine
         //objectCollider = transform.parent.GetComponent<BoxCollider>();
         playerValues = GetComponent<PlayerValues>();
         countdown = dashCooldown;
-
+        DashCooldownTimer = new BasicTimer(dashCooldown);
+        DashDurationTimer = new BasicTimer(dashDuration);
     }
 
 
@@ -122,8 +126,19 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         }*/
 
+        if (GetCurrentState().GetType() == typeof(DashState))
+        {
+            float timeToFill = 1 - DashCooldownTimer.GetPercentage();
+        } else
+        {
+            
+            DashCooldownTimer.Update(Time.deltaTime);
+            UIManager.instance.SetDashFillAmount(DashCooldownTimer.GetPercentage());
+        }
+        
 
-        if(!allowedToDash)
+
+        if (!allowedToDash)
         {
             if(elapsedDashTime >= dashCooldown)
             {

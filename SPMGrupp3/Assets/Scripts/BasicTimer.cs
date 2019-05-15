@@ -15,6 +15,11 @@ public class BasicTimer
         isCompleted = false;
     }
 
+    public void SetStartTime(float startTime)
+    {
+        elapsedTime = startTime;
+    }
+
     public void Update(float deltaTime)
     {
         if(isCompleted == false)
@@ -27,7 +32,7 @@ public class BasicTimer
         }
     }
 
-    public bool IsCompleted(float deltaTime, bool resetOnCompletion)
+    public bool IsCompleted(float deltaTime, bool resetOnCompletion, bool update = true)
     {
         if(isCompleted)
         {
@@ -36,7 +41,10 @@ public class BasicTimer
             return true;
         } else
         {
-            Update(deltaTime);
+            if(update)
+            {
+                Update(deltaTime);
+            }
             return false;
         }
         
@@ -50,6 +58,11 @@ public class BasicTimer
     public float GetPercentage()
     {
         return elapsedTime / length;
+    }
+
+    public float GetDuration()
+    {
+        return length;
     }
    
 }
