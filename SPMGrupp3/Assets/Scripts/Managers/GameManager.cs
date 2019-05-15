@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject controlsUI;
     public Text livesText;
     private bool isLoadingScene = false;
+    private bool isPaused = false;
 
     private Vector3 horizontalSpeed = new Vector3();
     //private AudioSource auSource;
@@ -66,12 +67,12 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            EventSystem.Current.FireEvent(new PauseEvent(""));
+            Pause();
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            EventSystem.Current.FireEvent(new ResumeEvent(""));
+            Resume();
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -81,11 +82,32 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            LoadMenu();
+            //LoadMenu();
+            if(isPaused)
+            {
+                Resume();
+                UIManager.instance.HideMenu();
+            } else
+            {
+                Pause();
+                UIManager.instance.ShowMenu();
+            }
         }
 
         UpdateUIText();
         CheckCoins();
+    }
+
+    public void Pause()
+    {
+        EventSystem.Current.FireEvent(new PauseEvent(""));
+        isPaused = true;
+    }
+
+    public void Resume()
+    {
+        EventSystem.Current.FireEvent(new ResumeEvent(""));
+        isPaused = false;
     }
 
     private void CheckCoins()

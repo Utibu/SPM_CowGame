@@ -8,8 +8,8 @@ public class StrenthPowerup : DroppableObject
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        Debug.Log("LEVEL");
-        player.GetComponent<PlayerStateMachine>().dashAirResistance = 0.2f;
+        GameManager.instance.player.DashLevel++;
+        //player.GetComponent<PlayerStateMachine>().dashAirResistance = 0.2f;
 
     }
 }

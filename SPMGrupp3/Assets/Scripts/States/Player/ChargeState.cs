@@ -95,7 +95,7 @@ public class ChargeState : PlayerBaseState
             bonde.PlayerDash();
         }
 
-        if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude >= hitCollider.GetComponent<Dashable>().requiredMagnitude)
+        if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
         {
             if (hitCollider.GetComponent<DroppingObject>() != null)
             {

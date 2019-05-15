@@ -28,7 +28,6 @@ public static class Helper
 
     public static bool IsWithinDistance(Vector3 currentPosition, Vector3 otherPosition, float distance)
     {
-        Debug.Log("offset: " + GetDistanceOffset(currentPosition, otherPosition) + " distance * distance: " + distance * distance);
         return GetDistanceOffset(currentPosition, otherPosition) < distance * distance;
     }
 

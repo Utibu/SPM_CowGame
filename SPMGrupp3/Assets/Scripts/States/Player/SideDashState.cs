@@ -40,7 +40,7 @@ public class SideDashState : PlayerBaseState
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
-        if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude >= hitCollider.GetComponent<Dashable>().requiredMagnitude)
+        if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
         {
             if (hitCollider.GetComponent<DroppingObject>() != null)
             {
@@ -48,7 +48,7 @@ public class SideDashState : PlayerBaseState
             }
             Destroy(hitCollider.gameObject);
         }
-        else if (hitCollider.tag.Equals("Dashable") && owner.velocity.magnitude < hitCollider.GetComponent<Dashable>().requiredMagnitude)
+        else if (hitCollider.tag.Equals("Dashable") && player.DashLevel < hitCollider.GetComponent<Dashable>().requiredLevel)
 
         {
             owner.velocity *= -1;
