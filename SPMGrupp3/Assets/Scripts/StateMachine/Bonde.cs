@@ -25,6 +25,8 @@ public class Bonde : StateMachine
     [SerializeField] protected float graceTime = 2f;
     protected float timeSinceLastHit = 0f;
     private bool isPaused = false;
+    private bool isDying = false;
+    private BasicTimer timer;
 
 
     // Start is called before the first frame update
@@ -74,8 +76,16 @@ public class Bonde : StateMachine
     // Update is called once per frame
     public override void Update()
     {
+
         if(isPaused)
         {
+            return;
+        }
+
+        if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
+        {
+            timer = null;
+            Transition<BondeStunState>();
             return;
         }
 
@@ -93,16 +103,16 @@ public class Bonde : StateMachine
         if(timeSinceLastHit > graceTime)
         {
             toughness -= 1;
-            //transform.position += transform.forward * -2;
-            agnes.velocity += transform.forward * -4;
+            agnes.velocity += player.velocity * 1.8f;
             timeSinceLastHit = 0;
+
+            if (toughness <= 0)
+            {
+                timer = new BasicTimer(0.5f);
+                Debug.Log("DASHED");
+            }
         }
-        if(toughness <= 0)
-        {
-            Debug.Log("DASHED");
-            EventSystem.Current.FireEvent(new EnemyDieEvent("enemy stunned", gameObject));
-            Transition<BondeStunState>();
-        }
+        
         
     }
 }
