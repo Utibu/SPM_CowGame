@@ -63,6 +63,7 @@ public class PhysicsBaseState : State
     {
         CollisionCheck(owner.velocity * Time.deltaTime);
         owner.velocity *= Mathf.Pow(airResistance, Time.deltaTime);
+        //SetAllowedMovement(0f, 10);
     }
 
     protected void ApplyGravity()
@@ -160,31 +161,28 @@ public class PhysicsBaseState : State
     public virtual void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         skipCollision = false;
+        if(hitCollider.CompareTag("JumpBale"))
+        {
+            Debug.LogWarning("JUMPBALE!!!");
+        }
     }
 
     //Tack till Vibben och Markus <3 
     public void CollisionCheck(Vector3 frameMovement)
     {
         RaycastHit hit;
-        if (Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, frameMovement.normalized, out hit, Quaternion.identity, float.PositiveInfinity, owner.collisionMask))
+        if (Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, frameMovement.normalized, out hit, owner.transform.rotation, float.PositiveInfinity, owner.collisionMask))
         {
 
             float angle = (Vector3.Angle(hit.normal, frameMovement.normalized) - 90) * Mathf.Deg2Rad;
             float snapDistanceFromHit = owner.skinWidth / Mathf.Sin(angle);
 
-            bool skipCollision = false;
-            if(hit.distance <= frameMovement.magnitude)
-            {
-                ActOnCollision(hit.collider, out skipCollision);
-            }
             
 
             Vector3 snapMovementVector = frameMovement.normalized * (hit.distance - snapDistanceFromHit);
             snapMovementVector = Vector3.ClampMagnitude(snapMovementVector, frameMovement.magnitude);
-            if(skipCollision == false)
-            {
-                owner.transform.position += snapMovementVector;
-            }
+
+            owner.transform.position += snapMovementVector;
             
             frameMovement -= snapMovementVector;
 
@@ -193,12 +191,15 @@ public class PhysicsBaseState : State
 
             if (frameMovementNormalForce.magnitude > 0.001f)
             {
-                Vector3 velocityNormalForce = Helper.getNormal(owner.velocity, hit.normal);
+                bool skipCollision = false;
+                ActOnCollision(hit.collider, out skipCollision);
+
                 if(skipCollision == false)
                 {
+                    Vector3 velocityNormalForce = Helper.getNormal(owner.velocity, hit.normal);
                     owner.velocity += velocityNormalForce;
+                    DoFriction(velocityNormalForce.magnitude, out owner.velocity, owner.velocity);
                 }
-                DoFriction(velocityNormalForce.magnitude, out owner.velocity, owner.velocity);
             }
 
             if (frameMovement.magnitude > 0.001f)
