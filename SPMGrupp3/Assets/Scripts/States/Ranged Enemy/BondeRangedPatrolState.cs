@@ -32,8 +32,8 @@ public class BondeRangedPatrolState : BondeRangedBaseState
     // Update is called once per frame
     public override void Update()
     {
-        
 
+        base.Update();
         if (Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)
         {
             //Debug.Log("PATROLMOVE");

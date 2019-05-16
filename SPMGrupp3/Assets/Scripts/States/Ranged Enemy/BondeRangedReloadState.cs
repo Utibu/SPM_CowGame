@@ -16,6 +16,7 @@ public class BondeRangedReloadState : BondeRangedBaseState
 
     public override void Update()
     {
+        base.Update();
         if(time > owner.reloadTime)
         {
             owner.Transition<BondeRangedPatrolState>();
