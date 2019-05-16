@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : Dashable
+public class DashBreakable : Dashable
 {
     void Start()
     {
@@ -20,14 +20,14 @@ public class Door : Dashable
 
         if (dashLevel >= requiredLevel)
         {
-            Destroy(gameObject);
             skipCollision = true;
+            Destroy(gameObject);
         }
         else
         {
             GameManager.instance.player.velocity *= -1;
+            skipCollision = false;
         }
-        skipCollision = false;
 
     }
 }

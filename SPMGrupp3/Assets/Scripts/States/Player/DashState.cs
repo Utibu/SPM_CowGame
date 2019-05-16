@@ -112,11 +112,13 @@ public class DashState : PlayerBaseState
             Bonde bonde = hitCollider.GetComponent<Bonde>();
             bonde.PlayerDash();
         }
+        /*
         if (hitCollider.tag.Equals("Bounce"))
         {
             owner.velocity *= -1;
             owner.Transition<JumpBaleState>();
         }
+        */
 
         if (hitCollider.tag.Equals("JumpBale"))
         {
