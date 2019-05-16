@@ -41,19 +41,34 @@ public class Bonde : StateMachine
         player = GameManager.instance.player;
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
+        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(UnregisterEvents);
 
+    }
+
+    private void UnregisterEvents(UnregisterListenerEvent eventInfo)
+    {
+        Debug.Log("UNREGISTER");
+        EventSystem.Current.UnregisterListener<PauseEvent>(Pause);
+        EventSystem.Current.UnregisterListener<ResumeEvent>(Resume);
     }
 
     private void Pause(PauseEvent eventInfo)
     {
         isPaused = true;
-        agnes.isStopped = true;
+        if(agnes.isActiveAndEnabled)
+        {
+            agnes.isStopped = true;
+        }
+        
     }
 
     private void Resume(ResumeEvent eventInfo)
     {
         isPaused = false;
-        agnes.isStopped = false;
+        if (agnes.isActiveAndEnabled)
+        {
+            agnes.isStopped = false;
+        }
     }
 
     // Update is called once per frame
