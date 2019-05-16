@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerStateMachine/SideDashState")]
+[CreateAssetMenu(menuName = "PlayerStateMachine/State")]
 public class SideDashState : PlayerBaseState
 {
 
