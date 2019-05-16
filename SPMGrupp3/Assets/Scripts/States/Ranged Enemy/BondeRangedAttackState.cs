@@ -25,7 +25,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
 
     public override void Update()
     {
-
+        base.Update();
         owner.agnes.updateRotation = false;
         Vector3 lookPos = owner.player.transform.position - owner.transform.position;
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4008299819256003319}
   - component: {fileID: 7249913702014502414}
   - component: {fileID: 3498008065130744050}
-  - component: {fileID: -8743990011010209219}
+  - component: {fileID: 7099947456660710265}
   m_Layer: 9
   m_Name: fence_bashable
   m_TagString: Dashable
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.60638, y: 471.8194, z: 1183.1039}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8743990011010209219
+--- !u!114 &7099947456660710265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8980186543689691858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54056bf299ab05f4ba2e6542fe0f36a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ad4d45b26af84944ab6009a2b95ad92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredMagnitude: 10
+  requiredLevel: 1
+  destructionSounds: []

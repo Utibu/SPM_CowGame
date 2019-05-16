@@ -17,6 +17,7 @@ public class BondeRangedChaseState : BondeRangedBaseState
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
         owner.GetComponent<MeshRenderer>().material.color = Color.blue;
         owner.agnes.SetDestination(owner.player.transform.position);
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility + 1)
