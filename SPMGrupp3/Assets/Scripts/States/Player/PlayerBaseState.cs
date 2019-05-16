@@ -173,6 +173,12 @@ public class PlayerBaseState : PhysicsBaseState
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
+        /*
+        if(hitCollider.GetComponent<Collidable>() != null)
+        {
+            hitCollider.GetComponent<Collidable>().OnPlayerCollideEnter(hitCollider, out skipCollision);
+        }
+        */
         if (hitCollider.tag.Equals("FragilePlatform"))
         {
             //hitCollider.GetComponent<Breakable>().SetFall();

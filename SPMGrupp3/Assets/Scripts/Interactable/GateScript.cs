@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateScript : Triggable
+public class GateScript : Collidable
 {
 
     public GameObject gateKey;
 
 
-    public override void OnPlayerTriggerEnter(Collider hitCollider)
+    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
     {
-        if(LevelManager.instance.hasGateKey)
+
+        if (LevelManager.instance.hasGateKey)
+        {
+            skipCollision = true;
             Open();
+        }
+        else
+        {
+            skipCollision = false;
+        }
     }
 
     private void Open()

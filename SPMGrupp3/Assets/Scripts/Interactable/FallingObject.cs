@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingObject : MonoBehaviour
+public class FallingObject : Collidable
 {
     public Vector3 direction;
     public Vector3 rotationDirection;
@@ -32,6 +32,12 @@ public class FallingObject : MonoBehaviour
             isFalling = false;
             SetFalling(direction);
         }
+    }
+
+    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
+    {
+        skipCollision = false;
+        SetFalling(GameManager.instance.player.velocity);
     }
 
     public void SetFalling(Vector3 matchDirection)
