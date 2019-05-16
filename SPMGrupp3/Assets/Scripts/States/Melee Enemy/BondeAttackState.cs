@@ -32,8 +32,8 @@ public class BondeAttackState : BondeBaseState
 
     public override void Update()
     {
-        
 
+        base.Update();
         owner.agnes.updateRotation = false;
         lookPos = owner.player.transform.position - owner.weapon.transform.position;
         if (Vector3.Distance(new Vector3(owner.player.transform.position.x, 0f, owner.player.transform.position.z), new Vector3(owner.transform.position.x, 0f, owner.transform.position.z)) > 1f)

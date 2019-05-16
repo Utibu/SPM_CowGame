@@ -24,9 +24,9 @@ public class Bonde : StateMachine
 
     [SerializeField] protected float graceTime = 2f;
     protected float timeSinceLastHit = 0f;
-    private bool isPaused = false;
-    private bool isDying = false;
-    private BasicTimer timer;
+    protected bool isPaused = false;
+    public bool isDying = false;
+    protected BasicTimer timer;
 
 
     // Start is called before the first frame update
@@ -85,7 +85,7 @@ public class Bonde : StateMachine
         if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
         {
             timer = null;
-            Transition<BondeStunState>();
+            isDying = true;
             return;
         }
 

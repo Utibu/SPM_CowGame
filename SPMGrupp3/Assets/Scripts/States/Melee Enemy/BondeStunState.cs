@@ -12,6 +12,7 @@ public class BondeStunState : BondeBaseState
     {
         base.Enter();
         time = 0.0f;
+        owner.isDying = false;
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;

@@ -13,6 +13,12 @@ public class BondeRangedStateMachine : Bonde
 
     public override void PlayerDash()
     {
-        Transition<BondeRangedStunState>();
+        base.PlayerDash();
+        //Transition<BondeRangedStunState>();
+    }
+    public override void Update()
+    {
+        base.Update();
+        
     }
 }

@@ -15,12 +15,14 @@ public class BondePatrolState : BondeBaseState
     public override void Enter()
     {
         base.Enter();
+        owner.agnes.speed = speed;
         if (owner.patrolPoints.Length > 0 && owner.patrolPoints[patrolPointIndex] != null)
         {
             SetPatrolPoint();
             owner.GetComponent<MeshRenderer>().material.color = Color.white;
             hasTarget = true;
         }
+
     }
 
     void SetPatrolPoint()
@@ -33,6 +35,7 @@ public class BondePatrolState : BondeBaseState
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
         RaycastHit rayHit;
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.maxVisibility);
         if (hit && rayHit.collider.tag.Equals("Player"))
