@@ -25,7 +25,7 @@ public class BossStateMachine : Bonde
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
     [HideInInspector] public int count = 0;
-    private int currentToughness;
+    private float currentToughness;
     private List<GameObject> underlingList = new List<GameObject>();
 
     public Image healthBar;
@@ -60,8 +60,8 @@ public class BossStateMachine : Bonde
         {
             GameManager.instance.LoadMenu();
         }
-        healthBar.fillAmount = currentToughness / toughness;
-        Debug.Log("Current: " + currentToughness + " Total: " + toughness);
+        healthBar.fillAmount =  currentToughness / toughness;
+        Debug.Log("Current: " + currentToughness + " Total: " + toughness + " " + currentToughness/toughness);
 
 
     }
@@ -72,7 +72,7 @@ public class BossStateMachine : Bonde
         underlingPrefab.SetActive(false);
         GameObject underling = Instantiate(underlingPrefab, (underlingSpawnArea.transform.position), Quaternion.identity);
         Bonde bonde = underling.GetComponent<Bonde>();
-        bonde.patrolPoints = this.patrolPoints;
+        bonde.patrolPoints = patrolPoints;
         bonde.maxVisibility = 25f;
         underling.SetActive(true);
         underlingList.Add(underling);
