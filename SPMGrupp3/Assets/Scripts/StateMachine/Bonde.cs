@@ -22,8 +22,8 @@ public class Bonde : StateMachine
     public bool customAttackDamage;
     public float attackDamage;
 
-    public float graceTime = 2f;
-    private float timeSinceLastHit = 0f;
+    [SerializeField] protected float graceTime = 2f;
+    protected float timeSinceLastHit = 0f;
     private bool isPaused = false;
 
 

@@ -7,17 +7,19 @@ public class BossSnipeState : BossBaseState
 {
     private float countdown;
     private Vector3 originalPosition;
+    [SerializeField] private float attackSpeed;
+    private float originalAttackSpeed;
 
     public override void Enter()
     {
         Debug.Log("in snipe");
         base.Enter();
         originalPosition = owner.transform.position;
-        owner.bulletsShotSinceReload = 0;
+        //owner.bulletsShotSinceReload = 0;
         owner.agnes.isStopped = true;
         owner.agnes.Warp(owner.snipeLocation.transform.position);
-
-
+        originalAttackSpeed = owner.attackSpeed;
+        owner.attackSpeed = attackSpeed;
 
     }
 
@@ -30,7 +32,7 @@ public class BossSnipeState : BossBaseState
         if (countdown <= 0)
         {
             attack();
-            countdown = owner.attackSpeed + 0.5f;
+            countdown = attackSpeed;
 
         }
         /*
