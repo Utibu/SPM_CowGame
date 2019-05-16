@@ -11,7 +11,6 @@ public class PhysicsBaseState : State
     
     [SerializeField] protected float staticFrictionForce = 0.6f;
     [SerializeField] protected float dynamicFrictionPercentage = 0.6f;
-    
 
     //public float terminalVelocity;
     protected Vector3 normalForce;
@@ -62,7 +61,8 @@ public class PhysicsBaseState : State
 
     protected void PreventCollision()
     {
-        SetAllowedMovement(0f, 20);
+        CollisionCheck(owner.velocity * Time.deltaTime);
+        owner.velocity *= Mathf.Pow(airResistance, Time.deltaTime);
     }
 
     protected void ApplyGravity()
@@ -160,6 +160,58 @@ public class PhysicsBaseState : State
     public virtual void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         skipCollision = false;
+    }
+
+    //Tack till Vibben och Markus <3 
+    public void CollisionCheck(Vector3 frameMovement)
+    {
+        RaycastHit hit;
+        if (Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, frameMovement.normalized, out hit, Quaternion.identity, float.PositiveInfinity, owner.collisionMask))
+        {
+
+            float angle = (Vector3.Angle(hit.normal, frameMovement.normalized) - 90) * Mathf.Deg2Rad;
+            float snapDistanceFromHit = owner.skinWidth / Mathf.Sin(angle);
+
+            bool skipCollision = false;
+            if(hit.distance <= frameMovement.magnitude)
+            {
+                ActOnCollision(hit.collider, out skipCollision);
+            }
+            
+
+            Vector3 snapMovementVector = frameMovement.normalized * (hit.distance - snapDistanceFromHit);
+            snapMovementVector = Vector3.ClampMagnitude(snapMovementVector, frameMovement.magnitude);
+            if(skipCollision == false)
+            {
+                owner.transform.position += snapMovementVector;
+            }
+            
+            frameMovement -= snapMovementVector;
+
+            Vector3 frameMovementNormalForce = Helper.getNormal(frameMovement, hit.normal);
+            frameMovement += frameMovementNormalForce;
+
+            if (frameMovementNormalForce.magnitude > 0.001f)
+            {
+                Vector3 velocityNormalForce = Helper.getNormal(owner.velocity, hit.normal);
+                if(skipCollision == false)
+                {
+                    owner.velocity += velocityNormalForce;
+                }
+                DoFriction(velocityNormalForce.magnitude, out owner.velocity, owner.velocity);
+            }
+
+            if (frameMovement.magnitude > 0.001f)
+            {
+                CollisionCheck(frameMovement);
+            }
+            return;
+        }
+
+        else
+        {
+            owner.transform.position += frameMovement;
+        }
     }
 
     void SetAllowedMovement(float snapChange, int runTimes)
