@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dashable : MonoBehaviour
+abstract public class Dashable : MonoBehaviour
 {
-    public float requiredLevel = 1;
-    [SerializeField] private AudioClip[] destructionSounds;
+    [SerializeField] protected float requiredLevel = 1;
+    [SerializeField] protected AudioClip[] destructionSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -30,4 +30,11 @@ public class Dashable : MonoBehaviour
             return destructionSounds[Random.Range(0, destructionSounds.Length)];
         }
     }
+
+    public virtual void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
+    {
+        EventSystem.Current.FireEvent(new PlaySoundEvent(gameObject.transform.position, GetClip(), 1f, 0.8f, 1.1f));
+        skipCollision = false;
+    }
+
 }

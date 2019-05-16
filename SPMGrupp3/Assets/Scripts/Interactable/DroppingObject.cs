@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppingObject : MonoBehaviour
+public class DroppingObject : Dashable
 {
     public GameObject drop;
 
-    public void OnEnter(PlayerValues player)
+    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
     {
-        GameObject go = Instantiate(drop.gameObject, this.transform.position, Quaternion.identity);
+        base.OnPlayerCollideEnter(hitCollider, out skipCollision, dashLevel);
+        skipCollision = false;
+        GameObject go = Instantiate(drop.gameObject, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

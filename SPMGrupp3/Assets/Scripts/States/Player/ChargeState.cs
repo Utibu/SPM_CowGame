@@ -94,15 +94,15 @@ public class ChargeState : PlayerBaseState
             Bonde bonde = hitCollider.GetComponent<Bonde>();
             bonde.PlayerDash();
         }
-
+        /*
         if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
         {
             if (hitCollider.GetComponent<DroppingObject>() != null)
             {
-                hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
+                //hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
             }
             Destroy(hitCollider.gameObject);
         }
-
+        */
     }
 }

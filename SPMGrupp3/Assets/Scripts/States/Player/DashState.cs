@@ -66,6 +66,14 @@ public class DashState : PlayerBaseState
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
+
+
+        if(hitCollider.GetComponent<Dashable>() != null)
+        {
+            hitCollider.GetComponent<Dashable>().OnPlayerCollideEnter(hitCollider, out skipCollision, player.DashLevel);
+        }
+
+        /*
         if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
         {
             if(hitCollider.GetComponent<DroppingObject>() != null)
@@ -85,18 +93,20 @@ public class DashState : PlayerBaseState
         {
             owner.velocity *= -1;
         }
-
+        */
+        /*
         if(hitCollider.GetComponent<Collidable>() != null)
         {
             hitCollider.GetComponent<Collidable>().OnPlayerCollideEnter(hitCollider, out skipCollision);
         }
+        */
         /*
         if(hitCollider.tag.Equals("DashFallable"))
         {
             hitCollider.GetComponent<FallingObject>().SetFalling(owner.velocity.normalized);
         }
         */
-        if(hitCollider.tag.Equals("Enemy"))
+        if (hitCollider.tag.Equals("Enemy"))
         {
             //Destroy(hitCollider.gameObject);
             Bonde bonde = hitCollider.GetComponent<Bonde>();

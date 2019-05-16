@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : Triggable
+public class Breakable : Collidable
 {
     private Collider colli;
     public LayerMask masken;
@@ -49,9 +49,9 @@ public class Breakable : Triggable
         }
     }
 
-    public override void OnPlayerTriggerEnter(Collider hitCollider)
+    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
     {
-        base.OnPlayerTriggerEnter(hitCollider);
+        skipCollision = false;
         falling = true;
             
     }

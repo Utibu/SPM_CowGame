@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingObject : Collidable
+public class FallingObject : Dashable
 {
     public Vector3 direction;
     public Vector3 rotationDirection;
@@ -34,10 +34,10 @@ public class FallingObject : Collidable
         }
     }
 
-    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
+    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
     {
         skipCollision = false;
-        SetFalling(GameManager.instance.player.velocity);
+        SetFalling(GameManager.instance.player.velocity.normalized);
     }
 
     public void SetFalling(Vector3 matchDirection)
