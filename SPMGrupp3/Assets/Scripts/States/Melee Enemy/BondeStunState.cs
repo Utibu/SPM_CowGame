@@ -12,10 +12,13 @@ public class BondeStunState : BondeBaseState
     {
         base.Enter();
         time = 0.0f;
+        owner.isDying = false;
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
+        owner.transform.Rotate(0, 0, 90);
+        owner.transform.position -= new Vector3(0f, 1f, 0f);
 
         if(owner.itemDrop != null)
         {
@@ -39,6 +42,8 @@ public class BondeStunState : BondeBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.transform.Rotate(0, 0, -90);
+        owner.transform.position -= new Vector3(0f, -1f, 0f);
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;

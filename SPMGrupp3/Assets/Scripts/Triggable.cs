@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triggable : MonoBehaviour
+abstract public class Triggable : MonoBehaviour
 {
 
     protected Collider TriggerCollider;

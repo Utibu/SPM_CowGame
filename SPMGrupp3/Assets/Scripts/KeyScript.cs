@@ -14,9 +14,10 @@ public class KeyScript : Triggable
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        Debug.Log("triggered key");
         // ge key = true till level manager? eller playerValues? sen: destroy
         LevelManager.instance.hasGateKey = true;
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     

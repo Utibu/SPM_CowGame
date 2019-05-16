@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerStateMachine/SideDashState")]
+[CreateAssetMenu(menuName = "PlayerStateMachine/State")]
 public class SideDashState : PlayerBaseState
 {
 
@@ -34,7 +34,7 @@ public class SideDashState : PlayerBaseState
             owner.Transition<WalkState>();
         }
     }
-
+    /*
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
@@ -71,5 +71,5 @@ public class SideDashState : PlayerBaseState
         }
 
     }
-
+    */
 }

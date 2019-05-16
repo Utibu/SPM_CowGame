@@ -22,9 +22,11 @@ public class Bonde : StateMachine
     public bool customAttackDamage;
     public float attackDamage;
 
-    public float graceTime = 2f;
-    private float timeSinceLastHit = 0f;
-    private bool isPaused = false;
+    [SerializeField] protected float graceTime = 2f;
+    protected float timeSinceLastHit = 0f;
+    protected bool isPaused = false;
+    public bool isDying = false;
+    protected BasicTimer timer;
 
 
     // Start is called before the first frame update
@@ -41,26 +43,49 @@ public class Bonde : StateMachine
         player = GameManager.instance.player;
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
+        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(UnregisterEvents);
 
+    }
+
+    private void UnregisterEvents(UnregisterListenerEvent eventInfo)
+    {
+        Debug.Log("UNREGISTER");
+        EventSystem.Current.UnregisterListener<PauseEvent>(Pause);
+        EventSystem.Current.UnregisterListener<ResumeEvent>(Resume);
     }
 
     private void Pause(PauseEvent eventInfo)
     {
         isPaused = true;
-        agnes.isStopped = true;
+        if(agnes.isActiveAndEnabled)
+        {
+            agnes.isStopped = true;
+        }
+        
     }
 
     private void Resume(ResumeEvent eventInfo)
     {
         isPaused = false;
-        agnes.isStopped = false;
+        if (agnes.isActiveAndEnabled)
+        {
+            agnes.isStopped = false;
+        }
     }
 
     // Update is called once per frame
     public override void Update()
     {
+
         if(isPaused)
         {
+            return;
+        }
+
+        if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
+        {
+            timer = null;
+            isDying = true;
             return;
         }
 
@@ -78,15 +103,16 @@ public class Bonde : StateMachine
         if(timeSinceLastHit > graceTime)
         {
             toughness -= 1;
-            transform.position += transform.forward * -2;
+            agnes.velocity += player.velocity * 1.8f;
             timeSinceLastHit = 0;
+
+            if (toughness <= 0)
+            {
+                timer = new BasicTimer(0.5f);
+                Debug.Log("DASHED");
+            }
         }
-        if(toughness <= 0)
-        {
-            Debug.Log("DASHED");
-            EventSystem.Current.FireEvent(new EnemyDieEvent("enemy stunned", gameObject));
-            Transition<BondeStunState>();
-        }
+        
         
     }
 }

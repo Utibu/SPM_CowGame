@@ -14,7 +14,10 @@ public class BondeRangedBaseState : EnemyGeneralState
 
     public override void Update()
     {
-
+        if (owner.isDying)
+        {
+            owner.Transition<BondeRangedStunState>();
+        }
     }
 
     public override void Initialize(StateMachine stateMachine)
@@ -24,6 +27,6 @@ public class BondeRangedBaseState : EnemyGeneralState
 
     public override void Enter()
     {
-        owner.agnes.speed = speed;
+        //owner.agnes.speed = speed;
     }
 }

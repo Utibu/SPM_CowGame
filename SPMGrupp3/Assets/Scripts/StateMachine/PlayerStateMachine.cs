@@ -58,6 +58,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public bool hasFreeDash = false;
     [HideInInspector] public BasicTimer DashCooldownTimer { get; private set; }
     [HideInInspector] public BasicTimer DashDurationTimer { get; private set; }
+    [HideInInspector] public bool IsRotating { get; private set; }
 
     private bool isPaused = false;
 
@@ -74,7 +75,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     }
 
 
-    private void Start()
+    public override void Start()
     {
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
@@ -93,6 +94,28 @@ public class PlayerStateMachine : PhysicsStateMachine
     private void Resume(ResumeEvent eventInfo)
     {
         isPaused = false;
+    }
+
+    //Code from:
+    //https://answers.unity.com/questions/1203266/how-can-i-slowly-rotate-a-sprite-to-face-its-movem.html
+    private IEnumerator Rotator(Vector3 direction)
+    {
+        IsRotating = true;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        Quaternion currentRotation = meshParent.transform.rotation;
+        for (float i = 0; i < 1.0f; i += Time.deltaTime / 0.1f)
+        {
+            meshParent.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, i);
+            yield return null;
+        }
+
+        IsRotating = false;
+    }
+
+    public void RotatePlayer(Vector3 direction)
+    {
+        IEnumerator rotationRoutine = Rotator(direction);
+        StartCoroutine(rotationRoutine);
     }
 
 

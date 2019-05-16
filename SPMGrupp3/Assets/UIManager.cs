@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [SerializeField] private Image dashCooldownImage;
+    private Color dashCooldownImageColor;
     [SerializeField] private GameObject interactionIndicator;
     [SerializeField] private Image menu;
 
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
         HideMessages();
         HideInteractionIndicator();
         HideMenu();
+        dashCooldownImageColor = dashCooldownImage.color;
     }
 
     public void SetDashFillAmount(float val)
@@ -43,6 +45,16 @@ public class UIManager : MonoBehaviour
     public void SetDashFillAmountAdd(float val)
     {
         SetDashFillAmount(dashCooldownImage.fillAmount + val);
+    }
+
+    public void DeactivateDashBar()
+    {
+        dashCooldownImage.color = Color.gray;
+    }
+
+    public void ActivateDashBar()
+    {
+        dashCooldownImage.color = dashCooldownImageColor;
     }
 
     public void ShowSmallMessage(string title, string desc, Sprite sprite)

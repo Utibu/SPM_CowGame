@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
+        RemoveListeners();
         if(!isLoadingScene)
         {
             IEnumerator coroutine = LoadSceneRoutine(index);
@@ -170,6 +171,15 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         StartCoroutine("LoadMenuRoutine");
+    }
+
+    public void RemoveListeners()
+    {
+        EventSystem.Current.ClearListener<EnemyDieEvent>();
+        EventSystem.Current.FireEvent(new UnregisterListenerEvent("Unregister events, prepare for levelswitching"));
+        EventSystem.Current.ClearListener<UnregisterListenerEvent>();
+        //EventSystem.Current.ClearListener<PauseEvent>();
+        //EventSystem.Current.ClearListener<ResumeEvent>();
     }
 
     IEnumerator LoadMenuRoutine()

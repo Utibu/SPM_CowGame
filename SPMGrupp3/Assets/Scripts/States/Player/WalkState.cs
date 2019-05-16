@@ -51,24 +51,28 @@ public class WalkState : PlayerBaseState
             Jump();
         }
 
-        if (GameManager.instance.inputManager.DashKey() && IsGrounded())
+        //owner.velocity.magnitude >= dashThreshold
+        if (player.DashCooldownTimer.IsCompleted(Time.deltaTime, false, false))
         {
-            owner.velocity *= 1f;
-            //UIManager.instance.SetDashFillAmount(dashTimer.GetPercentage());
-            if (player.DashCooldownTimer.IsCompleted(Time.deltaTime, false, false) && dashTimer.IsCompleted(Time.deltaTime, true, true)) // sista villkoret så att man inte kan dasha när man står still.    && owner.velocity.magnitude >= dashThreshold
+            UIManager.instance.ActivateDashBar();
+            if (GameManager.instance.inputManager.DashKey() && IsGrounded())
             {
-                owner.Transition<DashState>();
-                //dashTimer.Reset();
+                if(dashTimer.IsCompleted(Time.deltaTime, true, true))
+                {
+                    owner.Transition<DashState>();
+                }
             }
-            
+        } else
+        {
+            UIManager.instance.DeactivateDashBar();
         }
 
-        if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
+        /*if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
         {
             //sideDash();
             owner.Transition<SideDashState>();
             player.ResetCooldown();
-        }
+        }*/
 
         /*if (GameManager.instance.dashCooldownImage != null)
         {

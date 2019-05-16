@@ -57,6 +57,8 @@ public class PlayerBaseState : PhysicsBaseState
         owner.Transition<AirState>();
     }
 
+    
+
     protected void HandleInput()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -105,11 +107,13 @@ public class PlayerBaseState : PhysicsBaseState
         //player.anim.SetFloat("Direction", horizontal * speedPercentage);
         //player.anim.speed = player.animationSpeed;
         //player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
-        Vector3 tempVelocity = direction;
-        tempVelocity.y = 0f;
-        if(tempVelocity.magnitude > 0)
+        Vector3 tempDirection = direction;
+        tempDirection.y = 0f;
+        if(tempDirection.magnitude > 0 && player.IsRotating == false)
         {
-            player.meshParent.transform.rotation = Quaternion.LookRotation(tempVelocity);
+            player.RotatePlayer(tempDirection);
+
+            //player.meshParent.transform.rotation = Quaternion.LookRotation(tempVelocity);
         }
         
         /*if (maxSpeed <= 0)
@@ -169,19 +173,25 @@ public class PlayerBaseState : PhysicsBaseState
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
+        
+        if(hitCollider.GetComponent<Collidable>() != null)
+        {
+            hitCollider.GetComponent<Collidable>().OnPlayerCollideEnter(hitCollider, out skipCollision);
+        }
+        /*
         if (hitCollider.tag.Equals("FragilePlatform"))
         {
             //hitCollider.GetComponent<Breakable>().SetFall();
         }
-
+        */
         
-
+        /*
         PlayerSounds playerSounds = player.GetComponent<PlayerSounds>();
         if (playerSounds != null)
         {
             playerSounds.PlayCollisionSound(hitCollider);
         }
-
+        */
         //if(hitCollider.tag.Equals("Rock")) {
         //Destroy(hitCollider.gameObject);
         //}

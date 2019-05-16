@@ -101,3 +101,11 @@ public class EnemyDieEvent : DebugEvent
         this.enemy = enemy;
     }
 }
+
+public class UnregisterListenerEvent : DebugEvent
+{
+    public UnregisterListenerEvent(string eventDescription) : base(eventDescription)
+    {
+
+    }
+}

@@ -43,20 +43,27 @@ public class BossStateMachine : Bonde
 
     }
 
-
+    
 
     public override void PlayerDash()
     {
-        currentToughness -= 1;
+        if (timeSinceLastHit > graceTime)
+        {
+            currentToughness -= 1;
+            transform.position += transform.forward * -2;
+            timeSinceLastHit = 0;
+            count = 0;
+            SpawnUnderling();
+            Transition<BossSnipeState>();
+        }
         if (currentToughness <= 0)
         {
             GameManager.instance.LoadMenu();
         }
-        count = 0;
-        SpawnUnderling();
-        //Gör snyggare
         healthBar.fillAmount = currentToughness / toughness;
-        Transition<BossSnipeState>();
+        Debug.Log("Current: " + currentToughness + " Total: " + toughness);
+
+
     }
 
     public void SpawnUnderling()
