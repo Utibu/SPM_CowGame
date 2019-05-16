@@ -15,7 +15,7 @@ public class Bonde : StateMachine
     public LayerMask layermask;
     //public GameObject player;
     public PlayerStateMachine player;
-    public int toughness = 1;
+    public float toughness = 1;
     public float stunTime;
     public float toAttack;
     public float maxVisibility;

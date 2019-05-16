@@ -50,5 +50,7 @@ public class BossSnipeState : BossBaseState
         base.Leave();
         owner.agnes.isStopped = false;
         owner.agnes.Warp(originalPosition);
+        owner.bulletsShotSinceReload = 0;
+        
     }
 }
