@@ -16,6 +16,7 @@ public class BondeAttackState : BondeBaseState
     public override void Enter()
     {
         base.Enter();
+        owner.agnes.speed = 0.1f;
         originalPosition = owner.weapon.transform.rotation;
         countdown = cooldown / 2; // så att denne inte attackerar på en gång
         rotation = 0;

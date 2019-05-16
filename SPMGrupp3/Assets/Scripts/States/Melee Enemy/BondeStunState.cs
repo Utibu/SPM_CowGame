@@ -16,6 +16,7 @@ public class BondeStunState : BondeBaseState
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
+        owner.transform.Rotate(0, 0, 90);
 
         if(owner.itemDrop != null)
         {
@@ -39,6 +40,7 @@ public class BondeStunState : BondeBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.transform.Rotate(0, 0, -90);
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;
