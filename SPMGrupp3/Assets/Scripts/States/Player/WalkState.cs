@@ -67,12 +67,12 @@ public class WalkState : PlayerBaseState
             UIManager.instance.DeactivateDashBar();
         }
 
-        if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
+        /*if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)
         {
             //sideDash();
             owner.Transition<SideDashState>();
             player.ResetCooldown();
-        }
+        }*/
 
         /*if (GameManager.instance.dashCooldownImage != null)
         {
