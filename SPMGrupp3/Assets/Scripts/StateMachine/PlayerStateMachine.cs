@@ -55,10 +55,10 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     [SerializeField] private Vector3 cameraRotationOffset;
     
-    [HideInInspector] public bool hasFreeDash = false;
-    [HideInInspector] public BasicTimer DashCooldownTimer { get; private set; }
-    [HideInInspector] public BasicTimer DashDurationTimer { get; private set; }
-    [HideInInspector] public bool IsRotating { get; private set; }
+    public bool hasFreeDash = false;
+    public BasicTimer DashCooldownTimer { get; private set; }
+    public BasicTimer DashDurationTimer { get; private set; }
+    public bool IsRotating { get; private set; }
 
     private bool isPaused = false;
 
