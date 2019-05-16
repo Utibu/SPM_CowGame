@@ -39,7 +39,7 @@ public class BondePatrolState : BondeBaseState
         {
             owner.Transition<BondeChaseState>();
         }
-        else if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= 2.0f)
+        else if (hasTarget && Vector3.Distance(owner.transform.position, target.transform.position) <= 1.0f)
         {
             patrolPointIndex = (patrolPointIndex + 1) % owner.patrolPoints.Length;
             SetPatrolPoint();

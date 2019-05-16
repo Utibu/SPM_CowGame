@@ -93,7 +93,8 @@ public class Bonde : StateMachine
         if(timeSinceLastHit > graceTime)
         {
             toughness -= 1;
-            transform.position += transform.forward * -2;
+            //transform.position += transform.forward * -2;
+            agnes.velocity += transform.forward * -4;
             timeSinceLastHit = 0;
         }
         if(toughness <= 0)
