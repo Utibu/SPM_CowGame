@@ -27,6 +27,7 @@ public class Bonde : StateMachine
     protected bool isPaused = false;
     public bool isDying = false;
     protected BasicTimer timer;
+    [SerializeField] private float knockBackMultiplier = 1.8f;
 
 
     // Start is called before the first frame update
@@ -103,11 +104,12 @@ public class Bonde : StateMachine
         if(timeSinceLastHit > graceTime)
         {
             toughness -= 1;
-            agnes.velocity += player.velocity * 1.8f;
+            agnes.velocity += player.velocity * knockBackMultiplier;
             timeSinceLastHit = 0;
 
             if (toughness <= 0)
             {
+                agnes.velocity = Vector3.zero;
                 timer = new BasicTimer(0.5f);
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
