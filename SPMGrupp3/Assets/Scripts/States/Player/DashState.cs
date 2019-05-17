@@ -56,6 +56,7 @@ public class DashState : PlayerBaseState
         } else
         {
             player.DashCooldownTimer.SetStartTime(0);
+            Debug.Log("SETSTARTTIME DASHSTATE");
         }
         
         player.DashDurationTimer.Reset();

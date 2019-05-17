@@ -52,19 +52,9 @@ public class WalkState : PlayerBaseState
         }
 
         //owner.velocity.magnitude >= dashThreshold
-        if (player.DashCooldownTimer.IsCompleted(Time.deltaTime, false, false))
+        if (CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey() && IsGrounded() && dashTimer.IsCompleted(Time.deltaTime, true, true))
         {
-            UIManager.instance.ActivateDashBar();
-            if (GameManager.instance.inputManager.DashKey() && IsGrounded())
-            {
-                if(dashTimer.IsCompleted(Time.deltaTime, true, true))
-                {
-                    owner.Transition<DashState>();
-                }
-            }
-        } else
-        {
-            UIManager.instance.DeactivateDashBar();
+            owner.Transition<DashState>();
         }
 
         /*if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)

@@ -214,6 +214,21 @@ public class PlayerBaseState : PhysicsBaseState
         }
     }
 
+    protected bool CheckDashCooldownCompletion()
+    {
+        if (player.DashCooldownTimer.IsCompleted(Time.deltaTime, false, false))
+        {
+            UIManager.instance.ActivateDashBar();
+            
+            return true;
+        }
+        else
+        {
+            UIManager.instance.DeactivateDashBar();
+            return false;
+        }
+    }
+
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
