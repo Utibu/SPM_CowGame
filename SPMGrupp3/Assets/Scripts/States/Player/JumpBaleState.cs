@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStateMachine/JumpBaleState")]
 public class JumpBaleState : PlayerBaseState
 {
-    public float jumpHeight = 3f;
-
+    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float momentum;
 
     public override void Enter()
     {
         base.Update();
         
         Vector3 bounce = Vector3.up * jumpHeight;
-        owner.velocity += bounce;
+        owner.velocity += bounce + momentum * owner.velocity.normalized;
     }
 
     public override void Update()

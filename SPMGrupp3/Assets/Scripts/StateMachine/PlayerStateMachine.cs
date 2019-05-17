@@ -190,7 +190,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
         RaycastHit hit;
-        bool okHit = Physics.SphereCast(transform.position + objectCollider.center, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
+        bool okHit = Physics.SphereCast(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
         if (okHit)
         {
             if (hit.collider != null && !isTagged(hit.collider))

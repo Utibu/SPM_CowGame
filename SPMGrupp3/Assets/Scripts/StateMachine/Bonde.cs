@@ -110,7 +110,6 @@ public class Bonde : StateMachine
             {
                 timer = new BasicTimer(0.5f);
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
-                Debug.Log("DASHED");
             }
         }
         

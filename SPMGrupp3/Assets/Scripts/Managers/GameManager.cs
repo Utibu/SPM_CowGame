@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    public int deathCount = 0;
+    //public int deathCount = 0;
     public PlayerStateMachine player;
     public Text velocityText;
     public Text coinCountText;
@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     //public Canvas UI;
     public Camera cam;
     public GameObject controlsUI;
-    public Text livesText;
     private bool isLoadingScene = false;
     private bool isPaused = false;
 
@@ -29,8 +28,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        
-        Debug.Log("in awake");
 
         if (instance == null)
             instance = this;
@@ -38,8 +35,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Debug.Log(debug);
 
         inputManager = new InputManager();
         //auSource = GetComponent<AudioSource>();
@@ -126,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         velocityText.text = "Velocity: " + player.velocity.magnitude;
         coinCountText.text = "Coins: " + coinCount;
-        livesText.text = "Lives: " + (3 - deathCount);
+        //livesText.text = "Lives: " + (3 - deathCount);
     }
 
     void HideControlsUI()
@@ -136,22 +131,25 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
-        deathCount++;
+        /*deathCount++;
         if(deathCount <= 3)
         {
-            if(LevelManager.instance.currentCheckpoint != null)
-            {
-                player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
-            } else
-            {
-                player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-            }
+            
             
         } else
         {
             deathCount = 0;
             LoadScene(SceneManager.GetActiveScene().buildIndex);
             coinCount -= LevelManager.instance.pickedCoins;
+        }*/
+
+        if (LevelManager.instance.currentCheckpoint != null)
+        {
+            player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
+        }
+        else
+        {
+            player.Respawn(LevelManager.instance.originalSpawnTransform.position);
         }
 
     }
