@@ -27,6 +27,9 @@ public class FallingObject : Dashable
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 initialRotation = transform.eulerAngles;
+        initialRotation.y = 0f;
+        transform.eulerAngles = initialRotation;
         if(isFalling)
         {
             isFalling = false;
