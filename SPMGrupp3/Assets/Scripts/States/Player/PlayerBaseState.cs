@@ -170,6 +170,50 @@ public class PlayerBaseState : PhysicsBaseState
         
     }
 
+    protected void CheckMovableCollision(Collider hitCollider, float multiplier = 1f)
+    {
+        if (hitCollider.tag.Equals("JumpBale"))
+        {
+            Collider col = GetGroundCollider();
+            if (col != null)
+            {
+                if (col.tag.Equals("JumpBale"))
+                {
+                    BarrellStateMachine jumpBale = hitCollider.GetComponent<BarrellStateMachine>();
+                    EventSystem.Current.FireEvent(new PlaySoundEvent(jumpBale.gameObject.transform.position, jumpBale.GetClip(), 1f, 0.8f, 1.1f));
+                    owner.Transition<JumpBaleState>();
+
+                }
+                else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                    }
+                }
+            }
+        }
+
+        if (hitCollider.tag.Equals("Barrell"))
+        {
+            Collider col = GetGroundCollider();
+            if (col != null)
+            {
+                if (col.tag.Equals("Barrell"))
+                {
+                    //hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity);
+                }
+                else
+                {
+                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    {
+                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity * multiplier);
+                    }
+                }
+            }
+        }
+    }
+
     public override void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         base.ActOnCollision(hitCollider, out skipCollision);
