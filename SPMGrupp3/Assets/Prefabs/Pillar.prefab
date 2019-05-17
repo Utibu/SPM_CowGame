@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2104646457721826468}
   - component: {fileID: 2104646457721826469}
   - component: {fileID: 2104646457721826489}
+  - component: {fileID: 8465284371775654892}
   m_Layer: 9
   m_Name: Pillar
   m_TagString: DashFallable
@@ -136,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e60c3330b3b6c946abcb808ea293f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredLevel: 1
+  destructionSounds: []
   direction: {x: 0, y: 0, z: 1}
   rotationDirection: {x: 0, y: 0, z: 0}
   isFalling: 0
@@ -147,6 +150,23 @@ MonoBehaviour:
   collisionCheck: {fileID: 5199528732796839230}
   meshRenderer: {fileID: 0}
   pivot: {fileID: 6133158428983994707}
+  freeFall: 1
+--- !u!208 &8465284371775654892
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199528733112011550}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6133158428983994707
 GameObject:
   m_ObjectHideFlags: 0

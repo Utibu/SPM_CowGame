@@ -28,7 +28,8 @@ public class BondePatrolState : BondeBaseState
     void SetPatrolPoint()
     {
         target = owner.patrolPoints[patrolPointIndex];
-        owner.agnes.destination = target.transform.position;
+        if(target != null)
+            owner.agnes.destination = target.transform.position;
     }
     
 

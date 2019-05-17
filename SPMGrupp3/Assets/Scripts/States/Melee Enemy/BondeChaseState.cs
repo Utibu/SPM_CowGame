@@ -20,6 +20,7 @@ public class BondeChaseState : BondeBaseState
     public override void Update()
     {
         base.Update();
+       
         if(owner.agnes != null && owner.agnes.isActiveAndEnabled) {
             owner.agnes.SetDestination(owner.player.transform.position);
         }

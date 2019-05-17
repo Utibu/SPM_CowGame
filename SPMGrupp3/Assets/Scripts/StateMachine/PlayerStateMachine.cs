@@ -183,7 +183,7 @@ public class PlayerStateMachine : PhysicsStateMachine
             float shakeY = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
             float shakeZ = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
 
-            //cam.rotation = Quaternion.Euler(shakeX, shakeY, shakeZ);
+            //cam.rotation = Quaternion.Euler(shakeX, shakeY, shakeZ); IMPORTANT LINE.
             /*
             cam.rotation.x += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
             cam.rotation.y += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);

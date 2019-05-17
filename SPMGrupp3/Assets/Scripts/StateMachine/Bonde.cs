@@ -82,10 +82,14 @@ public class Bonde : StateMachine
         {
             return;
         }
+
+        //while timer is tickinh, bonde cant take dmg
         if (Gracetimer != null && Gracetimer.IsCompleted(Time.deltaTime, false, true))
         {
             Gracetimer = null;
         }
+
+        
         if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
         {
             timer = null;
