@@ -73,6 +73,6 @@ public class PlayerValues : MonoBehaviour
                 health = maxHealth;
             }
         }
-        Debug.Log(eventInfo.eventDescription);
+        
     }
 }
