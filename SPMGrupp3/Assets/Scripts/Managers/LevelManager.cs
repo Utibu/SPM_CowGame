@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
 
+        GameManager.instance.player.hasFreeDash = false;
         GameManager.instance.player.transform.localScale = Vector3.one * playerScale;
     }
 
