@@ -13,7 +13,6 @@ public class BossAttackState : BossBaseState
 
     public override void Enter()
     {
-        Debug.Log("in attack");
         if (!owner.customAttackDamage)
         {
             owner.attackDamage = damage;

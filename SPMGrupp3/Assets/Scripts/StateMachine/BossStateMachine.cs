@@ -20,6 +20,7 @@ public class BossStateMachine : Bonde
     public GameObject underlingSpawnArea;
     [SerializeField] private float spawnRadius;
     public GameObject snipeLocation;
+    public Vector3 Destination;
 
     private float timeSinceLastHit = 0f;
     public float GraceTime = 1f;
@@ -28,6 +29,8 @@ public class BossStateMachine : Bonde
     [HideInInspector] public int count = 0;
     private float currentToughness;
     private List<GameObject> underlingList = new List<GameObject>();
+    //Gör private
+    public Vector3 originalPosition;
 
     public Image healthBar;
 
@@ -40,8 +43,9 @@ public class BossStateMachine : Bonde
     public override void Start()
     {
         base.Start();
+        originalPosition = transform.position;
         EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
-
+        
     }
 
     
@@ -55,7 +59,8 @@ public class BossStateMachine : Bonde
             timeSinceLastHit = 0;
             count = 0;
             SpawnUnderling();
-            Transition<BossSnipeState>();
+            Destination = snipeLocation.transform.position;
+            Transition<BossTransitionState>();
         }
         if (currentToughness <= 0)
         {
@@ -91,7 +96,9 @@ public class BossStateMachine : Bonde
 
             if (underlingList.Count == 0)
             {
-                Transition<BossAttackState>();
+                Destination = originalPosition;
+                Transition<BossTransitionState>();
+                
             }
         }
     }

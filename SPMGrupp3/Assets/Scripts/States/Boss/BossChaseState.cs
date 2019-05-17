@@ -10,7 +10,6 @@ public class BossChaseState : BossBaseState
 
     public override void Enter()
     {
-        Debug.Log("in chase");
 
         owner.agnes.speed = speed;
     }
