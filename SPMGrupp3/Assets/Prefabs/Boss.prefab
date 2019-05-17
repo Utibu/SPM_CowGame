@@ -327,6 +327,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 497781d121a5a2842b9ca2880c5d8917, type: 2}
   - {fileID: 11400000, guid: 6006078fdae257c4da736b8329dafbf3, type: 2}
   - {fileID: 11400000, guid: 1d652eff1787ba44eb80086602f86763, type: 2}
+  - {fileID: 11400000, guid: 263a668dbec04f049bc355b4ffbbfe78, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
   agnes: {fileID: 7049715745974898350}
@@ -345,6 +346,8 @@ MonoBehaviour:
   customAttackDamage: 0
   attackDamage: 0
   graceTime: 2
+  isDying: 0
+  knockBackMultiplier: 1.8
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7049715746655330820}
   attackSpeed: 0.5
@@ -358,6 +361,7 @@ MonoBehaviour:
   underlingSpawnArea: {fileID: 0}
   spawnRadius: 0
   snipeLocation: {fileID: 0}
+  Destination: {x: 0, y: 0, z: 0}
   timeBetweenSpawns: 1
   underlingQuantityPerWave: 2
   count: 0

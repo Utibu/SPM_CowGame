@@ -663,7 +663,7 @@ PrefabInstance:
     - target: {fileID: 7049715745974898338, guid: 163b5888a1aac654f88b44935a438a26,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.6
+      value: 8.09
       objectReference: {fileID: 0}
     - target: {fileID: 7049715745974898338, guid: 163b5888a1aac654f88b44935a438a26,
         type: 3}
@@ -717,6 +717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7049715745974898351, guid: 163b5888a1aac654f88b44935a438a26,
         type: 3}
+      propertyPath: states.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049715745974898351, guid: 163b5888a1aac654f88b44935a438a26,
+        type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 723322786}
@@ -760,6 +765,12 @@ PrefabInstance:
       propertyPath: attackSpeed
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7049715745974898351, guid: 163b5888a1aac654f88b44935a438a26,
+        type: 3}
+      propertyPath: states.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 263a668dbec04f049bc355b4ffbbfe78,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163b5888a1aac654f88b44935a438a26, type: 3}
 --- !u!1001 &629829488
@@ -1581,7 +1592,7 @@ PrefabInstance:
     - target: {fileID: 895708464305639577, guid: bb4e17d1aa3bf1449a9e03cf8070bbe8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.92
+      value: 8.3
       objectReference: {fileID: 0}
     - target: {fileID: 895708464305639577, guid: bb4e17d1aa3bf1449a9e03cf8070bbe8,
         type: 3}
