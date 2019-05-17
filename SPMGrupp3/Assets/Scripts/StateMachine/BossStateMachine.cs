@@ -69,12 +69,10 @@ public class BossStateMachine : Bonde
     public void SpawnUnderling()
     {
         count++;
-        underlingPrefab.SetActive(false);
         GameObject underling = Instantiate(underlingPrefab, (underlingSpawnArea.transform.position), Quaternion.identity);
         Bonde bonde = underling.GetComponent<Bonde>();
         bonde.patrolPoints = patrolPoints;
         bonde.maxVisibility = 25f;
-        underling.SetActive(true);
         underlingList.Add(underling);
         if (count < underlingQuantityPerWave)
         {
