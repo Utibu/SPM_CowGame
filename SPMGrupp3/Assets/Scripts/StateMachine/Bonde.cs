@@ -16,6 +16,7 @@ public class Bonde : StateMachine
     //public GameObject player;
     public PlayerStateMachine player;
     public float toughness = 1;
+    private float currentToughness;
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
@@ -33,6 +34,7 @@ public class Bonde : StateMachine
     protected override void Awake()
     {
         base.Awake();
+        currentToughness = toughness;
         boxref = GetComponent<BoxCollider>();
         agnes = GetComponent<NavMeshAgent>();
         
@@ -88,6 +90,7 @@ public class Bonde : StateMachine
         {
             timer = null;
             isDying = true;
+            currentToughness = toughness; // lives are reset. 
             return;
         }
         base.Update();
@@ -95,21 +98,17 @@ public class Bonde : StateMachine
 
     public virtual void PlayerDash()
     {
-        
         if(Gracetimer == null)
         {
-            toughness -= 1;
+            currentToughness -= 1;
             agnes.velocity += player.velocity * knockBackMultiplier;
             Gracetimer = new BasicTimer(1.5f);
 
-            if (toughness <= 0)
+            if (currentToughness <= 0)
             {
-                isDying = true;
                 timer = new BasicTimer(0.5f);
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
         }
-        
-        
     }
 }

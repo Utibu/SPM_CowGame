@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c51be643163fc634eb51810306e05dd0, type: 2}
   - {fileID: 11400000, guid: 92ce2a120f8b4fb4e8d7911822ccb275, type: 2}
   - {fileID: 11400000, guid: 90f15db846681844ca88f44e1e80de95, type: 2}
+  currentState: {fileID: 0}
   lastState: {fileID: 0}
   agnes: {fileID: 7578379273770255068}
   patrolPoints:
@@ -143,6 +144,9 @@ MonoBehaviour:
   - {fileID: 0}
   weapon: {fileID: 0}
   itemDrop: {fileID: 0}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 0
   player: {fileID: 0}
   toughness: 1
   stunTime: 60
@@ -150,6 +154,8 @@ MonoBehaviour:
   maxVisibility: 25
   customAttackDamage: 0
   attackDamage: 0
+  isDying: 0
+  knockBackMultiplier: 1.1
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
   attackSpeed: 2
@@ -166,8 +172,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.72
-  m_Height: 1.33
+  m_Radius: 0.55
+  m_Height: 1.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7578379274678033344

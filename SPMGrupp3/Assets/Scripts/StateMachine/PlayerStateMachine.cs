@@ -22,8 +22,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public float lastAcceleration;
     [HideInInspector] public float lastGravity;
 
-    private float originalFOV;
-    public float maxFOV;
+    
     
     public bool isDashing = false;
     [HideInInspector] public float elapsedDashTime;
@@ -32,7 +31,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float dashDuration = 2f;
     public int DashLevel { get; set; }
 
-    public string[] CameraIgnoreTags;
+    
 
     public float dashStateAcceleration;
     public float dashStateGravity;
@@ -44,6 +43,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public Animator anim;
     public float animationSpeed;
 
+
+    // KAMERA VARIABLER
     public float mouseSensitivity;
     float rotationX;
     float rotationY;
@@ -52,6 +53,13 @@ public class PlayerStateMachine : PhysicsStateMachine
     public Vector3 cameraPositionRelativeToPlayer;
     public CameraType cameraType;
     public bool IsWithinTriggerRange { get; set; }
+    public string[] CameraIgnoreTags;
+    private float originalFOV;
+    public float maxFOV;
+    private float camShakeIntensity = 0f;
+    private float camShakeMagnitude = 5f;
+    private float camShakeFalloff = 3f;
+
 
     [SerializeField] private Vector3 cameraRotationOffset;
     
@@ -130,6 +138,33 @@ public class PlayerStateMachine : PhysicsStateMachine
         allowedToDash = false;
     }
 
+
+    public void ShakeCamera()
+    {
+        camShakeIntensity = 50f; 
+
+        /*
+             static var shakeInt = 50.0;
+             var decrease = 5.0;
+             var magnitude = 5.0;
+             function Update () {
+                 if (shakeInt < 0){
+                 shakeInt = 0;    
+                 }
+                 if (shakeInt != 0){
+                     shakeInt -= 1*decrease*shakeInt*Time.deltaTime;
+                 }
+                 var cam = camera.main.transform;
+                 if (shakeInt > 0){
+                 cam.rotation.x += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
+                 cam.rotation.y += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
+                 cam.rotation.z += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
+                 }
+             }
+         */
+    }
+
+
     public override void Update()
     {
 
@@ -138,12 +173,28 @@ public class PlayerStateMachine : PhysicsStateMachine
             return;
         }
 
+        // if camShake:
+        if(camShakeIntensity > 1f)
+        {
+            var cam = Camera.main.transform;
+            camShakeIntensity -= 1 * camShakeFalloff * camShakeIntensity * Time.deltaTime;
+
+            float shakeX = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+            float shakeY = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+            float shakeZ = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+
+            //cam.rotation = Quaternion.Euler(shakeX, shakeY, shakeZ);
+            /*
+            cam.rotation.x += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+            cam.rotation.y += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+            cam.rotation.z += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
+            */
+        }
+
+
         IsWithinTriggerRange = false;
-
         base.Update();
-
         terminalVelocity = (dashStateAcceleration * Time.deltaTime) / (1 - Mathf.Pow(dashAirResistance, Time.deltaTime));
-
         //0 = 10
         //1 = maxSpeed
         /*if (!(GetCurrentState().GetType() == typeof(AirState)))
@@ -152,15 +203,12 @@ public class PlayerStateMachine : PhysicsStateMachine
             Camera.main.fieldOfView = Mathf.Lerp(originalFOV, maxFOV, normalizedFOV);
         } else
         {
-
         }*/
-
         if (GetCurrentState().GetType() != typeof(DashState))
         {
             DashCooldownTimer.Update(Time.deltaTime);
             UIManager.instance.SetDashFillAmount(DashCooldownTimer.GetPercentage());
         }
-
 
         if (!allowedToDash)
         {
@@ -174,7 +222,6 @@ public class PlayerStateMachine : PhysicsStateMachine
             }
         }
         
-
         if (countdown > 0)
             countdown -= Time.deltaTime;
 
@@ -199,9 +246,10 @@ public class PlayerStateMachine : PhysicsStateMachine
                 return allowedMovement;
             }
         }
-
         return goalVector;
     }
+
+
 
     private bool isTagged(Collider col)
     {

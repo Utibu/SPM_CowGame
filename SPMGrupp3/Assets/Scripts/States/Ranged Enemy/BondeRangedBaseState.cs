@@ -17,6 +17,7 @@ public class BondeRangedBaseState : EnemyGeneralState
         if (owner.isDying)
         {
             owner.Transition<BondeRangedStunState>();
+            owner.isDying = false;
         }
     }
 

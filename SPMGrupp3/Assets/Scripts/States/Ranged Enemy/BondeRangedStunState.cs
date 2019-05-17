@@ -10,6 +10,8 @@ public class BondeRangedStunState : BondeRangedBaseState
     public override void Enter()
     {
         base.Enter();
+        owner.transform.Rotate(0, 0, 90);
+        owner.transform.position -= new Vector3(0f, 1f, 0f);
         time = 0.0f;
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
@@ -24,7 +26,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         //Debug.Log(time);
         if (time >= owner.stunTime)
         {
-            Debug.Log("LEAVING");
+            //Debug.Log("LEAVING");
             owner.Transition<BondeRangedPatrolState>();
         }
     }
@@ -35,5 +37,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;
+        owner.transform.Rotate(0, 0, -90);
+        owner.transform.position -= new Vector3(0f, -1f, 0f);
     }
 }

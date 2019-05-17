@@ -67,6 +67,9 @@ public class DashState : PlayerBaseState
     {
         base.ActOnCollision(hitCollider, out skipCollision);
 
+        // calling cam shake from here, so it only shakes on dash collide //
+        player.ShakeCamera();
+        //****************************************************************//
 
         if(hitCollider.GetComponent<Dashable>() != null)
         {
@@ -112,14 +115,7 @@ public class DashState : PlayerBaseState
             Bonde bonde = hitCollider.GetComponent<Bonde>();
             bonde.PlayerDash();
         }
-        /*
-        if (hitCollider.tag.Equals("Bounce"))
-        {
-            owner.velocity *= -1;
-            owner.Transition<JumpBaleState>();
-        }
-        */
-
+       
         CheckMovableCollision(hitCollider, 2f);
 
     }

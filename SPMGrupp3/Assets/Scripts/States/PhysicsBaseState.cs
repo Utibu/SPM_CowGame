@@ -93,6 +93,12 @@ public class PhysicsBaseState : State
         bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
         if (!ray)
             return false;
+
+        // if ko stands on enemy, CHRUSH
+        if (hit.collider.tag.Equals("Enemy"))
+        {
+            hit.collider.GetComponent<Bonde>().PlayerDash();
+        }
         return true;
 
     }
