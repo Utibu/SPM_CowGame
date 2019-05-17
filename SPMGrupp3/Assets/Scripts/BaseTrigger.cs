@@ -16,7 +16,8 @@ public class BaseTrigger : Triggable
         
     }
 
-    public virtual void OnPlayerTriggerEnter() {
-        
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
+    {
+        base.OnPlayerTriggerEnter(hitCollider);
     }
 }

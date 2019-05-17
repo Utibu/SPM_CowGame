@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
         yield return loading;
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
-        Debug.LogWarning("FDF");
+        //Debug.LogWarning("FDF");
         var unloadCurrent = SceneManager.UnloadSceneAsync(0);
         yield return unloadCurrent;
         
