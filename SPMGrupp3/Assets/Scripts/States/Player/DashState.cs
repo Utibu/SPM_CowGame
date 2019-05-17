@@ -146,13 +146,18 @@ public class DashState : PlayerBaseState
             return;
         }
 
-        if(player.DashDurationTimer.IsCompleted(Time.deltaTime, true) && !player.hasFreeDash)
+        if(player.hasFreeDash == false)
         {
-            owner.Transition<WalkState>();
-        } else
-        {
-            UIManager.instance.SetDashFillAmount(1f - player.DashDurationTimer.GetPercentage());
+            if (player.DashDurationTimer.IsCompleted(Time.deltaTime, true))
+            {
+                owner.Transition<WalkState>();
+            }
+            else
+            {
+                UIManager.instance.SetDashFillAmount(1f - player.DashDurationTimer.GetPercentage());
+            }
         }
+        
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)
         {

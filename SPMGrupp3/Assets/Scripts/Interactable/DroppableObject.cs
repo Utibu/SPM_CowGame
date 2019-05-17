@@ -8,7 +8,7 @@ public class DroppableObject : Triggable
 
     public void OnCreate(PlayerValues player)
     {
-        this.player = player;
+        this.player = GameManager.instance.player.playerValues;
     }
 
     private void Start()
