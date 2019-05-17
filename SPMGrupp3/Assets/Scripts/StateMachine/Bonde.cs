@@ -109,7 +109,6 @@ public class Bonde : StateMachine
 
             if (toughness <= 0)
             {
-                agnes.velocity = Vector3.zero;
                 timer = new BasicTimer(0.5f);
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
