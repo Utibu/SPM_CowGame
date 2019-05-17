@@ -56,7 +56,6 @@ public class DashState : PlayerBaseState
         } else
         {
             player.DashCooldownTimer.SetStartTime(0);
-            Debug.Log("SETSTARTTIME DASHSTATE");
         }
         
         player.DashDurationTimer.Reset();
@@ -129,67 +128,36 @@ public class DashState : PlayerBaseState
     {
         base.Update();
 
-        //Debug.Log("DASH");
-
         if (jumpForce != LevelManager.instance.dashJumpForce)
         {
             jumpForce = LevelManager.instance.dashJumpForce;
         }
 
-        /*if (timer > dashStateLength && !player.hasFreeDash)
-        {
-            owner.Transition<WalkState>();
-
-        } else
-        {
-            timer += Time.deltaTime;
-            if (GameManager.instance.dashCooldownImage != null)
-            {
-                GameManager.instance.dashCooldownImage.fillAmount -= timer / dashStateLength;
-            }
-        }*/
-
 
         if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
         {
             Jump();
-            Debug.Log("JUMPING");
             return;
         }
         else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
             //player.DashCooldownTimer.Reset();
             owner.Transition<WalkState>();
-            Debug.Log("WALKING NOW");
             return;
         }
 
-
-        //if (owner.velocity.magnitude < player.velocityToDash)
         if(player.DashDurationTimer.IsCompleted(Time.deltaTime, true) && !player.hasFreeDash)
         {
             owner.Transition<WalkState>();
-            Debug.Log("TO WALKSTATE");
         } else
         {
-            //UIManager.instance.SetDashFillAmountAdd(-dashTimer.GetPercentage());
             UIManager.instance.SetDashFillAmount(1f - player.DashDurationTimer.GetPercentage());
-            //Debug.Log("DASHSTATE GETPERCENTAGE: " + -dashTimer.GetPercentage());
         }
 
         if (Camera.main.fieldOfView <= originalFOV + addToFOV)
         {
            // Camera.main.fieldOfView += fovChangeVelocity * Time.deltaTime;
         }
-
-
-        
-
-        /*if(owner.velocity.magnitude > player.toSuperDash)
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.red;
-    
-        else
-            owner.objectCollider.GetComponent<MeshRenderer>().material.color = Color.black;*/
 
 
         

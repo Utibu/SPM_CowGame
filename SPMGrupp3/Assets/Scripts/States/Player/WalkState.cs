@@ -13,15 +13,6 @@ public class WalkState : PlayerBaseState
     {
         base.Enter();
         dashTimer = new BasicTimer(dashCooldown);
-        //UIManager.instance.SetDashFillAmount(0f);
-        //dashTimer.Reset();
-        Debug.Log("enter walkstate");
-        Debug.Log("velocity: " + owner.velocity);
-        /*time = 0f;
-        if (owner.lastState != null && owner.lastState.GetType() == typeof(DashState))
-        {
-            allowDash = false;
-        }*/
     }
 
     public override void Leave()

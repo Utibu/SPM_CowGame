@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        
-        Debug.Log("in awake");
 
         if (instance == null)
             instance = this;
@@ -37,8 +35,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Debug.Log(debug);
 
         inputManager = new InputManager();
         //auSource = GetComponent<AudioSource>();

@@ -35,7 +35,7 @@ public class AudioListener : MonoBehaviour
         auSource.volume = SoundEvent.volume;
         if(soundTimer.IsCompleted(Time.deltaTime, false))
         {
-            Debug.Log("playing sound");
+            //Debug.Log("playing sound");
             auSource.PlayOneShot(SoundEvent.sound);
             soundTimer.Reset();
         }

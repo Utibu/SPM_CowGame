@@ -11,7 +11,6 @@ public class BarrellStateMachine : PhysicsStateMachine
 
     public void Move(Vector3 playerVelocity)
     {
-        Debug.Log(playerVelocity);
         if(!movable)
         {
             return;

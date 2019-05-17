@@ -161,10 +161,6 @@ public class PhysicsBaseState : State
     public virtual void ActOnCollision(Collider hitCollider, out bool skipCollision)
     {
         skipCollision = false;
-        if(hitCollider.CompareTag("JumpBale"))
-        {
-            Debug.LogWarning("JUMPBALE!!!");
-        }
     }
 
     //Tack till Vibben och Markus <3 
