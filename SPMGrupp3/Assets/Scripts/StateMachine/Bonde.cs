@@ -22,12 +22,11 @@ public class Bonde : StateMachine
     public bool customAttackDamage;
     public float attackDamage;
 
-    [SerializeField] protected float graceTime = 2f;
-    protected float timeSinceLastHit = 0f;
     protected bool isPaused = false;
     public bool isDying = false;
     protected BasicTimer timer;
-    [SerializeField] private float knockBackMultiplier = 1.8f;
+    private BasicTimer Gracetimer;
+    [SerializeField] private float knockBackMultiplier = 1.1f;
 
 
     // Start is called before the first frame update
@@ -77,38 +76,35 @@ public class Bonde : StateMachine
     // Update is called once per frame
     public override void Update()
     {
-
         if(isPaused)
         {
             return;
         }
-
+        if (Gracetimer != null && Gracetimer.IsCompleted(Time.deltaTime, false, true))
+        {
+            Gracetimer = null;
+        }
         if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
         {
             timer = null;
             isDying = true;
             return;
         }
-
-        if(timeSinceLastHit < 10.0f)
-        {
-            timeSinceLastHit += Time.deltaTime;
-        }
-        
         base.Update();
     }
 
     public virtual void PlayerDash()
     {
         
-        if(timeSinceLastHit > graceTime)
+        if(Gracetimer == null)
         {
             toughness -= 1;
             agnes.velocity += player.velocity * knockBackMultiplier;
-            timeSinceLastHit = 0;
+            Gracetimer = new BasicTimer(1.5f);
 
             if (toughness <= 0)
             {
+                isDying = true;
                 timer = new BasicTimer(0.5f);
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }

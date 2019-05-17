@@ -21,7 +21,8 @@ public class BossStateMachine : Bonde
     [SerializeField] private float spawnRadius;
     public GameObject snipeLocation;
 
-
+    private float timeSinceLastHit = 0f;
+    public float GraceTime = 1f;
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
     [HideInInspector] public int count = 0;
@@ -47,7 +48,7 @@ public class BossStateMachine : Bonde
 
     public override void PlayerDash()
     {
-        if (timeSinceLastHit > graceTime)
+        if (timeSinceLastHit > GraceTime)
         {
             currentToughness -= 1;
             transform.position += transform.forward * -2;
