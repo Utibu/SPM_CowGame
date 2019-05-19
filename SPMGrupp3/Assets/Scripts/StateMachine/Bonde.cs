@@ -16,7 +16,7 @@ public class Bonde : StateMachine
     //public GameObject player;
     public PlayerStateMachine player;
     public float toughness = 1;
-    private float currentToughness;
+    protected float currentToughness;
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
@@ -26,7 +26,8 @@ public class Bonde : StateMachine
     protected bool isPaused = false;
     public bool isDying = false;
     protected BasicTimer timer;
-    private BasicTimer Gracetimer;
+    protected BasicTimer Gracetimer;
+    [SerializeField] protected float graceTime = 1.5f;
     [SerializeField] private float knockBackMultiplier = 1.1f;
 
 
@@ -106,7 +107,7 @@ public class Bonde : StateMachine
         {
             currentToughness -= 1;
             agnes.velocity += player.velocity * knockBackMultiplier;
-            Gracetimer = new BasicTimer(1.5f);
+            Gracetimer = new BasicTimer(graceTime);
 
             if (currentToughness <= 0)
             {

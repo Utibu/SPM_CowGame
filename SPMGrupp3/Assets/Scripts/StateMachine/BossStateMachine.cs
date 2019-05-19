@@ -23,11 +23,11 @@ public class BossStateMachine : Bonde
     public Vector3 Destination;
 
     private float timeSinceLastHit = 0f;
-    public float GraceTime = 1f;
+    //public float GraceTime = 1f;
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
     [HideInInspector] public int count = 0;
-    private float currentToughness;
+    //private float currentToughness;
     private List<GameObject> underlingList = new List<GameObject>();
     //Gör private
     public Vector3 originalPosition;
@@ -48,11 +48,15 @@ public class BossStateMachine : Bonde
         
     }
 
-    
+    public override void Update()
+    {
+        base.Update();
+    }
 
     public override void PlayerDash()
     {
-        if (timeSinceLastHit > GraceTime)
+        //base.PlayerDash();
+        if (Gracetimer == null)
         {
             currentToughness -= 1;
             transform.position += transform.forward * -2;
