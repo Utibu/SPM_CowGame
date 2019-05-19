@@ -64,7 +64,8 @@ public class PlayerBaseState : PhysicsBaseState
         float vertical = Input.GetAxisRaw("Vertical");
         //Normalized (direction)
         direction = new Vector3(horizontal, 0f, vertical).normalized;
-        direction = (Camera.main.transform.rotation * direction).normalized;
+        //direction = (Camera.main.transform.rotation * direction).normalized;
+        direction = (player.OriginalCameraRotation * direction).normalized;
         //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);
         Vector3 projectedPlane = direction;
 
