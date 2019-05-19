@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.12931174, g: 0.18887964, b: 0.3870441, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: d4af8a430a6a663468abf499adb537c8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f191e19c634967e4cb36726a1eddf01e, type: 2}
 --- !u!1001 &20914060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3431,7 +3431,7 @@ PrefabInstance:
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
@@ -3892,7 +3892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9018498197459491995}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -81.8, y: 25.21, z: 242.5}
+  m_LocalPosition: {x: -546.71, y: 115.76, z: -67.105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7630110964935041596}
@@ -3989,17 +3989,11 @@ MonoBehaviour:
   waitWhenInteracting: 0
   lastAcceleration: 0
   lastGravity: 0
-  maxFOV: 80
   isDashing: 0
   elapsedDashTime: 0
   allowedToDash: 1
   dashCooldown: 1
   dashDuration: 1.5
-  CameraIgnoreTags:
-  - IgnoreCamera
-  - DashFallable
-  - Barrell
-  - Enemy
   dashStateAcceleration: 0
   dashStateGravity: 0
   dashAirResistance: 0.1
@@ -4012,6 +4006,14 @@ MonoBehaviour:
   maxAngle: 45
   cameraPositionRelativeToPlayer: {x: 0, y: 0, z: -5}
   cameraType: 1
+  CameraIgnoreTags:
+  - IgnoreCamera
+  - DashFallable
+  - Barrell
+  - Enemy
+  maxFOV: 80
+  camShakeMagnitude: 3
+  camShakeFalloff: 1
   cameraRotationOffset: {x: 0, y: 1, z: 0}
   hasFreeDash: 0
 --- !u!1 &9018498197459491995
