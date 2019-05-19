@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 954758545757955091}
   - component: {fileID: 6774384424644516074}
   - component: {fileID: 3741709428451723095}
+  - component: {fileID: -7528210550526829664}
   m_Layer: 9
   m_Name: fence_nonbash
   m_TagString: Untagged
@@ -91,3 +92,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 49.930702, y: 285.31943, z: 719.722}
   m_Center: {x: 0, y: -0.37332177, z: 1.940155}
+--- !u!208 &-7528210550526829664
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061945587502558262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 14.979001, y: 141.546, z: 354.93103}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
