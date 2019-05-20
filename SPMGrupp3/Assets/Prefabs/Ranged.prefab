@@ -155,13 +155,17 @@ MonoBehaviour:
   customAttackDamage: 0
   attackDamage: 0
   isDying: 0
+  graceTime: 1.5
   knockBackMultiplier: 1.1
+  DebugThis: 0
+  stunLengthToGround: 1
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
   attackSpeed: 2
   reloadTime: 3
   bulletsBeforeReload: 3
   bulletsShotSinceReload: 0
+  GunSound: {fileID: 8300000, guid: 26347a6df7ff8db4ebfeb4aef74f2dce, type: 3}
 --- !u!136 &5053778765053651794
 CapsuleCollider:
   m_ObjectHideFlags: 0

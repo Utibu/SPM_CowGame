@@ -71,6 +71,11 @@ public class DashState : PlayerBaseState
         
         //****************************************************************//
 
+        if(owner.velocity.magnitude < player.velocityToDash)
+        {
+            return;
+        }
+
         if(hitCollider.GetComponent<Dashable>() != null)
         {
             hitCollider.GetComponent<Dashable>().OnPlayerCollideEnter(hitCollider, out skipCollision, player.DashLevel);

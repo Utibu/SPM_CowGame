@@ -33,6 +33,8 @@ public class Bonde : StateMachine
     private Vector3 knockbackDirection = Vector3.zero;
     public bool DebugThis = false;
     private bool isLethalHit = false;
+    [SerializeField] private float stunLengthToGround;
+    public float StunLengthToGround { get { return stunLengthToGround; } private set { stunLengthToGround = value; } }
 
 
     // Start is called before the first frame update

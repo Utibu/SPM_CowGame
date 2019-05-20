@@ -12,6 +12,7 @@ public class BossStateMachine : Bonde
     public float bulletsBeforeReload;
     [HideInInspector]
     public float bulletsShotSinceReload;
+    public AudioClip GunSound;
 
     public float health = 100f;
     public float damageOnDash = 25f;
@@ -44,8 +45,6 @@ public class BossStateMachine : Bonde
     {
         base.Start();
         originalPosition = transform.position;
-        EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
-        
     }
 
     public override void Update()
@@ -88,6 +87,7 @@ public class BossStateMachine : Bonde
         {
             Invoke("SpawnUnderling", timeBetweenSpawns);
         }
+
     }
 
     private void OnUnderlingDeath(EnemyDieEvent enemyDeath)
@@ -106,5 +106,5 @@ public class BossStateMachine : Bonde
             }
         }
     }
-    
+
 }
