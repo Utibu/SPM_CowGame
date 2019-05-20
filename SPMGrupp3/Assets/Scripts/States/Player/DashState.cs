@@ -37,6 +37,7 @@ public class DashState : PlayerBaseState
         player.dashStateGravity = gravityConstant;
         UIManager.instance.SetDashFillAmount(1f);
         player.DashCooldownTimer.Reset();
+        canStrafe = false;
     }
 
     public override void Leave()
@@ -59,6 +60,7 @@ public class DashState : PlayerBaseState
         }
         
         player.DashDurationTimer.Reset();
+        canStrafe = true;
 
         base.Leave();
     }
