@@ -34,7 +34,7 @@ public class BarrellState : PhysicsBaseState
         {
             Bonde bonde = hitCollider.GetComponent<Bonde>();
             Collider collider = owner.GetComponent<Collider>();
-            bonde.PlayerDash();
+            bonde.PlayerDash(owner.velocity);
         }
         
         base.ActOnCollision(hitCollider, out skipCollision);

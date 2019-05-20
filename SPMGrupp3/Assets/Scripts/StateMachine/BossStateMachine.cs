@@ -53,9 +53,9 @@ public class BossStateMachine : Bonde
         base.Update();
     }
 
-    public override void PlayerDash()
+    public override void PlayerDash(Vector3 velocity)
     {
-        //base.PlayerDash();
+        //base.PlayerDash(velocity);
         if (Gracetimer == null)
         {
             currentToughness -= 1;

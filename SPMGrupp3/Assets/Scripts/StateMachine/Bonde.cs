@@ -121,15 +121,15 @@ public class Bonde : StateMachine
         base.Update();
     }
 
-    public virtual void PlayerDash()
+    public virtual void PlayerDash(Vector3 velocity)
     {
         if(Gracetimer == null)
         {
             currentToughness -= 1;
 
             //agnes.velocity += agnes.velocity * -1 * 100f;
-            knockbackDirection = player.velocity.normalized;
-            agnes.velocity = knockbackDirection.normalized * (5f + player.velocity.magnitude);
+            knockbackDirection = velocity.normalized;
+            agnes.velocity = knockbackDirection.normalized * (5f + velocity.magnitude);
             //Sets to false in stun leave
             DoingKnockback = true;
             Gracetimer = new BasicTimer(graceTime);

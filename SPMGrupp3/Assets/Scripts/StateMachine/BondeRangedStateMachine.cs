@@ -11,9 +11,9 @@ public class BondeRangedStateMachine : Bonde
     public float bulletsBeforeReload;
     [HideInInspector] public float bulletsShotSinceReload;
 
-    public override void PlayerDash()
+    public override void PlayerDash(Vector3 velocity)
     {
-        base.PlayerDash();
+        base.PlayerDash(velocity);
         
             //Transition<BondeRangedStunState>();
         
