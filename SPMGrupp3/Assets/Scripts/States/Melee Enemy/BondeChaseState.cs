@@ -28,12 +28,12 @@ public class BondeChaseState : BondeBaseState
         // can only go to attack if raycast hits player, thus it can not hit through walls.
         RaycastHit rayHit;
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.toAttack);
-        if (hit && rayHit.collider.transform.tag.Equals("Player"))
+        if (hit && rayHit.collider.transform.tag.Equals("Player") && owner.DoingKnockback == false)
         {
             owner.Transition<BondeAttackState>();
         }
         
-        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility * 1.1f) // *1.2f för att bonden inte ska flimra mellan states när den står på gränsen.
+        else if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility * 1.1f && owner.DoingKnockback == false) // *1.2f för att bonden inte ska flimra mellan states när den står på gränsen.
         {
             owner.Transition<BondePatrolState>();
         }

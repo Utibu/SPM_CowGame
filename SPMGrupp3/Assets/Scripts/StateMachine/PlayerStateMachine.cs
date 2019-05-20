@@ -191,7 +191,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         {
             Camera cam = GameManager.instance.cam;
             camShakeIntensity -= 1 * camShakeFalloff * camShakeIntensity * Time.deltaTime;
-            Debug.Log("CAMSHAKEINTENSITY: " + camShakeIntensity);
+            //Debug.Log("CAMSHAKEINTENSITY: " + camShakeIntensity);
 
             shakeX = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
             shakeY = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);

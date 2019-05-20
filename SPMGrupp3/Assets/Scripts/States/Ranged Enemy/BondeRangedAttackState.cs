@@ -64,7 +64,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
         BulletStateMachine stateMachine = bullet.GetComponent<BulletStateMachine>();
         stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
         owner.bulletsShotSinceReload++;
-        if(owner.bulletsShotSinceReload >= owner.bulletsBeforeReload)
+        if(owner.bulletsShotSinceReload >= owner.bulletsBeforeReload && owner.DoingKnockback == false)
         {
             owner.bulletsShotSinceReload = 0;
             owner.Transition<BondeRangedReloadState>();
