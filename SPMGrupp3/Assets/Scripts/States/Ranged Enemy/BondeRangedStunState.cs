@@ -10,7 +10,8 @@ public class BondeRangedStunState : BondeRangedBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.transform.Rotate(0, 0, 90);
+        owner.isDying = false;
+        //owner.transform.Rotate(0, 0, 90);
         owner.transform.position -= new Vector3(0f, 1f, 0f);
         time = 0.0f;
         owner.agnes.isStopped = true;
@@ -21,6 +22,7 @@ public class BondeRangedStunState : BondeRangedBaseState
     public override void Update()
     {
         base.Update();
+        owner.transform.eulerAngles = new Vector3(0f, 0f, 90f);
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
         time += Time.deltaTime;
         //Debug.Log(time);
@@ -39,5 +41,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         owner.agnes.isStopped = false;
         owner.transform.Rotate(0, 0, -90);
         owner.transform.position -= new Vector3(0f, -1f, 0f);
+        owner.DoingKnockback = false;
+        owner.transform.eulerAngles = new Vector3(0f, 0f, 0f);
     }
 }

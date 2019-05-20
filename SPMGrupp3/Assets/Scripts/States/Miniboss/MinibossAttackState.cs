@@ -30,7 +30,7 @@ public class MinibossAttackState : BondeBaseState
         }
 
         // deathcheck (remove laterr)
-        if (hitsTaken >= maxHits)
+        if (hitsTaken >= maxHits && owner.DoingKnockback == false)
         {
             owner.Transition<MinibossStunState>();
         }
