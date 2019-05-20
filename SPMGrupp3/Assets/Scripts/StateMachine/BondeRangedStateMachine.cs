@@ -12,9 +12,9 @@ public class BondeRangedStateMachine : Bonde
     [HideInInspector] public float bulletsShotSinceReload;
     public AudioClip GunSound;
 
-    public override void PlayerDash()
+    public override void PlayerDash(Vector3 velocity)
     {
-        base.PlayerDash();
+        base.PlayerDash(velocity);
         
             //Transition<BondeRangedStunState>();
         

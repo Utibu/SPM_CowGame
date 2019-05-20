@@ -18,7 +18,13 @@ public class BondeAttackState : BondeBaseState
         base.Enter();
         owner.agnes.speed = 0.1f;
         originalPosition = owner.weapon.transform.rotation;
-        countdown = cooldown / 2; // så att denne inte attackerar på en gång
+
+        countdown = cooldown / 3; // så att denne inte attackerar på en gång
+        /*
+        if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss ska kunna attackera på en gång!
+            countdown = 0f;
+        */
+
         rotation = 0;
         if (!owner.customAttackDamage)
         {
@@ -101,7 +107,7 @@ public class BondeAttackState : BondeBaseState
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
             owner.player.playerValues.health -= owner.attackDamage;
-            owner.player.velocity += owner.transform.forward * 25f;
+            owner.player.velocity += owner.transform.forward * 30f;
             owner.player.velocity += new Vector3(0.0f, 15.0f, 0.0f);
         }
         // reset cd and move up weapon

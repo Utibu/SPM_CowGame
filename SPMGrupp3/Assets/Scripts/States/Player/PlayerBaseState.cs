@@ -9,6 +9,7 @@ public class PlayerBaseState : PhysicsBaseState
     [SerializeField] private float diagonalPercentage = 0.8f;
     protected Vector3 direction;
     public bool takeInput = true;
+    protected bool canStrafe = true;
     protected float jumpForce = 5f;
     protected float maxSpeed;
     protected PlayerStateMachine player;
@@ -63,7 +64,14 @@ public class PlayerBaseState : PhysicsBaseState
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         //Normalized (direction)
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
+        if (canStrafe)
+        {
+            direction = new Vector3(horizontal, 0f, vertical).normalized;
+        }
+        else
+        {
+            direction = new Vector3(horizontal * 0.4f, 0f, vertical).normalized;
+        }
         //direction = (Camera.main.transform.rotation * direction).normalized;
         direction = (player.OriginalCameraRotation * direction).normalized;
         //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);

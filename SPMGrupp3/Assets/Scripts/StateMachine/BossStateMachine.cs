@@ -16,6 +16,7 @@ public class BossStateMachine : Bonde
 
     public float health = 100f;
     public float damageOnDash = 25f;
+    public bool isInvincible = false;
 
     public GameObject underlingPrefab;
     public GameObject underlingSpawnArea;
@@ -45,6 +46,7 @@ public class BossStateMachine : Bonde
     {
         base.Start();
         originalPosition = transform.position;
+        EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
     }
 
     public override void Update()
@@ -52,10 +54,10 @@ public class BossStateMachine : Bonde
         base.Update();
     }
 
-    public override void PlayerDash()
+    public override void PlayerDash(Vector3 velocity)
     {
-        //base.PlayerDash();
-        if (Gracetimer == null)
+        //base.PlayerDash(velocity);
+        if (Gracetimer == null && isInvincible == false)
         {
             currentToughness -= 1;
             transform.position += transform.forward * -2;

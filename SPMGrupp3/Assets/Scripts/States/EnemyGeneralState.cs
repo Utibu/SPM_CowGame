@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGeneralState : State
 {
-    public virtual void PlayerDash()
+    public virtual void PlayerDash(Vector3 velocity)
     {
 
     }

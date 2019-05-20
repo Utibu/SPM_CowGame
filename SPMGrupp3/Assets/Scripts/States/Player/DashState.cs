@@ -37,6 +37,7 @@ public class DashState : PlayerBaseState
         player.dashStateGravity = gravityConstant;
         UIManager.instance.SetDashFillAmount(1f);
         player.DashCooldownTimer.Reset();
+        canStrafe = false;
     }
 
     public override void Leave()
@@ -59,6 +60,7 @@ public class DashState : PlayerBaseState
         }
         
         player.DashDurationTimer.Reset();
+        canStrafe = true;
 
         base.Leave();
     }
@@ -119,7 +121,7 @@ public class DashState : PlayerBaseState
             player.ShakeCamera();
             //Destroy(hitCollider.gameObject);
             Bonde bonde = hitCollider.GetComponent<Bonde>();
-            bonde.PlayerDash();
+            bonde.PlayerDash(owner.velocity);
         }
        
         CheckMovableCollision(hitCollider, 2f);

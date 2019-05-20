@@ -92,7 +92,7 @@ public class ChargeState : PlayerBaseState
         {
             //Destroy(hitCollider.gameObject);
             Bonde bonde = hitCollider.GetComponent<Bonde>();
-            bonde.PlayerDash();
+            bonde.PlayerDash(owner.velocity);
         }
         /*
         if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
