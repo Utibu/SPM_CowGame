@@ -345,15 +345,17 @@ MonoBehaviour:
   maxVisibility: 25
   customAttackDamage: 0
   attackDamage: 0
-  graceTime: 2
   isDying: 0
+  graceTime: 2
   knockBackMultiplier: 1.8
+  DebugThis: 0
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7049715746655330820}
   attackSpeed: 0.5
   reloadTime: 3
   bulletsBeforeReload: 5
   bulletsShotSinceReload: 0
+  GunSound: {fileID: 8300000, guid: 26347a6df7ff8db4ebfeb4aef74f2dce, type: 3}
   health: 100
   damageOnDash: 25
   underlingPrefab: {fileID: 2929106447677307340, guid: 18cf9e71a9f129443a1cacda874c6ab3,
@@ -365,6 +367,7 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   underlingQuantityPerWave: 2
   count: 0
+  originalPosition: {x: 0, y: 0, z: 0}
   healthBar: {fileID: 7049715746204282144}
 --- !u!1 &7049715746204282146
 GameObject:
