@@ -54,6 +54,7 @@ public class BossSnipeState : BossBaseState
         //owner.agnes.enabled = true;
         //owner.Destination = originalPosition;
         //owner.agnes.Warp(originalPosition);
+        owner.attackSpeed = originalAttackSpeed;
         owner.bulletsShotSinceReload = 0;
         
     }

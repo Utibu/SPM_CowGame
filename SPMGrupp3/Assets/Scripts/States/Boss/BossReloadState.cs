@@ -11,6 +11,7 @@ public class BossReloadState : BossBaseState
     public override void Enter()
     {
         time = 0f;
+
     }
 
     public override void Update()

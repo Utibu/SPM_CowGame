@@ -7,7 +7,7 @@ public class BossTransitionState : BossBaseState
 {
 
     private Vector3 destination;
-    private float rangeFromDestination = 3f;
+    private float rangeFromDestination = 2f;
 
 
     public override void Enter()
@@ -16,7 +16,6 @@ public class BossTransitionState : BossBaseState
         
         owner.agnes.enabled = false;
         
-        Debug.Log("Destination: " + destination + " Snipe location: " + owner.snipeLocation.transform.position + " Start position " + owner.originalPosition);
         
     }
 
@@ -30,16 +29,13 @@ public class BossTransitionState : BossBaseState
         }
         else
         {
-            Debug.Log("destination reached");
             
             if(Helper.IsWithinDistance(owner.transform.position, owner.snipeLocation.transform.position, rangeFromDestination) && owner.lastState.GetType() != typeof(BossSnipeState))
             {
-                Debug.Log("transitioned to snipe state");
                 owner.Transition<BossSnipeState>();
             }
             else
             {
-                Debug.Log("transitioned to attack state");
                 owner.Transition<BossAttackState>();
             }
             
