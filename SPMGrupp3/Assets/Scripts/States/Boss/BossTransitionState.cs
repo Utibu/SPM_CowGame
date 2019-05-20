@@ -15,8 +15,8 @@ public class BossTransitionState : BossBaseState
         destination = owner.Destination;
         
         owner.agnes.enabled = false;
-        
-        
+
+        owner.isInvincible = true;
     }
 
     public override void Update()
@@ -45,5 +45,6 @@ public class BossTransitionState : BossBaseState
     public override void Leave()
     {
         owner.agnes.enabled = true;
+        owner.isInvincible = false;
     }
 }
