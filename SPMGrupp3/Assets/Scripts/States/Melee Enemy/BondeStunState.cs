@@ -22,7 +22,7 @@ public class BondeStunState : BondeBaseState
 
         if(owner.itemDrop != null)
         {
-            Instantiate(owner.itemDrop, owner.transform.position, Quaternion.identity);
+            Instantiate(owner.itemDrop, owner.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
             //owner.itemDrop.transform.position = owner.transform.position; // + new Vector3(0.5f, 0.0f, 0.5f)
         }
 
