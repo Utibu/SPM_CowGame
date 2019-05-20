@@ -125,7 +125,7 @@ public class FallingObject : Dashable
             Vector3 rot = direction.normalized * acceleration * Time.deltaTime;
             Vector3 toRot = DistanceToGround(rot);
             transform.RotateAround(pivot.transform.position, rotationDirection.normalized, rot.magnitude);
-            Debug.Log(rotationDirection.normalized);
+            //Debug.Log(rotationDirection.normalized);
         }
     }
 }
