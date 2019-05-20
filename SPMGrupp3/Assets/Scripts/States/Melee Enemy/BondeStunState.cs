@@ -18,7 +18,7 @@ public class BondeStunState : BondeBaseState
         owner.GetComponent<Collider>().enabled = false;
         owner.GetComponent<MeshRenderer>().material.color = Color.black;
         //owner.transform.Rotate(0, 0, 90);
-        owner.transform.position -= new Vector3(0f, owner.transform.localScale.y / 2, 0f) ; // independant of size, enemy should lie on ground, not float above it.
+        owner.transform.position -= new Vector3(0f, owner.StunLengthToGround, 0f) ; // independant of size, enemy should lie on ground, not float above it.
 
         if(owner.itemDrop != null)
         {
@@ -45,7 +45,7 @@ public class BondeStunState : BondeBaseState
         base.Leave();
         //owner.transform.Rotate(0, 0, -90);
         owner.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        owner.transform.position -= new Vector3(0f, -1f, 0f);
+        owner.transform.position -= new Vector3(0f, -owner.StunLengthToGround, 0f);
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;

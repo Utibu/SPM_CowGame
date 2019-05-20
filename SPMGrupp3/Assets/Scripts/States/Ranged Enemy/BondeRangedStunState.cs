@@ -12,7 +12,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         base.Enter();
         owner.isDying = false;
         //owner.transform.Rotate(0, 0, 90);
-        owner.transform.position -= new Vector3(0f, 1f, 0f);
+        owner.transform.position -= new Vector3(0f, owner.StunLengthToGround, 0f);
         time = 0.0f;
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
@@ -40,7 +40,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;
         owner.transform.Rotate(0, 0, -90);
-        owner.transform.position -= new Vector3(0f, -1f, 0f);
+        owner.transform.position -= new Vector3(0f, -owner.StunLengthToGround, 0f);
         owner.DoingKnockback = false;
         owner.transform.eulerAngles = new Vector3(0f, 0f, 0f);
     }
