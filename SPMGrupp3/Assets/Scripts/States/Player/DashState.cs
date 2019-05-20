@@ -80,6 +80,7 @@ public class DashState : PlayerBaseState
 
         if(hitCollider.GetComponent<Dashable>() != null)
         {
+            player.ShakeCamera();
             hitCollider.GetComponent<Dashable>().OnPlayerCollideEnter(hitCollider, out skipCollision, player.DashLevel);
         }
 
