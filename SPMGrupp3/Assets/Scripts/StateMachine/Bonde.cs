@@ -29,6 +29,10 @@ public class Bonde : StateMachine
     protected BasicTimer Gracetimer;
     [SerializeField] protected float graceTime = 1.5f;
     [SerializeField] private float knockBackMultiplier = 1.1f;
+    public bool DoingKnockback { get; set; }
+    private Vector3 knockbackDirection = Vector3.zero;
+    public bool DebugThis = false;
+    private bool isLethalHit = false;
 
 
     // Start is called before the first frame update
@@ -38,7 +42,7 @@ public class Bonde : StateMachine
         currentToughness = toughness;
         boxref = GetComponent<BoxCollider>();
         agnes = GetComponent<NavMeshAgent>();
-        
+        DoingKnockback = false;
     }
 
     public override void Start()
@@ -84,6 +88,8 @@ public class Bonde : StateMachine
             return;
         }
 
+        //Debug.Log(agnes.velocity + " CURRENT STATE: " + GetCurrentState().GetType());
+
         //while timer is tickinh, bonde cant take dmg
         if (Gracetimer != null && Gracetimer.IsCompleted(Time.deltaTime, false, true))
         {
@@ -94,9 +100,23 @@ public class Bonde : StateMachine
         if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
         {
             timer = null;
-            isDying = true;
-            currentToughness = toughness; // lives are reset. 
+            if(isLethalHit)
+            {
+                isDying = true;
+                currentToughness = toughness; // lives are reset. 
+            } else
+            {
+                DoingKnockback = false;
+                agnes.velocity = Vector3.zero;
+            }
+            
             return;
+        } else
+        {
+            if(DoingKnockback)
+            {
+                agnes.velocity -= knockbackDirection * Time.deltaTime;
+            }
         }
         base.Update();
     }
@@ -106,12 +126,19 @@ public class Bonde : StateMachine
         if(Gracetimer == null)
         {
             currentToughness -= 1;
-            agnes.velocity += player.velocity * knockBackMultiplier;
+
+            //agnes.velocity += agnes.velocity * -1 * 100f;
+            knockbackDirection = player.velocity.normalized;
+            agnes.velocity = knockbackDirection.normalized * (5f + player.velocity.magnitude);
+            //Sets to false in stun leave
+            DoingKnockback = true;
             Gracetimer = new BasicTimer(graceTime);
+            Debug.Log("NEW VELOCITY: " + agnes.velocity);
+            timer = new BasicTimer(0.5f);
 
             if (currentToughness <= 0)
             {
-                timer = new BasicTimer(0.5f);
+                isLethalHit = true;
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
         }

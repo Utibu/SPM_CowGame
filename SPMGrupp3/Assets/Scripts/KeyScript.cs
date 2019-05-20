@@ -12,6 +12,11 @@ public class KeyScript : Triggable
         keyCollider = GetComponent<CapsuleCollider>();
     }
 
+    public void Update()
+    {
+        transform.RotateAroundLocal(Vector3.up, 0.2f);
+    }
+
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         Debug.Log("triggered key");
