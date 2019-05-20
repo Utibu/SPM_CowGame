@@ -20,11 +20,7 @@ public class BondeAttackState : BondeBaseState
         originalPosition = owner.weapon.transform.rotation;
 
         countdown = cooldown / 3; // så att denne inte attackerar på en gång
-        /*
-        if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss ska kunna attackera på en gång!
-            countdown = 0f;
-        */
-
+       
         rotation = 0;
         if (!owner.customAttackDamage)
         {
@@ -60,7 +56,6 @@ public class BondeAttackState : BondeBaseState
             else
             {
                 attack();
-
             }
         }
 
@@ -74,7 +69,7 @@ public class BondeAttackState : BondeBaseState
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.toAttack);
         Debug.Log("DISTANCE: " + Vector3.Distance(owner.transform.position, owner.player.transform.position));
         Debug.Log("HIT: " + (hit && !rayHit.collider.transform.tag.Equals("Player")));
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack || (hit && !rayHit.collider.transform.tag.Equals("Player")))
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack * 1.2f || (hit && !rayHit.collider.transform.tag.Equals("Player")))
         {
             if(owner.DoingKnockback == false)
             {
@@ -87,7 +82,6 @@ public class BondeAttackState : BondeBaseState
     private void attack()
     {
         owner.weapon.transform.localRotation = Quaternion.Euler(90,0,0);
-
         
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack)
         {
