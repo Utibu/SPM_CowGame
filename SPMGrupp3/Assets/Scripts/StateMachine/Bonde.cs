@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bonde : StateMachine
 {
@@ -35,6 +36,8 @@ public class Bonde : StateMachine
     private bool isLethalHit = false;
     [SerializeField] private float stunLengthToGround;
     public float StunLengthToGround { get { return stunLengthToGround; } private set { stunLengthToGround = value; } }
+
+    public Image healthMeter;
 
 
     // Start is called before the first frame update
@@ -142,6 +145,11 @@ public class Bonde : StateMachine
             {
                 isLethalHit = true;
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
+            }
+
+            if(healthMeter != null)
+            {
+                healthMeter.fillAmount = currentToughness / toughness;
             }
         }
     }
