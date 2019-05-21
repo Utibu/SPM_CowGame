@@ -9,6 +9,6 @@ public class HayInteractable : Interactable
         base.OnInteracted();
         
         EventSystem.Current.FireEvent(new HayEatingFinishedEvent(this.gameObject, "Eating hay finished!"));
-        Destroy(transform.parent.gameObject);
+        transform.parent.gameObject.SetActive(false);
     }
 }

@@ -19,6 +19,6 @@ public class DroppableObject : Triggable
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
