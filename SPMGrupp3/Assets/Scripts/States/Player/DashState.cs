@@ -36,7 +36,7 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         UIManager.instance.SetDashFillAmount(1f);
-        player.DashCooldownTimer.Reset();
+        //player.DashCooldownTimer.Reset();
         canStrafe = false;
     }
 
@@ -50,14 +50,14 @@ public class DashState : PlayerBaseState
         player.lastGravity = gravityConstant;
         player.lastAcceleration = acceleration;
 
-        player.DashCooldownTimer.Reset();
-        if(player.DashDurationTimer.GetPercentage() > 0)
+        //player.DashCooldownTimer.Reset();
+        /*if(player.DashDurationTimer.GetPercentage() > 0)
         {
             player.DashCooldownTimer.SetStartTime((1 - player.DashDurationTimer.GetPercentage()) * player.DashCooldownTimer.GetDuration());
         } else
         {
             player.DashCooldownTimer.SetStartTime(0);
-        }
+        }*/
         
         player.DashDurationTimer.Reset();
         canStrafe = true;
@@ -145,7 +145,7 @@ public class DashState : PlayerBaseState
         }
         else if (!GameManager.instance.inputManager.DashKey() || !IsGrounded())
         {
-            //player.DashCooldownTimer.Reset();
+            player.DashCooldownTimer.Reset();
             owner.Transition<WalkState>();
             return;
         }

@@ -24,7 +24,7 @@ public class InputManager
 
     public bool DashKey()
     {
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("Right Trigger") > 0)
+        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)) || Input.GetAxis("Right Trigger") > 0)
         {
             return true;
         }
