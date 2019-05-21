@@ -67,6 +67,8 @@ public class PlayerStateMachine : PhysicsStateMachine
 
 
     [SerializeField] private Vector3 cameraRotationOffset;
+    [SerializeField] private ParticleSystem speedLinesParticleSystem;
+    [SerializeField] private ParticleSystem groundParticleSystem;
     
     public bool hasFreeDash = false;
     public BasicTimer DashCooldownTimer { get; private set; }
@@ -125,6 +127,25 @@ public class PlayerStateMachine : PhysicsStateMachine
         IsRotating = false;
     }
 
+    public void ShowParticles()
+    {
+        if(speedLinesParticleSystem.isStopped && groundParticleSystem.isStopped)
+        {
+            speedLinesParticleSystem.Play();
+            groundParticleSystem.Play();
+        }
+        
+    }
+
+    public void HideParticles()
+    {
+        if (speedLinesParticleSystem.isStopped == false && groundParticleSystem.isStopped == false)
+        {
+            speedLinesParticleSystem.Stop();
+            groundParticleSystem.Stop();
+        }
+    }
+
     public void RotatePlayer(Vector3 direction)
     {
         IEnumerator rotationRoutine = Rotator(direction);
@@ -180,6 +201,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         }
 
         OriginalCameraRotation = GameManager.instance.cam.transform.rotation;
+        speedLinesParticleSystem.transform.rotation = OriginalCameraRotation;
 
         if (Input.GetKeyDown(KeyCode.B))
         {

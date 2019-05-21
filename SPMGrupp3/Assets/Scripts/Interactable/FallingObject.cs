@@ -122,7 +122,10 @@ public class FallingObject : Dashable
         //new Vector3(direction.z * -1, direction.y, direction.x)
         //Debug.Log("ROTTHISFRAME: " + rotThisFrame.magnitude);
         Vector3 tempDir = transform.rotation * direction;
-        RaycastHit[] hits = Physics.BoxCastAll(transform.position, meshRenderer.bounds.size / 2, tempDir, Quaternion.identity, float.MaxValue, layerMask);
+        Debug.Log("TEMPDIR: " + tempDir);
+        Debug.DrawLine(transform.position, transform.position + (tempDir * 100f), Color.red);
+        
+        RaycastHit[] hits = Physics.BoxCastAll(transform.position, meshRenderer.bounds.size / 2, tempDir, transform.rotation, float.MaxValue, layerMask);
         foreach (RaycastHit hit in hits)
         {
             if(hit.collider.tag.Equals("Enemy"))
@@ -132,9 +135,19 @@ public class FallingObject : Dashable
             if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
             {
                 Debug.Log("DISTANCE: " + hit.distance);
+                hit.collider.GetComponent<Bonde>().UnregisterEnemy();
                 Destroy(hit.collider.gameObject);
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        /*float xOffset = (Mathf.Cos(Mathf.Deg2Rad * (transform.eulerAngles.y)));
+        float zOffset = (-Mathf.Sin(Mathf.Deg2Rad * (transform.eulerAngles.y)));
+        float yOffset = (Mathf.Cos(Mathf.Deg2Rad * (transform.eulerAngles.z)));
+        Gizmos.DrawCube(transform.position, new Vector3(0.5f + xOffset, 1f + yOffset, 0.5f + zOffset));*/
     }
 
     // Update is called once per frame

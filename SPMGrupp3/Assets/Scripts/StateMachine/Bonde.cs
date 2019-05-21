@@ -62,6 +62,11 @@ public class Bonde : StateMachine
     private void UnregisterEvents(UnregisterListenerEvent eventInfo)
     {
         Debug.Log("UNREGISTER");
+        UnregisterEnemy();
+    }
+
+    public void UnregisterEnemy()
+    {
         EventSystem.Current.UnregisterListener<PauseEvent>(Pause);
         EventSystem.Current.UnregisterListener<ResumeEvent>(Resume);
     }
