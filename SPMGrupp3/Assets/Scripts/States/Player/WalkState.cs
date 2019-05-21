@@ -12,7 +12,10 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        dashTimer = new BasicTimer(dashCooldown);
+        if(GameManager.instance.inputManager.DashKey() == false)
+        {
+            //dashTimer = new BasicTimer(dashCooldown);
+        }
     }
 
     public override void Leave()
@@ -43,7 +46,8 @@ public class WalkState : PlayerBaseState
         }
 
         //owner.velocity.magnitude >= dashThreshold
-        if (CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey() && IsGrounded() && dashTimer.IsCompleted(Time.deltaTime, true, true))
+        // && dashTimer.IsCompleted(Time.deltaTime, true, true)
+        if (CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.Transition<DashState>();
         }

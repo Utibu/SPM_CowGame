@@ -14,40 +14,51 @@ public class UIMessageTrigger : Triggable
     [SerializeField] private Sprite rightSprite;
 
     
-    private bool isShowing = false;
+    public bool IsShowing { get; private set; }
 
-    protected override void CustomStart()
+    public void ShowMessage()
     {
-        base.CustomStart();
+        if (rightDescription.Length > 0 && rightSprite != null)
+        {
+            UIManager.instance.ShowBigMessage(title, description, sprite, rightDescription, rightSprite);
+        }
+        else
+        {
+            UIManager.instance.ShowSmallMessage(title, description, sprite);
+        }
+
+        IsShowing = true;
+        if (shouldPause)
+        {
+            EventSystem.Current.FireEvent(new PauseEvent(""));
+        }
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        if(rightDescription.Length > 0 && rightSprite != null)
-        {
-            UIManager.instance.ShowBigMessage(title, description, sprite, rightDescription, rightSprite);
-        } else
-        {
-            UIManager.instance.ShowSmallMessage(title, description, sprite);
-        }
-        
-        isShowing = true;
-        if(shouldPause)
-        {
-            EventSystem.Current.FireEvent(new PauseEvent(""));
-        }
+        ShowMessage();
         
     }
 
-    public override void CustomUpdate()
+    public override void Start()
     {
-        base.CustomUpdate();
-        if(isShowing && GameManager.instance.inputManager.ContinueKeyDown())
+        base.Start();
+        IsShowing = false;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if(IsShowing && GameManager.instance.inputManager.ContinueKeyDown())
         {
             EventSystem.Current.FireEvent(new ResumeEvent(""));
             UIManager.instance.HideMessages();
-            TriggerCollider.gameObject.SetActive(false);
+            if(TriggerCollider != null)
+            {
+                TriggerCollider.gameObject.SetActive(false);
+            }
+            
         }
     }
 

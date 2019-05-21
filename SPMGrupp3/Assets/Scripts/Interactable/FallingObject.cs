@@ -116,6 +116,27 @@ public class FallingObject : Dashable
         return rotThisFrame;
     }
 
+    public void CheckEnemyHits(Vector3 rotThisFrame)
+    {
+        //collisionCheck.transform.forward
+        //new Vector3(direction.z * -1, direction.y, direction.x)
+        //Debug.Log("ROTTHISFRAME: " + rotThisFrame.magnitude);
+        Vector3 tempDir = transform.rotation * direction;
+        RaycastHit[] hits = Physics.BoxCastAll(transform.position, meshRenderer.bounds.size / 2, tempDir, Quaternion.identity, float.MaxValue, layerMask);
+        foreach (RaycastHit hit in hits)
+        {
+            if(hit.collider.tag.Equals("Enemy"))
+            {
+                Debug.Log("HIT DISTANCE: " + hit.distance);
+            }
+            if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
+            {
+                Debug.Log("DISTANCE: " + hit.distance);
+                Destroy(hit.collider.gameObject);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -126,6 +147,7 @@ public class FallingObject : Dashable
             Vector3 rot = direction.normalized * acceleration * Time.deltaTime;
             Vector3 toRot = DistanceToGround(rot);
             transform.RotateAround(pivot.transform.position, rotationDirection.normalized, rot.magnitude);
+            CheckEnemyHits(rot);
             //Debug.Log(rotationDirection.normalized);
         }
     }

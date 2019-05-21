@@ -36,6 +36,8 @@ public class BossStateMachine : Bonde
     public Vector3 originalPosition;
 
     public Image healthBar;
+    [HideInInspector] public MeshRenderer renderColor;
+
 
     protected override void Awake()
     {
@@ -49,6 +51,7 @@ public class BossStateMachine : Bonde
         originalPosition = transform.position;
         EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(OnPlayerDeath);
+        renderColor = GetComponent<MeshRenderer>();
     }
 
     public override void Update()
