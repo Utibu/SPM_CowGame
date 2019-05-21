@@ -67,8 +67,8 @@ public class BondeAttackState : BondeBaseState
         
         RaycastHit rayHit;
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.toAttack);
-        Debug.Log("DISTANCE: " + Vector3.Distance(owner.transform.position, owner.player.transform.position));
-        Debug.Log("HIT: " + (hit && !rayHit.collider.transform.tag.Equals("Player")));
+        //Debug.Log("DISTANCE: " + Vector3.Distance(owner.transform.position, owner.player.transform.position));
+        //Debug.Log("HIT: " + (hit && !rayHit.collider.transform.tag.Equals("Player")));
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack * 1.2f || (hit && !rayHit.collider.transform.tag.Equals("Player")))
         {
             if(owner.DoingKnockback == false)

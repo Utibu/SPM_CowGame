@@ -168,7 +168,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public void ShakeCamera()
     {
         cameraShakeIntensity = 2f;
-        Debug.Log("SHAKECAMERA");
+        //Debug.Log("SHAKECAMERA");
 
         /*
              static var shakeInt = 50.0;
