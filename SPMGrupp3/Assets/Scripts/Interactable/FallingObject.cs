@@ -124,8 +124,9 @@ public class FallingObject : Dashable
         Vector3 tempDir = transform.rotation * direction;
         Debug.Log("TEMPDIR: " + tempDir);
         Debug.DrawLine(transform.position, transform.position + (tempDir * 100f), Color.red);
-        
-        RaycastHit[] hits = Physics.BoxCastAll(transform.position, meshRenderer.bounds.size / 2, tempDir, transform.rotation, float.MaxValue, layerMask);
+
+        //DebugDraw.DrawCube(transform.position, transform.rotation, 2f, Color.red);
+        RaycastHit[] hits = Physics.BoxCastAll(transform.position, transform.localScale / 2, tempDir, transform.rotation, float.MaxValue, layerMask);
         foreach (RaycastHit hit in hits)
         {
             if(hit.collider.tag.Equals("Enemy"))
@@ -143,11 +144,9 @@ public class FallingObject : Dashable
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        /*float xOffset = (Mathf.Cos(Mathf.Deg2Rad * (transform.eulerAngles.y)));
-        float zOffset = (-Mathf.Sin(Mathf.Deg2Rad * (transform.eulerAngles.y)));
-        float yOffset = (Mathf.Cos(Mathf.Deg2Rad * (transform.eulerAngles.z)));
-        Gizmos.DrawCube(transform.position, new Vector3(0.5f + xOffset, 1f + yOffset, 0.5f + zOffset));*/
+        /*Gizmos.color = Color.red;
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+        Gizmos.DrawCube(Vector3.zero, transform.localScale);*/
     }
 
     // Update is called once per frame
