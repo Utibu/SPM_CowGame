@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5821250699179864034}
   - component: {fileID: 5821250699179864037}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: FragilePlatform
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5821250699179864035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5821250699306730263}
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.65, y: 2.48, z: 1}
-  m_Center: {x: 0, y: 1.09, z: 0}
+  m_Size: {x: 0.9960142, y: 0.9300568, z: 0.9901873}
+  m_Center: {x: -0.000119478995, y: 0.25004274, z: 0.001410036}
 --- !u!1 &5821250699306730256
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5821250699306730258}
   - component: {fileID: 5821250699306730259}
   - component: {fileID: 5821250699306730262}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Breakplank
   m_TagString: FragilePlatform
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 5821250699306730256}
   m_LocalRotation: {x: 0, y: -0.0999103, z: 0, w: 0.9949965}
   m_LocalPosition: {x: -34.68, y: 6.95, z: 18.99}
-  m_LocalScale: {x: 14.888943, y: 0.55133295, z: 1.8935416}
+  m_LocalScale: {x: 13.391705, y: 1.2397263, z: 15.8407345}
   m_Children:
   - {fileID: 5821250699179864034}
   m_Father: {fileID: 0}
@@ -105,7 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61b08c97581f42a4cbd193e32a05471f, type: 2}
+  - {fileID: 2100000, guid: 9a224b4769d3de144830f65f0afdc97a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,8 +136,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6594589, y: 3.7450562, z: 0.69907594}
+  m_Center: {x: -0.00061375124, y: 1.3725281, z: -0.0037525792}
 --- !u!114 &5821250699306730259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,8 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masken:
     serializedVersion: 2
-    m_Bits: 4294967295
-  fallTime: 0.1
+    m_Bits: 15159
+  fallTime: 1
+  countdown: 0.2
 --- !u!208 &5821250699306730262
 NavMeshObstacle:
   m_ObjectHideFlags: 0

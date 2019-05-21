@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : Collidable
+public class Breakable : Triggable
 {
     private Collider colli;
     public LayerMask masken;
@@ -14,19 +14,21 @@ public class Breakable : Collidable
     Vector3 toGround;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         colli = GetComponent<BoxCollider>();
         //countdown = fallTime;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        if (!broke)
-        {
+        base.Update();
+        //if (!broke)
+        //{
             //DetectCow();
-        }
+        //}
         if (falling && !broke)
         {
             if (countdown <= 0)
@@ -36,6 +38,7 @@ public class Breakable : Collidable
                 bool hit = Physics.Raycast(colli.transform.position, Vector3.down, out hitinfo, 0.2f, masken);
                 if (hit)
                 {
+                    Debug.Log("hit " + hitinfo);
                     falling = false;
                     broke = true;
                 }
@@ -49,11 +52,12 @@ public class Breakable : Collidable
         }
     }
 
-    public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
+    public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        skipCollision = false;
+        base.OnPlayerTriggerEnter(hitCollider);
         falling = true;
-            
+
+
     }
 
 
@@ -66,7 +70,7 @@ public class Breakable : Collidable
         {
             Debug.Log("cow detected");
             falling = true;
-            broke = true;
+            //broke = true;
 
             /*
             hit = Physics.Raycast(colli.transform.position, Vector3.down, out hitinfo, 10.0f, masken);
