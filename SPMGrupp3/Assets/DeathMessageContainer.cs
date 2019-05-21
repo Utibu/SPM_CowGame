@@ -21,7 +21,8 @@ public class DeathMessageContainer : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Hide()

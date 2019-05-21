@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             LoadScene(SceneManager.GetActiveScene().buildIndex);
             coinCount -= LevelManager.instance.pickedCoins;
         }*/
+        //UIManager.instance.ShowDeathMessage();
 
         if (LevelManager.instance.currentCheckpoint != null)
         {
