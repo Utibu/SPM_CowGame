@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private SmallMessageContainer smallMessageContainer;
     [SerializeField] private BigMessageContainer bigMessageContainer;
+    [SerializeField] private Image speedLines;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
         HideMessages();
         HideInteractionIndicator();
         HideMenu();
+        HideSpeedlines();
         dashCooldownImageColor = dashCooldownImage.color;
     }
 
@@ -104,5 +106,15 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.Resume();
         HideMenu();
+    }
+
+    public void ShowSpeedlines()
+    {
+        speedLines.gameObject.SetActive(true);
+    }
+
+    public void HideSpeedlines()
+    {
+        speedLines.gameObject.SetActive(false);
     }
 }

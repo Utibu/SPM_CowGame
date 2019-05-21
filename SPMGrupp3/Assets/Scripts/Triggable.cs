@@ -12,9 +12,9 @@ abstract public class Triggable : MonoBehaviour
         
     }
 
-    private void Start()
+    public virtual void Start()
     {
-        CustomStart();
+        TriggerCollider = GetComponent<Collider>();
     }
 
     public virtual void OnPlayerTriggerEnter(Collider hitCollider)
@@ -22,18 +22,7 @@ abstract public class Triggable : MonoBehaviour
 
     }
 
-    private void Update()
+    public virtual void Update()
     {
-        CustomUpdate();
-    }
-
-    protected virtual void CustomStart()
-    {
-        TriggerCollider = GetComponent<Collider>();
-    }
-
-    public virtual void CustomUpdate()
-    {
-
     }
 }

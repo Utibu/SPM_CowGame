@@ -11,6 +11,7 @@ public class BossReloadState : BossBaseState
     public override void Enter()
     {
         time = 0f;
+        owner.renderColor.material.color = Color.blue;
     }
 
     public override void Update()
@@ -29,6 +30,7 @@ public class BossReloadState : BossBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.renderColor.material.color = Color.white;
     }
 
 }

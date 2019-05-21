@@ -21,6 +21,7 @@ public class BossSnipeState : BossBaseState
         //owner.agnes.enabled = false;
         originalAttackSpeed = owner.attackSpeed;
         owner.attackSpeed = attackSpeed;
+        owner.renderColor.material.color = Color.red;
        
 
     }
@@ -56,6 +57,6 @@ public class BossSnipeState : BossBaseState
         //owner.agnes.Warp(originalPosition);
         owner.attackSpeed = originalAttackSpeed;
         owner.bulletsShotSinceReload = 0;
-        
+        owner.renderColor.material.color = Color.white;
     }
 }

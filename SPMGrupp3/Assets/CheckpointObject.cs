@@ -5,15 +5,10 @@ using UnityEngine;
 public class CheckpointObject : Triggable
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         LevelManager.instance.RegisterCheckpoint(this.transform);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)

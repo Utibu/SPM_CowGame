@@ -6,10 +6,6 @@ public class HayBaleDrop : DroppableObject
 {
     // Start is called before the first frame update
     public float healthPoints;
-    void Start()
-    {
-        
-    }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
