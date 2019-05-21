@@ -100,11 +100,11 @@ public class BossStateMachine : Bonde
 
     private void OnUnderlingDeath(EnemyDieEvent enemyDeath)
     {
-        Debug.Log("enemy died");
         if (underlingList.Contains(enemyDeath.enemy))
         {
-            Debug.Log("underling died");
             underlingList.Remove(enemyDeath.enemy);
+            Debug.Log(underlingList.Count);
+
 
             if (underlingList.Count == 0)
             {
@@ -134,8 +134,8 @@ public class BossStateMachine : Bonde
             underling.SetActive(false);
             Debug.Log("foreach underling");
         }
+        underlingList.Clear();
         allUnderlings.Clear();
-
     }
 
 }
