@@ -152,14 +152,14 @@ public class DashState : PlayerBaseState
 
         if(player.hasFreeDash == false)
         {
-            if (player.DashDurationTimer.IsCompleted(Time.deltaTime, true))
+            /*if (player.DashDurationTimer.IsCompleted(Time.deltaTime, true))
             {
                 owner.Transition<WalkState>();
             }
             else
             {
                 UIManager.instance.SetDashFillAmount(1f - player.DashDurationTimer.GetPercentage());
-            }
+            }*/
         }
         
 
