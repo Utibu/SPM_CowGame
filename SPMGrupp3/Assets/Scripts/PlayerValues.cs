@@ -55,6 +55,7 @@ public class PlayerValues : MonoBehaviour
 
     public void Die()
     {
+        //UIManager.instance.ShowDeathMessage();
         health = maxHealth;
         if (healthBar != null)
         {

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private SmallMessageContainer smallMessageContainer;
     [SerializeField] private BigMessageContainer bigMessageContainer;
+    [SerializeField] private DeathMessageContainer deathMessageContainer;
     [SerializeField] private Image speedLines;
 
     void Awake()
@@ -69,6 +70,12 @@ public class UIManager : MonoBehaviour
     {
         HideMessages();
         bigMessageContainer.Show(title, leftDesc, leftSprite, rightDesc, rightSprite);
+    }
+
+    public void ShowDeathMessage()
+    {
+        HideMessages();
+        deathMessageContainer.Show();
     }
 
     public void HideMessages()
