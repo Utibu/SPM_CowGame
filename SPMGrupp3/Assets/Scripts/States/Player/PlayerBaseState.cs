@@ -34,7 +34,13 @@ public class PlayerBaseState : PhysicsBaseState
             owner.Transition<AirState>();
         }
 
-        
+        if(CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey())
+        {
+            UIManager.instance.ShowSpeedlines();
+        } else
+        {
+            UIManager.instance.HideSpeedlines();
+        }
 
         //terminalVelocity = ((player.dashStateGravity * Time.deltaTime) + (player.dashStateAcceleration * Time.deltaTime) - normalForce.magnitude) / (1 - Mathf.Pow(player.dashAirResistance, Time.deltaTime));
         //player.terminalVelocity = terminalVelocity;
