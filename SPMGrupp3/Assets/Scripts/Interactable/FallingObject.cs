@@ -47,6 +47,7 @@ public class FallingObject : Dashable
     {
         if(!isFalling && !hasFallen)
         {
+            GameManager.instance.player.ShakeCamera();
             //direction = matchDirection;
             isFalling = true;
             matchDirection.y = 0f;

@@ -56,9 +56,9 @@ public class PlayerStateMachine : PhysicsStateMachine
     public string[] CameraIgnoreTags;
     private float originalFOV;
     public float maxFOV;
-    private float camShakeIntensity = 0f;
-    [SerializeField] private float camShakeMagnitude = 3f;
-    [SerializeField] private float camShakeFalloff = 1f;
+    private float cameraShakeIntensity = 0f;
+    [SerializeField] private float cameraShakeMagnitude = 1f;
+    [SerializeField] private float cameraShakeFalloff = 3f;
 
     private float shakeX = 0f;
     private float shakeY = 0f;
@@ -146,7 +146,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public void ShakeCamera()
     {
-        camShakeIntensity = 2f;
+        cameraShakeIntensity = 2f;
         Debug.Log("SHAKECAMERA");
 
         /*
@@ -187,23 +187,15 @@ public class PlayerStateMachine : PhysicsStateMachine
         }
 
         // if camShake:
-        if(camShakeIntensity > 1f)
+        if(cameraShakeIntensity > 1f)
         {
             Camera cam = GameManager.instance.cam;
-            camShakeIntensity -= 1 * camShakeFalloff * camShakeIntensity * Time.deltaTime;
-            //Debug.Log("CAMSHAKEINTENSITY: " + camShakeIntensity);
+            cameraShakeIntensity -= 1 * cameraShakeFalloff * cameraShakeIntensity * Time.deltaTime;
+            float cameraShakeValue = cameraShakeMagnitude * cameraShakeIntensity;
 
-            shakeX = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            shakeY = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            shakeZ = UnityEngine.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            //cam.transform.rotation = Quaternion.Euler(shakeX, shakeY, shakeZ);
-
-            //cam.rotation = Quaternion.Euler(shakeX, shakeY, shakeZ); IMPORTANT LINE.
-            /*
-            cam.rotation.x += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            cam.rotation.y += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            cam.rotation.z += System.Random.Range(-camShakeMagnitude * camShakeIntensity, camShakeMagnitude * camShakeIntensity);
-            */
+            shakeX = UnityEngine.Random.Range(-cameraShakeValue, cameraShakeValue);
+            shakeY = UnityEngine.Random.Range(-cameraShakeValue, cameraShakeValue);
+            shakeZ = UnityEngine.Random.Range(-cameraShakeValue, cameraShakeValue);
         } else
         {
             shakeX = 0f;
@@ -326,7 +318,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         rotationX = Mathf.Clamp(rotationX, minAngle, maxAngle);
 
-        if(camShakeIntensity < 1)
+        if(cameraShakeIntensity < 1)
         {
             
         }

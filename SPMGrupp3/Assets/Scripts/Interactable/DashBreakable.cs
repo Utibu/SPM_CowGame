@@ -17,6 +17,7 @@ public class DashBreakable : Dashable
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
     {
         base.OnPlayerCollideEnter(hitCollider, out skipCollision, dashLevel);
+        GameManager.instance.player.ShakeCamera();
 
         if (dashLevel >= requiredLevel)
         {
