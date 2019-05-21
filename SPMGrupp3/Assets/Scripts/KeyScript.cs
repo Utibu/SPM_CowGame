@@ -7,14 +7,17 @@ public class KeyScript : Triggable
     private Collider keyCollider;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         keyCollider = GetComponent<CapsuleCollider>();
     }
 
-    public void Update()
+    public override void Update()
     {
-        transform.RotateAroundLocal(Vector3.up, 0.2f);
+        base.Update();
+        //transform.RotateAroundLocal(Vector3.up, 0.2f);
+        transform.Rotate(Vector3.up, 0.2f);
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)

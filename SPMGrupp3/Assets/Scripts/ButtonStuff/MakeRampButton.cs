@@ -19,8 +19,9 @@ public class MakeRampButton : ButtonScript
 
    
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         descriptorCanvas.gameObject.SetActive(false);
 
         gameObjectToHide.SetActive(true);
@@ -30,12 +31,6 @@ public class MakeRampButton : ButtonScript
         {
             cutSceneCamera.enabled = false;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)

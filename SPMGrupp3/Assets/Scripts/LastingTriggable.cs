@@ -8,8 +8,9 @@ public class LastingTriggable : Triggable
     private Transform currentPlayer;
     private float distanceToLeave;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         if(TriggerCollider.bounds.size.x < TriggerCollider.bounds.size.z)
         {
             distanceToLeave = TriggerCollider.bounds.size.x / 2;
@@ -19,9 +20,9 @@ public class LastingTriggable : Triggable
         }
     }
 
-    public override void CustomUpdate()
+    public override void Update()
     {
-        base.CustomUpdate();
+        base.Update();
         
         if(currentPlayer != null)
         {
