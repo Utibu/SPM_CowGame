@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class HayBaleDrop : DroppableObject
 {
-    // Start is called before the first frame update
+
     public float healthPoints;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
+    }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        base.OnPlayerTriggerEnter(hitCollider);
+        //base.OnPlayerTriggerEnter(hitCollider);
         Debug.Log("HAYBALE");
         player.health += healthPoints;
+        
+    }
+
+    private void ResetHay(OnPlayerDiedEvent playerDiedEvent)
+    {
+        gameObject.SetActive(true);
     }
 
 }

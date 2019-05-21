@@ -31,6 +31,7 @@ public class BossStateMachine : Bonde
     [HideInInspector] public int count = 0;
     //private float currentToughness;
     private List<GameObject> underlingList = new List<GameObject>();
+    private List<GameObject> allUnderlings = new List<GameObject>();
     //Gör private
     public Vector3 originalPosition;
 
@@ -49,6 +50,7 @@ public class BossStateMachine : Bonde
         base.Start();
         originalPosition = transform.position;
         EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(OnPlayerDeath);
         renderColor = GetComponent<MeshRenderer>();
     }
 
@@ -88,6 +90,7 @@ public class BossStateMachine : Bonde
         bonde.patrolPoints = patrolPoints;
         bonde.maxVisibility = 25f;
         underlingList.Add(underling);
+        allUnderlings.Add(underling);
         if (count < underlingQuantityPerWave)
         {
             Invoke("SpawnUnderling", timeBetweenSpawns);
@@ -102,6 +105,7 @@ public class BossStateMachine : Bonde
         {
             Debug.Log("underling died");
             underlingList.Remove(enemyDeath.enemy);
+            allUnderlings.Remove(enemyDeath.enemy);
 
             if (underlingList.Count == 0)
             {
@@ -110,6 +114,28 @@ public class BossStateMachine : Bonde
                 
             }
         }
+    }
+
+    private void OnPlayerDeath(OnPlayerDiedEvent playerDeadEvent)
+    {
+        Debug.Log("BOSS RESET! **********************************");
+        // reset hp
+        currentToughness = toughness;
+        healthBar.fillAmount = currentToughness / toughness;
+
+        // put boss at original position
+        Destination = originalPosition;
+        Transition<BossTransitionState>();
+
+        // remove spawnlings
+        foreach (GameObject underling  in allUnderlings)
+        {
+            Destroy(underling, 3f); // 3 sec delay, to not disrupt iteration(?)
+            underling.SetActive(false);
+            Debug.Log("foreach underling");
+        }
+        allUnderlings.Clear();
+
     }
 
 }
