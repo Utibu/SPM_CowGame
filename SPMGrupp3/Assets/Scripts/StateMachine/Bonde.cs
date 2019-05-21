@@ -143,7 +143,7 @@ public class Bonde : StateMachine
             //Sets to false in stun leave
             DoingKnockback = true;
             Gracetimer = new BasicTimer(graceTime);
-            Debug.Log("NEW VELOCITY: " + agnes.velocity);
+            //Debug.Log("NEW VELOCITY: " + agnes.velocity);
             timer = new BasicTimer(0.5f);
 
             if (currentToughness <= 0)

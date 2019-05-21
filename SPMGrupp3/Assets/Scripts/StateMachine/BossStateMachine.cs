@@ -105,7 +105,6 @@ public class BossStateMachine : Bonde
         {
             Debug.Log("underling died");
             underlingList.Remove(enemyDeath.enemy);
-            allUnderlings.Remove(enemyDeath.enemy);
 
             if (underlingList.Count == 0)
             {
@@ -130,6 +129,7 @@ public class BossStateMachine : Bonde
         // remove spawnlings
         foreach (GameObject underling  in allUnderlings)
         {
+            underling.GetComponent<Bonde>().UnregisterEnemy();
             Destroy(underling, 3f); // 3 sec delay, to not disrupt iteration(?)
             underling.SetActive(false);
             Debug.Log("foreach underling");
