@@ -17,6 +17,7 @@ public class FallingObject : Dashable
     public GameObject pivot;
     private Vector3 size;
     public bool freeFall = true;
+    [SerializeField] private ParticleSystem particles;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class FallingObject : Dashable
     {
         skipCollision = false;
         SetFalling(GameManager.instance.player.velocity.normalized);
+        particles.Play();
     }
 
     public void SetFalling(Vector3 matchDirection)
