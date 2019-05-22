@@ -42,7 +42,11 @@ public class FallingObject : Dashable
     {
         skipCollision = false;
         SetFalling(GameManager.instance.player.velocity.normalized);
-        particles.Play();
+        if(particles != null && particles.isPlaying == false)
+        {
+            particles.Play();
+        }
+        
     }
 
     public void SetFalling(Vector3 matchDirection)
@@ -131,13 +135,9 @@ public class FallingObject : Dashable
         RaycastHit[] hits = Physics.BoxCastAll(transform.position, transform.localScale / 2, tempDir, transform.rotation, float.MaxValue, layerMask);
         foreach (RaycastHit hit in hits)
         {
-            if(hit.collider.tag.Equals("Enemy"))
-            {
-                Debug.Log("HIT DISTANCE: " + hit.distance);
-            }
             if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
             {
-                Debug.Log("DISTANCE: " + hit.distance);
+                //Debug.Log("DISTANCE: " + hit.distance);
                 hit.collider.GetComponent<Bonde>().UnregisterEnemy();
                 Destroy(hit.collider.gameObject);
             }

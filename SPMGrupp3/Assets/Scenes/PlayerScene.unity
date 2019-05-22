@@ -367,7 +367,7 @@ ParticleSystemRenderer:
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4068373912626513877, guid: 0dab5440aec438c48b1186d552c0a452, type: 3}
+  m_Mesh: {fileID: 4068373912626513877, guid: 613be5e9cf73d6347b7d594a463f771b, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -1323,20 +1323,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 7.5198307
-          outSlope: 7.5198307
+          inSlope: 3.8272166
+          outSlope: 3.8272166
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.054094467
+          outWeight: 0.04743313
         - serializedVersion: 3
-          time: 0.13651317
-          value: 0.9207634
-          inSlope: -0.17640269
-          outSlope: -0.17640269
+          time: 0.4063664
+          value: 0.8879765
+          inSlope: 0.49376178
+          outSlope: 0.49376178
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.096098915
+          inWeight: 0.08679991
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
@@ -10531,6 +10531,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Name
+      value: OldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: healthBar
@@ -10560,16 +10570,6 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBarSizeY
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: OldPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -10908,7 +10908,7 @@ PrefabInstance:
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
