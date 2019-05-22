@@ -75,6 +75,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public BasicTimer DashCooldownTimer { get; private set; }
     public BasicTimer DashDurationTimer { get; private set; }
     public bool IsRotating { get; private set; }
+    public bool RotateWithMouse = true;
 
     private bool isPaused = false;
 
@@ -348,7 +349,12 @@ public class PlayerStateMachine : PhysicsStateMachine
         {
             
         }
-        Camera.main.transform.rotation = Quaternion.Euler(rotationX + shakeX, rotationY + shakeY, 0f);
+
+        if(RotateWithMouse)
+        {
+            Camera.main.transform.rotation = Quaternion.Euler(rotationX + shakeX, rotationY - 90f + shakeY, 0f);
+        }
+        
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);

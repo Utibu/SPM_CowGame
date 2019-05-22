@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         controlsUI.SetActive(true);
         Invoke("HideControlsUI", 6f);
-
+        
         if (!showCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -158,8 +158,10 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int index)
     {
         RemoveListeners();
-        if(!isLoadingScene)
+        
+        if (!isLoadingScene)
         {
+            player.RotateWithMouse = false;
             IEnumerator coroutine = LoadSceneRoutine(index);
             isLoadingScene = true;
             StartCoroutine(coroutine);
