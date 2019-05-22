@@ -22,7 +22,14 @@ public class DeathMessageContainer : MonoBehaviour
 
     void Update()
     {
-        
+        if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.F))
+        {
+            RespawnButtonClicked();
+        }
+        else if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            MainMenuButton();
+        }
     }
 
     public void Show()
@@ -45,8 +52,7 @@ public class DeathMessageContainer : MonoBehaviour
 
     public void RespawnButtonClicked()
     {
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
-        GameManager.instance.Resume();
+        ResumeGame();
         if (LevelManager.instance.currentCheckpoint != null)
         {
             GameManager.instance.player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
@@ -55,13 +61,26 @@ public class DeathMessageContainer : MonoBehaviour
         {
             GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
         }
-        UIManager.instance.HideDeathMessage();
-        UIManager.instance.ShowHUD();
+        
+    }
+
+    public void RestartLevelButtonClicked()
+    {
+        ResumeGame();
+        GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
     }
 
     public void MainMenuButton()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private void ResumeGame()
+    {
+        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        GameManager.instance.Resume();
+        UIManager.instance.HideDeathMessage();
+        UIManager.instance.ShowHUD();
     }
 
 }
