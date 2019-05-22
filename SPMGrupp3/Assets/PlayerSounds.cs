@@ -64,16 +64,16 @@ public class PlayerSounds : MonoBehaviour
         {
             case FootstepsState.Normal:
                 footstepsAudioSource.clip = normalFootstepsSound;
-                Debug.Log("NORMAL SOUNDS");
+                //Debug.Log("NORMAL SOUNDS");
                 break;
             case FootstepsState.Dash:
                 footstepsAudioSource.clip = dashFootstepsSound;
-                Debug.Log("DASH SOUNDS");
+                //Debug.Log("DASH SOUNDS");
                 break;
             default:
                 footstepsAudioSource.clip = null;
                 footstepsAudioSource.Stop();
-                Debug.Log("NO SOUNDS");
+                //Debug.Log("NO SOUNDS");
                 break;
         }
 
