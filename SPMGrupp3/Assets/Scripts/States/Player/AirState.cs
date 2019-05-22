@@ -11,13 +11,17 @@ public class AirState : PlayerBaseState
     public float dashJumpAcceleration;
     public float normalJumpAcceleration;
     public float fallDamage;
+    private float originalSens;
+    [SerializeField] private float divideSens = 10f;
 
     public override void Enter()
     {
         base.Enter();
+        originalSens = player.mouseSensitivity;
         if (owner.lastState.GetType() == typeof(DashState))
         {
             acceleration = dashJumpAcceleration;
+            player.mouseSensitivity /= divideSens;
         } else
         {
             acceleration = normalJumpAcceleration;
@@ -28,6 +32,7 @@ public class AirState : PlayerBaseState
     public override void Leave()
     {
         base.Leave();
+        player.mouseSensitivity = originalSens;
         //Debug.Log(topYPosition - owner.transform.position.y);
         if (topYPosition - owner.transform.position.y > distanceToTakeFalldamage && Time.time % 60 > 10f)
         {
