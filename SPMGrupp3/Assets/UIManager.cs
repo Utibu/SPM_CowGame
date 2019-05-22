@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     [SerializeField] private Image dashCooldownImage;
+    [SerializeField] private Image healthBarImage;
+    [SerializeField] private Image healthBarBackgroundImage;
+    [SerializeField] private Text coinCountText;
     private Color dashCooldownImageColor;
     [SerializeField] private GameObject interactionIndicator;
     [SerializeField] private Image menu;
@@ -78,10 +81,32 @@ public class UIManager : MonoBehaviour
         deathMessageContainer.Show();
     }
 
+    public void HideDeathMessage()
+    {
+        deathMessageContainer.gameObject.SetActive(false);
+    }
+
     public void HideMessages()
     {
         smallMessageContainer.gameObject.SetActive(false);
         bigMessageContainer.gameObject.SetActive(false);
+        deathMessageContainer.gameObject.SetActive(false);
+    }
+
+    public void ShowHUD()
+    {
+        healthBarImage.gameObject.SetActive(true);
+        healthBarBackgroundImage.gameObject.SetActive(true);
+        dashCooldownImage.gameObject.SetActive(true);
+        coinCountText.gameObject.SetActive(true);
+    }
+
+    public void HideHUD()
+    {
+        healthBarImage.gameObject.SetActive(false);
+        healthBarBackgroundImage.gameObject.SetActive(false);
+        dashCooldownImage.gameObject.SetActive(false);
+        coinCountText.gameObject.SetActive(false);
     }
 
     public void ShowInteractionIndicator()
