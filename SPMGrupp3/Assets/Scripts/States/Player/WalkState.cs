@@ -12,7 +12,8 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        if(GameManager.instance.inputManager.DashKey() == false)
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Normal);
+        if (GameManager.instance.inputManager.DashKey() == false)
         {
             //dashTimer = new BasicTimer(dashCooldown);
         }
@@ -72,7 +73,18 @@ public class WalkState : PlayerBaseState
 
         }*/
 
+        if (owner.velocity.magnitude >= 2f && player.PlayerSounds.GetCurrentFootstepsClip() == null && owner.GetCurrentState().GetType() == typeof(WalkState))
+        {
+            player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Normal);
+        }
+        else if (owner.velocity.magnitude < 2f && player.PlayerSounds.GetCurrentFootstepsClip() != null)
+        {
+            player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
+        }
+
         base.Update();
+
+        
 
     }
     //TESTSKIT

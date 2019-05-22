@@ -18,6 +18,7 @@ public class AirState : PlayerBaseState
     {
         base.Enter();
         originalSens = player.mouseSensitivity;
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         if (owner.lastState.GetType() == typeof(DashState))
         {
             acceleration = dashJumpAcceleration;

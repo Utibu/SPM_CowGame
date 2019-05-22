@@ -11,6 +11,7 @@ public class JumpState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         //Vector3 jumpMovement = Vector2.up * jumpForce * Time.deltaTime;
         //owner.velocity += jumpMovement;
     }
