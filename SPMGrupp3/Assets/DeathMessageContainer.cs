@@ -68,6 +68,7 @@ public class DeathMessageContainer : MonoBehaviour
     {
         ResumeGame();
         GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.instance.coinCount -= LevelManager.instance.pickedCoins;
         //GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
     }
 
