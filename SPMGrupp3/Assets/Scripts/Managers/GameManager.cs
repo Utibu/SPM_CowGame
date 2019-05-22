@@ -142,16 +142,16 @@ public class GameManager : MonoBehaviour
             LoadScene(SceneManager.GetActiveScene().buildIndex);
             coinCount -= LevelManager.instance.pickedCoins;
         }*/
-        //UIManager.instance.ShowDeathMessage();
+        UIManager.instance.ShowDeathMessage();
 
-        if (LevelManager.instance.currentCheckpoint != null)
-        {
-            player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
-        }
-        else
-        {
-            player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-        }
+        //if (LevelManager.instance.currentCheckpoint != null)
+        //{
+            //player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
+        //}
+        //else
+        //{
+            //player.Respawn(LevelManager.instance.originalSpawnTransform.position);
+        //}
 
     }
 
