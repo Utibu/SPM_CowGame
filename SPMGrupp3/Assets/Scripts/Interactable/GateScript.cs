@@ -19,8 +19,11 @@ public class GateScript : Collidable
         else
         {
             skipCollision = false;
-            GameManager.instance.player.velocity *= -1;
-            GameManager.instance.player.ShakeCamera();
+            if (GameManager.instance.player.GetCurrentState().GetType() == typeof(DashState))
+            {
+                GameManager.instance.player.velocity *= -1;
+                GameManager.instance.player.ShakeCamera();
+            }
         }
     }
 
