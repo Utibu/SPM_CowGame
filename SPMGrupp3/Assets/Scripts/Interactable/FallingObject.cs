@@ -128,7 +128,7 @@ public class FallingObject : Dashable
         //new Vector3(direction.z * -1, direction.y, direction.x)
         //Debug.Log("ROTTHISFRAME: " + rotThisFrame.magnitude);
         Vector3 tempDir = transform.rotation * direction;
-        Debug.Log("TEMPDIR: " + tempDir);
+        //Debug.Log("TEMPDIR: " + tempDir);
         Debug.DrawLine(transform.position, transform.position + (tempDir * 100f), Color.red);
 
         //DebugDraw.DrawCube(transform.position, transform.rotation, 2f, Color.red);
