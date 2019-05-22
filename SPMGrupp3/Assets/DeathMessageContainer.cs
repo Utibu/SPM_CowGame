@@ -67,7 +67,8 @@ public class DeathMessageContainer : MonoBehaviour
     public void RestartLevelButtonClicked()
     {
         ResumeGame();
-        GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
+        GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
     }
 
     public void MainMenuButton()
