@@ -69,6 +69,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [SerializeField] private Vector3 cameraRotationOffset;
     [SerializeField] private ParticleSystem speedLinesParticleSystem;
     [SerializeField] private ParticleSystem groundParticleSystem;
+    public PlayerSounds PlayerSounds;
     
     public bool hasFreeDash = false;
     public BasicTimer DashCooldownTimer { get; private set; }

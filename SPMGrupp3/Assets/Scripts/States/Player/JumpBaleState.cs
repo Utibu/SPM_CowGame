@@ -11,7 +11,7 @@ public class JumpBaleState : PlayerBaseState
     public override void Enter()
     {
         base.Update();
-        
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         Vector3 bounce = Vector3.up * jumpHeight;
         owner.velocity += bounce + momentum * owner.velocity.normalized;
     }

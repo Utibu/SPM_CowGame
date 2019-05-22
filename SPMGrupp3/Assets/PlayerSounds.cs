@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum FootstepsState { Normal, Dash, None };
+
 public class PlayerSounds : MonoBehaviour
 {
 
@@ -18,6 +20,9 @@ public class PlayerSounds : MonoBehaviour
 
     public AudioClip[] pick_up_sounds;
     public AudioClip dash_hit_sound;
+    [SerializeField] private AudioClip normalFootstepsSound;
+    [SerializeField] private AudioClip dashFootstepsSound;
+    [SerializeField] private AudioSource footstepsAudioSource;
 
     private float volLowRange = 0.2f;
     private float volHighRange = 1.0f;
@@ -46,6 +51,36 @@ public class PlayerSounds : MonoBehaviour
             source1.PlayOneShot(pick_up_sounds[clipIndex]);
         }
         */
+    }
+
+    public AudioClip GetCurrentFootstepsClip()
+    {
+        return footstepsAudioSource.clip;
+    }
+
+    public void SetPlayerFootstepsSound(FootstepsState state)
+    {
+        switch(state)
+        {
+            case FootstepsState.Normal:
+                footstepsAudioSource.clip = normalFootstepsSound;
+                Debug.Log("NORMAL SOUNDS");
+                break;
+            case FootstepsState.Dash:
+                footstepsAudioSource.clip = dashFootstepsSound;
+                Debug.Log("DASH SOUNDS");
+                break;
+            default:
+                footstepsAudioSource.clip = null;
+                footstepsAudioSource.Stop();
+                Debug.Log("NO SOUNDS");
+                break;
+        }
+
+        if(footstepsAudioSource.clip != null && footstepsAudioSource.isPlaying == false)
+        {
+            footstepsAudioSource.Play();
+        }
     }
 
     void SetCountText()

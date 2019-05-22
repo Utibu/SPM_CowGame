@@ -36,6 +36,7 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         UIManager.instance.SetDashFillAmount(1f);
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Dash);
         //player.DashCooldownTimer.Reset();
         canStrafe = false;
     }
