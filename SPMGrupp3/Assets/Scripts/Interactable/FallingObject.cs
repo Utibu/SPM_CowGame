@@ -138,8 +138,15 @@ public class FallingObject : Dashable
             if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
             {
                 //Debug.Log("DISTANCE: " + hit.distance);
-                hit.collider.GetComponent<Bonde>().UnregisterEnemy();
-                Destroy(hit.collider.gameObject);
+                //hit.collider.GetComponent<Bonde>().UnregisterEnemy();
+                //Destroy(hit.collider.gameObject);
+                if(hit.collider.GetComponent<Bonde>().DoingKnockback == false)
+                {
+                    //Vector3 newDirection = new Vector3(direction.x * Mathf.Cos(angleInRadians), 0f, direction.z * Mathf.Sin(angleInRadians));
+                    Vector3 newDirection = Vector3.Cross(direction, Vector3.up);
+                    hit.collider.GetComponent<Bonde>().PlayerDash(newDirection * 10f);
+                }
+                
             }
         }
     }

@@ -50,6 +50,12 @@ public class BondePatrolState : BondeBaseState
     public override void Update()
     {
         base.Update();
+
+        if(owner.GetCurrentState().GetType() != typeof(BondePatrolState))
+        {
+            return;
+        }
+
         RaycastHit rayHit;
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.maxVisibility);
         if (hit && rayHit.collider.tag.Equals("Player"))
