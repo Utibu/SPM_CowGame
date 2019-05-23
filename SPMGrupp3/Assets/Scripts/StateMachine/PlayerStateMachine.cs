@@ -75,7 +75,6 @@ public class PlayerStateMachine : PhysicsStateMachine
     public BasicTimer DashCooldownTimer { get; private set; }
     public BasicTimer DashDurationTimer { get; private set; }
     public bool IsRotating { get; private set; }
-    public bool RotateWithMouse = true;
 
     private bool isPaused = false;
 
@@ -111,6 +110,13 @@ public class PlayerStateMachine : PhysicsStateMachine
     private void Resume(ResumeEvent eventInfo)
     {
         isPaused = false;
+    }
+
+    public void SetMouseCameraRotation(float x, float y, float cowX, float cowY)
+    {
+        rotationX = x;
+        rotationY = y;
+        meshParent.transform.eulerAngles = new Vector3(cowX, cowY, 0f);
     }
 
     //Code from:
@@ -319,21 +325,15 @@ public class PlayerStateMachine : PhysicsStateMachine
         float horizontal = Input.GetAxisRaw("Mouse X");
         float vertical = Input.GetAxisRaw("Mouse Y");
 
+        UIManager.instance.mouseDebug.text = "MouseX: " + horizontal + " \nMouseY: " + vertical;
+
         rotationX -= vertical * mouseSensitivity;
         rotationY += horizontal * mouseSensitivity;
 
         rotationX = Mathf.Clamp(rotationX, minAngle, maxAngle);
 
-        if(cameraShakeIntensity < 1)
-        {
-            
-        }
+        Camera.main.transform.rotation = Quaternion.Euler(rotationX + shakeX, rotationY + shakeY, 0f);
 
-        if(RotateWithMouse)
-        {
-            Camera.main.transform.rotation = Quaternion.Euler(rotationX + shakeX, rotationY - 90f + shakeY, 0f);
-        }
-        
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);

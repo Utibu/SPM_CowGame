@@ -145,7 +145,6 @@ public class GameManager : MonoBehaviour
         
         if (!isLoadingScene)
         {
-            player.RotateWithMouse = false;
             IEnumerator coroutine = LoadSceneRoutine(index);
             isLoadingScene = true;
             StartCoroutine(coroutine);

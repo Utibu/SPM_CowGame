@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
-        GameManager.instance.player.RotateWithMouse = true;
+        GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
         GameManager.instance.player.transform.localScale = Vector3.one * playerScale;
     }

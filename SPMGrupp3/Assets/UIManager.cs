@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BigMessageContainer bigMessageContainer;
     [SerializeField] private DeathMessageContainer deathMessageContainer;
     [SerializeField] private Image speedLines;
+    public Text mouseDebug; 
 
     void Awake()
     {
