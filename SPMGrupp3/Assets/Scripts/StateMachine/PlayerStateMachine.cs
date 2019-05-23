@@ -170,27 +170,6 @@ public class PlayerStateMachine : PhysicsStateMachine
     public void ShakeCamera()
     {
         cameraShakeIntensity = 2f;
-        //Debug.Log("SHAKECAMERA");
-
-        /*
-             static var shakeInt = 50.0;
-             var decrease = 5.0;
-             var magnitude = 5.0;
-             function Update () {
-                 if (shakeInt < 0){
-                 shakeInt = 0;    
-                 }
-                 if (shakeInt != 0){
-                     shakeInt -= 1*decrease*shakeInt*Time.deltaTime;
-                 }
-                 var cam = camera.main.transform;
-                 if (shakeInt > 0){
-                 cam.rotation.x += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
-                 cam.rotation.y += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
-                 cam.rotation.z += Random.Range(-magnitude*shakeInt, magnitude*shakeInt);
-                 }
-             }
-         */
     }
 
 

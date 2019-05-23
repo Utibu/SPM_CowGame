@@ -25,7 +25,6 @@ public class FallingObject : Dashable
         size = meshRenderer.bounds.size;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         Vector3 initialRotation = transform.eulerAngles;
@@ -54,7 +53,6 @@ public class FallingObject : Dashable
         if(!isFalling && !hasFallen)
         {
             GameManager.instance.player.ShakeCamera();
-            //direction = matchDirection;
             isFalling = true;
             matchDirection.y = 0f;
             if(freeFall)
@@ -85,7 +83,6 @@ public class FallingObject : Dashable
             {
                 smallestValue = hit.distance;
             }
-            //Debug.Log(hit.distance);
             if(hit.distance <= checkDistance || hit.distance > smallestValue)
             {
                 return true;
@@ -101,8 +98,6 @@ public class FallingObject : Dashable
     public Vector3 DistanceToGround(Vector3 rotThisFrame)
     {
         RaycastHit hit;
-        //collisionCheck.transform.forward
-        //new Vector3(direction.z * -1, direction.y, direction.x)
         Vector3 tempDir = transform.rotation * direction;
         bool ray = Physics.Raycast(collisionCheck.transform.position, tempDir, out hit, float.MaxValue, layerMask);
         
@@ -124,25 +119,14 @@ public class FallingObject : Dashable
 
     public void CheckEnemyHits(Vector3 rotThisFrame)
     {
-        //collisionCheck.transform.forward
-        //new Vector3(direction.z * -1, direction.y, direction.x)
-        //Debug.Log("ROTTHISFRAME: " + rotThisFrame.magnitude);
         Vector3 tempDir = transform.rotation * direction;
-        //Debug.Log("TEMPDIR: " + tempDir);
-        Debug.DrawLine(transform.position, transform.position + (tempDir * 100f), Color.red);
-
-        //DebugDraw.DrawCube(transform.position, transform.rotation, 2f, Color.red);
         RaycastHit[] hits = Physics.BoxCastAll(transform.position, transform.localScale / 2, tempDir, transform.rotation, float.MaxValue, layerMask);
         foreach (RaycastHit hit in hits)
         {
             if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
             {
-                //Debug.Log("DISTANCE: " + hit.distance);
-                //hit.collider.GetComponent<Bonde>().UnregisterEnemy();
-                //Destroy(hit.collider.gameObject);
                 if(hit.collider.GetComponent<Bonde>().DoingKnockback == false)
                 {
-                    //Vector3 newDirection = new Vector3(direction.x * Mathf.Cos(angleInRadians), 0f, direction.z * Mathf.Sin(angleInRadians));
                     Vector3 newDirection = Vector3.Cross(direction, Vector3.up);
                     hit.collider.GetComponent<Bonde>().PlayerDash(newDirection * 10f);
                 }
@@ -151,14 +135,6 @@ public class FallingObject : Dashable
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        /*Gizmos.color = Color.red;
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        Gizmos.DrawCube(Vector3.zero, transform.localScale);*/
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Vector3 tempDir = transform.rotation * direction;
@@ -169,7 +145,6 @@ public class FallingObject : Dashable
             Vector3 toRot = DistanceToGround(rot);
             transform.RotateAround(pivot.transform.position, rotationDirection.normalized, rot.magnitude);
             CheckEnemyHits(rot);
-            //Debug.Log(rotationDirection.normalized);
         }
     }
 }

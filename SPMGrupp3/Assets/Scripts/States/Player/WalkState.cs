@@ -51,6 +51,7 @@ public class WalkState : PlayerBaseState
         if (CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             owner.Transition<DashState>();
+            return;
         }
 
         /*if (GameManager.instance.inputManager.SideDashKey() && IsGrounded() && player.countdown <= 0)

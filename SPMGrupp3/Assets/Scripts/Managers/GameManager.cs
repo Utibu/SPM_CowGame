@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+            START: Just for debugs
+         */
         if(Input.GetKeyDown(KeyCode.P))
         {
             Pause();
@@ -75,6 +78,9 @@ public class GameManager : MonoBehaviour
         {
             LoadScene(2);
         }
+        /*
+            END: Just for debugs
+         */
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -121,7 +127,6 @@ public class GameManager : MonoBehaviour
     {
         velocityText.text = "Velocity: " + player.velocity.magnitude;
         coinCountText.text = "Coins: " + coinCount;
-        //livesText.text = "Lives: " + (3 - deathCount);
     }
 
     void HideControlsUI()
@@ -131,28 +136,7 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
-        /*deathCount++;
-        if(deathCount <= 3)
-        {
-            
-            
-        } else
-        {
-            deathCount = 0;
-            LoadScene(SceneManager.GetActiveScene().buildIndex);
-            coinCount -= LevelManager.instance.pickedCoins;
-        }*/
         UIManager.instance.ShowDeathMessage();
-
-        //if (LevelManager.instance.currentCheckpoint != null)
-        //{
-            //player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
-        //}
-        //else
-        //{
-            //player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-        //}
-
     }
 
     public void LoadScene(int index)

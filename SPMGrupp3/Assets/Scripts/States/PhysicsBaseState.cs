@@ -137,7 +137,7 @@ public class PhysicsBaseState : State
         skipCollision = false;
     }
 
-    //Tack till Vibben och Markus <3 
+    //Tack till Vibben och Marcus <3 
     public void CollisionCheck(Vector3 frameMovement)
     {
         RaycastHit hit;
