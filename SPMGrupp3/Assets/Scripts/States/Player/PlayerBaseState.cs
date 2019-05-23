@@ -34,7 +34,7 @@ public class PlayerBaseState : PhysicsBaseState
             owner.Transition<AirState>();
         }
 
-        if(CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey())
+        if(CheckDashCooldownCompletion() && GameManager.instance.inputManager.DashKey() && owner.velocity.magnitude > player.velocityToDash)
         {
             //UIManager.instance.ShowSpeedlines();
             player.ShowParticles();
