@@ -5,32 +5,34 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Boss/BossReloadState")]
 public class BossReloadState : BossBaseState
 {
-
-    private float time;
+    [SerializeField] private float reloadTime;
+    private BasicTimer timer;
 
     public override void Enter()
     {
-        time = 0f;
+        timer = new BasicTimer(reloadTime);
         owner.renderColor.material.color = Color.blue;
+        owner.agnes.isStopped = true;
+        EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.ReloadSound, 1f, 1f, 1f)); //doesn't work :(
     }
 
     public override void Update()
     {
-        if (time % 60 > owner.reloadTime)
+        timer.Update(Time.deltaTime);
+        
+        if (timer.IsCompleted(Time.deltaTime, false, false))
         {
             owner.Transition<BossPatrolState>();
         }
-        else
-        {
-            time += Time.deltaTime;
-        }
-
+        
     }
 
     public override void Leave()
     {
         base.Leave();
         owner.renderColor.material.color = Color.white;
+        owner.agnes.isStopped = false;
     }
+
 
 }

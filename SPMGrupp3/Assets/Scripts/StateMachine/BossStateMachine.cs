@@ -8,11 +8,11 @@ public class BossStateMachine : Bonde
     public GameObject bullet;
     public GameObject gun;
     public float attackSpeed;
-    public float reloadTime;
     public float bulletsBeforeReload;
     [HideInInspector]
     public float bulletsShotSinceReload;
     public AudioClip GunSound;
+    public AudioClip ReloadSound;
 
     public float health = 100f;
     public float damageOnDash = 25f;
@@ -36,6 +36,7 @@ public class BossStateMachine : Bonde
     public Vector3 originalPosition;
 
     public Image healthBar;
+    public Image reloadBar;
     [HideInInspector] public MeshRenderer renderColor;
 
 
