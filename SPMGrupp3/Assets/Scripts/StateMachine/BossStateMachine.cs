@@ -65,6 +65,12 @@ public class BossStateMachine : Bonde
         if (Gracetimer == null && isInvincible == false)
         {
             currentToughness -= 1;
+            if (currentToughness <= 0)
+            {
+                Destroy(gameObject);
+                UIManager.instance.ShowVictoryMessage();
+                return;
+            }
             transform.position += transform.forward * -2;
             timeSinceLastHit = 0;
             count = 0;
@@ -72,10 +78,7 @@ public class BossStateMachine : Bonde
             Destination = snipeLocation.transform.position;
             Transition<BossTransitionState>();
         }
-        if (currentToughness <= 0)
-        {
-            GameManager.instance.LoadMenu();
-        }
+        
         healthBar.fillAmount =  currentToughness / toughness;
         Debug.Log("Current: " + currentToughness + " Total: " + toughness + " " + currentToughness/toughness);
 

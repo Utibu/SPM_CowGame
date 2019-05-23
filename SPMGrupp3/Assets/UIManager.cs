@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private SmallMessageContainer smallMessageContainer;
     [SerializeField] private BigMessageContainer bigMessageContainer;
-    [SerializeField] private DeathMessageContainer deathMessageContainer;
+    [SerializeField] private ButtonMessageContainer deathMessageContainer;
+    [SerializeField] private VictoryMessageContainer victoryMessageContainer;
+    
     [SerializeField] private Image speedLines;
     public Text mouseDebug; 
 
@@ -85,6 +87,11 @@ public class UIManager : MonoBehaviour
     public void HideDeathMessage()
     {
         deathMessageContainer.gameObject.SetActive(false);
+    }
+
+    public void ShowVictoryMessage()
+    {
+        victoryMessageContainer.Show();
     }
 
     public void HideMessages()
