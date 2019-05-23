@@ -36,6 +36,20 @@ public static class Helper
         return (otherPosition - currentPosition).sqrMagnitude;
     }
 
+    //https://forum.unity.com/threads/solved-how-to-get-rotation-value-that-is-in-the-inspector.460310/
+    public static float GetCorrectAngle(float angle)
+    {
+        angle %= 360;
+        if (angle > 180)
+            return angle - 360;
+        return angle;
+    }
+
+    public static Vector3 GetCorrectEulerVector(Vector3 originalAngle)
+    {
+        return new Vector3(GetCorrectAngle(originalAngle.x), GetCorrectAngle(originalAngle.y), GetCorrectAngle(originalAngle.z));
+    }
+
 
     //https://answers.unity.com/questions/532297/rotate-a-vector-around-a-certain-point.html
     public static Vector3 RotateAroundPivot(Vector3 position, Vector3 pivotPoint, Vector3 angles)
