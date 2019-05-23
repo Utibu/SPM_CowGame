@@ -10,6 +10,7 @@ public class CoinPickup : DroppableObject
     {
         base.OnPlayerTriggerEnter(hitCollider);
         GameManager.instance.coinCount++;
+        GameManager.instance.totalCoinCount++;
         LevelManager.instance.pickedCoins++;
         EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, CoinSound, 0.8f, 1.0f, 1.4f));
         // sound event here instead??

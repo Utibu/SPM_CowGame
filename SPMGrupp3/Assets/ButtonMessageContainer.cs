@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class DeathMessageContainer : MonoBehaviour
+public class ButtonMessageContainer : MonoBehaviour
 {
     //[SerializeField] private PlayerStateMachine player;
     //private PlayerStateMachine stateMachine;
@@ -32,7 +32,7 @@ public class DeathMessageContainer : MonoBehaviour
         }
     }
 
-    public void Show()
+    public virtual void Show()
     {
         gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -69,6 +69,7 @@ public class DeathMessageContainer : MonoBehaviour
         ResumeGame();
         GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameManager.instance.coinCount -= LevelManager.instance.pickedCoins;
+        GameManager.instance.totalCoinCount -= LevelManager.instance.pickedCoins;
         //GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
     }
 

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Text velocityText;
     public Text coinCountText;
     [HideInInspector] public int coinCount;
+    [HideInInspector] public int totalCoinCount;
     [SerializeField] private int coinsToHPIncrease = 20;
     [SerializeField] private int HPIncreaseAmount = 20;
     public bool debug;
