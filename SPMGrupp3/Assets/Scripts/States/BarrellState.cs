@@ -32,7 +32,7 @@ public class BarrellState : PhysicsBaseState
     {
         if (hitCollider.tag.Equals("Enemy"))
         {
-            Bonde bonde = hitCollider.GetComponent<Bonde>();
+            Peasant bonde = hitCollider.GetComponent<Peasant>();
             Collider collider = owner.GetComponent<Collider>();
             bonde.PlayerDash(owner.velocity);
         }

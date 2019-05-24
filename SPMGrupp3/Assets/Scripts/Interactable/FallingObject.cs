@@ -125,10 +125,10 @@ public class FallingObject : Dashable
         {
             if (hit.distance < 0.1f && hit.collider.tag.Equals("Enemy"))
             {
-                if(hit.collider.GetComponent<Bonde>().DoingKnockback == false)
+                if(hit.collider.GetComponent<Peasant>().DoingKnockback == false)
                 {
                     Vector3 newDirection = Vector3.Cross(direction, Vector3.up);
-                    hit.collider.GetComponent<Bonde>().PlayerDash(newDirection * 10f);
+                    hit.collider.GetComponent<Peasant>().PlayerDash(newDirection * 10f);
                 }
                 
             }

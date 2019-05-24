@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BigMessageContainer bigMessageContainer;
     [SerializeField] private ButtonMessageContainer deathMessageContainer;
     [SerializeField] private VictoryMessageContainer victoryMessageContainer;
+    [SerializeField] private InteractionDurationContainer interactionDurationContainer;
     
     [SerializeField] private Image speedLines;
     public Text mouseDebug; 
@@ -92,6 +93,11 @@ public class UIManager : MonoBehaviour
     public void ShowVictoryMessage()
     {
         victoryMessageContainer.Show();
+    }
+
+    public void ShowInteractionMeter(float duration)
+    {
+        interactionDurationContainer.Show(duration);
     }
 
     public void HideMessages()

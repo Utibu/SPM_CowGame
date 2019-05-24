@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossStateMachine : Bonde
+public class BossStateMachine : Peasant
 {
     public GameObject bullet;
     public GameObject gun;
@@ -36,7 +36,7 @@ public class BossStateMachine : Bonde
     public Vector3 originalPosition;
 
     public Image healthBar;
-    public Image reloadBar;
+    public Image reloadMeter;
     [HideInInspector] public MeshRenderer renderColor;
 
 
@@ -90,7 +90,7 @@ public class BossStateMachine : Bonde
     {
         count++;
         GameObject underling = Instantiate(underlingPrefab, (underlingSpawnArea.transform.position), Quaternion.identity);
-        Bonde bonde = underling.GetComponent<Bonde>();
+        Peasant bonde = underling.GetComponent<Peasant>();
         bonde.patrolPoints = patrolPoints;
         bonde.maxVisibility = 25f;
         underlingList.Add(underling);
@@ -133,7 +133,7 @@ public class BossStateMachine : Bonde
         // remove spawnlings
         foreach (GameObject underling  in allUnderlings)
         {
-            underling.GetComponent<Bonde>().UnregisterEnemy();
+            underling.GetComponent<Peasant>().UnregisterEnemy();
             Destroy(underling, 3f); // 3 sec delay, to not disrupt iteration(?)
             underling.SetActive(false);
             Debug.Log("foreach underling");

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Bonde : StateMachine
+public class Peasant : StateMachine
 {
 
     //bondevariabler

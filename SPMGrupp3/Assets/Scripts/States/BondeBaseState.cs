@@ -5,7 +5,7 @@ using UnityEngine;
 public class BondeBaseState : EnemyGeneralState
 {
 
-    protected Bonde owner;
+    protected Peasant owner;
     public float speed;
 
 
@@ -24,7 +24,7 @@ public class BondeBaseState : EnemyGeneralState
 
     public override void Initialize(StateMachine stateMachine)
     {
-        owner = (Bonde)stateMachine;
+        owner = (Peasant)stateMachine;
     }
 
     public override void Enter()

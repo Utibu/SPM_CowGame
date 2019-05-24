@@ -84,44 +84,11 @@ public class DashState : PlayerBaseState
             hitCollider.GetComponent<Dashable>().OnPlayerCollideEnter(hitCollider, out skipCollision, player.DashLevel);
         }
 
-        /*
-        if (hitCollider.tag.Equals("Dashable") && player.DashLevel >= hitCollider.GetComponent<Dashable>().requiredLevel)
-        {
-            if(hitCollider.GetComponent<DroppingObject>() != null)
-            {
-                hitCollider.GetComponent<DroppingObject>().OnEnter(player.playerValues);
-            }
-            dashable = hitCollider.GetComponent<Dashable>();
-            if (dashable.GetClip() != null)
-            {
-                //Debug.Log("object ram");
-                EventSystem.Current.FireEvent(new PlaySoundEvent(dashable.gameObject.transform.position, dashable.GetClip(), 1f, 0.8f, 1.1f));
-            }
-            Destroy(hitCollider.gameObject);
-            skipCollision = true;
-        }
-        else if (hitCollider.tag.Equals("Dashable") && player.DashLevel < hitCollider.GetComponent<Dashable>().requiredLevel)
-        {
-            owner.velocity *= -1;
-        }
-        */
-        /*
-        if(hitCollider.GetComponent<Collidable>() != null)
-        {
-            hitCollider.GetComponent<Collidable>().OnPlayerCollideEnter(hitCollider, out skipCollision);
-        }
-        */
-        /*
-        if(hitCollider.tag.Equals("DashFallable"))
-        {
-            hitCollider.GetComponent<FallingObject>().SetFalling(owner.velocity.normalized);
-        }
-        */
         if (hitCollider.tag.Equals("Enemy"))
         {
             player.ShakeCamera();
             //Destroy(hitCollider.gameObject);
-            Bonde bonde = hitCollider.GetComponent<Bonde>();
+            Peasant bonde = hitCollider.GetComponent<Peasant>();
             bonde.PlayerDash(owner.velocity);
         }
        

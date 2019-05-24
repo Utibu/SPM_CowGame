@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BondeRangedStateMachine : Bonde
+public class BondeRangedStateMachine : Peasant
 {
     public GameObject bullet;
     public GameObject gun;

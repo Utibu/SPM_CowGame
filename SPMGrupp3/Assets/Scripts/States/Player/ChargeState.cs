@@ -91,7 +91,7 @@ public class ChargeState : PlayerBaseState
         if (hitCollider.tag.Equals("Enemy"))
         {
             //Destroy(hitCollider.gameObject);
-            Bonde bonde = hitCollider.GetComponent<Bonde>();
+            Peasant bonde = hitCollider.GetComponent<Peasant>();
             bonde.PlayerDash(owner.velocity);
         }
         /*

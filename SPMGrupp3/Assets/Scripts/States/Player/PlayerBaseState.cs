@@ -16,6 +16,7 @@ public class PlayerBaseState : PhysicsBaseState
     protected float terminalVelocity;
     private float speedPercentage;
     protected bool hasCorrectJump = false;
+    private float strafeSpeedReductionPercentage;
 
 
     public override void Enter()
@@ -26,6 +27,12 @@ public class PlayerBaseState : PhysicsBaseState
     public override void Update()
     {
         base.Update();
+        /*
+        if (owner.GetCurrentState().GetType() != typeof(DashState))
+        {
+            CameraPlayerMovement = player.OriginalCameraRotation;
+        }
+        */
         if (takeInput)
             HandleInput();
 
@@ -78,10 +85,11 @@ public class PlayerBaseState : PhysicsBaseState
         }
         else
         {
-            direction = new Vector3(horizontal * 0.4f, 0f, vertical).normalized;
+            direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
         }
         //direction = (Camera.main.transform.rotation * direction).normalized;
-        direction = (player.OriginalCameraRotation * direction).normalized;
+
+        direction = (player.CameraPlayerMovement * direction).normalized;
         //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);
         Vector3 projectedPlane = direction;
 

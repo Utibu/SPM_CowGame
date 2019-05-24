@@ -64,6 +64,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     private float shakeY = 0f;
     private float shakeZ = 0f;
     public Quaternion OriginalCameraRotation { get; private set; }
+    public Quaternion CameraPlayerMovement { get; private set; }
+
 
 
     [SerializeField] private Vector3 cameraRotationOffset;
@@ -77,6 +79,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool IsRotating { get; private set; }
 
     private bool isPaused = false;
+
+    public bool DavidCamera = true;
 
     override protected void Awake()
     {
@@ -187,9 +191,26 @@ public class PlayerStateMachine : PhysicsStateMachine
             return;
         }
 
+
         OriginalCameraRotation = GameManager.instance.cam.transform.rotation;
         speedLinesParticleSystem.transform.rotation = OriginalCameraRotation;
 
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            DavidCamera = !DavidCamera;
+        }
+
+        if(DavidCamera)
+        {
+            if (GetCurrentState().GetType() != typeof(DashState))
+            {
+                CameraPlayerMovement = OriginalCameraRotation;
+            }
+        } else
+        {
+            CameraPlayerMovement = OriginalCameraRotation;
+        }
+        
         if (Input.GetKeyDown(KeyCode.B))
         {
             ShakeCamera();
