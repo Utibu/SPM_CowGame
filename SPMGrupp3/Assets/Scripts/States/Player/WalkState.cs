@@ -12,6 +12,7 @@ public class WalkState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        player.CameraRotationSpeed = 1f;
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Normal);
         if (GameManager.instance.inputManager.DashKey() == false)
         {

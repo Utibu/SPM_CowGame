@@ -87,8 +87,9 @@ public class PlayerBaseState : PhysicsBaseState
         {
             direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
         }
+        
+        Debug.Log(direction);
         //direction = (Camera.main.transform.rotation * direction).normalized;
-
         direction = (player.CameraPlayerMovement * direction).normalized;
         //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);
         Vector3 projectedPlane = direction;
@@ -129,6 +130,7 @@ public class PlayerBaseState : PhysicsBaseState
         speedPercentage = newSpeedPercentage;
         //player.anim.SetFloat("Speed", vertical * speedPercentage);
         //player.anim.SetFloat("Direction", horizontal * speedPercentage);
+        direction *= player.CameraRotationSpeed;
         //player.anim.speed = player.animationSpeed;
         //player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
         Vector3 tempDirection = direction;

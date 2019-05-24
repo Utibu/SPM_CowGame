@@ -77,10 +77,14 @@ public class PlayerStateMachine : PhysicsStateMachine
     public BasicTimer DashCooldownTimer { get; private set; }
     public BasicTimer DashDurationTimer { get; private set; }
     public bool IsRotating { get; private set; }
+    public float CameraRotationSpeed { get; set; }
 
     private bool isPaused = false;
 
     public bool DavidCamera = true;
+
+    public float sensitiveRotationX;
+    public float sensitiveRotationY;
 
     override protected void Awake()
     {
@@ -350,6 +354,9 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         rotationX -= vertical * mouseSensitivity;
         rotationY += horizontal * mouseSensitivity;
+
+        sensitiveRotationX -= vertical * mouseSensitivity * CameraRotationSpeed;
+        sensitiveRotationY -= horizontal * mouseSensitivity * CameraRotationSpeed;
 
         rotationX = Mathf.Clamp(rotationX, minAngle, maxAngle);
 
