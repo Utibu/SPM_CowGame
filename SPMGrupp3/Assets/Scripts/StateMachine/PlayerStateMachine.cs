@@ -81,7 +81,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     private bool isPaused = false;
 
-    public bool DavidCamera = true;
+    public bool DavidCamera = false;
 
     public float sensitiveRotationX;
     public float sensitiveRotationY;
@@ -104,6 +104,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
+        DavidCamera = false;
         anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
@@ -124,6 +125,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         rotationX = x;
         rotationY = y;
+        sensitiveRotationX = x;
+        sensitiveRotationY = y;
         meshParent.transform.eulerAngles = new Vector3(cowX, cowY, 0f);
     }
 
@@ -197,22 +200,26 @@ public class PlayerStateMachine : PhysicsStateMachine
 
 
         OriginalCameraRotation = GameManager.instance.cam.transform.rotation;
+
+        
+        sensitiveRotationX = Mathf.Clamp(sensitiveRotationX, minAngle, maxAngle);
+        CameraPlayerMovement = Quaternion.Euler(sensitiveRotationX, sensitiveRotationY, 0f);
+        sensitiveRotationX = rotationX * CameraRotationSpeed;
+        sensitiveRotationY = rotationY * CameraRotationSpeed;
+        /*if(GetCurrentState().GetType() == typeof(DashState))
+        {
+            CameraPlayerMovement = 
+        } else
+        {
+
+        }*/
+
         speedLinesParticleSystem.transform.rotation = OriginalCameraRotation;
 
         if(Input.GetKeyDown(KeyCode.C))
         {
             DavidCamera = !DavidCamera;
-        }
 
-        if(DavidCamera)
-        {
-            if (GetCurrentState().GetType() != typeof(DashState))
-            {
-                CameraPlayerMovement = OriginalCameraRotation;
-            }
-        } else
-        {
-            CameraPlayerMovement = OriginalCameraRotation;
         }
         
         if (Input.GetKeyDown(KeyCode.B))
@@ -352,11 +359,17 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         UIManager.instance.mouseDebug.text = "MouseX: " + horizontal + " \nMouseY: " + vertical;
 
-        rotationX -= vertical * mouseSensitivity;
-        rotationY += horizontal * mouseSensitivity;
+        float localMouseSensitivity = mouseSensitivity;
 
-        sensitiveRotationX -= vertical * mouseSensitivity * CameraRotationSpeed;
-        sensitiveRotationY -= horizontal * mouseSensitivity * CameraRotationSpeed;
+        if(DavidCamera)
+        {
+            localMouseSensitivity = 1;
+        }
+
+        rotationX -= vertical * localMouseSensitivity;
+        rotationY += horizontal * localMouseSensitivity;
+
+        
 
         rotationX = Mathf.Clamp(rotationX, minAngle, maxAngle);
 
