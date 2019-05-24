@@ -17,7 +17,8 @@ public class PlayerBaseState : PhysicsBaseState
     private float speedPercentage;
     protected bool hasCorrectJump = false;
     private float strafeSpeedReductionPercentage;
-
+    private BasicTimer velocityTimer;
+    private Vector3 originalRotation;
 
     public override void Enter()
     {
@@ -78,6 +79,7 @@ public class PlayerBaseState : PhysicsBaseState
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
         //Normalized (direction)
         if (canStrafe)
         {
@@ -87,11 +89,30 @@ public class PlayerBaseState : PhysicsBaseState
         {
             direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
         }
+
         
-        Debug.Log(direction);
-        //direction = (Camera.main.transform.rotation * direction).normalized;
-        direction = (player.CameraPlayerMovement * direction).normalized;
-        //direction = new Vector3(direction.x * horizontalPercentage, direction.y, direction.z);
+        if(owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
+        {
+            if(velocityTimer == null)
+            {
+                velocityTimer = new BasicTimer(2f);
+                originalRotation = (player.OriginalCameraRotation * direction).normalized;
+            } else
+            {
+                if(velocityTimer.IsCompleted(Time.deltaTime, false, true))
+                {
+                    velocityTimer = new BasicTimer(2f);
+                    originalRotation = (player.OriginalCameraRotation * direction).normalized;
+                } else
+                {
+                    direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, velocityTimer.GetPercentage());
+                }
+            }
+            
+        } else
+        {
+            direction = (player.OriginalCameraRotation * direction).normalized;
+        }
         Vector3 projectedPlane = direction;
 
         Vector3 normal = GetGroundNormal();
@@ -104,29 +125,8 @@ public class PlayerBaseState : PhysicsBaseState
         float distance = acceleration * Time.deltaTime;
         //Move-vector
         Vector3 movement = projectedPlane.normalized * distance;
-        //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
 
-        //movement = new Vector3(movement.x * horizontalPercentage, movement.y, movement.z);
-        if (vertical > 0 && horizontal != 0)
-        {
-            //Debug.Log("diagonal");
-            //movement *= diagonalPercentage;
-        }
-
-        else if (horizontal != 0 || vertical < 0)
-        {
-            //Debug.Log("Horizontal");
-            //movement *= horizontalPercentage;
-
-        }
-
-        /*player.anim.SetFloat("Speed", vertical);
-        player.anim.SetFloat("Direction", horizontal);*/
         float newSpeedPercentage = player.velocity.magnitude / player.maxSpeed;
-        /*if(Mathf.Abs(newSpeedPercentage - speedPercentage) > 0.1f)
-        {
-            speedPercentage = newSpeedPercentage;
-        }*/
         speedPercentage = newSpeedPercentage;
         //player.anim.SetFloat("Speed", vertical * speedPercentage);
         //player.anim.SetFloat("Direction", horizontal * speedPercentage);
@@ -138,18 +138,7 @@ public class PlayerBaseState : PhysicsBaseState
         if(tempDirection.magnitude > 0 && player.IsRotating == false)
         {
             player.RotatePlayer(tempDirection);
-
-            //player.meshParent.transform.rotation = Quaternion.LookRotation(tempVelocity);
         }
-        
-        /*if (maxSpeed <= 0)
-        {
-            maxSpeed = player.maxSpeed;
-        }
-        if (movement.magnitude > maxSpeed)
-        {
-            movement = movement.normalized * maxSpeed;
-        }*/
 
         owner.velocity += movement;
 
