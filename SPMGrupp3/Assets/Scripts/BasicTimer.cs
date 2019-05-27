@@ -65,4 +65,8 @@ public class BasicTimer
         return length;
     }
    
+    public float GetElapsedTime()
+    {
+        return elapsedTime;
+    }
 }

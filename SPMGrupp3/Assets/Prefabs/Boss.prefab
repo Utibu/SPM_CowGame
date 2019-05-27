@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 7049715745974898349}
   - component: {fileID: 7049715745974898350}
   - component: {fileID: 7049715745974898351}
+  - component: {fileID: 8100525929962021864}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Enemy
@@ -780,6 +781,19 @@ MonoBehaviour:
   reloadMeter: {fileID: 7850703785816238279}
   renderColor: {fileID: 0}
   LaserSightRenderer: {fileID: 0}
+--- !u!114 &8100525929962021864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049715745974898344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d8350025f6764eab3117c0bd2f802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &7049715746204282146
 GameObject:
   m_ObjectHideFlags: 0

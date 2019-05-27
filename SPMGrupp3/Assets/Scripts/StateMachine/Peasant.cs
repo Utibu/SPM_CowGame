@@ -36,6 +36,7 @@ public class Peasant : StateMachine
     private bool isLethalHit = false;
     [SerializeField] private float stunLengthToGround;
     public float StunLengthToGround { get { return stunLengthToGround; } private set { stunLengthToGround = value; } }
+    public bool IsStunned { get { return GetCurrentState().GetType() == typeof(BondeStunState) || GetCurrentState().GetType() == typeof(BondeRangedStunState) || GetCurrentState().GetType() == typeof(BossStunState) || GetCurrentState().GetType() == typeof(MinibossStunState); } }
 
     public Image healthMeter;
 
@@ -56,7 +57,7 @@ public class Peasant : StateMachine
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
         EventSystem.Current.RegisterListener<UnregisterListenerEvent>(UnregisterEvents);
-        GameManager.instance.SaveManager.Enemies.Add(this);
+        GameManager.instance.SaveManager.Enemies.Add(GetComponent<Saveable>().Id, this);
     }
 
     private void UnregisterEvents(UnregisterListenerEvent eventInfo)

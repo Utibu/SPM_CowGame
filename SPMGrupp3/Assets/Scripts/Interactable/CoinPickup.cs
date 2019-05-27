@@ -8,7 +8,7 @@ public class CoinPickup : DroppableObject
 
     override public void Start()
     {
-        GameManager.instance.SaveManager.Coins.Add(this);
+        GameManager.instance.SaveManager.Coins.Add(GetComponent<Saveable>().Id, this);
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)

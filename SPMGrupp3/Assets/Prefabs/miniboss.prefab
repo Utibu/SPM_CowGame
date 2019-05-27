@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4662916041227471980}
   - component: {fileID: 6080084750784524630}
   - component: {fileID: 7749563411660537487}
+  - component: {fileID: 8589191272378122885}
   m_Layer: 9
   m_Name: miniboss
   m_TagString: Enemy
@@ -149,6 +150,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 0}
   toughness: 3
+  CurrentToughness: 0
   stunTime: 90
   toAttack: 9
   maxVisibility: 40
@@ -160,6 +162,19 @@ MonoBehaviour:
   DebugThis: 0
   stunLengthToGround: 1.5
   healthMeter: {fileID: 7282656646123307714}
+--- !u!114 &8589191272378122885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078579886046908356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d8350025f6764eab3117c0bd2f802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &2550281495797338498
 GameObject:
   m_ObjectHideFlags: 0

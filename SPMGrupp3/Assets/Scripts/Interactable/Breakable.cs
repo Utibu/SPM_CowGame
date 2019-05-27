@@ -19,7 +19,7 @@ public class Breakable : Triggable
     {
         base.Start();
         colli = GetComponent<BoxCollider>();
-        GameManager.instance.SaveManager.TrapObjects.Add(this);
+        GameManager.instance.SaveManager.TrapObjects.Add(GetComponent<Saveable>().Id, this);
         //countdown = fallTime;
     }
 

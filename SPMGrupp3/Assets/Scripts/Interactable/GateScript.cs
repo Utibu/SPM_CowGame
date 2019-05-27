@@ -28,7 +28,7 @@ public class GateScript : Collidable
         newEulerRightY = Helper.GetCorrectAngle(transform.eulerAngles.y + (90f));
         currentEulerLeftY = Helper.GetCorrectAngle(leftGate.transform.eulerAngles.y);
         currentEulerRightY = Helper.GetCorrectAngle(rightGate.transform.eulerAngles.y);
-        GameManager.instance.SaveManager.Gates.Add(this);
+        GameManager.instance.SaveManager.Gates.Add(GetComponent<Saveable>().Id, this);
     }
 
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
@@ -51,7 +51,7 @@ public class GateScript : Collidable
         }
     }
 
-    private void Open()
+    public void Open()
     {
         isCurrentlyAnimating = true;
         IsOpened = true;

@@ -11,7 +11,7 @@ public class BarrellStateMachine : PhysicsStateMachine
 
     override public void Start()
     {
-        GameManager.instance.SaveManager.MovableObjects.Add(gameObject);
+        GameManager.instance.SaveManager.MovableObjects.Add(GetComponent<Saveable>().Id, gameObject);
     }
 
     public void Move(Vector3 playerVelocity)

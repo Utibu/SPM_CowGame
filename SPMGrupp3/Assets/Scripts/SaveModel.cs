@@ -65,6 +65,10 @@ public class VectorModel
         Y = vector.y;
         Z = vector.z;
     }
+    public Vector3 GetVector()
+    {
+        return new Vector3(X, Y, Z);
+    }
 }
 
 [Serializable]
@@ -117,15 +121,17 @@ public class ObjectModel
 public class EnemyModel: ObjectModel
 {
     public float CurrentToughness;
+    public bool IsStunned;
 
     public EnemyModel()
     {
 
     }
 
-    public EnemyModel(float id, bool isActive, VectorModel position, VectorModel rotation, float currentToughness) : base(id, isActive, position, rotation)
+    public EnemyModel(float id, bool isActive, VectorModel position, VectorModel rotation, float currentToughness, bool isStunned) : base(id, isActive, position, rotation)
     {
         CurrentToughness = currentToughness;
+        IsStunned = isStunned;
     }
 }
 

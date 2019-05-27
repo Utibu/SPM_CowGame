@@ -31,7 +31,7 @@ public class FallingObject : Dashable
         Vector3 initialRotation = transform.eulerAngles;
         initialRotation.y = 0f;
         transform.eulerAngles = initialRotation;
-        GameManager.instance.SaveManager.FallingObjects.Add(this);
+        GameManager.instance.SaveManager.FallingObjects.Add(GetComponent<Saveable>().Id, this);
         if(isFalling)
         {
             isFalling = false;
