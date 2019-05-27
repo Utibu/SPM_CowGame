@@ -24,7 +24,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     
     
-    public bool isDashing = false;
+    public bool IsDashing = false;
     [HideInInspector] public float elapsedDashTime;
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
@@ -81,7 +81,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     private bool isPaused = false;
 
-    public bool DavidCamera = false;
+    public bool UsingFreeCamera = false;
     public BasicTimer VelocityTimer { get; set; }
     public Vector3 Direction;
     public bool IsChangingDirection { get; private set; }
@@ -107,7 +107,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
-        DavidCamera = false;
+        UsingFreeCamera = true;
         anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
@@ -146,7 +146,6 @@ public class PlayerStateMachine : PhysicsStateMachine
             {
                 break;
             }
-            Debug.Log("ROTATING VIA ROTATOR " + meshParent.transform.rotation);
             meshParent.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, i);
             yield return null;
         }
@@ -246,7 +245,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            DavidCamera = !DavidCamera;
+            UsingFreeCamera = !UsingFreeCamera;
 
         }
         
@@ -389,7 +388,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         float localMouseSensitivity = mouseSensitivity;
 
-        if(DavidCamera)
+        if(UsingFreeCamera)
         {
             localMouseSensitivity = 1;
         }

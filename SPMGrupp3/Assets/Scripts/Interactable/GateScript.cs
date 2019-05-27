@@ -37,7 +37,7 @@ public class GateScript : Collidable
         else
         {
             skipCollision = false;
-            if (GameManager.instance.player.GetCurrentState().GetType() == typeof(DashState))
+            if (GameManager.instance.player.IsDashing)
             {
                 GameManager.instance.player.velocity *= -1;
                 GameManager.instance.player.ShakeCamera();
@@ -51,7 +51,7 @@ public class GateScript : Collidable
         isCurrentlyAnimating = true;
         isOpened = true;
 
-        if(GameManager.instance.player.GetCurrentState().GetType() == typeof(DashState))
+        if(GameManager.instance.player.IsDashing)
         {
             animationTimer = new BasicTimer(0.2f);
         } else

@@ -95,27 +95,22 @@ public class PlayerBaseState : PhysicsBaseState
         }
 
 
-        if(owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
+        if(player.IsDashing && player.UsingFreeCamera == true)
         {
             if(player.VelocityTimer == null)
             {
-                //Debug.LogWarning("SETTING INITIAL DASH ROTATION");
                 player.VelocityTimer = new BasicTimer(3f);
-                //player.IsRotating = false;
                 originalRotation = (player.OriginalCameraRotation * direction).normalized;
                 direction = originalRotation;
             } else
             {
                 if(player.VelocityTimer.IsCompleted(Time.deltaTime, false, true))
                 {
-                    //Debug.LogWarning("UPDATING DASH ROTATION ");
                     player.VelocityTimer = new BasicTimer(3f);
-                    //player.IsRotating = false;
                     originalRotation = (player.OriginalCameraRotation * direction).normalized;
                     direction = originalRotation;
                 } else
                 {
-                    //Debug.Log("UPDATING DASH ROTATION ");
                     direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, player.VelocityTimer.GetPercentage());
                 }
             }
@@ -150,23 +145,7 @@ public class PlayerBaseState : PhysicsBaseState
         if (tempDirection.magnitude > 0 && player.IsRotating == false)
         {
             player.RotatePlayer(tempDirection);
-        }/*
-        if (owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
-        {
-            if(Quaternion.LookRotation(tempDirection).eulerAngles.magnitude > 0f)
-            {
-                player.meshParent.transform.rotation = Quaternion.LookRotation(tempDirection);
-                player.IsRotating = false;
-                Debug.LogWarning("TAKING OVER ROTATION!!! " + player.meshParent.transform.rotation + "    MAGNITUDE: " + player.meshParent.transform.eulerAngles.magnitude);
-            }
-            
-        } else
-        {
-            if (tempDirection.magnitude > 0 && player.IsRotating == false)
-            {
-                player.RotatePlayer(tempDirection);
-            }
-        }*/
+        }
         
 
         owner.velocity += movement;
