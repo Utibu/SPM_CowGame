@@ -30,10 +30,10 @@ public class BossBaseState : EnemyGeneralState
 
     protected void attack()
     {
-        GameObject bullet = Instantiate(owner.bullet, owner.gun.transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(owner.bullet, owner.ActiveWeapon.transform.position, Quaternion.identity);
         BulletStateMachine stateMachine = bullet.GetComponent<BulletStateMachine>();
         stateMachine.hasKnockback = true;
-        stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
+        stateMachine.SendBullet(owner.ActiveWeapon.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
         owner.bulletsShotSinceReload++;
         EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.GunSound, 1f, 0.9f, 1.1f));
     }
@@ -53,9 +53,9 @@ public class BossBaseState : EnemyGeneralState
 
 
 
-        Vector3 gunPos = owner.player.transform.position - owner.gun.transform.position;
+        Vector3 gunPos = owner.player.transform.position - owner.ActiveWeapon.transform.position;
         Quaternion gunRotation = Quaternion.LookRotation(gunPos);
-        owner.gun.transform.rotation = gunRotation;
+        owner.ActiveWeapon.transform.rotation = gunRotation;
     }
 
     

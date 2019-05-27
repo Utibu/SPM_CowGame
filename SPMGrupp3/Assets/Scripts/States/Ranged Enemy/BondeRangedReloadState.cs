@@ -12,6 +12,8 @@ public class BondeRangedReloadState : BondeRangedBaseState
     {
         base.Enter();
         time = 0f;
+        EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.ReloadSound, 1f, 0.9f, 1.1f));
+
     }
 
     public override void Update()

@@ -8,7 +8,7 @@ public class AudioListener : MonoBehaviour
     private GameObject obj;
     [SerializeField] private int audioPlayerCount;
     private int count = 0;
-    private List<GameObject> audioPlayers = new List<GameObject>();
+    private List<AudioSource> audioPlayerList = new List<AudioSource>();
     private bool audioPlayersAvailable;
 
 
@@ -22,22 +22,22 @@ public class AudioListener : MonoBehaviour
         while(count <= audioPlayerCount)
         {
             obj = Instantiate(audioPlayer);
-            audioPlayers.Add(obj);
+            audioPlayerList.Add(obj.GetComponent<AudioSource>());
             count++;
         }
     }
 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
-        foreach(GameObject audio in audioPlayers)
+        foreach(AudioSource audioSource in audioPlayerList)
         {
             audioPlayersAvailable = false;
-            if(audio.GetComponent<AudioSource>().isPlaying != true)
+            if(audioSource.isPlaying != true)
             {
-                audio.transform.position = SoundEvent.position;
-                audio.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
-                audio.GetComponent<AudioSource>().volume = SoundEvent.volume;
-                audio.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+                audioSource.gameObject.transform.position = SoundEvent.position;
+                audioSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+                audioSource.volume = SoundEvent.volume;
+                audioSource.PlayOneShot(SoundEvent.sound);
                 audioPlayersAvailable = true;
                 return;
             }
