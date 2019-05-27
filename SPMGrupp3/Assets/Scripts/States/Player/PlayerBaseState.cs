@@ -23,6 +23,7 @@ public class PlayerBaseState : PhysicsBaseState
     public override void Enter()
     {
         base.Enter();
+        velocityTimer = null;
     }
 
     public override void Update()
@@ -95,16 +96,19 @@ public class PlayerBaseState : PhysicsBaseState
         {
             if(velocityTimer == null)
             {
-                velocityTimer = new BasicTimer(2f);
+                Debug.LogWarning("SETTING INITIAL DASH ROTATION");
+                velocityTimer = new BasicTimer(4f);
                 originalRotation = (player.OriginalCameraRotation * direction).normalized;
             } else
             {
                 if(velocityTimer.IsCompleted(Time.deltaTime, false, true))
                 {
+                    Debug.LogWarning("UPDATING DASH ROTATION ");
                     velocityTimer = new BasicTimer(2f);
                     originalRotation = (player.OriginalCameraRotation * direction).normalized;
                 } else
                 {
+                    Debug.Log("UPDATING DASH ROTATION ");
                     direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, velocityTimer.GetPercentage());
                 }
             }
