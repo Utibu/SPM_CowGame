@@ -21,6 +21,7 @@ public class DashState : PlayerBaseState
         player.dashAirResistance = airResistance;
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
+        
     }
 
     public override void Enter()

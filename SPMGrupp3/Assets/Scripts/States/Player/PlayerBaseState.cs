@@ -17,13 +17,12 @@ public class PlayerBaseState : PhysicsBaseState
     private float speedPercentage;
     protected bool hasCorrectJump = false;
     private float strafeSpeedReductionPercentage;
-    private BasicTimer velocityTimer;
     private Vector3 originalRotation;
 
     public override void Enter()
     {
         base.Enter();
-        velocityTimer = null;
+        player.VelocityTimer = null;
     }
 
     public override void Update()
@@ -80,36 +79,36 @@ public class PlayerBaseState : PhysicsBaseState
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
         //Normalized (direction)
         if (canStrafe)
         {
-            direction = new Vector3(horizontal, 0f, vertical).normalized;
+            
         }
         else
         {
-            direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
+            //direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
         }
 
         
         if(owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
         {
-            if(velocityTimer == null)
+            if(player.VelocityTimer == null)
             {
                 Debug.LogWarning("SETTING INITIAL DASH ROTATION");
-                velocityTimer = new BasicTimer(4f);
+                player.VelocityTimer = new BasicTimer(4f);
                 originalRotation = (player.OriginalCameraRotation * direction).normalized;
             } else
             {
-                if(velocityTimer.IsCompleted(Time.deltaTime, false, true))
+                if(player.VelocityTimer.IsCompleted(Time.deltaTime, false, true))
                 {
                     Debug.LogWarning("UPDATING DASH ROTATION ");
-                    velocityTimer = new BasicTimer(2f);
+                    player.VelocityTimer = new BasicTimer(2f);
                     originalRotation = (player.OriginalCameraRotation * direction).normalized;
                 } else
                 {
                     Debug.Log("UPDATING DASH ROTATION ");
-                    direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, velocityTimer.GetPercentage());
+                    direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, player.VelocityTimer.GetPercentage());
                 }
             }
             

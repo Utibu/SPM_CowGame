@@ -82,6 +82,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     private bool isPaused = false;
 
     public bool DavidCamera = false;
+    public BasicTimer VelocityTimer { get; set; }
 
     public float sensitiveRotationX;
     public float sensitiveRotationY;
