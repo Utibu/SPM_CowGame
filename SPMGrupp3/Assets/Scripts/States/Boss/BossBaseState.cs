@@ -32,6 +32,7 @@ public class BossBaseState : EnemyGeneralState
     {
         GameObject bullet = Instantiate(owner.bullet, owner.gun.transform.position, Quaternion.identity);
         BulletStateMachine stateMachine = bullet.GetComponent<BulletStateMachine>();
+        stateMachine.hasKnockback = true;
         stateMachine.SendBullet(owner.gun.transform.forward.normalized * bulletAcceleration, owner.attackDamage);
         owner.bulletsShotSinceReload++;
         EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.GunSound, 1f, 0.9f, 1.1f));
