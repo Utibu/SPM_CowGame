@@ -10,7 +10,7 @@ abstract public class Dashable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.SaveManager.Dashables.Add(this);
+        GameManager.instance.SaveManager.Dashables.Add(GetComponent<Saveable>().Id, this);
     }
 
     // Update is called once per frame

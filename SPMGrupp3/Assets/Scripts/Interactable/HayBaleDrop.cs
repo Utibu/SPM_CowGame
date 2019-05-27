@@ -12,7 +12,7 @@ public class HayBaleDrop : DroppableObject
     override public void Start()
     {
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
-        GameManager.instance.SaveManager.Haybales.Add(gameObject);
+        GameManager.instance.SaveManager.Haybales.Add(GetComponent<Saveable>().Id, gameObject);
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
