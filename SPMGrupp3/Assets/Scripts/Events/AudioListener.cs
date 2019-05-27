@@ -4,32 +4,58 @@ using UnityEngine;
 
 public class AudioListener : MonoBehaviour
 {
-    private AudioSource auSource;
-    private BasicTimer soundTimer;
-    [SerializeField] private float audioDelay;
+    [SerializeField] private GameObject audioPlayer;
+    private GameObject obj;
+    [SerializeField] private int audioPlayerCount;
+    private int count = 0;
+    private List<GameObject> audioPlayers = new List<GameObject>();
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        soundTimer = new BasicTimer(audioDelay);
         EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
     }
 
     private void Awake()
     {
-        auSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        soundTimer.Update(Time.deltaTime);
-        
+        while(count <= audioPlayerCount)
+        {
+            obj = Instantiate(audioPlayer);
+            audioPlayers.Add(obj);
+            count++;
+        }
     }
 
     private void EmitSound(PlaySoundEvent SoundEvent)
     {
+        foreach(GameObject audio in audioPlayers)
+        {
+            if(audio.GetComponent<AudioSource>().isPlaying != true)
+            {
+                audio.transform.position = SoundEvent.position;
+                audio.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+                audio.GetComponent<AudioSource>().volume = SoundEvent.volume;
+                audio.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+                return;
+            }
+        }
+        /*
+        Debug.Log("instantiating new player");
+        obj = Instantiate(audioPlayer, SoundEvent.position, Quaternion.identity);
+        obj.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+        obj.GetComponent<AudioSource>().volume = SoundEvent.volume;
+        obj.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+        Destroy(obj, SoundEvent.sound.length);
+        */
+        /*
+        obj = Instantiate(audioPlayer, SoundEvent.position, Quaternion.identity);
+        obj.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+        obj.GetComponent<AudioSource>().volume = SoundEvent.volume;
+        obj.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+        Destroy(obj, SoundEvent.sound.length);
+        */
+
+        /*
         transform.position = SoundEvent.position;
         auSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
         auSource.volume = SoundEvent.volume;
@@ -39,5 +65,6 @@ public class AudioListener : MonoBehaviour
             auSource.PlayOneShot(SoundEvent.sound);
             soundTimer.Reset();
         }
+        */
     }
 }
