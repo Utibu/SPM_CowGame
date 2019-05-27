@@ -40,12 +40,14 @@ public class BossStateMachine : Peasant
     public Image healthBar;
     public Image reloadMeter;
     [HideInInspector] public MeshRenderer renderColor;
+    [HideInInspector] public LineRenderer LaserSightRenderer;
 
 
     protected override void Awake()
     {
         base.Awake();
         CurrentToughness = toughness;
+        LaserSightRenderer = rifle.GetComponentInChildren<LineRenderer>();
     }
 
     public override void Start()
