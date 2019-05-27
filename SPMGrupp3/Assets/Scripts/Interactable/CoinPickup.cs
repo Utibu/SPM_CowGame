@@ -6,6 +6,11 @@ public class CoinPickup : DroppableObject
 {
     public AudioClip CoinSound;
 
+    override public void Start()
+    {
+        GameManager.instance.SaveManager.Coins.Add(this);
+    }
+
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);

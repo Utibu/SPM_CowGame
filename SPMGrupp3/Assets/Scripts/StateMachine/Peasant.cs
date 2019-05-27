@@ -17,7 +17,7 @@ public class Peasant : StateMachine
     //public GameObject player;
     public PlayerStateMachine player;
     public float toughness = 1;
-    protected float currentToughness;
+    [HideInInspector] public float CurrentToughness;
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
@@ -44,7 +44,7 @@ public class Peasant : StateMachine
     protected override void Awake()
     {
         base.Awake();
-        currentToughness = toughness;
+        CurrentToughness = toughness;
         boxref = GetComponent<BoxCollider>();
         agnes = GetComponent<NavMeshAgent>();
         DoingKnockback = false;
@@ -56,7 +56,7 @@ public class Peasant : StateMachine
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
         EventSystem.Current.RegisterListener<UnregisterListenerEvent>(UnregisterEvents);
-
+        GameManager.instance.SaveManager.Enemies.Add(this);
     }
 
     private void UnregisterEvents(UnregisterListenerEvent eventInfo)
@@ -113,7 +113,7 @@ public class Peasant : StateMachine
             if(isLethalHit)
             {
                 isDying = true;
-                currentToughness = toughness; // lives are reset. 
+                CurrentToughness = toughness; // lives are reset. 
             } else
             {
                 DoingKnockback = false;
@@ -135,7 +135,7 @@ public class Peasant : StateMachine
     {
         if(Gracetimer == null)
         {
-            currentToughness -= 1;
+            CurrentToughness -= 1;
 
             //agnes.velocity += agnes.velocity * -1 * 100f;
             knockbackDirection = velocity.normalized;
@@ -146,7 +146,7 @@ public class Peasant : StateMachine
             //Debug.Log("NEW VELOCITY: " + agnes.velocity);
             timer = new BasicTimer(0.5f);
 
-            if (currentToughness <= 0)
+            if (CurrentToughness <= 0)
             {
                 isLethalHit = true;
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
@@ -154,7 +154,7 @@ public class Peasant : StateMachine
 
             if(healthMeter != null)
             {
-                healthMeter.fillAmount = currentToughness / toughness;
+                healthMeter.fillAmount = CurrentToughness / toughness;
             }
         }
     }

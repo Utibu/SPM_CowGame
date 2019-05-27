@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance = null;
+    [SerializeField] private int levelNumber;
+    public int LevelNumber { get { return levelNumber; } set { levelNumber = value; } }
     [HideInInspector] public Transform currentCheckpoint;
     public Transform originalSpawnTransform;
     private List<Transform> checkpoints = new List<Transform>();
@@ -15,6 +17,8 @@ public class LevelManager : MonoBehaviour
     public AudioClip checkpointSound;
 
     public float playerScale = 1f;
+
+    
 
     void Awake()
     {
@@ -34,6 +38,7 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
+        currentCheckpoint = originalSpawnTransform;
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
         GameManager.instance.player.transform.localScale = Vector3.one * playerScale;

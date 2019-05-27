@@ -812,6 +812,7 @@ GameObject:
   - component: {fileID: 3255710042339404917}
   - component: {fileID: 8841919399148376335}
   - component: {fileID: 3476298329049586902}
+  - component: {fileID: 5907868307667624791}
   m_Layer: 9
   m_Name: Crate
   m_TagString: Barrell
@@ -950,6 +951,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &5907868307667624791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5077730652462289078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d8350025f6764eab3117c0bd2f802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &5577768183053262432
 GameObject:
   m_ObjectHideFlags: 0

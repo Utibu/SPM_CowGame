@@ -43,7 +43,7 @@ public class BossStateMachine : Peasant
     protected override void Awake()
     {
         base.Awake();
-        currentToughness = toughness;
+        CurrentToughness = toughness;
     }
 
     public override void Start()
@@ -65,8 +65,8 @@ public class BossStateMachine : Peasant
         //base.PlayerDash(velocity);
         if (Gracetimer == null && isInvincible == false)
         {
-            currentToughness -= 1;
-            if (currentToughness <= 0)
+            CurrentToughness -= 1;
+            if (CurrentToughness <= 0)
             {
                 Destroy(gameObject);
                 UIManager.instance.ShowVictoryMessage();
@@ -80,8 +80,8 @@ public class BossStateMachine : Peasant
             Transition<BossTransitionState>();
         }
         
-        healthBar.fillAmount =  currentToughness / toughness;
-        Debug.Log("Current: " + currentToughness + " Total: " + toughness + " " + currentToughness/toughness);
+        healthBar.fillAmount =  CurrentToughness / toughness;
+        Debug.Log("Current: " + CurrentToughness + " Total: " + toughness + " " + CurrentToughness/toughness);
 
 
     }
@@ -123,8 +123,8 @@ public class BossStateMachine : Peasant
     {
         Debug.Log("BOSS RESET! **********************************");
         // reset hp
-        currentToughness = toughness;
-        healthBar.fillAmount = currentToughness / toughness;
+        CurrentToughness = toughness;
+        healthBar.fillAmount = CurrentToughness / toughness;
 
         // put boss at original position
         Destination = originalPosition;

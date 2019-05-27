@@ -9,9 +9,10 @@ public class HayBaleDrop : DroppableObject
 
 
     // Start is called before the first frame update
-    void Start()
+    override public void Start()
     {
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
+        GameManager.instance.SaveManager.Haybales.Add(gameObject);
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
