@@ -9,6 +9,7 @@ public class AudioListener : MonoBehaviour
     [SerializeField] private int audioPlayerCount;
     private int count = 0;
     private List<GameObject> audioPlayers = new List<GameObject>();
+    private bool audioPlayersAvailable;
 
 
     void Start()
@@ -30,14 +31,26 @@ public class AudioListener : MonoBehaviour
     {
         foreach(GameObject audio in audioPlayers)
         {
+            audioPlayersAvailable = false;
             if(audio.GetComponent<AudioSource>().isPlaying != true)
             {
                 audio.transform.position = SoundEvent.position;
                 audio.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
                 audio.GetComponent<AudioSource>().volume = SoundEvent.volume;
                 audio.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+                audioPlayersAvailable = true;
                 return;
             }
+        }
+
+        if(audioPlayersAvailable != true)
+        {
+            Debug.Log("instantiating new player");
+            obj = Instantiate(audioPlayer, SoundEvent.position, Quaternion.identity);
+            obj.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
+            obj.GetComponent<AudioSource>().volume = SoundEvent.volume;
+            obj.GetComponent<AudioSource>().PlayOneShot(SoundEvent.sound);
+            Destroy(obj, SoundEvent.sound.length);
         }
         /*
         Debug.Log("instantiating new player");
