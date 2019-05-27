@@ -13,16 +13,21 @@ public class GateScript : Collidable
     private Vector3 newEulerLeft;
     private Vector3 newEulerRight;
 
+    private float newEulerLeftY;
+    private float newEulerRightY;
+    private float currentEulerLeftY;
+    private float currentEulerRightY;
+
     private bool isCurrentlyAnimating = false;
     private bool isOpened = false;
     private BasicTimer animationTimer;
 
     private void Start()
     {
-        newEulerLeft = new Vector3(0f, Helper.GetCorrectAngle(transform.eulerAngles.y + (-90f)), 0f);
-        newEulerRight = new Vector3(0f, Helper.GetCorrectAngle(transform.eulerAngles.y + (90f)), 0f);
-        rightGate.transform.eulerAngles = new Vector3(0f, rightGate.transform.eulerAngles.y, 0f);
-        leftGate.transform.eulerAngles = new Vector3(0f, leftGate.transform.eulerAngles.y, 0f);
+        newEulerLeftY = Helper.GetCorrectAngle(transform.eulerAngles.y + (-90f));
+        newEulerRightY = Helper.GetCorrectAngle(transform.eulerAngles.y + (90f));
+        currentEulerLeftY = Helper.GetCorrectAngle(leftGate.transform.eulerAngles.y);
+        currentEulerRightY = Helper.GetCorrectAngle(rightGate.transform.eulerAngles.y);
     }
 
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
@@ -47,7 +52,6 @@ public class GateScript : Collidable
 
     private void Open()
     {
-        // do a nice gate open rotation or start anim or whatever
         isCurrentlyAnimating = true;
         isOpened = true;
 
@@ -58,12 +62,7 @@ public class GateScript : Collidable
         {
             animationTimer = new BasicTimer(2f);
         }
-
-        originalEulerLeft = transform.eulerAngles + leftGate.transform.eulerAngles;
-        originalEulerRight = transform.eulerAngles + rightGate.transform.eulerAngles;
-        Debug.Log("RIGHT ROTATION: " + Helper.GetCorrectEulerVector(rightGate.transform.eulerAngles) + "     NEW EULER: " + newEulerRight);
         GetComponent<Collider>().enabled = false;
-        //Destroy(this.gameObject);
 
     }
 
@@ -73,11 +72,10 @@ public class GateScript : Collidable
         {
             if(animationTimer.IsCompleted(Time.deltaTime, false, true) == false)
             {
-                leftGate.transform.eulerAngles = Vector3.Slerp(Helper.GetCorrectEulerVector(leftGate.transform.eulerAngles), Helper.GetCorrectEulerVector(newEulerLeft), animationTimer.GetPercentage());
-                rightGate.transform.eulerAngles = Vector3.Slerp(Helper.GetCorrectEulerVector(rightGate.transform.eulerAngles), Helper.GetCorrectEulerVector(newEulerRight), animationTimer.GetPercentage());
-                Debug.Log(rightGate.transform.eulerAngles);
-                //leftGate.transform.eulerAngles = newEulerLeft;
-                //rightGate.transform.eulerAngles = newEulerRight;
+                currentEulerLeftY = Mathf.Lerp(currentEulerLeftY, newEulerLeftY, animationTimer.GetPercentage());
+                currentEulerRightY = Mathf.Lerp(currentEulerRightY, newEulerRightY, animationTimer.GetPercentage());
+                leftGate.transform.eulerAngles = new Vector3(0f, currentEulerLeftY, 0f);
+                rightGate.transform.eulerAngles = new Vector3(0f, currentEulerRightY, 0f);
             }
         }
     }
