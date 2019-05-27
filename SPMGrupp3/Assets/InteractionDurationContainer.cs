@@ -21,7 +21,6 @@ public class InteractionDurationContainer : MonoBehaviour
     {
         if(gameObject.activeSelf == true)
         {
-            duration.Update(Time.deltaTime);
             durationMeter.fillAmount = duration.GetPercentage();
             if (duration.IsCompleted(Time.deltaTime, true, true))
             {
