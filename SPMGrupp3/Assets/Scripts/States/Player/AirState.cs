@@ -20,9 +20,10 @@ public class AirState : PlayerBaseState
         originalSens = player.mouseSensitivity;
         player.CameraRotationSpeed = 0.8f;
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
-        if (owner.lastState.GetType() == typeof(DashState))
+        if (player.IsDashing)
         {
             acceleration = dashJumpAcceleration;
+            //Debug.Log("ACCELERATION: " + acceleration);
             player.mouseSensitivity /= divideSens;
         } else
         {
@@ -55,6 +56,12 @@ public class AirState : PlayerBaseState
         if (GameManager.instance.inputManager.DashKey() && IsGrounded())
         {
             //owner.Transition<DashState>();
+        }
+
+        if(!GameManager.instance.inputManager.DashKey())
+        {
+            acceleration = normalJumpAcceleration;
+            player.IsDashing = false;
         }
 
         if (IsGrounded())

@@ -24,7 +24,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     
     
-    public bool isDashing = false;
+    public bool IsDashing = false;
     [HideInInspector] public float elapsedDashTime;
     public bool allowedToDash = true;
     public float dashCooldown = 5f;
@@ -76,13 +76,15 @@ public class PlayerStateMachine : PhysicsStateMachine
     public bool hasFreeDash = false;
     public BasicTimer DashCooldownTimer { get; private set; }
     public BasicTimer DashDurationTimer { get; private set; }
-    public bool IsRotating { get; private set; }
+    public bool IsRotating { get; set; }
     public float CameraRotationSpeed { get; set; }
 
     private bool isPaused = false;
 
-    public bool DavidCamera = false;
+    public bool UsingFreeCamera = false;
     public BasicTimer VelocityTimer { get; set; }
+    public Vector3 Direction;
+    public bool IsChangingDirection { get; private set; }
 
     public float sensitiveRotationX;
     public float sensitiveRotationY;
@@ -105,7 +107,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         EventSystem.Current.RegisterListener<HayEatingFinishedEvent>(OnInteractionFinished);
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
-        DavidCamera = false;
+        UsingFreeCamera = true;
         anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
@@ -140,11 +142,29 @@ public class PlayerStateMachine : PhysicsStateMachine
         Quaternion currentRotation = meshParent.transform.rotation;
         for (float i = 0; i < 1.0f; i += Time.deltaTime / 0.1f)
         {
+            if(IsRotating == false)
+            {
+                break;
+            }
             meshParent.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, i);
             yield return null;
         }
 
         IsRotating = false;
+    }
+
+    private IEnumerator VelocityConstrainer(Vector3 newDirection)
+    {
+        IsChangingDirection = true;
+        Vector3 targetDirection = newDirection;
+        Vector3 currentDirection = (OriginalCameraRotation * Direction).normalized;
+        for (float i = 0; i < 1.0f; i += Time.deltaTime / 6f)
+        {
+            Direction = Vector3.Lerp(currentDirection, newDirection, i);
+            yield return null;
+        }
+
+        IsChangingDirection = false;
     }
 
     public void ShowParticles()
@@ -170,6 +190,12 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         IEnumerator rotationRoutine = Rotator(direction);
         StartCoroutine(rotationRoutine);
+    }
+
+    public void ChangeDirection(Vector3 direction)
+    {
+        IEnumerator routine = VelocityConstrainer(direction);
+        StartCoroutine(routine);
     }
 
 
@@ -203,10 +229,10 @@ public class PlayerStateMachine : PhysicsStateMachine
         OriginalCameraRotation = GameManager.instance.cam.transform.rotation;
 
         
-        sensitiveRotationX = Mathf.Clamp(sensitiveRotationX, minAngle, maxAngle);
+        /*sensitiveRotationX = Mathf.Clamp(sensitiveRotationX, minAngle, maxAngle);
         CameraPlayerMovement = Quaternion.Euler(sensitiveRotationX, sensitiveRotationY, 0f);
         sensitiveRotationX = rotationX * CameraRotationSpeed;
-        sensitiveRotationY = rotationY * CameraRotationSpeed;
+        sensitiveRotationY = rotationY * CameraRotationSpeed;*/
         /*if(GetCurrentState().GetType() == typeof(DashState))
         {
             CameraPlayerMovement = 
@@ -219,7 +245,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            DavidCamera = !DavidCamera;
+            UsingFreeCamera = !UsingFreeCamera;
 
         }
         
@@ -362,7 +388,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         float localMouseSensitivity = mouseSensitivity;
 
-        if(DavidCamera)
+        if(UsingFreeCamera)
         {
             localMouseSensitivity = 1;
         }

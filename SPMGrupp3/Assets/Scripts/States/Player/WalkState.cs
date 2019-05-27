@@ -14,6 +14,7 @@ public class WalkState : PlayerBaseState
         base.Enter();
         player.CameraRotationSpeed = 1f;
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Normal);
+        player.IsDashing = false;
         if (GameManager.instance.inputManager.DashKey() == false)
         {
             //dashTimer = new BasicTimer(dashCooldown);

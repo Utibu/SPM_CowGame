@@ -28,7 +28,7 @@ public class DashState : PlayerBaseState
     {
         base.Enter();
         airResistance = player.dashAirResistance;
-        player.isDashing = true;
+        player.IsDashing = true;
         //originalFOV = Camera.main.fieldOfView;
         originalSens = player.mouseSensitivity;
         player.mouseSensitivity /= divideSens;
@@ -37,8 +37,6 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         player.CameraRotationSpeed = 0.4f;
-        player.sensitiveRotationX = player.OriginalCameraRotation.eulerAngles.x;
-        player.sensitiveRotationY = player.OriginalCameraRotation.eulerAngles.y;
         UIManager.instance.SetDashFillAmount(1f);
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Dash);
         //player.DashCooldownTimer.Reset();
@@ -49,7 +47,6 @@ public class DashState : PlayerBaseState
     {
         //owner.velocity /= 2f;
         //Camera.main.fieldOfView = originalFOV;
-        player.isDashing = false;
         player.ResetDash();
         player.mouseSensitivity = originalSens;
         player.lastGravity = gravityConstant;
