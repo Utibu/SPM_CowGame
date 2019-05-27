@@ -7,7 +7,11 @@ public class PlayerBaseState : PhysicsBaseState
 
     [SerializeField] private float horizontalPercentage = 0.5f;
     [SerializeField] private float diagonalPercentage = 0.8f;
-    protected Vector3 direction;
+    protected Vector3 direction
+    {
+        get { return player.Direction; }
+        set { player.Direction = value; }
+    }
     public bool takeInput = true;
     protected bool canStrafe = true;
     protected float jumpForce = 5f;
@@ -90,24 +94,28 @@ public class PlayerBaseState : PhysicsBaseState
             //direction = new Vector3(horizontal * strafeSpeedReductionPercentage, 0f, vertical).normalized;
         }
 
-        
+
         if(owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
         {
             if(player.VelocityTimer == null)
             {
-                Debug.LogWarning("SETTING INITIAL DASH ROTATION");
-                player.VelocityTimer = new BasicTimer(4f);
+                //Debug.LogWarning("SETTING INITIAL DASH ROTATION");
+                player.VelocityTimer = new BasicTimer(3f);
+                //player.IsRotating = false;
                 originalRotation = (player.OriginalCameraRotation * direction).normalized;
+                direction = originalRotation;
             } else
             {
                 if(player.VelocityTimer.IsCompleted(Time.deltaTime, false, true))
                 {
-                    Debug.LogWarning("UPDATING DASH ROTATION ");
-                    player.VelocityTimer = new BasicTimer(2f);
+                    //Debug.LogWarning("UPDATING DASH ROTATION ");
+                    player.VelocityTimer = new BasicTimer(3f);
+                    //player.IsRotating = false;
                     originalRotation = (player.OriginalCameraRotation * direction).normalized;
+                    direction = originalRotation;
                 } else
                 {
-                    Debug.Log("UPDATING DASH ROTATION ");
+                    //Debug.Log("UPDATING DASH ROTATION ");
                     direction = Vector3.Lerp(originalRotation, (player.OriginalCameraRotation * direction).normalized, player.VelocityTimer.GetPercentage());
                 }
             }
@@ -116,6 +124,7 @@ public class PlayerBaseState : PhysicsBaseState
         {
             direction = (player.OriginalCameraRotation * direction).normalized;
         }
+
         Vector3 projectedPlane = direction;
 
         Vector3 normal = GetGroundNormal();
@@ -138,15 +147,32 @@ public class PlayerBaseState : PhysicsBaseState
         //player.meshParent.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
         Vector3 tempDirection = direction;
         tempDirection.y = 0f;
-        if(tempDirection.magnitude > 0 && player.IsRotating == false)
+        if (tempDirection.magnitude > 0 && player.IsRotating == false)
         {
             player.RotatePlayer(tempDirection);
-        }
+        }/*
+        if (owner.GetCurrentState().GetType() == typeof(DashState) && player.DavidCamera == true)
+        {
+            if(Quaternion.LookRotation(tempDirection).eulerAngles.magnitude > 0f)
+            {
+                player.meshParent.transform.rotation = Quaternion.LookRotation(tempDirection);
+                player.IsRotating = false;
+                Debug.LogWarning("TAKING OVER ROTATION!!! " + player.meshParent.transform.rotation + "    MAGNITUDE: " + player.meshParent.transform.eulerAngles.magnitude);
+            }
+            
+        } else
+        {
+            if (tempDirection.magnitude > 0 && player.IsRotating == false)
+            {
+                player.RotatePlayer(tempDirection);
+            }
+        }*/
+        
 
         owner.velocity += movement;
 
-        
-        
+
+
     }
 
     public override void Leave()

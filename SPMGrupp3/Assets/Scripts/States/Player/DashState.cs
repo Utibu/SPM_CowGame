@@ -37,8 +37,6 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         player.CameraRotationSpeed = 0.4f;
-        player.sensitiveRotationX = player.OriginalCameraRotation.eulerAngles.x;
-        player.sensitiveRotationY = player.OriginalCameraRotation.eulerAngles.y;
         UIManager.instance.SetDashFillAmount(1f);
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Dash);
         //player.DashCooldownTimer.Reset();
