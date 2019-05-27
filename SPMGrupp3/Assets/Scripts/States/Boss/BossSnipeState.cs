@@ -26,6 +26,11 @@ public class BossSnipeState : BossBaseState
         lookAt();
         countdown -= Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            toggleLaserSight();
+        }
+
         RaycastHit hit;
         if(Physics.Raycast(owner.ActiveWeapon.transform.position, owner.LaserSightRenderer.gameObject.transform.forward, out hit))
         {
@@ -49,6 +54,18 @@ public class BossSnipeState : BossBaseState
         
         
         
+    }
+
+    private void toggleLaserSight()
+    {
+        if(owner.LaserSightRenderer.isVisible == true)
+        {
+            owner.LaserSightRenderer.enabled = false;
+        }
+        else
+        {
+            owner.LaserSightRenderer.enabled = true;
+        }
     }
 
     public override void Leave()

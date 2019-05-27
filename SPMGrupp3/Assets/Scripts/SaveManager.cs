@@ -52,7 +52,7 @@ public class SaveManager : MonoBehaviour
         if(hasInitialized == false)
         {
             hasInitialized = true;
-            Load();
+            //Load();
         }
         if(Input.GetKeyDown(KeyCode.J))
         {
