@@ -55,7 +55,7 @@ public class BossAttackState : BossBaseState
     {
         base.Leave();
         owner.agnes.updateRotation = true;
-        owner.gun.transform.rotation = owner.transform.rotation;
+        owner.ActiveWeapon.transform.rotation = owner.transform.rotation;
     }
 
 }

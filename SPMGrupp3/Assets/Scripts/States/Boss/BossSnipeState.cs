@@ -22,7 +22,7 @@ public class BossSnipeState : BossBaseState
         originalAttackSpeed = owner.attackSpeed;
         owner.attackSpeed = attackSpeed;
         owner.renderColor.material.color = Color.red;
-       
+        owner.ToggleActiveWeapon();
 
     }
 
@@ -58,5 +58,6 @@ public class BossSnipeState : BossBaseState
         owner.attackSpeed = originalAttackSpeed;
         owner.bulletsShotSinceReload = 0;
         owner.renderColor.material.color = Color.white;
+        owner.ToggleActiveWeapon();
     }
 }

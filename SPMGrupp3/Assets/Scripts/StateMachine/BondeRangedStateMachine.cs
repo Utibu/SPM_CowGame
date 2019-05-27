@@ -11,6 +11,7 @@ public class BondeRangedStateMachine : Peasant
     public float bulletsBeforeReload;
     [HideInInspector] public float bulletsShotSinceReload;
     public AudioClip GunSound;
+    public AudioClip ReloadSound;
 
     public override void PlayerDash(Vector3 velocity)
     {

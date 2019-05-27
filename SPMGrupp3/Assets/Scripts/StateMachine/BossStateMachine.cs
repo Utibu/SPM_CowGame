@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class BossStateMachine : Peasant
 {
     public GameObject bullet;
-    public GameObject gun;
+    [HideInInspector] public GameObject ActiveWeapon;
+    [SerializeField] private GameObject pistol;
+    [SerializeField] private GameObject rifle;
     public float attackSpeed;
     public float bulletsBeforeReload;
     [HideInInspector]
@@ -53,6 +55,7 @@ public class BossStateMachine : Peasant
         EventSystem.Current.RegisterListener<EnemyDieEvent>(OnUnderlingDeath);
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(OnPlayerDeath);
         renderColor = GetComponent<MeshRenderer>();
+        ActiveWeapon = pistol;
     }
 
     public override void Update()
@@ -140,6 +143,22 @@ public class BossStateMachine : Peasant
         }
         underlingList.Clear();
         allUnderlings.Clear();
+    }
+
+    public void ToggleActiveWeapon()
+    {
+        if (ActiveWeapon.Equals(pistol))
+        {
+            pistol.SetActive(false);
+            rifle.SetActive(true);
+            ActiveWeapon = rifle;
+        }
+        else
+        {
+            pistol.SetActive(true);
+            rifle.SetActive(false);
+            ActiveWeapon = pistol;
+        }
     }
 
 }
