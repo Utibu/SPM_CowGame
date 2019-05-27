@@ -7,6 +7,7 @@ public class BulletState : PhysicsBaseState
 {
 
     public float moveMultiplier;
+    private float knockbackAmount = 30f;
 
     public override void Enter()
     {
@@ -30,7 +31,14 @@ public class BulletState : PhysicsBaseState
         {
             //Debug.Log("HIT");
             hitCollider.GetComponent<PlayerValues>().health -= ((BulletStateMachine)owner).bulletDamage;
-            hitCollider.GetComponent<PhysicsStateMachine>().velocity = Vector3.zero;
+            if(((BulletStateMachine)owner).hasKnockback == true)
+            {
+                GameManager.instance.player.velocity += owner.velocity.normalized * knockbackAmount;
+            }
+            else
+            {
+                hitCollider.GetComponent<PhysicsStateMachine>().velocity = Vector3.zero;
+            }
             Destroy(owner.gameObject);
         } else {
             Destroy(owner.gameObject);

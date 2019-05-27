@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletStateMachine : PhysicsStateMachine
 {
     [HideInInspector] public float bulletDamage;
+    [HideInInspector] public bool hasKnockback = false;
+
     public void SendBullet(Vector3 vel, float damage)
     {
         velocity += vel;
