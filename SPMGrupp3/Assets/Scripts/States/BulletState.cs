@@ -29,7 +29,6 @@ public class BulletState : PhysicsBaseState
     {
         if (hitCollider.tag.Equals("Player"))
         {
-            //Debug.Log("HIT");
             hitCollider.GetComponent<PlayerValues>().health -= ((BulletStateMachine)owner).bulletDamage;
             if(((BulletStateMachine)owner).hasKnockback == true)
             {
