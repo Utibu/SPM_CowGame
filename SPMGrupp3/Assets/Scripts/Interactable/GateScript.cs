@@ -19,7 +19,7 @@ public class GateScript : Collidable
     private float currentEulerRightY;
 
     private bool isCurrentlyAnimating = false;
-    private bool isOpened = false;
+    public bool IsOpened = false;
     private BasicTimer animationTimer;
 
     private void Start()
@@ -28,6 +28,7 @@ public class GateScript : Collidable
         newEulerRightY = Helper.GetCorrectAngle(transform.eulerAngles.y + (90f));
         currentEulerLeftY = Helper.GetCorrectAngle(leftGate.transform.eulerAngles.y);
         currentEulerRightY = Helper.GetCorrectAngle(rightGate.transform.eulerAngles.y);
+        GameManager.instance.SaveManager.Gates.Add(this);
     }
 
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision)
@@ -53,7 +54,7 @@ public class GateScript : Collidable
     private void Open()
     {
         isCurrentlyAnimating = true;
-        isOpened = true;
+        IsOpened = true;
 
         if(GameManager.instance.player.IsDashing)
         {

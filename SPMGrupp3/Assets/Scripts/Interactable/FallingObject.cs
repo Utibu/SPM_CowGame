@@ -14,6 +14,7 @@ public class FallingObject : Dashable
     public MeshRenderer meshRenderer;
     private float smallestValue = -1; //To not overshoot
     private bool hasFallen = false;
+    public bool HasFallen { get { return hasFallen; } set { hasFallen = value; } }
     public GameObject pivot;
     private Vector3 size;
     public bool freeFall = true;
@@ -30,6 +31,7 @@ public class FallingObject : Dashable
         Vector3 initialRotation = transform.eulerAngles;
         initialRotation.y = 0f;
         transform.eulerAngles = initialRotation;
+        GameManager.instance.SaveManager.FallingObjects.Add(this);
         if(isFalling)
         {
             isFalling = false;

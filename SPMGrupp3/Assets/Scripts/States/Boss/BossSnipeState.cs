@@ -6,55 +6,54 @@ using UnityEngine;
 public class BossSnipeState : BossBaseState
 {
     private float countdown;
-    //private Vector3 originalPosition;
     [SerializeField] private float attackSpeed;
     private float originalAttackSpeed;
-    //private float rangeFromDestination = 3f;
 
     public override void Enter()
     {
         base.Enter();
-        //originalPosition = owner.transform.position;
-        //owner.bulletsShotSinceReload = 0;
-        //owner.agnes.Warp(owner.snipeLocation.transform.position);
-        //owner.agnes.isStopped = true;
-        //owner.agnes.enabled = false;
         originalAttackSpeed = owner.attackSpeed;
         owner.attackSpeed = attackSpeed;
         owner.renderColor.material.color = Color.red;
         owner.ToggleActiveWeapon();
+        
 
     }
 
     public override void Update()
     {
+        owner.LaserSightRenderer.SetPosition(0, owner.LaserSightRenderer.gameObject.transform.position);
         lookAt();
-
-        //if(!Helper.IsWithinDistance(owner.transform.position, owner.snipeLocation.transform.position, rangeFromDestination))
-        //{
-            //owner.transform.position = Vector3.Slerp(owner.transform.position, owner.snipeLocation.transform.position, 1.5f * Time.deltaTime);
-        //}
-        
-        
-        //owner.agnes.enabled = true;
-
         countdown -= Time.deltaTime;
-        if (countdown <= 0)
-        {
-            attack();
-            countdown = attackSpeed;
 
+        RaycastHit hit;
+        if(Physics.Raycast(owner.ActiveWeapon.transform.position, owner.LaserSightRenderer.gameObject.transform.forward, out hit))
+        {
+            if (countdown <= 0 && hit.collider.tag.Equals("Player"))
+            {
+                attack();
+                countdown = attackSpeed;
+
+            }
+
+            if (hit.collider)
+            {
+                owner.LaserSightRenderer.SetPosition(1, hit.point);
+            }
+            else
+            {
+                owner.LaserSightRenderer.SetPosition(1, owner.LaserSightRenderer.gameObject.transform.forward * 5000);
+            }
         }
+        //owner.LaserSightRenderer.SetPosition(1, )
+        
+        
         
     }
 
     public override void Leave()
     {
         base.Leave();
-        //owner.agnes.isStopped = false;
-        //owner.agnes.enabled = true;
-        //owner.Destination = originalPosition;
-        //owner.agnes.Warp(originalPosition);
         owner.attackSpeed = originalAttackSpeed;
         owner.bulletsShotSinceReload = 0;
         owner.renderColor.material.color = Color.white;

@@ -8,6 +8,7 @@ public class Breakable : Triggable
     public LayerMask masken;
     public float fallTime = 1.0f;
     private bool broke = false;
+    public bool Broke { get { return broke; } set { broke = value; } }
     private bool falling = false;
     private float speed = 0.1f;
     public float countdown;
@@ -18,6 +19,7 @@ public class Breakable : Triggable
     {
         base.Start();
         colli = GetComponent<BoxCollider>();
+        GameManager.instance.SaveManager.TrapObjects.Add(this);
         //countdown = fallTime;
     }
 

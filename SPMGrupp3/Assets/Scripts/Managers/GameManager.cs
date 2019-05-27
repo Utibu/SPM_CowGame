@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject controlsUI;
     private bool isLoadingScene = false;
     private bool isPaused = false;
+    public SaveManager SaveManager;
 
     private Vector3 horizontalSpeed = new Vector3();
     //private AudioSource auSource;
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
     {
         controlsUI.SetActive(true);
         Invoke("HideControlsUI", 6f);
-        
         if (!showCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;

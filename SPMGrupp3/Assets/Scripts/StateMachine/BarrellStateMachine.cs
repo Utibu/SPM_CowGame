@@ -9,6 +9,11 @@ public class BarrellStateMachine : PhysicsStateMachine
     public bool movable;
     [SerializeField] private AudioClip[] bounceSounds;
 
+    override public void Start()
+    {
+        GameManager.instance.SaveManager.MovableObjects.Add(gameObject);
+    }
+
     public void Move(Vector3 playerVelocity)
     {
         if(!movable)
