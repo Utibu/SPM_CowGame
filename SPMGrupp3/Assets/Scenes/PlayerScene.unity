@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 7270208569316688678, guid: d433197e8e94a26448b85d6acf800954,
         type: 3}
       propertyPath: m_Name
-      value: AudioListener
+      value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 7270208569316688683, guid: d433197e8e94a26448b85d6acf800954,
         type: 3}
@@ -299,6 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7270208569316688677, guid: d433197e8e94a26448b85d6acf800954, type: 3}
+    - {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d433197e8e94a26448b85d6acf800954, type: 3}
 --- !u!1 &104551396
 GameObject:
@@ -6090,6 +6091,27 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &1755137506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7270208569316688678, guid: d433197e8e94a26448b85d6acf800954,
+    type: 3}
+  m_PrefabInstance: {fileID: 20914060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1755137507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755137506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02d0e8426732df4bba050a4ceb0b9fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 930162389627507870, guid: ec0e19311f8538449bd904a6aab4530c,
+    type: 3}
+  audioPlayerCount: 4
 --- !u!114 &1838968639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7627976048939210925, guid: 812157dcbb4c7c341bba3531f39d0c12,
@@ -11515,6 +11537,11 @@ PrefabInstance:
       propertyPath: SaveManager
       value: 
       objectReference: {fileID: 1549612089}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1755137507}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49d3bdef351158d48a96eb419d4d5190, type: 3}
 --- !u!1001 &5012012487690968615

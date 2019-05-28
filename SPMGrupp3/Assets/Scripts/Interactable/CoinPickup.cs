@@ -15,10 +15,12 @@ public class CoinPickup : DroppableObject
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
+        Debug.Log("PLAYING!");
         GameManager.instance.coinCount++;
         GameManager.instance.totalCoinCount++;
         LevelManager.instance.pickedCoins++;
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, CoinSound, 0.8f, 1.0f, 1.4f));
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, CoinSound, 0.8f, 0.95f, 1.05f));
+        
         // sound event here instead??
     }
 }

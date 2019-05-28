@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioListener : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [SerializeField] private GameObject audioPlayer;
     [SerializeField] private int audioPlayerCount;
@@ -12,15 +12,19 @@ public class AudioListener : MonoBehaviour
     private List<AudioSource> audioPlayerList = new List<AudioSource>();
 
 
-    public void Start()
+    private void Start()
     {
         EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
+        OnLevelLoaded();
+    }
+
+    public void OnLevelLoaded()
+    {
         count = 0;
         audioPlayerList.Clear();
-        Debug.Log("CREATING NEW LIST");
+        Debug.LogWarning("CREATING NEW LIST");
         while (count <= audioPlayerCount)
         {
-            
             obj = Instantiate(audioPlayer);
             audioPlayerList.Add(obj.GetComponent<AudioSource>());
             count++;
@@ -38,7 +42,7 @@ public class AudioListener : MonoBehaviour
         foreach(AudioSource audioSource in audioPlayerList)
         {
             audioPlayersAvailable = false;
-            if(audioSource.isPlaying != true && audioSource != null)
+            if(audioSource.isPlaying != true)
             {
                 audioSource.gameObject.transform.position = SoundEvent.position;
                 audioSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
@@ -51,7 +55,6 @@ public class AudioListener : MonoBehaviour
 
         if(audioPlayersAvailable == false)
         {
-            Debug.Log("new sound");
             obj = Instantiate(audioPlayer, SoundEvent.position, Quaternion.identity);
             obj.GetComponent<AudioSource>().pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
             obj.GetComponent<AudioSource>().volume = SoundEvent.volume;

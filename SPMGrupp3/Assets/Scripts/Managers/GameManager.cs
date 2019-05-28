@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private bool isLoadingScene = false;
     private bool isPaused = false;
     public SaveManager SaveManager;
+    [SerializeField] private AudioManager audioManager;
+    public AudioManager AudioManager { get { return audioManager; } set { audioManager = value; } }
 
     private Vector3 horizontalSpeed = new Vector3();
     //private AudioSource auSource;
