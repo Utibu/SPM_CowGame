@@ -81,6 +81,7 @@ public class BossStateMachine : Peasant
             {
                 Destroy(gameObject);
                 UIManager.instance.ShowVictoryMessage();
+                GameManager.instance.RemoveSave();
                 return;
             }
             transform.position += transform.forward * -2;

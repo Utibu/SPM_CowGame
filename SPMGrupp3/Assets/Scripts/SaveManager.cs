@@ -301,4 +301,15 @@ public class SaveManager : MonoBehaviour
         Debug.Log("LOADED!");
 
     }
+
+    public void RemoveSave()
+    {
+        if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
+        {
+            Debug.LogWarning("SAVEFILE == null");
+            return;
+        }
+
+        File.Delete("Saves/save.binary");
+    }
 }

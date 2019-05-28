@@ -77,6 +77,11 @@ public class GameManager : MonoBehaviour
             Resume();
         }
 
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            RemoveSave();
+        }
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             LoadScene(2);
@@ -140,6 +145,11 @@ public class GameManager : MonoBehaviour
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
         UIManager.instance.ShowDeathMessage();
+    }
+
+    public void RemoveSave()
+    {
+        SaveManager.RemoveSave();
     }
 
     public void LoadScene(int index, bool checkSaved = false)
