@@ -79,7 +79,7 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
-        /*PlayerModel player = new PlayerModel(new VectorModel(GameManager.instance.player.transform.position), new VectorModel(GameManager.instance.player.transform.eulerAngles), GameManager.instance.coinCount, GameManager.instance.player.playerValues.health, GameManager.instance.player.playerValues.maxHealth);
+        PlayerModel player = new PlayerModel(new VectorModel(GameManager.instance.player.transform.position), new VectorModel(GameManager.instance.player.transform.eulerAngles), GameManager.instance.coinCount, GameManager.instance.player.playerValues.health, GameManager.instance.player.playerValues.maxHealth);
         localSaveModel = new SaveModel(LevelManager.instance.LevelNumber, new VectorModel(LevelManager.instance.currentCheckpoint.position), LevelManager.instance.hasGateKey, player);
         //Moveable objects
         foreach (GameObject go in MovableObjects.Values)
@@ -147,14 +147,21 @@ public class SaveManager : MonoBehaviour
         StreamWriter writer = new StreamWriter("Saves/save.xml");
         serializer.Serialize(writer.BaseStream, localSaveModel);
         Debug.Log("SPARAT XML!");
-        writer.Close();*/
+        writer.Close();
 
     }
 
     public void Load()
     {
         //https://www.sitepoint.com/saving-and-loading-player-game-data-in-unity/
-        /*BinaryFormatter formatter = new BinaryFormatter();
+
+        if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
+        {
+            Debug.LogWarning("SAVEFILE == null");
+            return;
+        }
+
+        BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Open("Saves/save.binary", FileMode.Open);
 
         localSaveModel = (SaveModel)formatter.Deserialize(saveFile);
@@ -267,7 +274,7 @@ public class SaveManager : MonoBehaviour
             }
         }
 
-        Debug.Log("LOADED!");*/
+        Debug.Log("LOADED!");
 
     }
 }
