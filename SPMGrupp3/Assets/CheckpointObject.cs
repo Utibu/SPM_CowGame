@@ -15,5 +15,6 @@ public class CheckpointObject : Triggable
     {
         base.OnPlayerTriggerEnter(hitCollider);
         LevelManager.instance.RegisterCheckpointTaken(hitCollider.transform);
+        GameManager.instance.SaveManager.Save();
     }
 }

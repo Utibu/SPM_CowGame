@@ -53,14 +53,15 @@ public class ButtonMessageContainer : MonoBehaviour
     public void RespawnButtonClicked()
     {
         ResumeGame();
-        if (LevelManager.instance.currentCheckpoint != null)
+        /*if (LevelManager.instance.currentCheckpoint != null)
         {
             GameManager.instance.player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
         }
         else
         {
             GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
-        }
+        }*/
+        GameManager.instance.SaveManager.Load();
         
     }
 

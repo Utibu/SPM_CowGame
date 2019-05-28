@@ -20,6 +20,13 @@ public class BondeRangedBaseState : EnemyGeneralState
             owner.isDying = false;
             return;
         }
+
+        if (owner.ShouldGoAlive)
+        {
+            owner.Transition<BondeRangedPatrolState>();
+            owner.ShouldGoAlive = false;
+            return;
+        }
     }
 
     public override void Initialize(StateMachine stateMachine)

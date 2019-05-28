@@ -15,7 +15,19 @@ public class BossBaseState : EnemyGeneralState
 
     public override void Update()
     {
+        if (owner.isDying)
+        {
+            owner.Transition<BossStunState>();
+            owner.isDying = false;
+            return;
+        }
 
+        if (owner.ShouldGoAlive)
+        {
+            owner.Transition<BossPatrolState>();
+            owner.ShouldGoAlive = false;
+            return;
+        }
     }
 
     public override void Initialize(StateMachine stateMachine)

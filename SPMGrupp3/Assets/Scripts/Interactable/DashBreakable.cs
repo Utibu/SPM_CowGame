@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DashBreakable : Dashable
 {
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     void Update()
@@ -22,7 +22,7 @@ public class DashBreakable : Dashable
         if (dashLevel >= requiredLevel)
         {
             skipCollision = true;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {

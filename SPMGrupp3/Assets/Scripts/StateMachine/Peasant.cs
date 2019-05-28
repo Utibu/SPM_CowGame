@@ -39,6 +39,7 @@ public class Peasant : StateMachine
     public bool IsStunned { get { return GetCurrentState().GetType() == typeof(BondeStunState) || GetCurrentState().GetType() == typeof(BondeRangedStunState) || GetCurrentState().GetType() == typeof(BossStunState) || GetCurrentState().GetType() == typeof(MinibossStunState); } }
 
     public Image healthMeter;
+    public bool ShouldGoAlive = false;
 
 
     // Start is called before the first frame update

@@ -82,6 +82,7 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        UIManager.instance.ShowSavingIcon();
         PlayerModel player = new PlayerModel(new VectorModel(GameManager.instance.player.transform.position), new VectorModel(GameManager.instance.player.transform.eulerAngles), GameManager.instance.coinCount, GameManager.instance.player.playerValues.health, GameManager.instance.player.playerValues.maxHealth);
         localSaveModel = new SaveModel(LevelManager.instance.LevelNumber, new VectorModel(LevelManager.instance.currentCheckpoint.position), LevelManager.instance.hasGateKey, player);
         //Moveable objects
@@ -252,6 +253,9 @@ public class SaveManager : MonoBehaviour
                 {
                     //    obj.PlayerDash(Vector3.zero);
                     obj.isDying = true;
+                } else
+                {
+                    obj.ShouldGoAlive = true;
                 }
                 obj.gameObject.SetActive(model.IsActive);
             }
