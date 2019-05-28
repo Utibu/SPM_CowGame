@@ -19,6 +19,14 @@ public class BondeBaseState : EnemyGeneralState
         {
             owner.Transition<BondeStunState>();
             owner.isDying = false;
+            return;
+        }
+
+        if(owner.ShouldGoAlive)
+        {
+            owner.Transition<BondePatrolState>();
+            owner.ShouldGoAlive = false;
+            return;
         }
     }
 

@@ -142,10 +142,18 @@ public class GameManager : MonoBehaviour
         UIManager.instance.ShowDeathMessage();
     }
 
-    public void LoadScene(int index)
+    public void LoadScene(int index, bool checkSaved = false)
     {
         GameManager.instance.SaveManager.ClearSaves();
         RemoveListeners();
+        /*if(checkSaved)
+        {
+            SaveModel save = Helper.GetSaveFile();
+            if(save != null && save.OnLevel == index)
+            {
+                GameInformation.ShouldContinue = true;
+            }
+        }*/
 
         if (!isLoadingScene)
         {
@@ -185,13 +193,35 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadSceneRoutine(int index)
     {
-        var unloading = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        UIManager.instance.LoadingImage.gameObject.SetActive(true);
+        UIManager.instance.LoadingBar.fillAmount = 0f;
+
+        AsyncOperation unloading = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         yield return unloading;
-        var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
-        yield return loading;
-        
+        AsyncOperation loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        while (!loading.isDone)
+        {
+            UIManager.instance.LoadingBar.fillAmount = loading.progress;
+
+            if (loading.progress >= 0.9f)
+            {
+                loading.allowSceneActivation = true;
+
+            }
+
+            yield return null;
+        }
+
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
+        foreach (GameObject go in scene.GetRootGameObjects())
+        {
+            if (go.CompareTag("LevelManager"))
+            {
+                Debug.Log("ACTIVATING");
+                go.GetComponent<LevelManager>().LoadGame();
+            }
+        }
         isLoadingScene = false;
     }
 

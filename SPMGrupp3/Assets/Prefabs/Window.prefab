@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 5963886576996285702}
   - component: {fileID: 5963886576996285703}
   - component: {fileID: 5753358511867636945}
+  - component: {fileID: 3833001576307144439}
   m_Layer: 9
   m_Name: Window
   m_TagString: Dashable
@@ -944,6 +945,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredLevel: 2
   destructionSounds: []
+--- !u!114 &3833001576307144439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5963886576996285700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d8350025f6764eab3117c0bd2f802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &6021331697984198690
 GameObject:
   m_ObjectHideFlags: 0

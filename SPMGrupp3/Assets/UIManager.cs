@@ -26,6 +26,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image RamCooldownImage;
 
     [SerializeField] private Image speedLines;
+    [SerializeField] private Image saveImage;
+
+    [SerializeField] private Image loadingImage;
+    public Image LoadingImage { get { return loadingImage; } private set { loadingImage = value; } }
+    [SerializeField] private Image loadingBar;
+    public Image LoadingBar { get { return loadingBar; } private set { loadingBar = value; } }
     public Text mouseDebug; 
 
     void Awake()
@@ -44,6 +50,8 @@ public class UIManager : MonoBehaviour
         HideInteractionIndicator();
         HideMenu();
         HideSpeedlines();
+        HideSavingIcon();
+        loadingImage.gameObject.SetActive(false);
         //dashCooldownImageColor = dashCooldownImage.color;
     }
     /*
@@ -110,6 +118,17 @@ public class UIManager : MonoBehaviour
         dashCooldownImage.color = dashCooldownImageColor;
     }
     */
+
+    public void ShowSavingIcon()
+    {
+        saveImage.gameObject.SetActive(true);
+        Invoke("HideSavingIcon", 2f);
+    }
+
+    public void HideSavingIcon()
+    {
+        saveImage.gameObject.SetActive(false);
+    }
 
     public void ShowSmallMessage(string title, string desc, Sprite sprite)
     {

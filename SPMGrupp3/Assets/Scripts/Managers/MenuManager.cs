@@ -53,6 +53,7 @@ public class MenuManager : MonoBehaviour
     public void PlayButtonClicked()
     {
         LoadScene(1);
+        GameInformation.ShouldContinue = false;
     }
 
     public void LoadScene(int index)
@@ -84,7 +85,7 @@ public class MenuManager : MonoBehaviour
         loadingImage.gameObject.SetActive(true);
         loadingBar.fillAmount = 0f;
 
-        var loadingPlayer = SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+        AsyncOperation loadingPlayer = SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
         loadingPlayer.allowSceneActivation = false;
         while (!loadingPlayer.isDone)
         {
@@ -100,7 +101,7 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
 
-        var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         loading.allowSceneActivation = false;
         while (!loading.isDone)
         {
@@ -115,7 +116,7 @@ public class MenuManager : MonoBehaviour
 
             yield return null;
         }
-        var scene = SceneManager.GetSceneByBuildIndex(index);
+        Scene scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
         foreach (GameObject go in scene.GetRootGameObjects())
         {
@@ -126,7 +127,7 @@ public class MenuManager : MonoBehaviour
             }
         }
         //Debug.LogWarning("FDF");
-        var unloadCurrent = SceneManager.UnloadSceneAsync(0);
+        AsyncOperation unloadCurrent = SceneManager.UnloadSceneAsync(0);
         yield return unloadCurrent;
         
         isLoadingScene = false;

@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
 
     public float playerScale = 1f;
 
+    private bool hasLoaded = false;
+
     void Awake()
     {
         if (instance == null)
@@ -36,9 +38,10 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
-        
 
+        Debug.Log("STARTING LEVELMANAGER!     ORIGINALSPAWN: " + originalSpawnTransform);
         currentCheckpoint = originalSpawnTransform;
+
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
         GameManager.instance.player.transform.localScale = Vector3.one * playerScale;
@@ -47,18 +50,27 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(LevelNumber);
+        if(hasLoaded == true)
+        {
+            GameManager.instance.SaveManager.Save();
+            hasLoaded = false;
+        }
     }
 
     public void LoadGame()
     {
+        LevelNumber = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("LOADING LEVELMANAGER!     ORIGINALSPAWN: " + originalSpawnTransform);
+
         if (GameInformation.ShouldContinue)
         {
             GameManager.instance.SaveManager.Load();
             GameInformation.ShouldContinue = false;
         }
-        LevelNumber = SceneManager.GetActiveScene().buildIndex;
+        UIManager.instance.LoadingImage.gameObject.SetActive(false);
+        
         GameManager.instance.AudioManager.OnLevelLoaded();
+        hasLoaded = true;
     }
 
     public void RegisterCheckpointTaken(Transform checkPointTransform)

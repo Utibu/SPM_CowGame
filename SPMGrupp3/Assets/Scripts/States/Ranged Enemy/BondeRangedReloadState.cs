@@ -12,6 +12,7 @@ public class BondeRangedReloadState : BondeRangedBaseState
     {
         base.Enter();
         time = 0f;
+        owner.agnes.isStopped = true;
         EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.ReloadSound, 1f, 0.9f, 1.1f));
 
     }
@@ -21,7 +22,7 @@ public class BondeRangedReloadState : BondeRangedBaseState
         base.Update();
         if(time > owner.reloadTime && owner.DoingKnockback == false)
         {
-            owner.Transition<BondeRangedPatrolState>();
+            owner.Transition<BondeRangedAttackState>();
         } else
         {
             time += Time.deltaTime;
@@ -32,6 +33,8 @@ public class BondeRangedReloadState : BondeRangedBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.agnes.isStopped = false;
+
     }
 
 }

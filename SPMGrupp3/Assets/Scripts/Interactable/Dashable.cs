@@ -8,9 +8,12 @@ abstract public class Dashable : MonoBehaviour
     [SerializeField] protected AudioClip[] destructionSounds;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        GameManager.instance.SaveManager.Dashables.Add(GetComponent<Saveable>().Id, this);
+        if(GetComponent<Saveable>() != null)
+        {
+            GameManager.instance.SaveManager.Dashables.Add(GetComponent<Saveable>().Id, this);
+        }
     }
 
     // Update is called once per frame
