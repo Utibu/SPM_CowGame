@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
-    [SerializeField] private Image dashCooldownImage;
+    //[SerializeField] private Image dashCooldownImage;
     [SerializeField] private Image healthBarImage;
     [SerializeField] private Image healthBarBackgroundImage;
     [SerializeField] private Text coinCountText;
@@ -20,7 +20,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ButtonMessageContainer deathMessageContainer;
     [SerializeField] private VictoryMessageContainer victoryMessageContainer;
     [SerializeField] private InteractionDurationContainer interactionDurationContainer;
-    
+
+    // new ram mätare
+    [SerializeField] private Image RamActiveImage;
+    [SerializeField] private Image RamCooldownImage;
+
     [SerializeField] private Image speedLines;
     public Text mouseDebug; 
 
@@ -40,9 +44,9 @@ public class UIManager : MonoBehaviour
         HideInteractionIndicator();
         HideMenu();
         HideSpeedlines();
-        dashCooldownImageColor = dashCooldownImage.color;
+        //dashCooldownImageColor = dashCooldownImage.color;
     }
-
+    /*
     public void SetDashFillAmount(float val)
     {
         if (dashCooldownImage != null)
@@ -56,7 +60,46 @@ public class UIManager : MonoBehaviour
     {
         SetDashFillAmount(dashCooldownImage.fillAmount + val);
     }
+    */
+    // nya ram mätarens metoder
+    public void UpdateRamCooldown(float value)
+    {
+        if (RamCooldownImage != null)
+        {
+            RamCooldownImage.fillAmount = value;
+        }
+    }
 
+    public void SetRamReady(bool isReady)
+    {
+        if (isReady)
+        {
+            RamActiveImage.color = Color.white;
+
+        }
+        else if (!isReady)
+        {
+            RamActiveImage.color = Color.grey;
+        }
+    }
+
+    public void SetRamImage(bool isDashing)
+    {
+        if (isDashing)
+        {
+            RamActiveImage.color = Color.red;
+            //RamActiveImage.CrossFadeColor(Color.red, 0.5f, false, true);
+            // gör ngt snyggt
+        }
+        
+        else
+        {
+            RamActiveImage.color = Color.grey;
+        }
+        
+    }
+
+    /*
     public void DeactivateDashBar()
     {
         dashCooldownImage.color = Color.gray;
@@ -66,6 +109,7 @@ public class UIManager : MonoBehaviour
     {
         dashCooldownImage.color = dashCooldownImageColor;
     }
+    */
 
     public void ShowSmallMessage(string title, string desc, Sprite sprite)
     {
@@ -111,7 +155,7 @@ public class UIManager : MonoBehaviour
     {
         healthBarImage.gameObject.SetActive(true);
         healthBarBackgroundImage.gameObject.SetActive(true);
-        dashCooldownImage.gameObject.SetActive(true);
+        //dashCooldownImage.gameObject.SetActive(true);
         coinCountText.gameObject.SetActive(true);
     }
 
@@ -119,7 +163,7 @@ public class UIManager : MonoBehaviour
     {
         healthBarImage.gameObject.SetActive(false);
         healthBarBackgroundImage.gameObject.SetActive(false);
-        dashCooldownImage.gameObject.SetActive(false);
+        //dashCooldownImage.gameObject.SetActive(false);
         coinCountText.gameObject.SetActive(false);
     }
 

@@ -291,13 +291,15 @@ public class PlayerStateMachine : PhysicsStateMachine
         }*/
 
         DashCooldownTimer.Update(Time.deltaTime);
-        UIManager.instance.SetDashFillAmount(DashCooldownTimer.GetPercentage());
+        //UIManager.instance.SetDashFillAmount(DashCooldownTimer.GetPercentage());
+        UIManager.instance.UpdateRamCooldown(DashCooldownTimer.GetPercentage());
 
         if (!allowedToDash)
         {
             if(elapsedDashTime >= dashCooldown)
             {
                 allowedToDash = true;
+                UIManager.instance.SetRamReady(true);
                 //elapsedDashTime = 0f;
             } else
             {
