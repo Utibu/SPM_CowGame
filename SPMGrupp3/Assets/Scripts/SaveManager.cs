@@ -13,6 +13,7 @@ public class SaveManager : MonoBehaviour
     
     public Dictionary<float, GameObject> MovableObjects;
     public Dictionary<float, GameObject> Haybales;
+    public Dictionary<float, GameObject> Checkpoints;
     public Dictionary<float, FallingObject> FallingObjects;
     public Dictionary<float, Breakable> TrapObjects;
     public Dictionary<float, Peasant> Enemies;
@@ -24,6 +25,7 @@ public class SaveManager : MonoBehaviour
     {
         MovableObjects = new Dictionary<float, GameObject>();
         Haybales = new Dictionary<float, GameObject>();
+        Checkpoints = new Dictionary<float, GameObject>();
         FallingObjects = new Dictionary<float, FallingObject>();
         TrapObjects = new Dictionary<float, Breakable>();
         Enemies = new Dictionary<float, Peasant>();
@@ -41,6 +43,7 @@ public class SaveManager : MonoBehaviour
     {
         MovableObjects.Clear();
         Haybales.Clear();
+        Checkpoints.Clear();
         FallingObjects.Clear();
         TrapObjects.Clear();
         Enemies.Clear();
@@ -89,13 +92,19 @@ public class SaveManager : MonoBehaviour
             //Debug.Log(model.Id + " " + model.IsDisabled + " " + model.Position + " " + model.Rotation);
         }
 
-        foreach(GameObject go in Haybales.Values)
+        foreach (GameObject go in Haybales.Values)
         {
             ObjectModel model = new ObjectModel(GetId(go), go.activeSelf, new VectorModel(go.transform.position), new VectorModel(go.transform.eulerAngles));
             localSaveModel.Haybales.Add(model);
         }
 
-        foreach(FallingObject fo in FallingObjects.Values)
+        foreach (GameObject go in Checkpoints.Values)
+        {
+            ObjectModel model = new ObjectModel(GetId(go), go.activeSelf, new VectorModel(go.transform.position), new VectorModel(go.transform.eulerAngles));
+            localSaveModel.Checkpoints.Add(model);
+        }
+
+        foreach (FallingObject fo in FallingObjects.Values)
         {
             FallingObjectModel model = new FallingObjectModel(GetId(fo.gameObject), fo.gameObject.activeSelf, new VectorModel(fo.transform.position), new VectorModel(fo.transform.eulerAngles), fo.HasFallen);
             localSaveModel.FallingObjects.Add(model);
@@ -191,6 +200,17 @@ public class SaveManager : MonoBehaviour
             if (MovableObjects.ContainsKey(model.Id))
             {
                 GameObject go = Haybales[model.Id];
+                go.transform.position = model.Position.GetVector();
+                go.transform.eulerAngles = model.Rotation.GetVector();
+                go.SetActive(model.IsActive);
+            }
+        }
+
+        foreach (ObjectModel model in localSaveModel.Checkpoints)
+        {
+            if (Checkpoints.ContainsKey(model.Id))
+            {
+                GameObject go = Checkpoints[model.Id];
                 go.transform.position = model.Position.GetVector();
                 go.transform.eulerAngles = model.Rotation.GetVector();
                 go.SetActive(model.IsActive);
