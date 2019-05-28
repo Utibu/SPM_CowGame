@@ -12,6 +12,7 @@ public class HayBaleDrop : DroppableObject
     override public void Start()
     {
         EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
+        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(Unregister);
         GameManager.instance.SaveManager.Haybales.Add(GetComponent<Saveable>().Id, gameObject);
     }
 
@@ -26,6 +27,11 @@ public class HayBaleDrop : DroppableObject
     private void ResetHay(OnPlayerDiedEvent playerDiedEvent)
     {
         gameObject.SetActive(true);
+    }
+
+    private void Unregister(UnregisterListenerEvent eventInfo)
+    {
+        EventSystem.Current.UnregisterListener<OnPlayerDiedEvent>(ResetHay);
     }
 
 }

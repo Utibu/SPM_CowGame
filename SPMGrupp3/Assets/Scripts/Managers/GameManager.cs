@@ -142,8 +142,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
+        GameManager.instance.SaveManager.ClearSaves();
         RemoveListeners();
-        
+
         if (!isLoadingScene)
         {
             IEnumerator coroutine = LoadSceneRoutine(index);

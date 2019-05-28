@@ -24,7 +24,8 @@ public class DroppableObject : Triggable
         base.OnPlayerTriggerEnter(hitCollider);
         if(ShouldDestroyOnEnter)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

@@ -60,6 +60,12 @@ public class BossStateMachine : Peasant
         ActiveWeapon = pistol;
     }
 
+    public override void UnregisterEnemy()
+    {
+        base.UnregisterEnemy();
+        EventSystem.Current.UnregisterListener<OnPlayerDiedEvent>(OnPlayerDeath);
+    }
+
     public override void Update()
     {
         base.Update();
