@@ -19,6 +19,7 @@ public class SaveModel
     public List<GateModel> Gates;
     public List<ObjectModel> Dashables;
     public List<ObjectModel> Coins;
+    public List<ObjectModel> Checkpoints;
 
     public SaveModel()
     {
@@ -40,6 +41,7 @@ public class SaveModel
         Gates = new List<GateModel>();
         Dashables = new List<ObjectModel>();
         Coins = new List<ObjectModel>();
+        Checkpoints = new List<ObjectModel>();
     }
 }
 

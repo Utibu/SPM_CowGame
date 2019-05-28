@@ -18,8 +18,6 @@ public class LevelManager : MonoBehaviour
 
     public float playerScale = 1f;
 
-    private bool isFirstUpdate = true;
-
     void Awake()
     {
         if (instance == null)
@@ -38,10 +36,8 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
-        LevelNumber = SceneManager.GetActiveScene().buildIndex;
-        GameManager.instance.AudioManager.OnLevelLoaded();
         
-        
+
         currentCheckpoint = originalSpawnTransform;
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
@@ -51,15 +47,18 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isFirstUpdate && SceneManager.GetActiveScene().isLoaded)
+        Debug.Log(LevelNumber);
+    }
+
+    public void LoadGame()
+    {
+        if (GameInformation.ShouldContinue)
         {
-            if (GameInformation.ShouldContinue)
-            {
-                GameManager.instance.SaveManager.Load();
-                GameInformation.ShouldContinue = false;
-            }
-            isFirstUpdate = false;
+            GameManager.instance.SaveManager.Load();
+            GameInformation.ShouldContinue = false;
         }
+        LevelNumber = SceneManager.GetActiveScene().buildIndex;
+        GameManager.instance.AudioManager.OnLevelLoaded();
     }
 
     public void RegisterCheckpointTaken(Transform checkPointTransform)
