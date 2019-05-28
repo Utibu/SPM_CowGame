@@ -170,6 +170,11 @@ public class UIManager : MonoBehaviour
         interactionDurationContainer.Show(duration);
     }
 
+    public void HideInteractionMeter()
+    {
+        interactionDurationContainer.Hide();
+    }
+
     public void HideMessages()
     {
         smallMessageContainer.gameObject.SetActive(false);

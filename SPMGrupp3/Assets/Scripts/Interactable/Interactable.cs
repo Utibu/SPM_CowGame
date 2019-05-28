@@ -18,19 +18,19 @@ public class Interactable : Triggable
     public override void Update()
     {
         base.Update();
-        /*
-        if (GameManager.instance.inputManager.EventKeyDown())
+        
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if(playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
             {
                 Debug.Log("cancel");
                 interactionTimer.Reset();
-                GameManager.instance.player.takeInput = true;
+                GameManager.instance.player.canTakeInput = true;
                 playerIsInteracting = false;
-                canInteractTimer = new BasicTimer(1f);
+                UIManager.instance.HideInteractionMeter();
             }
         }
-        */
+        
         if(interactionTimer != null && playerIsInteracting && interactionTimer.IsCompleted(Time.deltaTime, true, true))
         {
             Debug.Log("firing interact event");

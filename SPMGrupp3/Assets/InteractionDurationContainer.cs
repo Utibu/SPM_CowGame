@@ -39,5 +39,6 @@ public class InteractionDurationContainer : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        duration.Reset();
     }
 }
