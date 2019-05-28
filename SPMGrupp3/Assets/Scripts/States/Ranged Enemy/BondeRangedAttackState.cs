@@ -19,8 +19,10 @@ public class BondeRangedAttackState : BondeRangedBaseState
             owner.attackDamage = damage;
         }
 
-        countdown = owner.attackSpeed;
-        attack();
+        owner.agnes.isStopped = true;
+
+        countdown = owner.attackSpeed/2;
+        //attack();
     }
 
     public override void Update()
@@ -76,6 +78,7 @@ public class BondeRangedAttackState : BondeRangedBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.agnes.isStopped = false;
         owner.agnes.updateRotation = true;
         owner.gun.transform.rotation = owner.transform.rotation;
     }
