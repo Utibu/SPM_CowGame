@@ -8,6 +8,7 @@ public class CoinPickup : DroppableObject
 
     override public void Start()
     {
+        base.Start();
         GameManager.instance.SaveManager.Coins.Add(GetComponent<Saveable>().Id, this);
     }
 

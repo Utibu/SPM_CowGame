@@ -66,7 +66,7 @@ public class Peasant : StateMachine
         UnregisterEnemy();
     }
 
-    public void UnregisterEnemy()
+    public virtual void UnregisterEnemy()
     {
         EventSystem.Current.UnregisterListener<PauseEvent>(Pause);
         EventSystem.Current.UnregisterListener<ResumeEvent>(Resume);

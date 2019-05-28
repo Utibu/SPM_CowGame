@@ -32,6 +32,7 @@ public class FallingObject : Dashable
         initialRotation.y = 0f;
         transform.eulerAngles = initialRotation;
         GameManager.instance.SaveManager.FallingObjects.Add(GetComponent<Saveable>().Id, this);
+        Debug.Log("SAVED TREE");
         if(isFalling)
         {
             isFalling = false;

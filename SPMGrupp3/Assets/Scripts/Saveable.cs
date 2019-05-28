@@ -5,7 +5,7 @@ using UnityEngine;
 public class Saveable : MonoBehaviour
 {
     [SerializeField] private float id;
-    public float Id { get { return id; } set { id = value; } }
+    public float Id { get { Debug.Log("GOT ID!"); return id; } set { id = value; } }
 
     private void Awake()
     {
