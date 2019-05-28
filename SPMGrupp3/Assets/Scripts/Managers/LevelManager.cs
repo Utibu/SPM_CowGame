@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
+        GameManager.instance.AudioManager.OnLevelLoaded();
         currentCheckpoint = originalSpawnTransform;
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
