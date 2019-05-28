@@ -241,13 +241,13 @@ public class PlayerBaseState : PhysicsBaseState
     {
         if (player.DashCooldownTimer.IsCompleted(Time.deltaTime, false, false))
         {
-            UIManager.instance.ActivateDashBar();
+            //UIManager.instance.ActivateDashBar();
             
             return true;
         }
         else
         {
-            UIManager.instance.DeactivateDashBar();
+            //UIManager.instance.DeactivateDashBar();
             return false;
         }
     }
