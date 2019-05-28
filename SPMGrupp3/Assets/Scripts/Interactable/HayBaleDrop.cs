@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HayBaleDrop : DroppableObject
 {
-
+    
     public float healthPoints;
 
 
@@ -18,6 +18,7 @@ public class HayBaleDrop : DroppableObject
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
+        Debug.Log("haybaledrop");
         //base.OnPlayerTriggerEnter(hitCollider);
         Debug.Log("HAYBALE");
         player.health += healthPoints;
@@ -33,5 +34,5 @@ public class HayBaleDrop : DroppableObject
     {
         EventSystem.Current.UnregisterListener<OnPlayerDiedEvent>(ResetHay);
     }
-
+    
 }

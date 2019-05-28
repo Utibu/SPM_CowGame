@@ -88,6 +88,8 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public float sensitiveRotationX;
     public float sensitiveRotationY;
+    public bool canTakeInput = true;
+
 
     override protected void Awake()
     {
