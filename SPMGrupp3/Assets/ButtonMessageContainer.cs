@@ -9,6 +9,7 @@ public class ButtonMessageContainer : MonoBehaviour
     //[SerializeField] private PlayerStateMachine player;
     //private PlayerStateMachine stateMachine;
     private MeshRenderer playerMeshRenderer;
+    [SerializeField] private Image container;
 
     void Start()
     {
@@ -22,11 +23,11 @@ public class ButtonMessageContainer : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.F))
+        if(container.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.F))
         {
             RespawnButtonClicked();
         }
-        else if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        else if(container.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
         {
             MainMenuButton();
         }
@@ -34,25 +35,20 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public virtual void Show()
     {
-        gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        GameManager.instance.Pause();
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = false;
-        UIManager.instance.HideHUD();
+        //gameObject.SetActive(true);
+        
 
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //gameObject.SetActive(false);
+        
     }
 
     public void RespawnButtonClicked()
     {
-        ResumeGame();
+        ResumeGame(true);
         /*if (LevelManager.instance.currentCheckpoint != null)
         {
             GameManager.instance.player.Respawn(LevelManager.instance.currentCheckpoint.transform.position);
@@ -67,11 +63,11 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public void RestartLevelButtonClicked()
     {
-        ResumeGame();
-        GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
         GameManager.instance.coinCount -= LevelManager.instance.pickedCoins;
         GameManager.instance.totalCoinCount -= LevelManager.instance.pickedCoins;
-        
+        GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ResumeGame();
         //GameManager.instance.player.Respawn(LevelManager.instance.originalSpawnTransform.position);
     }
 
@@ -80,12 +76,9 @@ public class ButtonMessageContainer : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void ResumeGame()
+    private void ResumeGame(bool shouldDoResumeAction = false)
     {
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
-        GameManager.instance.Resume();
-        UIManager.instance.HideDeathMessage();
-        UIManager.instance.ShowHUD();
+        UIManager.instance.ResumeGame(shouldDoResumeAction);
     }
 
 }

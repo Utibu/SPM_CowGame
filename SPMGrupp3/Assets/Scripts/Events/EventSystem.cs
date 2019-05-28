@@ -44,17 +44,17 @@ public class EventSystem : MonoBehaviour
     public void UnregisterListener<T>(System.Action<T> listener) where T : Event
     {
         System.Type eventType = typeof(T);
-        Debug.Log("---");
-        Debug.Log("BEFORE: " + eventListeners[eventType].Count);
+        //Debug.Log("---");
+        //Debug.Log("BEFORE: " + eventListeners[eventType].Count);
         if (eventListeners == null || !eventListeners.ContainsKey(eventType) || eventListeners[eventType] == null)
         {
             return;
         }
-        Debug.Log("TARGET: " + listener.Target);
-        Debug.Log("METHOD: " + listener.Method);
-        Debug.Log("CURRENT: ----- ");
+        //Debug.Log("TARGET: " + listener.Target);
+        //Debug.Log("METHOD: " + listener.Method);
+        //Debug.Log("CURRENT: ----- ");
         eventListeners[eventType].RemoveWhere(item => item.Target == listener.Target && item.Method == listener.Method);
-        Debug.Log("AFTER: " + eventListeners[eventType].Count);
+        //Debug.Log("AFTER: " + eventListeners[eventType].Count);
     }
 
     public void FireEvent(Event eventInfo)

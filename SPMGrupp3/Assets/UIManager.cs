@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private SmallMessageContainer smallMessageContainer;
     [SerializeField] private BigMessageContainer bigMessageContainer;
-    [SerializeField] private ButtonMessageContainer deathMessageContainer;
+    [SerializeField] private Image deathMessageContainer;
     [SerializeField] private VictoryMessageContainer victoryMessageContainer;
     [SerializeField] private InteractionDurationContainer interactionDurationContainer;
 
@@ -145,12 +145,19 @@ public class UIManager : MonoBehaviour
     public void ShowDeathMessage()
     {
         HideMessages();
-        deathMessageContainer.Show();
+        deathMessageContainer.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameManager.instance.Pause();
+        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = false;
+        UIManager.instance.HideHUD();
     }
 
     public void HideDeathMessage()
     {
         deathMessageContainer.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void ShowVictoryMessage()
@@ -225,5 +232,17 @@ public class UIManager : MonoBehaviour
     public void HideSpeedlines()
     {
         speedLines.gameObject.SetActive(false);
+    }
+
+    public void ResumeGame(bool shouldDoResumeAction = false)
+    {
+        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        if(shouldDoResumeAction)
+        {
+            GameManager.instance.Resume();
+        }
+        
+        HideDeathMessage();
+        ShowHUD();
     }
 }

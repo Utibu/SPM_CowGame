@@ -112,12 +112,14 @@ public class GameManager : MonoBehaviour
     {
         EventSystem.Current.FireEvent(new PauseEvent(""));
         isPaused = true;
+        Debug.Log("PAUSE!!");
     }
 
     public void Resume()
     {
         EventSystem.Current.FireEvent(new ResumeEvent(""));
         isPaused = false;
+        Debug.Log("RESUME!!");
     }
 
     private void CheckCoins()

@@ -39,7 +39,6 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
 
-        Debug.Log("STARTING LEVELMANAGER!     ORIGINALSPAWN: " + originalSpawnTransform);
         currentCheckpoint = originalSpawnTransform;
 
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
@@ -53,6 +52,7 @@ public class LevelManager : MonoBehaviour
         if(hasLoaded == true)
         {
             GameManager.instance.SaveManager.Save();
+            UIManager.instance.ResumeGame(true);
             hasLoaded = false;
         }
     }
@@ -60,7 +60,6 @@ public class LevelManager : MonoBehaviour
     public void LoadGame()
     {
         LevelNumber = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("LOADING LEVELMANAGER!     ORIGINALSPAWN: " + originalSpawnTransform);
 
         if (GameInformation.ShouldContinue)
         {
