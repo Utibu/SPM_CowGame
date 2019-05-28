@@ -37,7 +37,8 @@ public class DashState : PlayerBaseState
         player.dashStateAcceleration = acceleration;
         player.dashStateGravity = gravityConstant;
         player.CameraRotationSpeed = 0.4f;
-        UIManager.instance.SetDashFillAmount(1f);
+        //UIManager.instance.SetDashFillAmount(1f);
+        UIManager.instance.SetRamImage(true);
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.Dash);
         //player.DashCooldownTimer.Reset();
         canStrafe = false;
@@ -59,7 +60,7 @@ public class DashState : PlayerBaseState
         {
             player.DashCooldownTimer.SetStartTime(0);
         }*/
-        
+        UIManager.instance.SetRamImage(false);
         player.DashDurationTimer.Reset();
         canStrafe = true;
 
