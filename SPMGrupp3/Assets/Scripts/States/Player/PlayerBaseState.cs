@@ -12,7 +12,6 @@ public class PlayerBaseState : PhysicsBaseState
         get { return player.Direction; }
         set { player.Direction = value; }
     }
-    public bool takeInput = true;
     protected bool canStrafe = true;
     protected float jumpForce = 5f;
     protected float maxSpeed;
@@ -38,7 +37,7 @@ public class PlayerBaseState : PhysicsBaseState
             CameraPlayerMovement = player.OriginalCameraRotation;
         }
         */
-        if (takeInput)
+        if (((PlayerStateMachine)owner).canTakeInput)
             HandleInput();
 
         if(!IsGrounded() && owner.GetCurrentState().GetType() != typeof(AirState))

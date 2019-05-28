@@ -41,8 +41,10 @@ public class OnInteractionFinishedEvent: DebugEvent
 
 public class HayEatingFinishedEvent: OnInteractionFinishedEvent
 {
-    public HayEatingFinishedEvent(GameObject gameObject, string eventDescription = "") : base(gameObject, eventDescription)
+    public float healthReplenished;
+    public HayEatingFinishedEvent(GameObject gameObject, float healthReplenished, string eventDescription = "") : base(gameObject, eventDescription)
     {
+        this.healthReplenished = healthReplenished;
     }
 }
 
