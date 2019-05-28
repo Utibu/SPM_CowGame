@@ -136,6 +136,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 0}
   toughness: 1
+  CurrentToughness: 0
   stunTime: 60
   toAttack: 20
   maxVisibility: 25
@@ -149,8 +150,8 @@ MonoBehaviour:
   healthMeter: {fileID: 0}
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
-  attackSpeed: 2
-  reloadTime: 3
+  attackSpeed: 1.5
+  reloadTime: 2.5
   bulletsBeforeReload: 3
   bulletsShotSinceReload: 0
   GunSound: {fileID: 8300000, guid: 26347a6df7ff8db4ebfeb4aef74f2dce, type: 3}
