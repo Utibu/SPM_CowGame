@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviour
     private bool isLoadingScene = false;
     private SaveModel localSaveModel;
     [SerializeField] private Button continueButton;
+    [SerializeField] private Image loadingImage;
+    [SerializeField] private Image loadingBar;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class MenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameInformation.ShouldContinue = false;
+        loadingImage.gameObject.SetActive(false);
 
         //https://www.sitepoint.com/saving-and-loading-player-game-data-in-unity/
         localSaveModel = Helper.GetSaveFile();
@@ -78,12 +81,50 @@ public class MenuManager : MonoBehaviour
     
     IEnumerator LoadSceneRoutine(int index)
     {
+        loadingImage.gameObject.SetActive(true);
+        loadingBar.fillAmount = 0f;
+
         var loadingPlayer = SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
-        yield return loadingPlayer;
+        loadingPlayer.allowSceneActivation = false;
+        while (!loadingPlayer.isDone)
+        {
+            Debug.Log("progress: " + loadingPlayer.progress);
+            loadingBar.fillAmount = Mathf.Clamp(loadingPlayer.progress, 0f, 0.5f);
+
+            if (loadingPlayer.progress >= 0.9f)
+            {
+                loadingPlayer.allowSceneActivation = true;
+                
+            }
+
+            yield return null;
+        }
+
         var loading = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
-        yield return loading;
+        loading.allowSceneActivation = false;
+        while (!loading.isDone)
+        {
+            Debug.Log("progress: " + loading.progress);
+            loadingBar.fillAmount = Mathf.Clamp(loading.progress, 0.5f, 1f);
+
+            if (loading.progress >= 0.9f)
+            {
+                loading.allowSceneActivation = true;
+                loadingPlayer.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
+        foreach (GameObject go in scene.GetRootGameObjects())
+        {
+            if (go.CompareTag("LevelManager"))
+            {
+                Debug.Log("ACTIVATING");
+                go.GetComponent<LevelManager>().LoadGame();
+            }
+        }
         //Debug.LogWarning("FDF");
         var unloadCurrent = SceneManager.UnloadSceneAsync(0);
         yield return unloadCurrent;

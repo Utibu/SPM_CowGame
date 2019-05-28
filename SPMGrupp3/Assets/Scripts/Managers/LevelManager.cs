@@ -53,12 +53,21 @@ public class LevelManager : MonoBehaviour
     {
         if(isFirstUpdate && SceneManager.GetActiveScene().isLoaded)
         {
-            if (GameInformation.ShouldContinue)
+            /*if (GameInformation.ShouldContinue)
             {
                 GameManager.instance.SaveManager.Load();
                 GameInformation.ShouldContinue = false;
-            }
+            }*/
             isFirstUpdate = false;
+        }
+    }
+
+    public void LoadGame()
+    {
+        if (GameInformation.ShouldContinue)
+        {
+            GameManager.instance.SaveManager.Load();
+            GameInformation.ShouldContinue = false;
         }
     }
 

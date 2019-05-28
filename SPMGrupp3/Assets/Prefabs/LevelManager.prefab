@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5704368801122212809}
   m_Layer: 0
   m_Name: LevelManager
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,5 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
   originalSpawnTransform: {fileID: 0}
+  hasGateKey: 0
   normalJumpForce: 30
   dashJumpForce: 30
+  pickedCoins: 0
+  checkpointSound: {fileID: 0}
+  playerScale: 1
