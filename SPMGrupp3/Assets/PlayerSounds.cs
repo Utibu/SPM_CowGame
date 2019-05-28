@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Author: Alexander Zingmark
+// Co-Author: Niklas Almqvist
+
 public enum FootstepsState { Normal, Dash, None };
 
 public class PlayerSounds : MonoBehaviour
 {
-
-    public Text countText;
-    public Text winText;
 
     private int clipIndex;
     private int count;
@@ -80,18 +80,6 @@ public class PlayerSounds : MonoBehaviour
         if(footstepsAudioSource.clip != null && footstepsAudioSource.isPlaying == false)
         {
             footstepsAudioSource.Play();
-        }
-    }
-
-    void SetCountText()
-    {
-        
-        //countText.text = "Count: " + count.ToString();
-        if (count >= 14)
-        {
-            // Här ska vi se till att om spelaren har plockat upp X antal mynt så ska dennes HP höjas
-            //winText.text = "You win!"; 
-            //source1.PlayOneShot(win_sound);
         }
     }
 
