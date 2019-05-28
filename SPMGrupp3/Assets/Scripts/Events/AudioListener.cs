@@ -12,13 +12,15 @@ public class AudioListener : MonoBehaviour
     private List<AudioSource> audioPlayerList = new List<AudioSource>();
 
 
-    void Start()
+    public void Start()
     {
         EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
         count = 0;
         audioPlayerList.Clear();
+        Debug.Log("CREATING NEW LIST");
         while (count <= audioPlayerCount)
         {
+            
             obj = Instantiate(audioPlayer);
             audioPlayerList.Add(obj.GetComponent<AudioSource>());
             count++;
@@ -36,7 +38,7 @@ public class AudioListener : MonoBehaviour
         foreach(AudioSource audioSource in audioPlayerList)
         {
             audioPlayersAvailable = false;
-            if(audioSource.isPlaying != true && audioSource.gameObject != null)
+            if(audioSource.isPlaying != true && audioSource != null)
             {
                 audioSource.gameObject.transform.position = SoundEvent.position;
                 audioSource.pitch = Random.Range(SoundEvent.pitchMin, SoundEvent.pitchMax);
