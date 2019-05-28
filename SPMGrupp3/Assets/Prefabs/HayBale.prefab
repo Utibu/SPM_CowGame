@@ -101,7 +101,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470737496428134239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a04012e5fcd68b4290d753bae1d24fd, type: 3}
   m_Name: 
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 2943770706750595283}
   - component: {fileID: 2943770706750595282}
   m_Layer: 10
-  m_Name: GameObject
+  m_Name: HayBaleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,5 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf07f3d6aef7ec41bc11597e38a7c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionFreezeTime: 2
+  interactionDuration: 2
   playerIsInteracting: 0
+  healthReplenished: 20

@@ -120,9 +120,9 @@ public class WalkState : PlayerBaseState
             if(GameManager.instance.inputManager.EventKeyDown())
             {
                 //show hayeating bar
-                UIManager.instance.ShowInteractionMeter(interactable.interactionFreezeTime);
-                owner.Transition<InteractState>();
-                interactable.InvokeInteraction();
+                //UIManager.instance.ShowInteractionMeter(interactable.interactionFreezeTime);
+                //owner.Transition<InteractState>();
+                interactable.PlayerInteraction();
             }
             
         }

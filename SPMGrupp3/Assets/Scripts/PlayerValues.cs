@@ -65,14 +65,18 @@ public class PlayerValues : MonoBehaviour
 
     public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)
     {
+        Debug.Log("gaining health");
+        GameManager.instance.player.canTakeInput = true;
         if(health < maxHealth)
         {
-            health += 20;
+            health += eventInfo.healthReplenished;
             if(health > maxHealth)
             {
                 health = maxHealth;
             }
         }
+
+        eventInfo.gameObject.transform.parent.gameObject.SetActive(false);
         
     }
 }

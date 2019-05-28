@@ -18,7 +18,7 @@ public class SideDashState : PlayerBaseState
         HandleInput();
         inputDirection = new Vector3(direction.x, 0.0f, direction.z);
         owner.velocity = inputDirection * dashDistance;
-        takeInput = false;
+        ((PlayerStateMachine)owner).canTakeInput = false;
         
     }
 
@@ -30,7 +30,7 @@ public class SideDashState : PlayerBaseState
 
         if (IsGrounded() && owner.velocity.magnitude < exitDashSpeed)
         {
-            takeInput = true;
+            ((PlayerStateMachine)owner).canTakeInput = true;
             owner.Transition<WalkState>();
         }
     }

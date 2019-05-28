@@ -4,11 +4,34 @@ using UnityEngine;
 
 public class HayInteractable : Interactable
 {
+
+    public float healthReplenished;
+
+    public override void Update()
+    {
+        base.Update();
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
+        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(Unregister);
+        //GameManager.instance.SaveManager.Haybales.Add(transform.parent.gameObject.GetComponent<Saveable>().Id, transform.parent.gameObject);
+
+    }
+
     protected override void OnInteracted()
     {
         base.OnInteracted();
-        
-        EventSystem.Current.FireEvent(new HayEatingFinishedEvent(this.gameObject, "Eating hay finished!"));
-        transform.parent.gameObject.SetActive(false);
+
+        EventSystem.Current.FireEvent(new HayEatingFinishedEvent(gameObject, healthReplenished, "Hay eaten"));
+        //Debug.Log("interacted");
+        //transform.parent.gameObject.SetActive(false);
+    }
+
+    private void ResetHay(OnPlayerDiedEvent playerDiedEvent)
+    {
+        gameObject.transform.parent.gameObject.SetActive(true);
+    }
+
+    private void Unregister(UnregisterListenerEvent eventInfo)
+    {
+        EventSystem.Current.UnregisterListener<OnPlayerDiedEvent>(ResetHay);
     }
 }
