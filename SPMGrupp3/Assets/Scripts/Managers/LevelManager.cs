@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance = null;
-    [SerializeField] private int levelNumber;
-    public int LevelNumber { get { return levelNumber; } set { levelNumber = value; } }
+    public int LevelNumber { get; private set; }
     [HideInInspector] public Transform currentCheckpoint;
     public Transform originalSpawnTransform;
     private List<Transform> checkpoints = new List<Transform>();
@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
 
     public float playerScale = 1f;
 
-    
+    private bool isFirstUpdate = true;
 
     void Awake()
     {
@@ -38,7 +38,10 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.instance.player.transform.position = originalSpawnTransform.position;
         }
+        LevelNumber = SceneManager.GetActiveScene().buildIndex;
         GameManager.instance.AudioManager.OnLevelLoaded();
+        
+        
         currentCheckpoint = originalSpawnTransform;
         GameManager.instance.player.SetMouseCameraRotation(0f, -90f, 0f, -90f);
         GameManager.instance.player.hasFreeDash = false;
@@ -48,7 +51,15 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(isFirstUpdate && SceneManager.GetActiveScene().isLoaded)
+        {
+            if (GameInformation.ShouldContinue)
+            {
+                GameManager.instance.SaveManager.Load();
+                GameInformation.ShouldContinue = false;
+            }
+            isFirstUpdate = false;
+        }
     }
 
     public void RegisterCheckpointTaken(Transform checkPointTransform)

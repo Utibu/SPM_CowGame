@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class Helper
@@ -48,6 +50,23 @@ public static class Helper
     public static Vector3 GetCorrectEulerVector(Vector3 originalAngle)
     {
         return new Vector3(GetCorrectAngle(originalAngle.x), GetCorrectAngle(originalAngle.y), GetCorrectAngle(originalAngle.z));
+    }
+
+    public static SaveModel GetSaveFile()
+    {
+        if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
+        {
+            Debug.LogWarning("SAVEFILE == null");
+            return null;
+        }
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream saveFile = File.Open("Saves/save.binary", FileMode.Open);
+
+        SaveModel model = (SaveModel)formatter.Deserialize(saveFile);
+
+        saveFile.Close();
+        return model;
     }
 
 

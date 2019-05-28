@@ -3,24 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class MenuManager : MonoBehaviour
 {
 
     public int playIndex;
     private bool isLoadingScene = false;
+    private SaveModel localSaveModel;
+    [SerializeField] private Button continueButton;
+
+    private void Awake()
+    {
+        continueButton.gameObject.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        GameInformation.ShouldContinue = false;
+
+        //https://www.sitepoint.com/saving-and-loading-player-game-data-in-unity/
+        localSaveModel = Helper.GetSaveFile();
+        if(localSaveModel != null && localSaveModel.OnLevel <= 2)
+        {
+            continueButton.gameObject.SetActive(true);
+            GameInformation.ShouldContinue = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ContinueButtonClicked()
+    {
+        LoadScene(localSaveModel.OnLevel);
+        Debug.Log("SAVEMODEL ONLEVEL: " + localSaveModel.OnLevel);
     }
 
     public void PlayButtonClicked()
