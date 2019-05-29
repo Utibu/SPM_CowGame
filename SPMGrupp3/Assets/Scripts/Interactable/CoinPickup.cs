@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinPickup : DroppableObject
 {
-    public AudioClip CoinSound;
+    [SerializeField] private AudioClip[] CoinSounds;
 
     override public void Start()
     {
@@ -19,8 +19,20 @@ public class CoinPickup : DroppableObject
         GameManager.instance.coinCount++;
         GameManager.instance.totalCoinCount++;
         LevelManager.instance.pickedCoins++;
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, CoinSound, 0.5f, 0.95f, 1.05f));
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetCoinClip(), 0.5f, 0.95f, 1.05f));
         
         // sound event here instead??
+    }
+
+    private AudioClip GetCoinClip()
+    {
+        if (CoinSounds.Length == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return CoinSounds[Random.Range(0, CoinSounds.Length)];
+        }
     }
 }
