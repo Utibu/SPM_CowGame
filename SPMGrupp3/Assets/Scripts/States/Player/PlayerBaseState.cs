@@ -38,7 +38,10 @@ public class PlayerBaseState : PhysicsBaseState
         }
         */
         if (((PlayerStateMachine)owner).canTakeInput)
+        {
             HandleInput();
+            
+        }
 
         if(!IsGrounded() && owner.GetCurrentState().GetType() != typeof(AirState))
         {
