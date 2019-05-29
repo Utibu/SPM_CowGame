@@ -474,6 +474,36 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &297492683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297492684}
+  m_Layer: 11
+  m_Name: CameraRotationPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297492684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297492683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.266, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9018498197459491968}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327437695
 GameObject:
   m_ObjectHideFlags: 0
@@ -11287,6 +11317,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Name
+      value: OldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: healthBar
@@ -11316,16 +11356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBarSizeY
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: OldPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -15442,6 +15472,7 @@ Transform:
   - {fileID: 7630110964935041596}
   - {fileID: 356402609}
   - {fileID: 327437697}
+  - {fileID: 297492684}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -15570,6 +15601,7 @@ MonoBehaviour:
   sensitiveRotationX: 0
   sensitiveRotationY: 0
   canTakeInput: 1
+  cameraPivotObject: {fileID: 297492684}
 --- !u!1 &9018498197459491995
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,7 +90,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float sensitiveRotationY;
     public bool canTakeInput = true;
     private Vector3 colliderCenter;
-
+    [SerializeField] private Transform cameraPivotObject;
 
     override protected void Awake()
     {
@@ -328,8 +328,8 @@ public class PlayerStateMachine : PhysicsStateMachine
     {
         //RaycastHit hit;
         //bool okHit = Physics.SphereCast(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude + cameraCollider.radius, collisionMask);
-        Debug.DrawLine(transform.position + objectCollider.center + cameraRotationOffset, transform.position + objectCollider.center + cameraRotationOffset + goalVector, Color.red);
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius + 2f, collisionMask);
+        Debug.DrawLine(cameraPivotObject.position + cameraRotationOffset, cameraPivotObject.position + cameraRotationOffset + goalVector, Color.red);
+        RaycastHit[] hits = Physics.SphereCastAll(cameraPivotObject.position + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius, collisionMask);
 
         /*if (okHit)
         {
@@ -445,7 +445,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * (cameraPositionRelativeToPlayer + cameraRotationOffset);
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
         //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
-        Camera.main.transform.position = transform.position + objectCollider.center + cameraRotationOffset + okToMove;
+        Camera.main.transform.position = cameraPivotObject.position + cameraRotationOffset + okToMove;
         //Vector3.Lerp(Camera.main.transform.position, transform.position + cameraRotationOffset + okToMove, Time.deltaTime * 30f);
 
     }
