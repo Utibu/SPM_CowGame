@@ -341,6 +341,10 @@ public class PlayerStateMachine : PhysicsStateMachine
         }
         return goalVector;*/
 
+        /*
+            TODO: Ta bort alla offsets och testa ta bort loopen och ha som innan. IMPORTANT!!!!
+         */
+
         foreach(RaycastHit hit in hits)
         {
             if (hit.collider != null && !isTagged(hit.collider))
