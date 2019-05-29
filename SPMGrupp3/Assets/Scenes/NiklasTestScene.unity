@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 231262953}
   m_Layer: 9
   m_Name: Cube (3)
-  m_TagString: Dashable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,8 +618,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231262952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.7, y: 3.9, z: 18.3}
-  m_LocalScale: {x: 3.1637, y: 3.1637, z: 3.1637}
+  m_LocalPosition: {x: 11.7, y: 6.9, z: 18.3}
+  m_LocalScale: {x: 19.314388, y: 0.13, z: 27.08665}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 27
@@ -1474,18 +1474,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 9.593, y: -11.086, z: 0}
---- !u!114 &485355786 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5012012489587428152, guid: 812157dcbb4c7c341bba3531f39d0c12,
-    type: 3}
-  m_PrefabInstance: {fileID: 645960743}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &493885086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,7 +2046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33721b9d604123540a7fc2d363f80280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCooldownImage: {fileID: 485355786}
   healthBarImage: {fileID: 0}
   healthBarBackgroundImage: {fileID: 0}
   coinCountText: {fileID: 0}
@@ -2068,7 +2055,13 @@ MonoBehaviour:
   bigMessageContainer: {fileID: 1029023264}
   deathMessageContainer: {fileID: 0}
   victoryMessageContainer: {fileID: 0}
+  interactionDurationContainer: {fileID: 0}
+  RamActiveImage: {fileID: 0}
+  RamCooldownImage: {fileID: 0}
   speedLines: {fileID: 0}
+  saveImage: {fileID: 0}
+  loadingImage: {fileID: 0}
+  loadingBar: {fileID: 0}
   mouseDebug: {fileID: 0}
 --- !u!4 &571179997
 Transform:
@@ -4888,7 +4881,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dashCooldownImage
       value: 
-      objectReference: {fileID: 485355786}
+      objectReference: {fileID: 0}
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: dashSpeedImage
@@ -6427,8 +6420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb347e0e3e84b4f4dbca271c40f4167a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 0}
-  winText: {fileID: 0}
   pick_up_sounds:
   - {fileID: 8300000, guid: a94ae8b0704f7b043ade7dbe89c0a142, type: 3}
   - {fileID: 8300000, guid: ef5ad53483171f445a6ffb25401c15e0, type: 3}
@@ -6478,7 +6469,7 @@ MonoBehaviour:
   waitWhenInteracting: 0
   lastAcceleration: 0
   lastGravity: 0
-  isDashing: 0
+  IsDashing: 0
   elapsedDashTime: 0
   allowedToDash: 1
   dashCooldown: 3
@@ -6508,6 +6499,11 @@ MonoBehaviour:
   groundParticleSystem: {fileID: 0}
   PlayerSounds: {fileID: 0}
   hasFreeDash: 0
+  UsingFreeCamera: 0
+  Direction: {x: 0, y: 0, z: 0}
+  sensitiveRotationX: 0
+  sensitiveRotationY: 0
+  canTakeInput: 1
 --- !u!114 &1971075025
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -324,14 +324,48 @@ public class PlayerStateMachine : PhysicsStateMachine
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
         RaycastHit hit;
-        bool okHit = Physics.SphereCast(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
+        //Debug.Log("GOALVECTOR MAGNITUDE: " + goalVector.magnitude);
+        Debug.DrawLine(transform.position + objectCollider.center, transform.position + objectCollider.center + (goalVector), Color.red);
+
+        bool okHit = Physics.SphereCast(transform.position + objectCollider.center, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude + cameraRotationOffset.magnitude, collisionMask);
+        //bool okHit = Physics.Raycast(transform.position + objectCollider.center, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
         if (okHit)
         {
             if (hit.collider != null && !isTagged(hit.collider))
             {
-                Vector3 allowedMovement = goalVector.normalized * (hit.distance - cameraCollider.radius);
+                meshParent.SetActive(true);
+
+                /*if (hit.distance < cameraCollider.radius)
+                {
+                    allowedMovement = Vector3.zero;
+                }*/
+
+                float distance = hit.distance;
+
+                float distanceBetweenPlayerAndHit = Helper.GetDistance(transform.position + objectCollider.center + cameraRotationOffset, hit.point);
+                
+                //Debug.Log("DISTANCE BETWEEN PLAYER AND OBJECT: " + distanceBetweenPlayerAndHit + "        ALLOWEDMOVEMENT: " + allowedMovement + "      Tag: " + hit.collider.tag);
+                if (Helper.IsWithinDistance(Camera.main.transform.position, hit.point, cameraRotationOffset.magnitude))
+                {
+                    //distance -= 2 * cameraRotationOffset.magnitude;
+                    goalVector -= cameraRotationOffset;
+                    Debug.LogWarning("FIXING!!!");
+                    //distance += cameraRotationOffset.magnitude;
+                    //Debug.Log("DISTANCE BETWEEN PLAYER AND OBJECT: " + distanceBetweenPlayerAndHit + "        ALLOWEDMOVEMENT: " + allowedMovement + "      Tag: " + hit.collider.tag);
+                    //Debug.Log("RETURNING ZERO");
+                    //return Vector3.zero;
+                }
+
+                Vector3 allowedMovement = goalVector.normalized * (distance - cameraCollider.radius);
+
+                Debug.DrawLine(transform.position + objectCollider.center + cameraRotationOffset, transform.position + objectCollider.center + cameraRotationOffset + (goalVector.normalized * distance), Color.blue);
+                Debug.Log("hitdistance: " + hit.distance + "    ALLOWED MOVEMENT: " + allowedMovement);
                 return allowedMovement;
-            }
+            } 
+        }
+        else
+        {
+            meshParent.SetActive(false);
         }
         return goalVector;
     }
@@ -404,11 +438,15 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         rotationX = Mathf.Clamp(rotationX, minAngle, maxAngle);
 
-        Camera.main.transform.rotation = Quaternion.Euler(rotationX + shakeX, rotationY + shakeY, 0f);
+        Vector3 rotationVector = new Vector3(rotationX + shakeX, rotationY + shakeY, 0f);
+        Camera.main.transform.rotation = Quaternion.Euler(rotationVector);
+        //Camera.main.transform.RotateAround(transform.position + objectCollider.center + cameraRotationOffset, rotationVector.normalized, rotationVector.magnitude);
+
 
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
+        
         //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
         Camera.main.transform.position = transform.position + cameraRotationOffset + objectCollider.center + okToMove;
 

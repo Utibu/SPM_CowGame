@@ -33,6 +33,11 @@ public static class Helper
         return GetDistanceOffset(currentPosition, otherPosition) < distance * distance;
     }
 
+    public static float GetDistance(Vector3 currentPosition, Vector3 otherPosition)
+    {
+        return Mathf.Sqrt(GetDistanceOffset(currentPosition, otherPosition));
+    }
+
     private static float GetDistanceOffset(Vector3 currentPosition, Vector3 otherPosition)
     {
         return (otherPosition - currentPosition).sqrMagnitude;
