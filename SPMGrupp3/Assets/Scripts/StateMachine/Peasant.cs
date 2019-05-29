@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Peasant : StateMachine
 {
-
     //bondevariabler
     private BoxCollider boxref;
     [HideInInspector] public NavMeshAgent agnes;
@@ -14,15 +13,18 @@ public class Peasant : StateMachine
     public GameObject weapon;
     public GameObject itemDrop;
     public LayerMask layermask;
-    //public GameObject player;
     public PlayerStateMachine player;
     public float toughness = 1;
     [HideInInspector] public float CurrentToughness;
+    
     public float stunTime;
     public float toAttack;
     public float maxVisibility;
+    
+    // ta bort?
     public bool customAttackDamage;
     public float attackDamage;
+    
 
     protected bool isPaused = false;
     public bool isDying = false;
@@ -33,7 +35,6 @@ public class Peasant : StateMachine
     public bool DoingKnockback { get; set; }
     private Vector3 knockbackDirection = Vector3.zero;
     public bool DebugThis = false;
-    private bool isLethalHit = false;
     [SerializeField] private float stunLengthToGround;
     public float StunLengthToGround { get { return stunLengthToGround; } private set { stunLengthToGround = value; } }
     public bool IsStunned { get { return GetCurrentState().GetType() == typeof(BondeStunState) || GetCurrentState().GetType() == typeof(BondeRangedStunState) || GetCurrentState().GetType() == typeof(BossStunState) || GetCurrentState().GetType() == typeof(MinibossStunState); } }
@@ -64,7 +65,6 @@ public class Peasant : StateMachine
 
     private void UnregisterEvents(UnregisterListenerEvent eventInfo)
     {
-        Debug.Log("UNREGISTER");
         UnregisterEnemy();
     }
 
@@ -101,9 +101,7 @@ public class Peasant : StateMachine
             return;
         }
 
-        //Debug.Log(agnes.velocity + " CURRENT STATE: " + GetCurrentState().GetType());
-
-        //while timer is tickinh, bonde cant take dmg
+        //while timer is tickinh, peasant cant take dmg
         if (Gracetimer != null && Gracetimer.IsCompleted(Time.deltaTime, false, true))
         {
             Gracetimer = null;
@@ -113,7 +111,7 @@ public class Peasant : StateMachine
         if (timer != null && timer.IsCompleted(Time.deltaTime, false, true))
         {
             timer = null;
-            if(isLethalHit)
+            if(CurrentToughness <= 0f)
             {
                 isDying = true;
                 CurrentToughness = toughness; // lives are reset. 
@@ -151,7 +149,6 @@ public class Peasant : StateMachine
 
             if (CurrentToughness <= 0)
             {
-                isLethalHit = true;
                 if(healthMeter != null && healthMeterBackground != null)
                 {
                     healthMeter.enabled = false;
@@ -165,5 +162,10 @@ public class Peasant : StateMachine
                 healthMeter.fillAmount = CurrentToughness / toughness;
             }
         }
+    }
+
+    public void getCrushedByCow()
+    {
+        isDying = true;
     }
 }

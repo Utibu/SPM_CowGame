@@ -27,11 +27,9 @@ public class BossStateMachine : Peasant
     public Vector3 Destination;
 
     private float timeSinceLastHit = 0f;
-    //public float GraceTime = 1f;
     public float timeBetweenSpawns = 0.2f;
     public int underlingQuantityPerWave = 4;
     [HideInInspector] public int count = 0;
-    //private float currentToughness;
     private List<GameObject> underlingList = new List<GameObject>();
     private List<GameObject> allUnderlings = new List<GameObject>();
     //Gör private
@@ -93,8 +91,10 @@ public class BossStateMachine : Peasant
             Transition<BossTransitionState>();
         }
         
+        /*
         healthBar.fillAmount =  CurrentToughness / toughness;
         Debug.Log("Current: " + CurrentToughness + " Total: " + toughness + " " + CurrentToughness/toughness);
+        */
 
 
     }
