@@ -7,7 +7,7 @@ public class BarrellStateMachine : PhysicsStateMachine
 
     [HideInInspector] public float moveMultiplier;
     public bool movable;
-    [SerializeField] private AudioClip[] bounceSounds;
+    [SerializeField] private AudioClip[] interactionSounds;
 
     override public void Start()
     {
@@ -33,13 +33,13 @@ public class BarrellStateMachine : PhysicsStateMachine
 
     public AudioClip GetClip()
     {
-        if (bounceSounds.Length == 0)
+        if (interactionSounds.Length == 0)
         {
             return null;
         }
         else
         {
-            return bounceSounds[Random.Range(0, bounceSounds.Length)];
+            return interactionSounds[Random.Range(0, interactionSounds.Length)];
         }
     }
 
