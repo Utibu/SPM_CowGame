@@ -138,6 +138,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c787e7edc7e924840a461329194e2874, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
+  deathScream: {fileID: 8300000, guid: 9ce2a024431b5ab469bf16809871fad8, type: 3}
+  hitSound: {fileID: 8300000, guid: d24572f44b7a80d47944e1df05fc6e9f, type: 3}
   agnes: {fileID: 6080084750784524630}
   patrolPoints:
   - {fileID: 0}
@@ -162,6 +164,8 @@ MonoBehaviour:
   DebugThis: 0
   stunLengthToGround: 1.5
   healthMeter: {fileID: 7282656646123307714}
+  healthMeterBackground: {fileID: 0}
+  ShouldGoAlive: 0
 --- !u!114 &8589191272378122885
 MonoBehaviour:
   m_ObjectHideFlags: 0

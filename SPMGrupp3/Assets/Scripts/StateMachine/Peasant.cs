@@ -8,6 +8,8 @@ public class Peasant : StateMachine
 {
     //bondevariabler
     private BoxCollider boxref;
+    [SerializeField]private AudioClip deathScream;
+    [SerializeField] private AudioClip hitSound;
     [HideInInspector] public NavMeshAgent agnes;
     public GameObject[] patrolPoints;
     public GameObject weapon;
@@ -149,15 +151,20 @@ public class Peasant : StateMachine
 
             if (CurrentToughness <= 0)
             {
-                if(healthMeter != null && healthMeterBackground != null)
+                if (healthMeter != null && healthMeterBackground != null)
                 {
                     healthMeter.enabled = false;
                     healthMeterBackground.enabled = false;
                 }
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
+                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScream, 0.2f, 0.7f, 1f));
+            }
+            else
+            {
+                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
             }
 
-            if(healthMeter != null)
+            if (healthMeter != null)
             {
                 healthMeter.fillAmount = CurrentToughness / toughness;
             }
