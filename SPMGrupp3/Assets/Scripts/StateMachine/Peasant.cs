@@ -39,6 +39,7 @@ public class Peasant : StateMachine
     public bool IsStunned { get { return GetCurrentState().GetType() == typeof(BondeStunState) || GetCurrentState().GetType() == typeof(BondeRangedStunState) || GetCurrentState().GetType() == typeof(BossStunState) || GetCurrentState().GetType() == typeof(MinibossStunState); } }
 
     public Image healthMeter;
+    [SerializeField] private Image healthMeterBackground;
     public bool ShouldGoAlive = false;
 
 
@@ -151,6 +152,11 @@ public class Peasant : StateMachine
             if (CurrentToughness <= 0)
             {
                 isLethalHit = true;
+                if(healthMeter != null && healthMeterBackground != null)
+                {
+                    healthMeter.enabled = false;
+                    healthMeterBackground.enabled = false;
+                }
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
 
