@@ -230,9 +230,14 @@ public class PlayerBaseState : PhysicsBaseState
                 }
                 else
                 {
-                    if (hitCollider.GetComponent<BarrellStateMachine>() != null)
+                    BarrellStateMachine barrel = hitCollider.GetComponent<BarrellStateMachine>();
+                    if (barrel != null)
                     {
-                        hitCollider.GetComponent<BarrellStateMachine>().Move(owner.velocity * multiplier);
+                        barrel.Move(owner.velocity * multiplier);
+                        if (GameManager.instance.player.velocity.magnitude > 3f)
+                        {
+                            EventSystem.Current.FireEvent(new PlaySoundEvent(barrel.transform.position, barrel.GetClip(), 1f, 0.9f, 1.1f));
+                        }
                     }
                 }
             }
