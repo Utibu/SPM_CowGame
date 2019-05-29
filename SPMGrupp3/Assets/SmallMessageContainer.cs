@@ -15,6 +15,7 @@ public class SmallMessageContainer : MonoBehaviour
         messageTitle.text = title;
         messageDescription.text = desc;
         messageImage.sprite = sprite;
+        messageImage.preserveAspect = true;
     }
 
     public void Hide()
