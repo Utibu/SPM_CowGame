@@ -11,14 +11,15 @@ public class ButtonMessageContainer : MonoBehaviour
     private MeshRenderer playerMeshRenderer;
     [SerializeField] private Image container;
 
-    void Start()
+    public virtual void Start()
     {
-
+        playerMeshRenderer = GameManager.instance.player.GetComponentInChildren<MeshRenderer>();
+        //container = GetComponent<Image>();
     }
 
     private void Awake()
     {
-        playerMeshRenderer = GameManager.instance.player.GetComponentInChildren<MeshRenderer>();
+        
     }
 
     void Update()
@@ -35,14 +36,13 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public virtual void Show()
     {
-        //gameObject.SetActive(true);
-        
+        gameObject.SetActive(true);
 
     }
 
     public void Hide()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         
     }
 

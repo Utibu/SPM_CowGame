@@ -19,7 +19,7 @@ public class Interactable : Triggable
     {
         base.Update();
         
-        if (Input.GetKeyDown(KeyCode.F))
+        if (GameManager.instance.inputManager.CancelKeyDown())
         {
             if(playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
             {

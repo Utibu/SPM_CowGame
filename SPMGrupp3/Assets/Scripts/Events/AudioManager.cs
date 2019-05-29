@@ -15,11 +15,21 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         EventSystem.Current.RegisterListener<PlaySoundEvent>(EmitSound);
-        OnLevelLoaded();
+        //OnLevelLoaded();
+        count = 0;
+        audioPlayerList.Clear();
+        Debug.LogWarning("CREATING NEW LIST");
+        while (count <= audioPlayerCount)
+        {
+            obj = Instantiate(audioPlayer, this.transform);
+            audioPlayerList.Add(obj.GetComponent<AudioSource>());
+            count++;
+        }
     }
-
+    
     public void OnLevelLoaded()
     {
+        /*
         count = 0;
         audioPlayerList.Clear();
         Debug.LogWarning("CREATING NEW LIST");
@@ -29,6 +39,7 @@ public class AudioManager : MonoBehaviour
             audioPlayerList.Add(obj.GetComponent<AudioSource>());
             count++;
         }
+        */
     }
 
     private void Awake()

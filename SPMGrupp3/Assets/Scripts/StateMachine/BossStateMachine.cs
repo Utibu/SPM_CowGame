@@ -79,6 +79,7 @@ public class BossStateMachine : Peasant
             CurrentToughness -= 1;
             if (CurrentToughness <= 0)
             {
+                Debug.Log("Boss dead");
                 Destroy(gameObject);
                 UIManager.instance.ShowVictoryMessage();
                 GameManager.instance.RemoveSave();
