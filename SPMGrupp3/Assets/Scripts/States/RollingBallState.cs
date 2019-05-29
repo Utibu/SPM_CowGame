@@ -22,7 +22,7 @@ public class RollingBallState : PhysicsBaseState
 
         time += Time.deltaTime;
 
-        if ((time > 10 && owner.velocity.magnitude < 1f) || time % 60 > 120)
+        if (time > 20)
         {
             Destroy(owner.gameObject);
         }
@@ -31,6 +31,7 @@ public class RollingBallState : PhysicsBaseState
     public override void Leave()
     {
         base.Leave();
+        Destroy(owner.gameObject);
     }
 
     public void CheckForPlayerCollision()
