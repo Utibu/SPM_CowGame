@@ -89,6 +89,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     public float sensitiveRotationX;
     public float sensitiveRotationY;
     public bool canTakeInput = true;
+    private Vector3 colliderCenter;
 
 
     override protected void Awake()
@@ -114,6 +115,8 @@ public class PlayerStateMachine : PhysicsStateMachine
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
+        colliderCenter = objectCollider.center;
+        colliderCenter = Vector3.zero;
     }
 
     private void Pause(PauseEvent eventInfo)
@@ -323,51 +326,46 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
-        RaycastHit hit;
-        //Debug.Log("GOALVECTOR MAGNITUDE: " + goalVector.magnitude);
-        Debug.DrawLine(transform.position + objectCollider.center, transform.position + objectCollider.center + (goalVector), Color.red);
+        //RaycastHit hit;
+        //bool okHit = Physics.SphereCast(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude + cameraCollider.radius, collisionMask);
+        Debug.DrawLine(transform.position + objectCollider.center + cameraRotationOffset, transform.position + objectCollider.center + cameraRotationOffset + goalVector, Color.red);
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius + 2f, collisionMask);
 
-        bool okHit = Physics.SphereCast(transform.position + objectCollider.center, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude + cameraRotationOffset.magnitude, collisionMask);
-        //bool okHit = Physics.Raycast(transform.position + objectCollider.center, goalVector.normalized, out hit, goalVector.magnitude, collisionMask);
-        if (okHit)
+        /*if (okHit)
         {
             if (hit.collider != null && !isTagged(hit.collider))
             {
-                meshParent.SetActive(true);
+                Vector3 allowedMovement = goalVector.normalized * (hit.distance);
+                return allowedMovement;
+            }
+        }
+        return goalVector;*/
 
-                /*if (hit.distance < cameraCollider.radius)
+        foreach(RaycastHit hit in hits)
+        {
+            if (hit.collider != null && !isTagged(hit.collider))
+            {
+                Vector3 allowedMovement = goalVector.normalized * (hit.distance);
+
+                if(goalVector.normalized.y <= 0f)
                 {
-                    allowedMovement = Vector3.zero;
-                }*/
-
-                float distance = hit.distance;
-
-                float distanceBetweenPlayerAndHit = Helper.GetDistance(transform.position + objectCollider.center + cameraRotationOffset, hit.point);
-                
-                //Debug.Log("DISTANCE BETWEEN PLAYER AND OBJECT: " + distanceBetweenPlayerAndHit + "        ALLOWEDMOVEMENT: " + allowedMovement + "      Tag: " + hit.collider.tag);
-                if (Helper.IsWithinDistance(Camera.main.transform.position, hit.point, cameraRotationOffset.magnitude))
-                {
-                    //distance -= 2 * cameraRotationOffset.magnitude;
-                    goalVector -= cameraRotationOffset;
-                    Debug.LogWarning("FIXING!!!");
-                    //distance += cameraRotationOffset.magnitude;
-                    //Debug.Log("DISTANCE BETWEEN PLAYER AND OBJECT: " + distanceBetweenPlayerAndHit + "        ALLOWEDMOVEMENT: " + allowedMovement + "      Tag: " + hit.collider.tag);
-                    //Debug.Log("RETURNING ZERO");
-                    //return Vector3.zero;
+                    //allowedMovement += cameraRotationOffset;
                 }
 
-                Vector3 allowedMovement = goalVector.normalized * (distance - cameraCollider.radius);
+                /*RaycastHit cameraHit;
+                bool camHitOk = Physics.Raycast(Camera.main.transform.position - Vector3.up, Vector3.up, out cameraHit, cameraRotationOffset.y * 2, collisionMask);
+                if(camHitOk && cameraHit.collider != null)
+                {
+                    return allowedMovement;
+                } else
+                {
+                }*/
 
-                Debug.DrawLine(transform.position + objectCollider.center + cameraRotationOffset, transform.position + objectCollider.center + cameraRotationOffset + (goalVector.normalized * distance), Color.blue);
-                Debug.Log("hitdistance: " + hit.distance + "    ALLOWED MOVEMENT: " + allowedMovement);
                 return allowedMovement;
-            } 
+                
+            }
         }
-        else
-        {
-            meshParent.SetActive(false);
-        }
-        return goalVector;
+        return goalVector + cameraRotationOffset;
     }
 
 
@@ -444,15 +442,15 @@ public class PlayerStateMachine : PhysicsStateMachine
 
 
 
-        Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
+        Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * (cameraPositionRelativeToPlayer + cameraRotationOffset);
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
-        
         //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
-        Camera.main.transform.position = transform.position + cameraRotationOffset + objectCollider.center + okToMove;
+        Camera.main.transform.position = transform.position + objectCollider.center + cameraRotationOffset + okToMove;
+        //Vector3.Lerp(Camera.main.transform.position, transform.position + cameraRotationOffset + okToMove, Time.deltaTime * 30f);
 
     }
 
-   public void ResetCooldown()
+    public void ResetCooldown()
     {
         countdown = dashCooldown;
     }
