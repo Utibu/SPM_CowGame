@@ -24,7 +24,7 @@ public class InputManager
 
     public bool DashKey()
     {
-        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)) || Input.GetAxis("Right Trigger") > 0)
+        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)) || (Input.GetAxis("Right Trigger") > 0 && Input.GetAxisRaw("Vertical") >= 0.60f))
         {
             return true;
         }
@@ -49,12 +49,14 @@ public class InputManager
         return false;
     }
 
-    public bool ContinueKeyDown()
+    public bool CancelKeyDown()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             return true;
         }
         return false;
     }
+
+    
 }

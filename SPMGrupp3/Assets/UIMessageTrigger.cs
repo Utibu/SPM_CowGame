@@ -50,7 +50,7 @@ public class UIMessageTrigger : Triggable
     public override void Update()
     {
         base.Update();
-        if(IsShowing && GameManager.instance.inputManager.ContinueKeyDown())
+        if(IsShowing && GameManager.instance.inputManager.CancelKeyDown())
         {
             EventSystem.Current.FireEvent(new ResumeEvent(""));
             UIManager.instance.HideMessages();

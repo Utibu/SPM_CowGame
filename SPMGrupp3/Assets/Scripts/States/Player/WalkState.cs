@@ -42,7 +42,7 @@ public class WalkState : PlayerBaseState
             }
         }*/
 
-        if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded())
+        if (GameManager.instance.inputManager.JumpKeyDown() && IsGrounded() && GameManager.instance.player.canTakeInput)
         {
             //owner.Transition<JumpState>();
             Jump();
