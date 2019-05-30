@@ -147,8 +147,7 @@ public class BossStateMachine : Peasant
         foreach (GameObject underling  in allUnderlings)
         {
             underling.GetComponent<Peasant>().UnregisterEnemy();
-            Destroy(underling, 3f); // 3 sec delay, to not disrupt iteration(?)
-            underling.SetActive(false);
+            Destroy(underling, 2f); // 2 sec delay, to not disrupt iteration(?)
             Debug.Log("foreach underling");
         }
         underlingList.Clear();

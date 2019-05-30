@@ -15,6 +15,8 @@ public class PlayerValues : MonoBehaviour
     [SerializeField] private float healhBarSizeX;
     [SerializeField] private float healthBarSizeY;
 
+    bool dieHasBeenCalled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,11 @@ public class PlayerValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
+        if (dieHasBeenCalled)
+        {
+            return;
+        }
         if(health > 0)
         {
             if(healthBar != null && healthText != null)
@@ -36,8 +41,9 @@ public class PlayerValues : MonoBehaviour
                 healthBarBackground.rectTransform.sizeDelta = healthBar.rectTransform.sizeDelta;
             }
             
-        } else
+        } else if(dieHasBeenCalled == false)
         {
+            
             Die();
         }
 
@@ -55,12 +61,31 @@ public class PlayerValues : MonoBehaviour
 
     public void Die()
     {
+        /*
+        health = maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = health / maxHealth;
+        }
+        */
+        //EventSystem.Current.FireEvent(new OnPlayerDiedEvent(this.gameObject, "Player died"));
+        dieHasBeenCalled = true;
+        Debug.Log("in die() method.");
+        StartCoroutine(ExecuteDeathAfterTime(0.5f));
+    }
+
+    IEnumerator ExecuteDeathAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        // Code to execute after the delay
+        Debug.Log("should fire death event");
         health = maxHealth;
         if (healthBar != null)
         {
             healthBar.fillAmount = health / maxHealth;
         }
         EventSystem.Current.FireEvent(new OnPlayerDiedEvent(this.gameObject, "Player died"));
+        dieHasBeenCalled = false;
     }
 
     public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)

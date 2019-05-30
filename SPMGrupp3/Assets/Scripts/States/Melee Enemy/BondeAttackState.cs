@@ -16,7 +16,6 @@ public class BondeAttackState : BondeBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.agnes.speed = 0.1f;
         originalPosition = owner.weapon.transform.rotation;
 
         countdown = cooldown / 3; // så att denne inte attackerar på en gång
@@ -47,7 +46,7 @@ public class BondeAttackState : BondeBaseState
 
         countdown -= Time.deltaTime;
 
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && countdown <= 0)
+        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) * 1.2f < owner.toAttack && countdown <= 0)
         {
             if (owner.itemDrop != null && owner.itemDrop.name.Equals("Key")) // miniboss is the only that drops the key. 
             {
@@ -57,18 +56,19 @@ public class BondeAttackState : BondeBaseState
             {
                 attack();
             }
+            owner.agnes.speed = speed;
         }
 
         if (0.1 <= countdown && countdown <= cooldown / 2)
         {
+            owner.agnes.speed = 0.1f; // enemy should be still while init attack.
             rotation += -2;
             owner.weapon.transform.localRotation = Quaternion.Euler(90 + rotation, 0, 0);
         }
         
         RaycastHit rayHit;
         bool hit = Physics.Raycast(owner.transform.position, (owner.player.transform.position - owner.transform.position).normalized, out rayHit, owner.toAttack);
-        //Debug.Log("DISTANCE: " + Vector3.Distance(owner.transform.position, owner.player.transform.position));
-        //Debug.Log("HIT: " + (hit && !rayHit.collider.transform.tag.Equals("Player")));
+        
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.toAttack * 1.2f || (hit && !rayHit.collider.transform.tag.Equals("Player")))
         {
             if(owner.DoingKnockback == false)

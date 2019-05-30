@@ -171,8 +171,9 @@ public class Peasant : StateMachine
         }
     }
 
-    public void getCrushedByCow()
+    public void getCrushed()
     {
         isDying = true;
+        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
     }
 }
