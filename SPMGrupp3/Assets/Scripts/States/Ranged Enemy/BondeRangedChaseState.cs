@@ -11,6 +11,7 @@ public class BondeRangedChaseState : BondeRangedBaseState
     public override void Enter()
     {
         base.Enter();
+        //owner.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
 
@@ -18,7 +19,6 @@ public class BondeRangedChaseState : BondeRangedBaseState
     public override void Update()
     {
         base.Update();
-        owner.GetComponent<MeshRenderer>().material.color = Color.blue;
         owner.agnes.SetDestination(owner.player.transform.position);
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.maxVisibility + 1 && owner.DoingKnockback == false)
         {
@@ -27,7 +27,7 @@ public class BondeRangedChaseState : BondeRangedBaseState
         }
         else if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.toAttack && owner.DoingKnockback == false)
         {
-            owner.GetComponent<MeshRenderer>().material.color = Color.red;
+            //owner.GetComponent<MeshRenderer>().material.color = Color.red;
             owner.Transition<BondeRangedAttackState>();
 
         }

@@ -19,10 +19,10 @@ public class BondeRangedAttackState : BondeRangedBaseState
             owner.attackDamage = damage;
         }
 
+        
         owner.agnes.isStopped = true;
 
         countdown = owner.attackSpeed/2;
-        //attack();
     }
 
     public override void Update()

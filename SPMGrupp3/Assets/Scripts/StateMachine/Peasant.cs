@@ -8,7 +8,7 @@ public class Peasant : StateMachine
 {
     //bondevariabler
     private BoxCollider boxref;
-    [SerializeField]private AudioClip deathScream;
+    [SerializeField] private AudioClip[] deathScreams;
     [SerializeField] private AudioClip hitSound;
     [HideInInspector] public NavMeshAgent agnes;
     public GameObject[] patrolPoints;
@@ -157,7 +157,11 @@ public class Peasant : StateMachine
                     healthMeterBackground.enabled = false;
                 }
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
-                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScream, 0.2f, 0.7f, 1f));
+                int randomNr = Random.Range(0, 2);
+                float volume = 1f;
+                if (randomNr == 2)
+                    volume = 0.3f;
+                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScreams[randomNr], volume, 0.9f, 1.1f));
             }
             else
             {

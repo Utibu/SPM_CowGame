@@ -25,7 +25,10 @@ public class BondeStunState : BondeBaseState
             Instantiate(owner.itemDrop, owner.transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
             //owner.itemDrop.transform.position = owner.transform.position; // + new Vector3(0.5f, 0.0f, 0.5f)
         }
-
+        if(owner.healthMeter != null)
+        {
+            
+        }
         
     }
 
@@ -45,6 +48,7 @@ public class BondeStunState : BondeBaseState
         base.Leave();
         //owner.transform.Rotate(0, 0, -90);
         owner.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        owner.GetComponent<MeshRenderer>().material.color = Color.white;
         owner.transform.position -= new Vector3(0f, -owner.StunLengthToGround, 0f);
         owner.agnes.enabled = true;
         owner.GetComponent<Collider>().enabled = true;

@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3edb7d1a29a487c4e8a62ae13a0b1fc8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,7 +125,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90f15db846681844ca88f44e1e80de95, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
-  deathScream: {fileID: 8300000, guid: 9ce2a024431b5ab469bf16809871fad8, type: 3}
+  deathScreams:
+  - {fileID: 8300000, guid: 685abfc62e9b0cc45b3e4caff1e435bc, type: 3}
+  - {fileID: 8300000, guid: 5ee3a25c23f645e409d0415f44365be1, type: 3}
+  - {fileID: 8300000, guid: 9ce2a024431b5ab469bf16809871fad8, type: 3}
   hitSound: {fileID: 8300000, guid: d24572f44b7a80d47944e1df05fc6e9f, type: 3}
   agnes: {fileID: 7578379273770255068}
   patrolPoints:

@@ -15,7 +15,7 @@ public class BondeRangedStunState : BondeRangedBaseState
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
         owner.GetComponent<Collider>().enabled = false;
-        owner.GetComponent<MeshRenderer>().material.color = Color.black;
+        //owner.GetComponent<MeshRenderer>().material.color = Color.black;
         //owner.transform.Rotate(0, 0, 90);
         owner.transform.position -= new Vector3(0f, owner.StunLengthToGround, 0f); // independant of size, enemy should lie on ground, not float above it.
     }
@@ -37,6 +37,7 @@ public class BondeRangedStunState : BondeRangedBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.GetComponent<MeshRenderer>().material.color = Color.white;
         owner.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         owner.transform.position -= new Vector3(0f, -owner.StunLengthToGround, 0f);
         owner.agnes.enabled = true;
