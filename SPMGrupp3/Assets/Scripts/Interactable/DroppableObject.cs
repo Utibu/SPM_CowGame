@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroppableObject : Triggable
 {
-    public PlayerValues player;
+    [HideInInspector] public PlayerValues player;
     protected bool ShouldDestroyOnEnter;
 
     public void OnCreate(PlayerValues player)
