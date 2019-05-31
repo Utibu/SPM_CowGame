@@ -15,6 +15,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Button continueButton;
     [SerializeField] private Image loadingImage;
     [SerializeField] private Image loadingBar;
+    [SerializeField] private List<Button> buttons;
+    private InputManager inputManager = new InputManager();
+    private BasicTimer controllerTimer;
+    int currentlyChosenMenuItem;
+    private Color originalColor;
+    [SerializeField] private Color selectedColor;
 
     private void Awake()
     {
@@ -28,20 +34,47 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
         GameInformation.ShouldContinue = false;
         loadingImage.gameObject.SetActive(false);
+        controllerTimer = new BasicTimer(0.2f);
 
         //https://www.sitepoint.com/saving-and-loading-player-game-data-in-unity/
         localSaveModel = Helper.GetSaveFile();
         if(localSaveModel != null && localSaveModel.OnLevel <= 2)
         {
             continueButton.gameObject.SetActive(true);
+            buttons.Insert(0, continueButton);
             GameInformation.ShouldContinue = true;
         }
+        originalColor = buttons[currentlyChosenMenuItem].GetComponent<Image>().color;
+        currentlyChosenMenuItem = -1;
+        //buttons[currentlyChosenMenuItem].GetComponent<Image>().color = selectedColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(controllerTimer.IsCompleted(Time.deltaTime, false, true) && Input.GetAxisRaw("Vertical") != 0) {
+            controllerTimer.Reset();
+            float vertical = Input.GetAxisRaw("Vertical");
+            if(currentlyChosenMenuItem >= 0)
+            {
+                buttons[currentlyChosenMenuItem].GetComponent<Image>().color = originalColor;
+            }
+            
+            if (vertical > 0)
+            {
+                currentlyChosenMenuItem = (currentlyChosenMenuItem - 1 + buttons.Count) % buttons.Count;
+            } else
+            {
+                currentlyChosenMenuItem = (currentlyChosenMenuItem + 1) % buttons.Count;
+            }
+            buttons[currentlyChosenMenuItem].GetComponent<Image>().color = selectedColor;
+            Debug.Log("CURRENT INDEX: " + currentlyChosenMenuItem);
+        }
+
+        if(inputManager.JumpKeyDown())
+        {
+            buttons[currentlyChosenMenuItem].onClick.Invoke();
+        }
     }
 
     public void ContinueButtonClicked()
@@ -89,7 +122,6 @@ public class MenuManager : MonoBehaviour
         loadingPlayer.allowSceneActivation = false;
         while (!loadingPlayer.isDone)
         {
-            Debug.Log("progress: " + loadingPlayer.progress);
             loadingBar.fillAmount = Mathf.Clamp(loadingPlayer.progress, 0f, 0.5f);
 
             if (loadingPlayer.progress >= 0.9f)
@@ -105,7 +137,6 @@ public class MenuManager : MonoBehaviour
         loading.allowSceneActivation = false;
         while (!loading.isDone)
         {
-            Debug.Log("progress: " + loading.progress);
             loadingBar.fillAmount = Mathf.Clamp(loading.progress, 0.5f, 1f);
 
             if (loading.progress >= 0.9f)
@@ -123,7 +154,6 @@ public class MenuManager : MonoBehaviour
         {
             if (go.CompareTag("LevelManager"))
             {
-                Debug.Log("ACTIVATING");
                 go.GetComponent<LevelManager>().LoadGame();
             }
         }
