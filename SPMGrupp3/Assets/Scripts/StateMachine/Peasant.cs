@@ -122,6 +122,7 @@ public class Peasant : StateMachine
             {
                 isDying = true;
                 CurrentToughness = toughness; // lives are reset. 
+                agnes.velocity = Vector3.zero;
             } else
             {
                 DoingKnockback = false;
@@ -134,7 +135,17 @@ public class Peasant : StateMachine
             if(DoingKnockback)
             {
                 agnes.velocity -= knockbackDirection * Time.deltaTime;
+                Debug.Log("DOING KNOCKBACK");
+                /*if(DebugThis)
+                {
+                    Debug.Log("agnes vel: " + agnes.velocity + "     knockback direction: " + knockbackDirection + "     deltatime: " + Time.deltaTime);
+                }*/
             }
+        }
+
+        if(agnes.velocity.magnitude > 20f)
+        {
+            agnes.velocity = Vector3.ClampMagnitude(agnes.velocity, 20f);
         }
         base.Update();
     }
@@ -147,6 +158,7 @@ public class Peasant : StateMachine
 
             //agnes.velocity += agnes.velocity * -1 * 100f;
             knockbackDirection = velocity.normalized;
+            Debug.Log("Playerdash!");
             agnes.velocity = knockbackDirection.normalized * (5f + velocity.magnitude);
             //Sets to false in stun leave
             

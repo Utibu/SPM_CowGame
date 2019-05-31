@@ -13,7 +13,7 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public virtual void Start()
     {
-        playerMeshRenderer = GameManager.instance.player.GetComponentInChildren<MeshRenderer>();
+        playerMeshRenderer = null;
         //container = GetComponent<Image>();
     }
 
@@ -28,7 +28,7 @@ public class ButtonMessageContainer : MonoBehaviour
         {
             RespawnButtonClicked();
         }
-        else if(container.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        else if(container.gameObject.activeSelf == true && GameManager.instance.inputManager.MenuButtonDown())
         {
             MainMenuButton();
         }

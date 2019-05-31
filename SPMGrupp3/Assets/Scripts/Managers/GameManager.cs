@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             END: Just for debugs
          */
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.instance.inputManager.MenuButtonDown())
         {
             //LoadMenu();
             if(isPaused)

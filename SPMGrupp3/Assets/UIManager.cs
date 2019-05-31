@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.instance.Pause();
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = false;
+        GameManager.instance.player.meshParent.SetActive(false);
         HideHUD();
     }
 
@@ -157,7 +157,7 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameManager.instance.Resume();
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        GameManager.instance.player.meshParent.SetActive(true);
         ShowHUD();
     }
 
@@ -260,7 +260,7 @@ public class UIManager : MonoBehaviour
 
     public void ResumeGameOnClick(bool shouldDoResumeAction = false)
     {
-        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        GameManager.instance.player.meshParent.SetActive(true);
         if(shouldDoResumeAction)
         {
             GameManager.instance.Resume();
