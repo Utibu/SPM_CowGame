@@ -40,7 +40,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public GameObject meshParent;
 
-    [HideInInspector] public Animator anim;
+    public Animator anim;
     public float animationSpeed;
 
 
@@ -111,7 +111,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         originalFOV = Camera.main.fieldOfView;
         hasFreeDash = false;
         UsingFreeCamera = true;
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         cameraCollider = GameManager.instance.cam.GetComponent<SphereCollider>();
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
