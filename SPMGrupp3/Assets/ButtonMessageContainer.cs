@@ -13,7 +13,7 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public virtual void Start()
     {
-        playerMeshRenderer = GameManager.instance.player.GetComponentInChildren<MeshRenderer>();
+        playerMeshRenderer = null;
         //container = GetComponent<Image>();
     }
 
