@@ -5,6 +5,8 @@ using UnityEngine;
 public class CoinPickup : DroppableObject
 {
     [SerializeField] private AudioClip[] CoinSounds;
+    protected int coinAmount = 1;
+
 
     override public void Start()
     {
@@ -15,15 +17,13 @@ public class CoinPickup : DroppableObject
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        GameManager.instance.coinCount++;
-        GameManager.instance.totalCoinCount++;
-        LevelManager.instance.pickedCoins++;
+        GameManager.instance.coinCount += coinAmount;
+        GameManager.instance.totalCoinCount += coinAmount;
+        LevelManager.instance.pickedCoins += coinAmount;
         EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetCoinClip(), 0.5f, 0.95f, 1.05f));
-        
-        // sound event here instead??
     }
 
-    private AudioClip GetCoinClip()
+    protected AudioClip GetCoinClip()
     {
         if (CoinSounds.Length == 0)
         {
