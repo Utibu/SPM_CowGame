@@ -51,7 +51,7 @@ public class PhysicsBaseState : State
 
     protected void PreventCollision()
     {
-        CollisionCheck(owner.velocity * Time.deltaTime);
+        CollisionCheck(owner.velocity * Time.deltaTime, 10);
         owner.velocity *= Mathf.Pow(airResistance, Time.deltaTime);
         //SetAllowedMovement(0f, 10);
     }
@@ -138,10 +138,10 @@ public class PhysicsBaseState : State
     }
 
     //Tack till Vibben och Marcus <3 
-    public void CollisionCheck(Vector3 frameMovement)
+    public void CollisionCheck(Vector3 frameMovement, int runTime)
     {
         RaycastHit hit;
-        if (Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, frameMovement.normalized, out hit, owner.transform.rotation, float.PositiveInfinity, owner.collisionMask))
+        if (Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.extents, frameMovement.normalized, out hit, owner.transform.rotation, float.PositiveInfinity, owner.collisionMask) && runTime >= 0)
         {
 
             float angle = (Vector3.Angle(hit.normal, frameMovement.normalized) - 90) * Mathf.Deg2Rad;
@@ -174,7 +174,7 @@ public class PhysicsBaseState : State
 
             if (frameMovement.magnitude > 0.001f)
             {
-                CollisionCheck(frameMovement);
+                CollisionCheck(frameMovement, runTime - 1);
             }
             return;
         }

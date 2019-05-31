@@ -28,7 +28,7 @@ public class ButtonMessageContainer : MonoBehaviour
         {
             RespawnButtonClicked();
         }
-        else if(container.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        else if(container.gameObject.activeSelf == true && GameManager.instance.inputManager.MenuButtonDown())
         {
             MainMenuButton();
         }

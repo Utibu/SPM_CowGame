@@ -401,17 +401,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6911767731804530210, guid: 4546600f3a5662a4580b32fed90954b3,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6911767731804530210, guid: 4546600f3a5662a4580b32fed90954b3,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b5182630c75951c42b0991b07415a1f9,
-        type: 3}
     - target: {fileID: 6911767732452955134, guid: 4546600f3a5662a4580b32fed90954b3,
         type: 3}
       propertyPath: m_Color.r
@@ -427,17 +416,28 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.38679248
       objectReference: {fileID: 0}
+    - target: {fileID: 6911767731804530210, guid: 4546600f3a5662a4580b32fed90954b3,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911767731804530210, guid: 4546600f3a5662a4580b32fed90954b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5182630c75951c42b0991b07415a1f9,
+        type: 3}
     - target: {fileID: 6911767732686214142, guid: 4546600f3a5662a4580b32fed90954b3,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6911767731804530209, guid: 4546600f3a5662a4580b32fed90954b3,
+    - target: {fileID: 4990616070231837482, guid: 4546600f3a5662a4580b32fed90954b3,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4990616070231837482, guid: 4546600f3a5662a4580b32fed90954b3,
+    - target: {fileID: 6911767731804530209, guid: 4546600f3a5662a4580b32fed90954b3,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -11317,6 +11317,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Name
+      value: OldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: healthBar
@@ -11346,16 +11356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBarSizeY
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: OldPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -13004,6 +13004,7 @@ GameObject:
   - component: {fileID: 5012012488402588859}
   - component: {fileID: 5012012488402588857}
   - component: {fileID: 5012012488402588858}
+  - component: {fileID: 5012012488402588861}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -13011,6 +13012,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &5012012488402588861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012012488402588860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885f2a73565dd4944ac998c6fc3395f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 5012012488812461381}
+  - {fileID: 5012012489095505634}
+  - {fileID: 5012012488707775324}
+  selectedColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 1}
+  moveCooldown: 0.2
 --- !u!224 &5012012488409598394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15106,6 +15125,7 @@ GameObject:
   - component: {fileID: 5012012489677647237}
   - component: {fileID: 5012012489677647238}
   - component: {fileID: 5012012489677647239}
+  - component: {fileID: 5012012489677647290}
   m_Layer: 5
   m_Name: VictoryMessageContainer
   m_TagString: Untagged
@@ -15113,6 +15133,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &5012012489677647290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012012489677647289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885f2a73565dd4944ac998c6fc3395f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 5012012488999994467}
+  selectedColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 1}
+  moveCooldown: 0.2
 --- !u!222 &6188077695364321817
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15450,6 +15486,7 @@ GameObject:
   - component: {fileID: 7134739268243110441}
   - component: {fileID: 2594972920551660664}
   - component: {fileID: 6258413061427954207}
+  - component: {fileID: 8624412458544029750}
   m_Layer: 5
   m_Name: DeathMessageContainer
   m_TagString: Untagged
@@ -15457,6 +15494,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8624412458544029750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624412458544029749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885f2a73565dd4944ac998c6fc3395f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 2822409621337311849}
+  - {fileID: 6541951403368698041}
+  - {fileID: 5012012488897290987}
+  selectedColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 1}
+  moveCooldown: 0.2
 --- !u!4 &9018498197459491968
 Transform:
   m_ObjectHideFlags: 0
