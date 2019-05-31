@@ -326,12 +326,12 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
-        //RaycastHit hit;
-        //bool okHit = Physics.SphereCast(transform.position + objectCollider.center + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude + cameraCollider.radius, collisionMask);
-        Debug.DrawLine(cameraPivotObject.position + cameraRotationOffset, cameraPivotObject.position + cameraRotationOffset + goalVector, Color.red);
-        RaycastHit[] hits = Physics.SphereCastAll(cameraPivotObject.position + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius, collisionMask);
+        RaycastHit hit;
+        bool okHit = Physics.SphereCast(cameraPivotObject.position, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude - cameraCollider.radius, collisionMask);
+        //Debug.DrawLine(cameraPivotObject.position + cameraRotationOffset, cameraPivotObject.position + cameraRotationOffset + goalVector, Color.red);
+        //RaycastHit[] hits = Physics.SphereCastAll(cameraPivotObject.position + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius, collisionMask);
 
-        /*if (okHit)
+        if (okHit)
         {
             if (hit.collider != null && !isTagged(hit.collider))
             {
@@ -339,37 +339,23 @@ public class PlayerStateMachine : PhysicsStateMachine
                 return allowedMovement;
             }
         }
-        return goalVector;*/
+        return goalVector;
 
         /*
             TODO: Ta bort alla offsets och testa ta bort loopen och ha som innan. IMPORTANT!!!!
          */
 
-        foreach(RaycastHit hit in hits)
+        /*foreach(RaycastHit hit in hits)
         {
             if (hit.collider != null && !isTagged(hit.collider))
             {
                 Vector3 allowedMovement = goalVector.normalized * (hit.distance);
 
-                if(goalVector.normalized.y <= 0f)
-                {
-                    //allowedMovement += cameraRotationOffset;
-                }
-
-                /*RaycastHit cameraHit;
-                bool camHitOk = Physics.Raycast(Camera.main.transform.position - Vector3.up, Vector3.up, out cameraHit, cameraRotationOffset.y * 2, collisionMask);
-                if(camHitOk && cameraHit.collider != null)
-                {
-                    return allowedMovement;
-                } else
-                {
-                }*/
-
                 return allowedMovement;
                 
             }
         }
-        return goalVector + cameraRotationOffset;
+        return goalVector + cameraRotationOffset;*/
     }
 
 
@@ -446,10 +432,10 @@ public class PlayerStateMachine : PhysicsStateMachine
 
 
 
-        Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * (cameraPositionRelativeToPlayer + cameraRotationOffset);
+        Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
         //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
-        Camera.main.transform.position = cameraPivotObject.position + cameraRotationOffset + okToMove;
+        Camera.main.transform.position = cameraPivotObject.position + okToMove;
         //Vector3.Lerp(Camera.main.transform.position, transform.position + cameraRotationOffset + okToMove, Time.deltaTime * 30f);
 
     }
