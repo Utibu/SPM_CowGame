@@ -436,6 +436,14 @@ public class PlayerStateMachine : PhysicsStateMachine
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
         //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
         Camera.main.transform.position = cameraPivotObject.position + okToMove;
+
+        if(Helper.IsWithinDistance(cameraPivotObject.position, Camera.main.transform.position, 1f))
+        {
+            meshParent.SetActive(false);
+        } else
+        {
+            meshParent.SetActive(true);
+        }
         //Vector3.Lerp(Camera.main.transform.position, transform.position + cameraRotationOffset + okToMove, Time.deltaTime * 30f);
 
     }
