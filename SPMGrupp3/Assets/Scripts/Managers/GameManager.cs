@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
 
         var scene = SceneManager.GetSceneByBuildIndex(0);
         SceneManager.SetActiveScene(scene);
+        GameInformation.OnLevel = 0;
         isLoadingScene = false;
     }
 
@@ -226,6 +227,7 @@ public class GameManager : MonoBehaviour
 
         var scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
+        GameInformation.OnLevel = index;
         foreach (GameObject go in scene.GetRootGameObjects())
         {
             if (go.CompareTag("LevelManager"))

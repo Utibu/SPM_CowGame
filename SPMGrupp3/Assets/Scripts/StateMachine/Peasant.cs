@@ -44,6 +44,8 @@ public class Peasant : StateMachine
     public Image healthMeter;
     [SerializeField] private Image healthMeterBackground;
     public bool ShouldGoAlive = false;
+    [SerializeField] private bool shouldSaveEnemy = true;
+    public bool ShouldSaveEnemy { get { return shouldSaveEnemy; } set { shouldSaveEnemy = value; } }
 
 
     // Start is called before the first frame update
@@ -62,7 +64,10 @@ public class Peasant : StateMachine
         EventSystem.Current.RegisterListener<PauseEvent>(Pause);
         EventSystem.Current.RegisterListener<ResumeEvent>(Resume);
         EventSystem.Current.RegisterListener<UnregisterListenerEvent>(UnregisterEvents);
-        GameManager.instance.SaveManager.Enemies.Add(GetComponent<Saveable>().Id, this);
+        if(shouldSaveEnemy)
+        {
+            GameManager.instance.SaveManager.Enemies.Add(GetComponent<Saveable>().Id, this);
+        }
     }
 
     private void UnregisterEvents(UnregisterListenerEvent eventInfo)
@@ -134,7 +139,7 @@ public class Peasant : StateMachine
         base.Update();
     }
 
-    public virtual void PlayerDash(Vector3 velocity)
+    public virtual void PlayerDash(Vector3 velocity, bool useKnockback = true)
     {
         if(Gracetimer == null)
         {
@@ -144,10 +149,17 @@ public class Peasant : StateMachine
             knockbackDirection = velocity.normalized;
             agnes.velocity = knockbackDirection.normalized * (5f + velocity.magnitude);
             //Sets to false in stun leave
-            DoingKnockback = true;
+            
             Gracetimer = new BasicTimer(graceTime);
-            //Debug.Log("NEW VELOCITY: " + agnes.velocity);
-            timer = new BasicTimer(0.5f);
+            float knockbackTimerDuration = 0f;
+
+            if(useKnockback)
+            {
+                DoingKnockback = true;
+                knockbackTimerDuration = 0.5f;
+            }
+            timer = new BasicTimer(knockbackTimerDuration);
+            
 
             if (CurrentToughness <= 0)
             {
@@ -157,11 +169,16 @@ public class Peasant : StateMachine
                     healthMeterBackground.enabled = false;
                 }
                 EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
-                int randomNr = Random.Range(0, 2);
+                int randomNr = Random.Range(0, deathScreams.Length - 1);
                 float volume = 1f;
                 if (randomNr == 2)
                     volume = 0.3f;
-                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScreams[randomNr], volume, 0.9f, 1.1f));
+
+                if(deathScreams.Length > 0)
+                {
+                    EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScreams[randomNr], volume, 0.9f, 1.1f));
+                }
+                
             }
             else
             {
@@ -175,7 +192,7 @@ public class Peasant : StateMachine
         }
     }
 
-    public void getCrushed()
+    public void GetCrushed()
     {
         isDying = true;
         EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));

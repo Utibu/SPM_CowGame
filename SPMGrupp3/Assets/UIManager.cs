@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -142,26 +143,42 @@ public class UIManager : MonoBehaviour
         bigMessageContainer.Show(title, leftDesc, leftSprite, rightDesc, rightSprite);
     }
 
-    public void ShowDeathMessage()
+    private void OnShow()
     {
-        HideMessages();
-        deathMessageContainer.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.instance.Pause();
         GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = false;
-        UIManager.instance.HideHUD();
+        HideHUD();
+    }
+
+    private void OnHide()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        GameManager.instance.Resume();
+        GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        ShowHUD();
+    }
+
+    public void ShowDeathMessage()
+    {
+        HideMessages();
+        OnShow();
+        deathMessageContainer.gameObject.SetActive(true);
+        
     }
 
     public void HideDeathMessage()
     {
+        OnHide();
         deathMessageContainer.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     public void ShowVictoryMessage()
     {
+        OnShow();
         victoryMessageContainer.Show();
     }
 
@@ -210,11 +227,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowMenu()
     {
+        OnShow();
         menu.gameObject.SetActive(true);
     }
 
     public void HideMenu()
     {
+        OnHide();
         menu.gameObject.SetActive(false);
     }
 
@@ -239,7 +258,7 @@ public class UIManager : MonoBehaviour
         speedLines.gameObject.SetActive(false);
     }
 
-    public void ResumeGame(bool shouldDoResumeAction = false)
+    public void ResumeGameOnClick(bool shouldDoResumeAction = false)
     {
         GameManager.instance.player.GetComponentInChildren<MeshRenderer>().enabled = true;
         if(shouldDoResumeAction)
@@ -249,5 +268,21 @@ public class UIManager : MonoBehaviour
         
         HideDeathMessage();
         ShowHUD();
+    }
+
+    public void RestartGameOnClick()
+    {
+        GameManager.instance.coinCount -= LevelManager.instance.pickedCoins;
+        GameManager.instance.totalCoinCount -= LevelManager.instance.pickedCoins;
+        GameManager.instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        HideDeathMessage();
+        HideMenu();
+        ResumeGameOnClick(false);
+    }
+
+    public void RespawnFromCheckpointOnClick()
+    {
+        ResumeGameOnClick(true);
+        GameManager.instance.SaveManager.Load();
     }
 }

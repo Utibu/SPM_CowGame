@@ -130,7 +130,7 @@ public class FallingObject : Dashable
                 if(hit.collider.GetComponent<Peasant>().DoingKnockback == false)
                 {
                     Vector3 newDirection = Vector3.Cross(direction, Vector3.up);
-                    hit.collider.GetComponent<Peasant>().getCrushed();
+                    hit.collider.GetComponent<Peasant>().PlayerDash(Vector3.zero, false);
                 }
                 
             }

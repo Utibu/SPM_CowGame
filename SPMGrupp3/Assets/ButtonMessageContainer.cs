@@ -73,12 +73,13 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(0);
+        Debug.Log("MAIN MENU!!");
+        GameManager.instance.LoadMenu();
     }
 
     private void ResumeGame(bool shouldDoResumeAction = false)
     {
-        UIManager.instance.ResumeGame(shouldDoResumeAction);
+        UIManager.instance.ResumeGameOnClick(shouldDoResumeAction);
     }
 
 }

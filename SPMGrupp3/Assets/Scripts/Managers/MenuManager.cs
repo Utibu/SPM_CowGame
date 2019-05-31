@@ -118,6 +118,7 @@ public class MenuManager : MonoBehaviour
         }
         Scene scene = SceneManager.GetSceneByBuildIndex(index);
         SceneManager.SetActiveScene(scene);
+        GameInformation.OnLevel = index;
         foreach (GameObject go in scene.GetRootGameObjects())
         {
             if (go.CompareTag("LevelManager"))
