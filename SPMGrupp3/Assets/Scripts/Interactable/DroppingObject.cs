@@ -12,6 +12,7 @@ public class DroppingObject : Dashable
         GameManager.instance.player.ShakeCamera();
         skipCollision = false;
         GameObject go = Instantiate(drop.gameObject, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
