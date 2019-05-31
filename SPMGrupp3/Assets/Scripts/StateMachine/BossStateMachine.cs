@@ -69,7 +69,7 @@ public class BossStateMachine : Peasant
         base.Update();
     }
 
-    public override void PlayerDash(Vector3 velocity)
+    public override void PlayerDash(Vector3 velocity, bool useKnockback = true)
     {
         //base.PlayerDash(velocity);
         if (Gracetimer == null && isInvincible == false)
@@ -91,8 +91,9 @@ public class BossStateMachine : Peasant
             Transition<BossTransitionState>();
         }
         
-        /*
+        
         healthBar.fillAmount =  CurrentToughness / toughness;
+        /*
         Debug.Log("Current: " + CurrentToughness + " Total: " + toughness + " " + CurrentToughness/toughness);
         */
 
@@ -104,6 +105,7 @@ public class BossStateMachine : Peasant
         count++;
         GameObject underling = Instantiate(underlingPrefab, (underlingSpawnArea.transform.position), Quaternion.identity);
         Peasant bonde = underling.GetComponent<Peasant>();
+        bonde.ShouldSaveEnemy = false;
         bonde.patrolPoints = patrolPoints;
         bonde.maxVisibility = 25f;
         underlingList.Add(underling);

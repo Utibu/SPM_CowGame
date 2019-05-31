@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
         if(hasLoaded == true)
         {
             GameManager.instance.SaveManager.Save();
-            UIManager.instance.ResumeGame(true);
+            UIManager.instance.ResumeGameOnClick(true);
             hasLoaded = false;
         }
     }
@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour
     public void LoadGame()
     {
         LevelNumber = SceneManager.GetActiveScene().buildIndex;
-
+        Debug.Log("LEVELNUMBER: " + LevelNumber);
         if (GameInformation.ShouldContinue)
         {
             GameManager.instance.SaveManager.Load();

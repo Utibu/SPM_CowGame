@@ -13,9 +13,9 @@ public class BondeRangedStateMachine : Peasant
     public AudioClip GunSound;
     public AudioClip ReloadSound;
 
-    public override void PlayerDash(Vector3 velocity)
+    public override void PlayerDash(Vector3 velocity, bool useKnockback = true)
     {
-        base.PlayerDash(velocity);
+        base.PlayerDash(velocity, useKnockback);
         
             //Transition<BondeRangedStunState>();
         

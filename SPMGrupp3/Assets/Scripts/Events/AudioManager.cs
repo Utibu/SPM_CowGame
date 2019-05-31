@@ -18,7 +18,6 @@ public class AudioManager : MonoBehaviour
         //OnLevelLoaded();
         count = 0;
         audioPlayerList.Clear();
-        Debug.LogWarning("CREATING NEW LIST");
         while (count <= audioPlayerCount)
         {
             obj = Instantiate(audioPlayer, this.transform);

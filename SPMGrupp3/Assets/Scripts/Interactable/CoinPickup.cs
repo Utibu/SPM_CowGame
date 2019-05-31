@@ -15,7 +15,6 @@ public class CoinPickup : DroppableObject
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
         base.OnPlayerTriggerEnter(hitCollider);
-        Debug.Log("PLAYING!");
         GameManager.instance.coinCount++;
         GameManager.instance.totalCoinCount++;
         LevelManager.instance.pickedCoins++;
