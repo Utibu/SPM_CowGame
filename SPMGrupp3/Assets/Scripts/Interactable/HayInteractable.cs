@@ -7,11 +7,17 @@ public class HayInteractable : Interactable
 
     public float healthReplenished;
 
+    public override void Start()
+    {
+        base.Start();
+        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
+        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(Unregister);
+    }
+
     public override void Update()
     {
         base.Update();
-        EventSystem.Current.RegisterListener<OnPlayerDiedEvent>(ResetHay);
-        EventSystem.Current.RegisterListener<UnregisterListenerEvent>(Unregister);
+        
         //GameManager.instance.SaveManager.Haybales.Add(transform.parent.gameObject.GetComponent<Saveable>().Id, transform.parent.gameObject);
 
     }
