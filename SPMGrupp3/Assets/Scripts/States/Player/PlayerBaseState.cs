@@ -137,7 +137,15 @@ public class PlayerBaseState : PhysicsBaseState
 
         float newSpeedPercentage = player.velocity.magnitude / player.maxSpeed;
         speedPercentage = newSpeedPercentage;
-        //player.anim.SetFloat("Speed", vertical * speedPercentage);
+        player.anim.SetFloat("Speed", movement.normalized.magnitude);
+
+        if(player.IsDashing)
+        {
+            player.anim.SetBool("IsRamming", true);
+        } else
+        {
+            player.anim.SetBool("IsRamming", false);
+        }
         //player.anim.SetFloat("Direction", horizontal * speedPercentage);
         direction *= player.CameraRotationSpeed;
         //player.anim.speed = player.animationSpeed;
