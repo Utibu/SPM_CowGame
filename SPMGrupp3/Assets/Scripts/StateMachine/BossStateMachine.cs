@@ -91,8 +91,9 @@ public class BossStateMachine : Peasant
             Transition<BossTransitionState>();
         }
         
-        /*
+        
         healthBar.fillAmount =  CurrentToughness / toughness;
+        /*
         Debug.Log("Current: " + CurrentToughness + " Total: " + toughness + " " + CurrentToughness/toughness);
         */
 
