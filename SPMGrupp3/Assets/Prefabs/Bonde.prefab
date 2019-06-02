@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c787e7edc7e924840a461329194e2874, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
-  deathScream: {fileID: 8300000, guid: 9ce2a024431b5ab469bf16809871fad8, type: 3}
+  deathScreams: []
   hitSound: {fileID: 8300000, guid: d24572f44b7a80d47944e1df05fc6e9f, type: 3}
   agnes: {fileID: 2929106447677307446}
   patrolPoints:
@@ -113,7 +113,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   layermask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   player: {fileID: 0}
   toughness: 1
   CurrentToughness: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   healthMeter: {fileID: 0}
   healthMeterBackground: {fileID: 0}
   ShouldGoAlive: 0
+  shouldSaveEnemy: 1
 --- !u!195 &2929106447677307446
 NavMeshAgent:
   m_ObjectHideFlags: 0

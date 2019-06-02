@@ -56,12 +56,12 @@ public class BondeAttackState : BondeBaseState
             {
                 attack();
             }
-            owner.agnes.speed = speed;
+            //owner.agnes.speed = speed;
         }
 
         if (0.1 <= countdown && countdown <= cooldown / 2)
         {
-            owner.agnes.speed = 0.1f; // enemy should be still while init attack.
+            //owner.agnes.speed = 0.1f; // enemy should be still while init attack.
             rotation += -2;
             owner.weapon.transform.localRotation = Quaternion.Euler(90 + rotation, 0, 0);
         }

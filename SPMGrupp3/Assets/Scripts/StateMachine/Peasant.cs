@@ -122,6 +122,7 @@ public class Peasant : StateMachine
             {
                 isDying = true;
                 CurrentToughness = toughness; // lives are reset. 
+                //DoingKnockback = false;
                 agnes.velocity = Vector3.zero;
             } else
             {
@@ -142,11 +143,12 @@ public class Peasant : StateMachine
                 }*/
             }
         }
-
+        /*
         if(agnes.velocity.magnitude > 20f)
         {
             agnes.velocity = Vector3.ClampMagnitude(agnes.velocity, 20f);
         }
+        */
         base.Update();
     }
 
@@ -160,7 +162,7 @@ public class Peasant : StateMachine
             knockbackDirection = velocity.normalized;
             Debug.Log("Playerdash!");
             agnes.velocity = knockbackDirection.normalized * (5f + velocity.magnitude);
-            //Sets to false in stun leave
+            //Sets to false in stun leave -> changed to stun enter().
             
             Gracetimer = new BasicTimer(graceTime);
             float knockbackTimerDuration = 0f;
@@ -190,7 +192,6 @@ public class Peasant : StateMachine
                 {
                     EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, deathScreams[randomNr], volume, 0.9f, 1.1f));
                 }
-                
             }
             else
             {
@@ -206,7 +207,22 @@ public class Peasant : StateMachine
 
     public void GetCrushed()
     {
-        isDying = true;
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
+        CurrentToughness -= 1;
+        if (CurrentToughness <= 0)
+        {
+            if (healthMeter != null && healthMeterBackground != null)
+            {
+                healthMeter.enabled = false;
+                healthMeterBackground.enabled = false;
+            }
+            isDying = true;
+            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
+            EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
+        }
+       
+        else if (CurrentToughness >= 1 && healthMeter != null)
+        {
+            healthMeter.fillAmount = CurrentToughness / toughness;
+        }
     }
 }

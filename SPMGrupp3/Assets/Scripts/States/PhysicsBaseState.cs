@@ -94,11 +94,13 @@ public class PhysicsBaseState : State
         if (!ray)
             return false;
 
+        
         // if ko stands on enemy, CHRUSH
         if (hit.collider.tag.Equals("Enemy"))
         {
             hit.collider.GetComponent<Peasant>().GetCrushed();
         }
+        
         return true;
 
     }
