@@ -21,6 +21,7 @@ public class GateScript : Collidable
     private bool isCurrentlyAnimating = false;
     public bool IsOpened = false;
     private BasicTimer animationTimer;
+    [SerializeField] private AudioClip openingSound;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class GateScript : Collidable
         if (LevelManager.instance.hasGateKey)
         {
             skipCollision = true;
+            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, openingSound, 1f, 1f, 1f));
             GameManager.instance.player.ShakeCamera();
             UIManager.instance.HideKeyImage();
             Open();

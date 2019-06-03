@@ -77,6 +77,8 @@ public class PlayerBaseState : PhysicsBaseState
         Vector3 jumpMovement = Vector2.up * jumpForce;
         owner.velocity += jumpMovement;
         owner.Transition<AirState>();
+        //start jump animation
+        player.anim.SetTrigger("IsJumpingTrigger");
     }
 
     

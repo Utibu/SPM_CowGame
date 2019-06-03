@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +13,13 @@ public class AirState : PlayerBaseState
     public float fallDamage;
     private float originalSens;
     [SerializeField] private float divideSens = 10f;
+    private bool hasDoneLandingAnimation = false;
 
     public override void Enter()
     {
         base.Enter();
         originalSens = player.mouseSensitivity;
+        hasDoneLandingAnimation = false;
         player.CameraRotationSpeed = 0.8f;
         player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         if (player.IsDashing)
@@ -64,9 +66,19 @@ public class AirState : PlayerBaseState
             player.IsDashing = false;
         }
 
+        Debug.Log("DISTANCE TO GROUND: " + GetDistanceToGround());
+        if(GetDistanceToGround() < 10f && hasDoneLandingAnimation == false)
+        {
+            player.anim.SetTrigger("IsLandingTrigger");
+            hasDoneLandingAnimation = true;
+        }
+
         if (IsGrounded())
         {
             owner.Transition<WalkState>();
+            //ta-emot animation
+            //player.anim.SetBool("IsJumping", false);
+            
         }
 
     }

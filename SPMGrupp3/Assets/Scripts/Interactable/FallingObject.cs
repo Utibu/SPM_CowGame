@@ -26,8 +26,9 @@ public class FallingObject : Dashable
         size = meshRenderer.bounds.size;
     }
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         Vector3 initialRotation = transform.eulerAngles;
         initialRotation.y = 0f;
         transform.eulerAngles = initialRotation;
@@ -41,7 +42,7 @@ public class FallingObject : Dashable
 
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
     {
-        skipCollision = false;
+        base.OnPlayerCollideEnter(hitCollider, out skipCollision, dashLevel);
         SetFalling(GameManager.instance.player.velocity.normalized);
         if(particles != null && particles.isPlaying == false)
         {
