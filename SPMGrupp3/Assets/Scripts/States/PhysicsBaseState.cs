@@ -87,21 +87,33 @@ public class PhysicsBaseState : State
         owner = (PhysicsStateMachine)stateMachine;
     }
 
-    public bool IsGrounded()
+    public float GetDistanceToGround()
     {
         RaycastHit hit;
-        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, owner.groundCheckDistance + owner.skinWidth, owner.collisionMask);
+        bool ray = Physics.BoxCast(owner.transform.position + owner.objectCollider.center, owner.objectCollider.bounds.size / 2, Vector3.down, out hit, owner.transform.rotation, float.MaxValue, owner.collisionMask);
         if (!ray)
-            return false;
+            return float.MaxValue;
 
-        
+
         // if ko stands on enemy, CHRUSH
         if (hit.collider.tag.Equals("Enemy"))
         {
             hit.collider.GetComponent<Peasant>().GetCrushed();
         }
-        
-        return true;
+
+        return hit.distance;
+    }
+
+    public bool IsGrounded()
+    {
+        float distanceToGround = GetDistanceToGround();
+        if(distanceToGround <= owner.groundCheckDistance + owner.skinWidth)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
 
     }
 
