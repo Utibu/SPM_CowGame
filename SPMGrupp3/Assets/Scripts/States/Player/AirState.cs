@@ -67,7 +67,7 @@ public class AirState : PlayerBaseState
         }
 
         Debug.Log("DISTANCE TO GROUND: " + GetDistanceToGround());
-        if(GetDistanceToGround() < 10f && hasDoneLandingAnimation == false)
+        if(GetDistanceToGround() < 5f && hasDoneLandingAnimation == false)
         {
             player.anim.SetTrigger("IsLandingTrigger");
             hasDoneLandingAnimation = true;

@@ -133,27 +133,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
-        type: 3}
-      propertyPath: audioDelay
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
-        type: 3}
-      propertyPath: audioPlayer
-      value: 
-      objectReference: {fileID: 930162389627507870, guid: ec0e19311f8538449bd904a6aab4530c,
-        type: 3}
-    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
-        type: 3}
-      propertyPath: audioPlayerCount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7270208569316688677, guid: d433197e8e94a26448b85d6acf800954,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7270208569316688683, guid: d433197e8e94a26448b85d6acf800954,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,6 +187,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
+        type: 3}
+      propertyPath: audioDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
+        type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 930162389627507870, guid: ec0e19311f8538449bd904a6aab4530c,
+        type: 3}
+    - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
+        type: 3}
+      propertyPath: audioPlayerCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270208569316688677, guid: d433197e8e94a26448b85d6acf800954,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7270208569316688677, guid: d433197e8e94a26448b85d6acf800954, type: 3}
@@ -21405,6 +21405,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_Name
+      value: OldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 499345691420650960, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
       propertyPath: healthBar
@@ -21434,16 +21444,6 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBarSizeY
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_Name
-      value: OldPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 499345691420650954, guid: 9e37617e3b18dc142a2359d89e22562c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 499345691420650961, guid: 9e37617e3b18dc142a2359d89e22562c,
         type: 3}
@@ -21907,81 +21907,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 320751527}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: originalSpawnTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: velocityText
-      value: 
-      objectReference: {fileID: 1149918244}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: dashCooldownImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: dashSpeedImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: showCursor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: UI
-      value: 
-      objectReference: {fileID: 846774888}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1617973540}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: debug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: coinCountText
-      value: 
-      objectReference: {fileID: 3193682159232730762}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: controlsUI
-      value: 
-      objectReference: {fileID: 5012012488709085235}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: livesText
-      value: 
-      objectReference: {fileID: 90297446454096744}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: coinsToHPIncrease
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: SaveManager
-      value: 
-      objectReference: {fileID: 1549612089}
-    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: audioManager
-      value: 
-      objectReference: {fileID: 1755137507}
     - target: {fileID: 4409360511579473787, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22037,6 +21962,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 320751527}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: originalSpawnTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: velocityText
+      value: 
+      objectReference: {fileID: 1149918244}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: dashCooldownImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: dashSpeedImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: showCursor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 846774888}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1617973540}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: coinCountText
+      value: 
+      objectReference: {fileID: 3193682159232730762}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: controlsUI
+      value: 
+      objectReference: {fileID: 5012012488709085235}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 90297446454096744}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: coinsToHPIncrease
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: SaveManager
+      value: 
+      objectReference: {fileID: 1549612089}
+    - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1755137507}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49d3bdef351158d48a96eb419d4d5190, type: 3}
 --- !u!1 &4817119799666853972
