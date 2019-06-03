@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: f191e19c634967e4cb36726a1eddf01e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f7c35faee00332040ae7204061542ee2, type: 2}
 --- !u!1001 &20914060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7270208569316688678, guid: d433197e8e94a26448b85d6acf800954,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
     - target: {fileID: 7270208569316688676, guid: d433197e8e94a26448b85d6acf800954,
         type: 3}
       propertyPath: audioDelay
@@ -148,11 +153,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7270208569316688678, guid: d433197e8e94a26448b85d6acf800954,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 7270208569316688683, guid: d433197e8e94a26448b85d6acf800954,
         type: 3}
@@ -713,7 +713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320751524}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -31.1, y: 0.89, z: 38.46}
+  m_LocalPosition: {x: 102.84, y: 35.76, z: -73.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775260432}
@@ -886,7 +886,7 @@ Transform:
 --- !u!199 &356402610
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10450,7 +10450,7 @@ ParticleSystem:
 --- !u!199 &775260431
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15701,7 +15701,7 @@ ParticleSystem:
 --- !u!199 &1567647730
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -16372,7 +16372,7 @@ Transform:
 --- !u!199 &1955154670
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -21736,6 +21736,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3962709825190411607, guid: 3b34b547abbf9f94aaef4208cd24f0ff,
+        type: 3}
+      propertyPath: m_Name
+      value: EventSystem
+      objectReference: {fileID: 0}
     - target: {fileID: 3962709825190411605, guid: 3b34b547abbf9f94aaef4208cd24f0ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21791,11 +21796,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3962709825190411607, guid: 3b34b547abbf9f94aaef4208cd24f0ff,
-        type: 3}
-      propertyPath: m_Name
-      value: EventSystem
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b34b547abbf9f94aaef4208cd24f0ff, type: 3}
 --- !u!222 &3983680277848273022
@@ -21831,6 +21831,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4409360511579473785, guid: 49d3bdef351158d48a96eb419d4d5190,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
     - target: {fileID: 4409360511579473784, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: player
@@ -21906,11 +21911,6 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 1755137507}
-    - target: {fileID: 4409360511579473785, guid: 49d3bdef351158d48a96eb419d4d5190,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4409360511579473787, guid: 49d3bdef351158d48a96eb419d4d5190,
         type: 3}
       propertyPath: m_LocalPosition.x
