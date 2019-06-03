@@ -30,7 +30,7 @@ public class Interactable : Triggable
                 GameManager.instance.player.canTakeInput = true;
                 playerIsInteracting = false;
                 UIManager.instance.HideInteractionMeter();
-                
+                GameManager.instance.player.anim.SetTrigger("IsFinishingEatingTrigger");
             }
         }
         
@@ -54,6 +54,7 @@ public class Interactable : Triggable
             interactionTimer = new BasicTimer(interactionDuration);
             GameManager.instance.player.canTakeInput = false;
             //start eating
+            GameManager.instance.player.anim.SetTrigger("IsStartingToEatTrigger");
         }
     }
 
