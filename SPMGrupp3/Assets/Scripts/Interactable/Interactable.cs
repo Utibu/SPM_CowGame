@@ -21,13 +21,16 @@ public class Interactable : Triggable
         
         if (GameManager.instance.inputManager.CancelKeyDown())
         {
-            if(playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
+            OnCancelInteraction();
+
+            if (playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
             {
                 Debug.Log("cancel");
                 interactionTimer.Reset();
                 GameManager.instance.player.canTakeInput = true;
                 playerIsInteracting = false;
                 UIManager.instance.HideInteractionMeter();
+                
             }
         }
         
@@ -52,6 +55,11 @@ public class Interactable : Triggable
             GameManager.instance.player.canTakeInput = false;
             //start eating
         }
+    }
+
+    protected virtual void OnCancelInteraction()
+    {
+
     }
 
     protected virtual void OnInteracted()

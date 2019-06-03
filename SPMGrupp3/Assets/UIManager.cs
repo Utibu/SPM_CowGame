@@ -229,7 +229,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowKeyImage()
     {
-        keyImage.gameObject.SetActive(true);
+        //keyImage.gameObject.SetActive(true);
     }
 
     public void HideKeyImage()
