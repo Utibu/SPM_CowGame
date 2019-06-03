@@ -78,7 +78,9 @@ public class PlayerBaseState : PhysicsBaseState
         owner.velocity += jumpMovement;
         owner.Transition<AirState>();
         //start jump animation
+        player.anim.ResetTrigger("IsLandingTrigger");
         player.anim.SetTrigger("IsJumpingTrigger");
+        
     }
 
     

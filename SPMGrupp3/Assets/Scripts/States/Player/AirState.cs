@@ -66,10 +66,12 @@ public class AirState : PlayerBaseState
             player.IsDashing = false;
         }
 
-        Debug.Log("DISTANCE TO GROUND: " + GetDistanceToGround());
-        if(GetDistanceToGround() < 5f && hasDoneLandingAnimation == false)
+        //Debug.Log("DISTANCE TO GROUND: " + GetDistanceToGround());
+        if(GetDistanceToGround() < 2f && hasDoneLandingAnimation == false && topYPosition > owner.transform.position.y)
         {
+            Debug.Log("HÄR NU!");
             player.anim.SetTrigger("IsLandingTrigger");
+            player.anim.ResetTrigger("IsJumpingTrigger");
             hasDoneLandingAnimation = true;
         }
 

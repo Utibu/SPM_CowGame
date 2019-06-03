@@ -31,6 +31,7 @@ public class Interactable : Triggable
                 playerIsInteracting = false;
                 UIManager.instance.HideInteractionMeter();
                 GameManager.instance.player.anim.SetTrigger("IsFinishingEatingTrigger");
+                GameManager.instance.player.anim.ResetTrigger("IsStartingToEatTrigger");
             }
         }
         
@@ -55,6 +56,7 @@ public class Interactable : Triggable
             GameManager.instance.player.canTakeInput = false;
             //start eating
             GameManager.instance.player.anim.SetTrigger("IsStartingToEatTrigger");
+            GameManager.instance.player.anim.ResetTrigger("IsFinishingEatingTrigger");
         }
     }
 

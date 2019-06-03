@@ -47,7 +47,7 @@ public class ControllerInputMenu : MonoBehaviour
             //Debug.Log("CURRENT INDEX: " + currentlyChosenMenuItem);
         }
 
-        if (inputManager.JumpKeyDown())
+        if (inputManager.JumpKeyDown() && currentlyChosenMenuItem >= 0)
         {
             buttons[currentlyChosenMenuItem].onClick.Invoke();
         }
