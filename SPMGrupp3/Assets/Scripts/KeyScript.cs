@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyScript : Triggable
 {
     private Collider keyCollider;
+    [SerializeField] private AudioClip keyPickupSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -24,7 +25,12 @@ public class KeyScript : Triggable
     {
         Debug.Log("triggered key");
         // ge key = true till level manager? eller playerValues? sen: destroy
+        if (keyPickupSound != null)
+        {
+            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, keyPickupSound, 1f, 0.9f, 1.1f));
+        }
         LevelManager.instance.hasGateKey = true;
+        UIManager.instance.ShowKeyImage();
         Destroy(gameObject);
     }
 
