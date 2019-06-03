@@ -16,13 +16,16 @@ public class Peasant : StateMachine
     public GameObject itemDrop;
     public LayerMask layermask;
     public PlayerStateMachine player;
-    public float toughness = 1;
+    public float toughness;
     [HideInInspector] public float CurrentToughness;
-    
-    public float stunTime;
-    public float toAttack;
-    public float maxVisibility;
-    
+
+    [SerializeField] private float StunTime;
+    public float stunTime { get { return StunTime; } set { StunTime = value; } }
+    [SerializeField] private float ToAttack;
+    public float toAttack { get { return ToAttack; } set { ToAttack = value; } }
+    [SerializeField] private float MaxVisibility;
+    public float maxVisibility { get { return MaxVisibility; } set { MaxVisibility = value; } }
+
     // ta bort?
     public bool customAttackDamage;
     public float attackDamage;
@@ -122,7 +125,6 @@ public class Peasant : StateMachine
             {
                 isDying = true;
                 CurrentToughness = toughness; // lives are reset. 
-                //DoingKnockback = false;
                 agnes.velocity = Vector3.zero;
             } else
             {
@@ -143,12 +145,12 @@ public class Peasant : StateMachine
                 }*/
             }
         }
-        /*
+        
         if(agnes.velocity.magnitude > 20f)
         {
             agnes.velocity = Vector3.ClampMagnitude(agnes.velocity, 20f);
         }
-        */
+        
         base.Update();
     }
 
@@ -207,22 +209,26 @@ public class Peasant : StateMachine
 
     public void GetCrushed()
     {
-        CurrentToughness -= 1;
-        if (CurrentToughness <= 0)
+        if(Gracetimer == null)
         {
-            if (healthMeter != null && healthMeterBackground != null)
+            CurrentToughness -= 1;
+            Gracetimer = new BasicTimer(graceTime);
+            if (CurrentToughness <= 0)
             {
-                healthMeter.enabled = false;
-                healthMeterBackground.enabled = false;
+                if (healthMeter != null && healthMeterBackground != null)
+                {
+                    healthMeter.enabled = false;
+                    healthMeterBackground.enabled = false;
+                }
+                isDying = true;
+                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
+                EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
             }
-            isDying = true;
-            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, hitSound, 0.6f, 0.9f, 1.3f));
-            EventSystem.Current.FireEvent(new EnemyDieEvent("Bonde died", gameObject));
-        }
-       
-        else if (CurrentToughness >= 1 && healthMeter != null)
-        {
-            healthMeter.fillAmount = CurrentToughness / toughness;
+
+            else if (CurrentToughness >= 1 && healthMeter != null)
+            {
+                healthMeter.fillAmount = CurrentToughness / toughness;
+            }
         }
     }
 }

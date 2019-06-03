@@ -107,7 +107,6 @@ public class BossStateMachine : Peasant
         Peasant bonde = underling.GetComponent<Peasant>();
         bonde.ShouldSaveEnemy = false;
         bonde.patrolPoints = patrolPoints;
-        bonde.maxVisibility = 25f;
         underlingList.Add(underling);
         allUnderlings.Add(underling);
         if (count < underlingQuantityPerWave)

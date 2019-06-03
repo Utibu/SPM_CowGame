@@ -227,6 +227,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowMenu()
     {
+        GameManager.instance.player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         OnShow();
         menu.gameObject.SetActive(true);
     }

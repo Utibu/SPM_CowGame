@@ -142,11 +142,11 @@ MonoBehaviour:
   player: {fileID: 0}
   toughness: 1
   CurrentToughness: 0
-  stunTime: 60
-  toAttack: 20
-  maxVisibility: 35
+  StunTime: 60
+  ToAttack: 20
+  MaxVisibility: 30
   customAttackDamage: 0
-  attackDamage: 0
+  attackDamage: 10
   isDying: 0
   graceTime: 1.5
   knockBackMultiplier: 1.1
@@ -155,6 +155,7 @@ MonoBehaviour:
   healthMeter: {fileID: 0}
   healthMeterBackground: {fileID: 0}
   ShouldGoAlive: 0
+  shouldSaveEnemy: 1
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   gun: {fileID: 7578379274913798779}
   attackSpeed: 1.5
