@@ -38,6 +38,7 @@ public class GateScript : Collidable
         {
             skipCollision = true;
             GameManager.instance.player.ShakeCamera();
+            UIManager.instance.HideKeyImage();
             Open();
         }
         else

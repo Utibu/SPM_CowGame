@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour
 
     void Respawn(OnPlayerDiedEvent eventInfo)
     {
+        player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None); // så man inte spelar galopp ljuden när man e dö.
         UIManager.instance.ShowDeathMessage();
     }
 

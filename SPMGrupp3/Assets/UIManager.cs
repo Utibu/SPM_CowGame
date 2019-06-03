@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     // new ram mätare
     [SerializeField] private Image RamActiveImage;
     [SerializeField] private Image RamCooldownImage;
+    [SerializeField] private Image keyImage;
 
     [SerializeField] private Image speedLines;
     [SerializeField] private Image saveImage;
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
     public Image LoadingImage { get { return loadingImage; } private set { loadingImage = value; } }
     [SerializeField] private Image loadingBar;
     public Image LoadingBar { get { return loadingBar; } private set { loadingBar = value; } }
+    
     public Text mouseDebug; 
 
     void Awake()
@@ -225,8 +227,19 @@ public class UIManager : MonoBehaviour
         interactionIndicator.SetActive(false);
     }
 
+    public void ShowKeyImage()
+    {
+        keyImage.gameObject.SetActive(true);
+    }
+
+    public void HideKeyImage()
+    {
+        keyImage.gameObject.SetActive(false);
+    }
+
     public void ShowMenu()
     {
+        GameManager.instance.player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
         OnShow();
         menu.gameObject.SetActive(true);
     }
