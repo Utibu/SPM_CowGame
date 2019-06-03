@@ -13,7 +13,7 @@ public class BondeStunState : BondeBaseState
         base.Enter();
         time = 0.0f;
 
-        owner.DoingKnockback = false;
+        
         owner.isDying = false;
         owner.agnes.isStopped = true;
         owner.agnes.enabled = false;
@@ -53,6 +53,7 @@ public class BondeStunState : BondeBaseState
         owner.GetComponent<MeshRenderer>().material.color = Color.white;
         owner.transform.position -= new Vector3(0f, -owner.StunLengthToGround, 0f);
         owner.agnes.enabled = true;
+        owner.DoingKnockback = false;
         owner.GetComponent<Collider>().enabled = true;
         owner.agnes.isStopped = false;
     }
