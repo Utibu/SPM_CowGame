@@ -28,6 +28,7 @@ public class HayInteractable : Interactable
 
         EventSystem.Current.FireEvent(new HayEatingFinishedEvent(gameObject, healthReplenished, "Hay eaten"));
         GameManager.instance.player.anim.SetTrigger("IsFinishingEatingTrigger");
+        GameManager.instance.player.anim.ResetTrigger("IsStartingToEatTrigger");
         //Debug.Log("interacted");
         //transform.parent.gameObject.SetActive(false);
     }

@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
             {
                 loading.allowSceneActivation = true;
                 UIManager.instance.LoadingImage.gameObject.SetActive(false);
-                UIManager.instance.LoadingBar.gameObject.SetActive(false);
+                //UIManager.instance.LoadingBar.gameObject.SetActive(false);
             }
 
             yield return null;
