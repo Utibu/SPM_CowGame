@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public float dashJumpForce;
     public int pickedCoins = 0;
     public AudioClip checkpointSound;
+    public float SensitivityMultiplier = 1f;
 
     public float playerScale = 1f;
 

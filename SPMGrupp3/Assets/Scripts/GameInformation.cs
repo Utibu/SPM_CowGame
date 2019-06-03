@@ -6,4 +6,5 @@ public static class GameInformation
 {
     public static bool ShouldContinue { get; set; }
     public static int OnLevel { get; set; }
+    public static bool UsingController { get; set; }
 }

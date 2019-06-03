@@ -407,16 +407,32 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     protected void HandleCamera()
     {
+        float localMouseSensitivity = mouseSensitivity;
         float horizontal = Input.GetAxisRaw("Mouse X");
         float vertical = Input.GetAxisRaw("Mouse Y");
 
-        UIManager.instance.mouseDebug.text = "MouseX: " + horizontal + " \nMouseY: " + vertical;
-
-        float localMouseSensitivity = mouseSensitivity;
-
-        if(UsingFreeCamera)
+        if (UsingFreeCamera)
         {
             localMouseSensitivity = 1;
+        }
+
+        float joystickHorizontal = Input.GetAxis("CameraJoystickX");
+        float joystickVertical = Input.GetAxis("CameraJoystickY");
+        if(joystickHorizontal != 0 || joystickVertical != 0)
+        {
+            horizontal = joystickHorizontal;
+            vertical = joystickVertical;
+            localMouseSensitivity *= LevelManager.instance.SensitivityMultiplier;
+        }
+
+        UIManager.instance.mouseDebug.text = "MouseX: " + horizontal + " \nMouseY: " + vertical;
+
+
+        
+
+        if(GameInformation.UsingController)
+        {
+           
         }
 
         rotationX -= vertical * localMouseSensitivity;
