@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,7 +66,8 @@ public class AirState : PlayerBaseState
 
         if (IsGrounded())
         {
-            owner.Transition<WalkState>();
+            owner.Transition<WalkState>();'
+            //ta-emot animation
         }
 
     }

@@ -50,6 +50,7 @@ public class Interactable : Triggable
             playerIsInteracting = true;
             interactionTimer = new BasicTimer(interactionDuration);
             GameManager.instance.player.canTakeInput = false;
+            //start eating
         }
     }
 
