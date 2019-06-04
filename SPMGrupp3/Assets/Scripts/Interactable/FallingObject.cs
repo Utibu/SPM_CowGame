@@ -65,7 +65,10 @@ public class FallingObject : Dashable
             GameManager.instance.player.ShakeCamera();
             isFalling = true;
             EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetClip(), 0.5f, 1f, 1f));
-            audioSource.PlayOneShot(fallingSound);
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(fallingSound);
+            }
             matchDirection.y = 0f;
             if(freeFall)
             {
@@ -119,7 +122,7 @@ public class FallingObject : Dashable
             {
                 isFalling = false;
                 hasFallen = true;
-                if (audioSource.isPlaying)
+                if (audioSource != null && audioSource.isPlaying)
                 {
                     audioSource.Stop();
                 }
