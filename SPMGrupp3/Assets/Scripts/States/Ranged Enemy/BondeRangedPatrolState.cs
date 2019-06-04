@@ -9,16 +9,19 @@ public class BondeRangedPatrolState : BondeRangedBaseState
     private GameObject target;
 
     int point = 0;
+    MeshRenderer meshRenderer = null;
 
     // Start is called before the first frame update
     public override void Enter()
     {
         base.Enter();
+        
         if (owner.patrolPoints.Length > 0)
         {
             target = owner.patrolPoints[point];
             owner.agnes.destination = target.transform.position;
-            owner.GetComponent<MeshRenderer>().material.color = Color.white;
+            meshRenderer = owner.GetComponent<MeshRenderer>();
+            meshRenderer.material.color = Color.white;
 
             //Debug.Log("DESTINATION: " + owner.agnes.destination);
             //Debug.Log(owner.agnes.updateRotation);
@@ -32,6 +35,11 @@ public class BondeRangedPatrolState : BondeRangedBaseState
     // Update is called once per frame
     public override void Update()
     {
+
+        if(meshRenderer != null && meshRenderer.material.color != Color.white)
+        {
+            meshRenderer.material.color = Color.white;
+        }
 
         base.Update();
         if (Vector3.Distance(owner.transform.position, target.transform.position) <= 5.0f)

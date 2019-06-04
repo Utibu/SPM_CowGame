@@ -2058,6 +2058,7 @@ MonoBehaviour:
   interactionDurationContainer: {fileID: 0}
   RamActiveImage: {fileID: 0}
   RamCooldownImage: {fileID: 0}
+  keyImage: {fileID: 0}
   speedLines: {fileID: 0}
   saveImage: {fileID: 0}
   loadingImage: {fileID: 0}
@@ -7414,12 +7415,12 @@ PrefabInstance:
     - target: {fileID: 6672152001132772990, guid: aa6f3f2c44a9aab4ab548ada916eb246,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6672152001132772988, guid: aa6f3f2c44a9aab4ab548ada916eb246,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13
+      value: 13.7
       objectReference: {fileID: 0}
     - target: {fileID: 6672152001132772988, guid: aa6f3f2c44a9aab4ab548ada916eb246,
         type: 3}
@@ -7470,6 +7471,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672152001132772988, guid: aa6f3f2c44a9aab4ab548ada916eb246,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672152001132772988, guid: aa6f3f2c44a9aab4ab548ada916eb246,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672152001132772988, guid: aa6f3f2c44a9aab4ab548ada916eb246,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.6096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa6f3f2c44a9aab4ab548ada916eb246, type: 3}
