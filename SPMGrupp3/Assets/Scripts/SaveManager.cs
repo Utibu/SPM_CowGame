@@ -185,6 +185,14 @@ public class SaveManager : MonoBehaviour
         GameManager.instance.coinCount = localSaveModel.Player.Coins;
         LevelManager.instance.hasGateKey = localSaveModel.HasKey;
 
+        if(LevelManager.instance.hasGateKey)
+        {
+            UIManager.instance.ShowKeyImage();
+        } else
+        {
+            UIManager.instance.HideKeyImage();
+        }
+
         foreach (ObjectModel model in localSaveModel.MovableObjects)
         {
             if(MovableObjects.ContainsKey(model.Id))
@@ -256,6 +264,7 @@ public class SaveManager : MonoBehaviour
                 } else
                 {
                     obj.ShouldGoAlive = true;
+                    
                 }
                 obj.gameObject.SetActive(model.IsActive);
             }
