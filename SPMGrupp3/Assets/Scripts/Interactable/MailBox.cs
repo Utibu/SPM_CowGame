@@ -13,17 +13,19 @@ public class MailBox : Interactable
     public override void Start()
     {
         base.Start();
-        message = "Kommer lägga in bild på brev här snart  :)) ";
+        message = "";
     }
 
     public override void Update()
     {
         base.Update();
+        
         if (isShowing && !TriggerCollider.bounds.Intersects(GameManager.instance.player.objectCollider.bounds))
         {
             OnCancelInteraction();
             isShowing = false;
         }
+        
     }
 
     public override void PlayerInteraction()

@@ -46,12 +46,9 @@ public class FallingObject : Dashable
 
     public override void OnPlayerCollideEnter(Collider hitCollider, out bool skipCollision, int dashLevel)
     {
-        base.OnPlayerCollideEnter(hitCollider, out skipCollision, dashLevel);
+        skipCollision = false;
         SetFalling(GameManager.instance.player.velocity.normalized);
-        if(particles != null && particles.isPlaying == false)
-        {
-            particles.Play();
-        }
+        
         
     }
 
@@ -59,8 +56,13 @@ public class FallingObject : Dashable
     {
         if(!isFalling && !hasFallen)
         {
+            if (particles != null && particles.isPlaying == false)
+            {
+                particles.Play();
+            }
             GameManager.instance.player.ShakeCamera();
             isFalling = true;
+            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetClip(), 0.5f, 1f, 1f));
             audioSource.PlayOneShot(fallingSound);
             matchDirection.y = 0f;
             if(freeFall)
