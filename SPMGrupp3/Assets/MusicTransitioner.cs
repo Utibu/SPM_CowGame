@@ -9,9 +9,6 @@ public class MusicTransitioner : Triggable
     [SerializeField] private AudioClip newMusic;
     private AudioSource audioSource;
 
-    private bool triggered = false;
-
-
     private void Awake()
     {
         audioSource = audioSystem.GetComponent<AudioSource>();
@@ -19,11 +16,8 @@ public class MusicTransitioner : Triggable
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        if (triggered == false)
-        {
-            StartCoroutine(FadeOut(audioSource, 2f));
-            triggered = true;
-        }
+        StartCoroutine(FadeOut(audioSource, 2f));
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     //Code from : https://forum.unity.com/threads/fade-out-audio-source.335031/
