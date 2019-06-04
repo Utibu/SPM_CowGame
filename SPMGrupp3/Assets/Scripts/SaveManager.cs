@@ -70,6 +70,7 @@ public class SaveManager : MonoBehaviour
             hasInitialized = true;
             //Load();
         }
+        /*
         if(Input.GetKeyDown(KeyCode.J))
         {
             Save();
@@ -77,7 +78,7 @@ public class SaveManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.V))
         {
             Load();
-        }
+        }*/
     }
 
     public void Save()

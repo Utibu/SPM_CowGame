@@ -48,7 +48,7 @@ public class PlayerValues : MonoBehaviour
             
             Die();
         }
-
+        /*
         if(Input.GetKeyDown(KeyCode.K))
         {
             Die();
@@ -57,7 +57,7 @@ public class PlayerValues : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             health = maxHealth;
-        }
+        }*/
         
     }
 

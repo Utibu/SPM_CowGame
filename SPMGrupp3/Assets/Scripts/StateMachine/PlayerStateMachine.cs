@@ -250,7 +250,7 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         speedLinesParticleSystem.transform.rotation = OriginalCameraRotation;
 
-        if(Input.GetKeyDown(KeyCode.C))
+        /*if(Input.GetKeyDown(KeyCode.C))
         {
             UsingFreeCamera = !UsingFreeCamera;
 
@@ -259,7 +259,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         if (Input.GetKeyDown(KeyCode.B))
         {
             ShakeCamera();
-        }
+        }*/
 
         // if camShake:
         if(cameraShakeIntensity > 1f)

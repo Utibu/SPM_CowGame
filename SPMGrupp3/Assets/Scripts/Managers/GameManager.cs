@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         /*
             START: Just for debugs
          */
-        if(Input.GetKeyDown(KeyCode.P))
+        /*if(Input.GetKeyDown(KeyCode.P))
         {
             Pause();
         }
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             LoadScene(2);
-        }
+        }*/
         /*
             END: Just for debugs
          */

@@ -53,7 +53,7 @@ public class PhysicsBaseState : State
 
     protected void PreventCollision()
     {
-        CollisionCheck(owner.velocity * Time.deltaTime, 10);
+        CollisionCheck(owner.velocity * Time.deltaTime, 20);
         owner.velocity *= Mathf.Pow(airResistance, Time.deltaTime);
         //SetAllowedMovement(0f, 10);
     }
