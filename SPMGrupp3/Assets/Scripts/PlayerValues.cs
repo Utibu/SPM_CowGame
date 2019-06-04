@@ -63,16 +63,7 @@ public class PlayerValues : MonoBehaviour
 
     public void Die()
     {
-        /*
-        health = maxHealth;
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = health / maxHealth;
-        }
-        */
-        //EventSystem.Current.FireEvent(new OnPlayerDiedEvent(this.gameObject, "Player died"));
         dieHasBeenCalled = true;
-        Debug.Log("in die() method.");
         StartCoroutine(ExecuteDeathAfterTime(0.5f));
     }
 
@@ -80,7 +71,6 @@ public class PlayerValues : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         // Code to execute after the delay
-        Debug.Log("should fire death event");
         health = maxHealth;
         if (healthBar != null)
         {
@@ -92,7 +82,6 @@ public class PlayerValues : MonoBehaviour
 
     public void OnHayEatingFinished(HayEatingFinishedEvent eventInfo)
     {
-        Debug.Log("gaining health");
         GameManager.instance.player.canTakeInput = true;
         if(health < maxHealth)
         {

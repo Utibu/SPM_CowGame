@@ -75,7 +75,6 @@ public class FallingObject : Dashable
                 direction = matchDirection;
             }
             
-            Debug.Log("DIR: " + direction.normalized);
             rotationDirection = new Vector3(direction.z, 0f, direction.x * -1);
             Vector3 tempSize = size;
             tempSize.y = 0f;

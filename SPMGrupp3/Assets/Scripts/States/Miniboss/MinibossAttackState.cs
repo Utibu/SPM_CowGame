@@ -26,7 +26,6 @@ public class MinibossAttackState : BondeBaseState
 
         if (Time.deltaTime % cooldown == 0)  // hope this mean "every second" but lets seee
         {
-            Debug.Log("miniboss hits you");
             Attack();
         }
 

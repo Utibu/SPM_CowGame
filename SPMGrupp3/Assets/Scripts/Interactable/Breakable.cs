@@ -42,7 +42,6 @@ public class Breakable : Triggable
                 bool hit = Physics.Raycast(colli.transform.position, Vector3.down, out hitinfo, 0.2f, masken);
                 if (hit)
                 {
-                    Debug.Log("hit " + hitinfo);
                     falling = false;
                     broke = true;
                 }
@@ -72,7 +71,6 @@ public class Breakable : Triggable
 
         if (hit)
         {
-            Debug.Log("cow detected");
             falling = true;
             //broke = true;
 

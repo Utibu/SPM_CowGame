@@ -65,7 +65,6 @@ public class MakeRampButton : ButtonScript
     public void SetActive()
     {
         EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, turnOnSound, 1f, 1f, 1f));
-        Debug.Log("RAMP IS ACTIVE");
         isActive = true;
     }
 

@@ -140,10 +140,6 @@ public class Peasant : StateMachine
             if(DoingKnockback)
             {
                 agnes.velocity -= knockbackDirection * Time.deltaTime;
-                /*if(DebugThis)
-                {
-                    Debug.Log("agnes vel: " + agnes.velocity + "     knockback direction: " + knockbackDirection + "     deltatime: " + Time.deltaTime);
-                }*/
             }
         }
         
@@ -161,9 +157,7 @@ public class Peasant : StateMachine
         {
             CurrentToughness -= 1;
 
-            //agnes.velocity += agnes.velocity * -1 * 100f;
             knockbackDirection = velocity.normalized;
-            Debug.Log("Playerdash!");
             agnes.velocity = knockbackDirection.normalized * (5f + velocity.magnitude);
             //Sets to false in stun leave -> changed to stun enter().
             
