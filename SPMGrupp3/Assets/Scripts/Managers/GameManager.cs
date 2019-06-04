@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
             if (loading.progress >= 0.9f)
             {
                 loading.allowSceneActivation = true;
-                UIManager.instance.LoadingImage.gameObject.SetActive(false);
+                
                 //UIManager.instance.LoadingBar.gameObject.SetActive(false);
             }
 
