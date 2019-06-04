@@ -9,12 +9,18 @@ public class Interactable : Triggable
     public float interactionDuration;
     public BasicTimer interactionTimer { get; private set; }
     [HideInInspector] public bool playerIsInteracting = false;
-    
+    protected AudioSource audioSource;
+    [SerializeField] protected AudioClip interactionSound;
     
     public override void Start()
     {
         base.Start();
 
+    }
+
+    private void Awake()
+    {
+        audioSource = transform.parent.GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -28,6 +34,10 @@ public class Interactable : Triggable
             if (playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
             {
                 Debug.Log("cancel");
+                if(audioSource != null && audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
                 interactionTimer.Reset();
                 GameManager.instance.player.canTakeInput = true;
                 playerIsInteracting = false;
@@ -41,6 +51,10 @@ public class Interactable : Triggable
         {
             Debug.Log("firing interact event");
             //Debug.Log(gameObject.name);
+            if(audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
             playerIsInteracting = false;
             OnInteracted();
 
@@ -52,6 +66,9 @@ public class Interactable : Triggable
         if(playerIsInteracting == false)
         {
             Debug.Log("interacting");
+            if (audioSource != null) {
+                audioSource.PlayOneShot(interactionSound);
+            }
             UIManager.instance.ShowInteractionMeter(interactionDuration);
             playerIsInteracting = true;
             interactionTimer = new BasicTimer(interactionDuration);
