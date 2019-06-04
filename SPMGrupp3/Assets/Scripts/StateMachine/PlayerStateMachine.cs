@@ -22,7 +22,7 @@ public class PlayerStateMachine : PhysicsStateMachine
     [HideInInspector] public float lastAcceleration;
     [HideInInspector] public float lastGravity;
 
-    
+    public bool HasDashSpeed { get { return velocity.magnitude > velocityToDash; } }
     
     public bool IsDashing = false;
     [HideInInspector] public float elapsedDashTime;
@@ -412,6 +412,7 @@ public class PlayerStateMachine : PhysicsStateMachine
         float joystickVertical = Input.GetAxis("CameraJoystickY");
         if(joystickHorizontal != 0 || joystickVertical != 0)
         {
+            Debug.Log("JOYSTICK");
             horizontal = joystickHorizontal;
             vertical = joystickVertical;
             localMouseSensitivity *= LevelManager.instance.SensitivityMultiplier;
