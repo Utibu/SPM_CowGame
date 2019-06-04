@@ -19,10 +19,14 @@ public class FallingObject : Dashable
     private Vector3 size;
     public bool freeFall = true;
     [SerializeField] private ParticleSystem particles;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip fallingSound;
+    [SerializeField] private AudioClip groundImpactSound;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
         size = meshRenderer.bounds.size;
     }
 
@@ -57,6 +61,7 @@ public class FallingObject : Dashable
         {
             GameManager.instance.player.ShakeCamera();
             isFalling = true;
+            audioSource.PlayOneShot(fallingSound);
             matchDirection.y = 0f;
             if(freeFall)
             {
@@ -110,6 +115,11 @@ public class FallingObject : Dashable
             {
                 isFalling = false;
                 hasFallen = true;
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, groundImpactSound, 1f, 1f, 1f));
                 return rotThisFrame.normalized * (rotThisFrame.magnitude - hit.distance);
             } else
             {
