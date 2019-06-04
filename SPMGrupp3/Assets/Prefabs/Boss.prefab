@@ -733,6 +733,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 263a668dbec04f049bc355b4ffbbfe78, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
+  deathScreams: []
+  hitSound: {fileID: 0}
   agnes: {fileID: 7049715745974898350}
   patrolPoints:
   - {fileID: 0}
@@ -744,9 +746,9 @@ MonoBehaviour:
   player: {fileID: 0}
   toughness: 4
   CurrentToughness: 0
-  stunTime: 60
-  toAttack: 25
-  maxVisibility: 35
+  StunTime: 0
+  ToAttack: 30
+  MaxVisibility: 40
   customAttackDamage: 0
   attackDamage: 0
   isDying: 0
@@ -755,6 +757,9 @@ MonoBehaviour:
   DebugThis: 0
   stunLengthToGround: 0
   healthMeter: {fileID: 0}
+  healthMeterBackground: {fileID: 0}
+  ShouldGoAlive: 0
+  shouldSaveEnemy: 1
   bullet: {fileID: 57958175370465269, guid: 52d7732cd66946d459656b1f36f47905, type: 3}
   ActiveWeapon: {fileID: 0}
   pistol: {fileID: 7049715746655330820}
