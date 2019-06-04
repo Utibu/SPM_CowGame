@@ -18,6 +18,10 @@ public class MailBox : Interactable
     public override void Update()
     {
         base.Update();
+        if (!TriggerCollider.bounds.Intersects(GameManager.instance.player.objectCollider.bounds))
+        {
+            OnCancelInteraction();
+        }
     }
 
     public override void PlayerInteraction()
