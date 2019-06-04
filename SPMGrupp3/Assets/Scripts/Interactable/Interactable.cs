@@ -20,7 +20,10 @@ public class Interactable : Triggable
 
     private void Awake()
     {
-        audioSource = transform.parent.GetComponent<AudioSource>();
+        if (transform.parent != null)
+        {
+            audioSource = transform.parent.GetComponent<AudioSource>();
+        }
     }
 
     public override void Update()
