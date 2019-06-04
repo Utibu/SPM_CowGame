@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿//Main Author: Alexander Zingmark
+//Secondary Author: Niklas Almqvist
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Author: Alexander Zingmark
-// Co-Author: Niklas Almqvist
 
 public enum FootstepsState { Normal, Dash, None };
 
