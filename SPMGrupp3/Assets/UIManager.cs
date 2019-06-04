@@ -137,12 +137,26 @@ public class UIManager : MonoBehaviour
     {
         HideMessages();
         smallMessageContainer.Show(title, desc, sprite);
+        ClearCharacterTraits();
     }
 
     public void ShowBigMessage(string title, string leftDesc, Sprite leftSprite, string rightDesc, Sprite rightSprite)
     {
         HideMessages();
         bigMessageContainer.Show(title, leftDesc, leftSprite, rightDesc, rightSprite);
+        ClearCharacterTraits();
+    }
+
+    private void ClearCharacterTraits()
+    {
+        GameManager.instance.player.HideParticles();
+        GameManager.instance.player.PlayerSounds.SetPlayerFootstepsSound(FootstepsState.None);
+        //GameManager.instance.player.anim.enabled = false;
+    }
+
+    private void ActivateCharacterTraits()
+    {
+        //GameManager.instance.player.anim.enabled = true;
     }
 
     private void OnShow()
@@ -151,6 +165,7 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         GameManager.instance.Pause();
         GameManager.instance.player.meshParent.SetActive(false);
+        ClearCharacterTraits();
         HideHUD();
     }
 
