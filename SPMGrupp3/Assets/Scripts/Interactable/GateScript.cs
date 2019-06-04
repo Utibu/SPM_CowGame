@@ -46,7 +46,7 @@ public class GateScript : Collidable
         else
         {
             skipCollision = false;
-            if (GameManager.instance.player.IsDashing)
+            if (GameManager.instance.player.IsDashing && GameManager.instance.player.HasDashSpeed)
             {
                 GameManager.instance.player.velocity *= -1;
                 GameManager.instance.player.ShakeCamera();
@@ -59,7 +59,7 @@ public class GateScript : Collidable
         isCurrentlyAnimating = true;
         IsOpened = true;
 
-        if(GameManager.instance.player.IsDashing)
+        if(GameManager.instance.player.IsDashing && GameManager.instance.player.HasDashSpeed)
         {
             animationTimer = new BasicTimer(0.2f);
         } else
