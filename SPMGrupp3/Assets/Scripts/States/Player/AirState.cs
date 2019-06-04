@@ -69,7 +69,6 @@ public class AirState : PlayerBaseState
         //Debug.Log("DISTANCE TO GROUND: " + GetDistanceToGround());
         if(GetDistanceToGround() < 2f && hasDoneLandingAnimation == false && topYPosition > owner.transform.position.y)
         {
-            Debug.Log("HÄR NU!");
             player.anim.SetTrigger("IsLandingTrigger");
             player.anim.ResetTrigger("IsJumpingTrigger");
             hasDoneLandingAnimation = true;
