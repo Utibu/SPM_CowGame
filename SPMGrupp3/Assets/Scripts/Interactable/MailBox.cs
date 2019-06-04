@@ -7,6 +7,7 @@ public class MailBox : Interactable
 
     private string message;
     public Sprite letterImage;
+    private bool isShowing = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -18,9 +19,10 @@ public class MailBox : Interactable
     public override void Update()
     {
         base.Update();
-        if (!TriggerCollider.bounds.Intersects(GameManager.instance.player.objectCollider.bounds))
+        if (isShowing && !TriggerCollider.bounds.Intersects(GameManager.instance.player.objectCollider.bounds))
         {
             OnCancelInteraction();
+            isShowing = false;
         }
     }
 
@@ -29,6 +31,7 @@ public class MailBox : Interactable
         //base.PlayerInteraction();
         Debug.Log("interacting with mailbox");
         UIManager.instance.ShowSmallMessage("You found a letter", message, letterImage);
+        isShowing = true;
     }
 
     protected override void OnCancelInteraction()
