@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public SaveManager SaveManager;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private AudioClip hpIncreaseSound;
     public AudioManager AudioManager { get { return audioManager; } set { audioManager = value; } }
 
     private Vector3 horizontalSpeed = new Vector3();
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour
     {
         if (coinCount >= coinsToHPIncrease)
         {
+            EventSystem.Current.FireEvent(new PlaySoundEvent(player.transform.position, hpIncreaseSound, 1f, 0.9f, 1.1f));
             player.playerValues.maxHealth += HPIncreaseAmount;
             player.playerValues.health = player.playerValues.maxHealth;
             coinCount = 0;
