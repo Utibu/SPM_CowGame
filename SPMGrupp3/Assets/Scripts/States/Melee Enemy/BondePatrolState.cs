@@ -10,6 +10,7 @@ public class BondePatrolState : BondeBaseState
     private GameObject target;
     private bool hasTarget = false;
     int patrolPointIndex = 0;
+    MeshRenderer meshRenderer = null;
 
     // Start is called before the first frame update
     public override void Enter()
@@ -23,7 +24,8 @@ public class BondePatrolState : BondeBaseState
         if (owner.patrolPoints.Length > 0 && owner.patrolPoints[patrolPointIndex] != null)
         {
             SetPatrolPoint();
-            owner.GetComponent<MeshRenderer>().material.color = Color.white;
+            meshRenderer = owner.GetComponent<MeshRenderer>();
+            meshRenderer.material.color = Color.white;
             hasTarget = true;
         }
 
@@ -54,6 +56,11 @@ public class BondePatrolState : BondeBaseState
         if(owner.GetCurrentState().GetType() != typeof(BondePatrolState))
         {
             return;
+        }
+
+        if (meshRenderer != null && meshRenderer.material.color != Color.white)
+        {
+            meshRenderer.material.color = Color.white;
         }
 
         RaycastHit rayHit;
