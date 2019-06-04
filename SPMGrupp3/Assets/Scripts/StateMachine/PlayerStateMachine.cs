@@ -326,12 +326,12 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     Vector3 GetAllowedCameraMovement(Vector3 goalVector)
     {
-        RaycastHit hit;
-        bool okHit = Physics.SphereCast(cameraPivotObject.position, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude - cameraCollider.radius, collisionMask);
+        //RaycastHit hit;
+        //bool okHit = Physics.SphereCast(cameraPivotObject.position, cameraCollider.radius, goalVector.normalized, out hit, goalVector.magnitude - cameraCollider.radius, collisionMask);
         //Debug.DrawLine(cameraPivotObject.position + cameraRotationOffset, cameraPivotObject.position + cameraRotationOffset + goalVector, Color.red);
-        //RaycastHit[] hits = Physics.SphereCastAll(cameraPivotObject.position + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius, collisionMask);
+        RaycastHit[] hits = Physics.SphereCastAll(cameraPivotObject.position + cameraRotationOffset, cameraCollider.radius, goalVector.normalized, goalVector.magnitude - cameraCollider.radius, collisionMask);
 
-        if (okHit)
+        /*if (okHit)
         {
             if (hit.collider != null && !isTagged(hit.collider))
             {
@@ -339,23 +339,69 @@ public class PlayerStateMachine : PhysicsStateMachine
                 return allowedMovement;
             }
         }
-        return goalVector;
+        return goalVector;*/
 
         /*
             TODO: Ta bort alla offsets och testa ta bort loopen och ha som innan. IMPORTANT!!!!
          */
 
-        /*foreach(RaycastHit hit in hits)
+        /*Vector3 closestObstacle = goalVector;
+        bool limitCamera = false;
+
+        foreach(RaycastHit hit in hits)
         {
-            if (hit.collider != null && !isTagged(hit.collider))
+            if (hit.collider != null)
             {
                 Vector3 allowedMovement = goalVector.normalized * (hit.distance);
-
-                return allowedMovement;
+                if(allowedMovement.magnitude < closestObstacle.magnitude)
+                {
+                    closestObstacle = allowedMovement;
+                }
+                if (!isTagged(hit.collider))
+                {
+                    limitCamera = true;
+                }
+                
                 
             }
         }
-        return goalVector + cameraRotationOffset;*/
+        if(limitCamera)
+        {
+            return closestObstacle;
+        } else
+        {
+            return goalVector;
+        }
+        */
+
+        Vector3 closestObstacle = goalVector;
+        bool limitCamera = false;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                if (!isTagged(hit.collider))
+                {
+                    Vector3 allowedMovement = goalVector.normalized * (hit.distance);
+                    if (allowedMovement.magnitude < closestObstacle.magnitude)
+                    {
+                        closestObstacle = allowedMovement;
+                    }
+                }
+
+
+            }
+        }
+        if (limitCamera)
+        {
+            return closestObstacle;
+        }
+        else
+        {
+            return closestObstacle;
+        }
+
     }
 
 
