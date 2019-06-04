@@ -20,7 +20,6 @@ public class HayInteractable : Interactable
     {
         base.Update();
         
-        //GameManager.instance.SaveManager.Haybales.Add(transform.parent.gameObject.GetComponent<Saveable>().Id, transform.parent.gameObject);
 
     }
 
