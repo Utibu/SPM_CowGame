@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8642229381037843988}
   - component: {fileID: 4273893732726180020}
   - component: {fileID: 5782438925334119292}
-  - component: {fileID: 4572009448011670405}
   m_Layer: 10
   m_Name: CoinBag
   m_TagString: Droppable
@@ -86,19 +85,6 @@ MonoBehaviour:
   player: {fileID: 0}
   CoinSounds:
   - {fileID: 8300000, guid: 9eb4377c2f3478d439672d9181c3a724, type: 3}
---- !u!114 &4572009448011670405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485028219499622639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33aa6544a0936594bb2139e2124e1b3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinSpeed: 50
 --- !u!1001 &2157350327169402688
 PrefabInstance:
   m_ObjectHideFlags: 0
