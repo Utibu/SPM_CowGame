@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6547516297749933612}
   - component: {fileID: 6555931944139901970}
   - component: {fileID: 6532472704399289626}
-  - component: {fileID: 6532472704399289631}
   m_Layer: 9
   m_Name: mailbox
   m_TagString: Untagged
@@ -93,22 +92,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.54, y: 1.36, z: 0.56}
   m_Center: {x: 0, y: 0.5, z: -0.2}
---- !u!114 &6532472704399289631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6533769631343605958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f1685a964fa464bb7d3a6a4e1f594d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDuration: 7
-  playerIsInteracting: 0
-  interactionSound: {fileID: 0}
-  letterImage: {fileID: 21300000, guid: 33ec12feb09774a4c9d03719e00494d4, type: 3}
 --- !u!1 &7373082914458195907
 GameObject:
   m_ObjectHideFlags: 0
