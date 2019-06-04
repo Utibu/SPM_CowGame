@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Main Author: Joakim Ljung
+//Secondary Author: Sofia Kauko, Niklas Almqvist
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

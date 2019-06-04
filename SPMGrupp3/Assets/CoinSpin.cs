@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Main Author: Alexander Zingmark
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
