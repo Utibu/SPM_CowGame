@@ -75,7 +75,6 @@ public class ButtonMessageContainer : MonoBehaviour
 
     public void MainMenuButton()
     {
-        Debug.Log("MAIN MENU!!");
         GameManager.instance.LoadMenu();
     }
 

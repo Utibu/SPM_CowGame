@@ -79,7 +79,6 @@ public class BossStateMachine : Peasant
             CurrentToughness -= 1;
             if (CurrentToughness <= 0)
             {
-                Debug.Log("Boss dead");
                 Destroy(gameObject);
                 UIManager.instance.ShowVictoryMessage();
                 GameManager.instance.RemoveSave();
@@ -95,10 +94,6 @@ public class BossStateMachine : Peasant
         
         
         healthBar.fillAmount =  CurrentToughness / toughness;
-        /*
-        Debug.Log("Current: " + CurrentToughness + " Total: " + toughness + " " + CurrentToughness/toughness);
-        */
-
 
     }
 
@@ -123,7 +118,6 @@ public class BossStateMachine : Peasant
         if (underlingList.Contains(enemyDeath.enemy))
         {
             underlingList.Remove(enemyDeath.enemy);
-            Debug.Log(underlingList.Count);
 
 
             if (underlingList.Count == 0)
@@ -137,7 +131,6 @@ public class BossStateMachine : Peasant
 
     private void OnPlayerDeath(OnPlayerDiedEvent playerDeadEvent)
     {
-        Debug.Log("BOSS RESET! **********************************");
         // reset hp
         CurrentToughness = toughness;
         healthBar.fillAmount = CurrentToughness / toughness;
@@ -151,7 +144,6 @@ public class BossStateMachine : Peasant
         {
             underling.GetComponent<Peasant>().UnregisterEnemy();
             Destroy(underling, 2f); // 2 sec delay, to not disrupt iteration(?)
-            Debug.Log("foreach underling");
         }
         underlingList.Clear();
         allUnderlings.Clear();

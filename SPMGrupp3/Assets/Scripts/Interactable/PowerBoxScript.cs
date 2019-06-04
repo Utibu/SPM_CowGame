@@ -34,7 +34,7 @@ public class PowerBoxScript : MonoBehaviour
         {
             // save each original color from editor
             //keeper = transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor");
-            Debug.Log(keeper + " " + color);
+            //Debug.Log(keeper + " " + color);
             colors.Add(color, transform.Find(color).GetComponent<MeshRenderer>().material.GetColor("_EmissionColor"));
 
             // set light statuses to correct bool according to if lamp is emissive or not
@@ -83,7 +83,7 @@ public class PowerBoxScript : MonoBehaviour
 
     private void CheckAllLights()
     {
-        Debug.Log("Checking all lights");
+        //Debug.Log("Checking all lights");
         foreach (string colorName in lamps)
         {
             Material mat = transform.Find(colorName).GetComponent<MeshRenderer>().material;
@@ -94,7 +94,7 @@ public class PowerBoxScript : MonoBehaviour
             }
         }
         //Activate switch
-        Debug.Log("activating switch activating switch activating switch");
+        //Debug.Log("activating switch activating switch activating switch");
         RampSwitch.GetComponent<MakeRampButton>().SetActive();
         //Disable powerbox
         // ÖVER MIN DÖDA KROPP. RÖR EJ

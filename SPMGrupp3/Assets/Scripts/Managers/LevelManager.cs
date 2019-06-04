@@ -62,7 +62,6 @@ public class LevelManager : MonoBehaviour
     public void LoadGame()
     {
         LevelNumber = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("LEVELNUMBER: " + LevelNumber);
         if (GameInformation.ShouldContinue)
         {
             GameManager.instance.SaveManager.Load();

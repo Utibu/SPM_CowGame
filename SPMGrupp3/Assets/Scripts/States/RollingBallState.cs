@@ -61,11 +61,6 @@ public class RollingBallState : PhysicsBaseState
 
     public void ActOnPlayerCollision(Collider hitCollider)
     {
-        if(hitCollider.tag.Equals("Player"))
-        {
-            Debug.LogWarning("PLAYERDASH:" + GameManager.instance.player.velocity.magnitude);
-        }
-            
         if (hitCollider.tag.Equals("Player") && owner.velocity.magnitude > rockVelocityToHurtPlayer)
         {
             

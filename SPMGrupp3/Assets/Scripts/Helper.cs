@@ -62,7 +62,6 @@ public static class Helper
     {
         if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
         {
-            Debug.LogWarning("SAVEFILE == null");
             return null;
         }
 

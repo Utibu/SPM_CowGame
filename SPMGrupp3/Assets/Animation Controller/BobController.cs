@@ -18,7 +18,7 @@ public class BobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("wow");
+        //Debug.Log("wow");
         speed = Input.GetAxis("Vertical");
         direction = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", speed);

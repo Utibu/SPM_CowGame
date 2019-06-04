@@ -54,7 +54,6 @@ public class MenuManager : MonoBehaviour
     public void ContinueButtonClicked()
     {
         LoadScene(localSaveModel.OnLevel);
-        Debug.Log("SAVEMODEL ONLEVEL: " + localSaveModel.OnLevel);
     }
 
     public void PlayButtonClicked()

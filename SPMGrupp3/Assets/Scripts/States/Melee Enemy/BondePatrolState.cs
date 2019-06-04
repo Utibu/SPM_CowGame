@@ -17,10 +17,6 @@ public class BondePatrolState : BondeBaseState
     // Start is called before the first frame update
     public override void Enter()
     {
-        if(owner.DebugThis)
-        {
-            Debug.Log("DEBUG");
-        }
         base.Enter();
         owner.agnes.speed = speed;
         if (owner.patrolPoints.Length > 0 && owner.patrolPoints[patrolPointIndex] != null)
@@ -35,10 +31,6 @@ public class BondePatrolState : BondeBaseState
 
     void SetPatrolPoint()
     {
-        if (owner.DebugThis)
-        {
-            Debug.Log("Setting patrol point");
-        }
             
         target = owner.patrolPoints[patrolPointIndex];
         if(target != null)

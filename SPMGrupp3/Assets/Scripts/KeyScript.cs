@@ -25,7 +25,6 @@ public class KeyScript : Triggable
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)
     {
-        Debug.Log("triggered key");
         // ge key = true till level manager? eller playerValues? sen: destroy
         if (keyPickupSound != null)
         {

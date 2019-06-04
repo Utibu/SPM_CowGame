@@ -414,20 +414,9 @@ public class PlayerStateMachine : PhysicsStateMachine
         float joystickVertical = Input.GetAxis("CameraJoystickY");
         if(joystickHorizontal != 0 || joystickVertical != 0)
         {
-            Debug.Log("JOYSTICK");
             horizontal = joystickHorizontal;
             vertical = joystickVertical;
             localMouseSensitivity *= LevelManager.instance.SensitivityMultiplier;
-        }
-
-        UIManager.instance.mouseDebug.text = "MouseX: " + horizontal + " \nMouseY: " + vertical;
-
-
-        
-
-        if(GameInformation.UsingController)
-        {
-           
         }
 
         rotationX -= vertical * localMouseSensitivity;
@@ -439,13 +428,9 @@ public class PlayerStateMachine : PhysicsStateMachine
 
         Vector3 rotationVector = new Vector3(rotationX + shakeX, rotationY + shakeY, 0f);
         Camera.main.transform.rotation = Quaternion.Euler(rotationVector);
-        //Camera.main.transform.RotateAround(transform.position + objectCollider.center + cameraRotationOffset, rotationVector.normalized, rotationVector.magnitude);
-
-
 
         Vector3 cameraPlayerRelationship = Camera.main.transform.rotation * cameraPositionRelativeToPlayer;
         Vector3 okToMove = GetAllowedCameraMovement(cameraPlayerRelationship);
-        //Camera.main.transform.position = transform.position + (Vector3.up / 2) + objectCollider.center + okToMove;
         Camera.main.transform.position = cameraPivotObject.position + okToMove;
 
         if(Helper.IsWithinDistance(cameraPivotObject.position, Camera.main.transform.position, 1f))
@@ -455,7 +440,6 @@ public class PlayerStateMachine : PhysicsStateMachine
         {
             meshParent.SetActive(true);
         }
-        //Vector3.Lerp(Camera.main.transform.position, transform.position + cameraRotationOffset + okToMove, Time.deltaTime * 30f);
 
     }
 
@@ -471,7 +455,6 @@ public class PlayerStateMachine : PhysicsStateMachine
 
     public void Respawn(Vector3 position)
     {
-        Debug.Log("Finns");
         transform.position = position;
     }
 

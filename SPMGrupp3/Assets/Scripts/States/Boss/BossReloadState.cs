@@ -20,12 +20,10 @@ public class BossReloadState : BossBaseState
         reloadHolder = owner.reloadMeter.transform.Find("ReloadMeterBack").gameObject;
         reloadMeterBack = reloadHolder.GetComponent<Image>();
 
-        Debug.Log("Reload holder: " + reloadHolder.name);
         timer = new BasicTimer(reloadTime);
         owner.renderColor.material.color = Color.blue;
         owner.agnes.isStopped = true;
         EventSystem.Current.FireEvent(new PlaySoundEvent(owner.transform.position, owner.ReloadSound, 1f, 1f, 1f));
-        Debug.Log(reloadMeterBack.name);
     }
 
     public override void Update()

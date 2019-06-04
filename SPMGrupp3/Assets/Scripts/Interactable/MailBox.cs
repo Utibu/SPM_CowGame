@@ -32,7 +32,6 @@ public class MailBox : Interactable
     public override void PlayerInteraction()
     {
         //base.PlayerInteraction();
-        Debug.Log("interacting with mailbox");
         UIManager.instance.ShowSmallMessage("You found a letter", message, letterImage);
         isShowing = true;
     }

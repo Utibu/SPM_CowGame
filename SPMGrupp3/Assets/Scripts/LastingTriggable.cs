@@ -37,7 +37,6 @@ public class LastingTriggable : Triggable
     protected virtual void OnPlayerTriggerLeave()
     {
         currentPlayer = null;
-        Debug.Log("LEAVING");
     }
 
     public override void OnPlayerTriggerEnter(Collider hitCollider)

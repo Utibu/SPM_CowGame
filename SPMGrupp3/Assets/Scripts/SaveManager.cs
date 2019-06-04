@@ -51,7 +51,6 @@ public class SaveManager : MonoBehaviour
         Gates.Clear();
         Dashables.Clear();
         Coins.Clear();
-        Debug.LogWarning("CLEAR OF SAVED OBJECTS DONE!");
     }
 
     private float GetId(GameObject go)
@@ -150,14 +149,12 @@ public class SaveManager : MonoBehaviour
         FileStream saveFile = File.Create("Saves/save.binary");
 
         formatter.Serialize(saveFile, localSaveModel);
-        Debug.Log("SPARAT BINÄRT!");
         saveFile.Close();
 
         //http://gram.gs/gramlog/xml-serialization-and-deserialization-in-unity/
         XmlSerializer serializer = new XmlSerializer(typeof(SaveModel));
         StreamWriter writer = new StreamWriter("Saves/save.xml");
         serializer.Serialize(writer.BaseStream, localSaveModel);
-        Debug.Log("SPARAT XML!");
         writer.Close();
 
     }
@@ -168,7 +165,6 @@ public class SaveManager : MonoBehaviour
 
         if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
         {
-            Debug.LogWarning("SAVEFILE == null");
             return;
         }
 
@@ -309,15 +305,13 @@ public class SaveManager : MonoBehaviour
             }
         }
 
-        Debug.Log("LOADED!");
-
     }
 
     public void RemoveSave()
     {
         if (Directory.Exists("Saves") == false || File.Exists("Saves/save.binary") == false)
         {
-            Debug.LogWarning("SAVEFILE == null");
+            //Debug.LogWarning("SAVEFILE == null");
             return;
         }
 

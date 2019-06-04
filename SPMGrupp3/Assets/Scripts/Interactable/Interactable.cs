@@ -36,7 +36,6 @@ public class Interactable : Triggable
 
             if (playerIsInteracting && interactionTimer.GetElapsedTime() > 0)
             {
-                Debug.Log("cancel");
                 if(audioSource != null && audioSource.isPlaying)
                 {
                     audioSource.Stop();
@@ -52,8 +51,6 @@ public class Interactable : Triggable
         
         if(interactionTimer != null && playerIsInteracting && interactionTimer.IsCompleted(Time.deltaTime, true, true))
         {
-            Debug.Log("firing interact event");
-            //Debug.Log(gameObject.name);
             if(audioSource != null && audioSource.isPlaying)
             {
                 audioSource.Stop();
@@ -68,7 +65,6 @@ public class Interactable : Triggable
     {
         if(playerIsInteracting == false)
         {
-            Debug.Log("interacting");
             if (audioSource != null) {
                 audioSource.PlayOneShot(interactionSound);
             }
