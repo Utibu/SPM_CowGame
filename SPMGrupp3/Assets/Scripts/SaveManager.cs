@@ -281,6 +281,7 @@ public class SaveManager : MonoBehaviour
                 if(model.IsOpen)
                 {
                     obj.Open();
+                    UIManager.instance.HideKeyImage();
                 }
                 obj.gameObject.SetActive(model.IsActive);
             }
