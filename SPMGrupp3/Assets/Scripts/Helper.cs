@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Main Author: Niklas Almqvist
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;

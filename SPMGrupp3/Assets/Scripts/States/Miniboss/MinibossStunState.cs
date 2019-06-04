@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Main Author: Sofia Kauko
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
