@@ -138,7 +138,6 @@ public class Peasant : StateMachine
             if(DoingKnockback)
             {
                 agnes.velocity -= knockbackDirection * Time.deltaTime;
-                Debug.Log("DOING KNOCKBACK");
                 /*if(DebugThis)
                 {
                     Debug.Log("agnes vel: " + agnes.velocity + "     knockback direction: " + knockbackDirection + "     deltatime: " + Time.deltaTime);

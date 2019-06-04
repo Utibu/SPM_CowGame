@@ -24,7 +24,7 @@ public class BossStateMachine : Peasant
     public GameObject underlingSpawnArea;
     [SerializeField] private float spawnRadius;
     public GameObject snipeLocation;
-    public Vector3 Destination;
+    [HideInInspector] public Vector3 Destination;
 
     private float timeSinceLastHit = 0f;
     public float timeBetweenSpawns = 0.2f;
@@ -33,7 +33,7 @@ public class BossStateMachine : Peasant
     private List<GameObject> underlingList = new List<GameObject>();
     private List<GameObject> allUnderlings = new List<GameObject>();
     //Gör private
-    public Vector3 originalPosition;
+    [HideInInspector] public Vector3 originalPosition;
 
     public Image healthBar;
     public Image reloadMeter;
