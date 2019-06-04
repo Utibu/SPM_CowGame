@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredLevel: 1
-  destructionSounds: []
+  destructionSounds:
+  - {fileID: 8300000, guid: 5743c82c8e6ebe14d9e35da757c460e5, type: 3}
   direction: {x: 0, y: 0, z: 1}
   rotationDirection: {x: 0, y: 0, z: 0}
   isFalling: 0
@@ -153,6 +154,8 @@ MonoBehaviour:
   pivot: {fileID: 6133158428983994707}
   freeFall: 1
   particles: {fileID: 0}
+  fallingSound: {fileID: 0}
+  groundImpactSound: {fileID: 8300000, guid: 66b8270fda52fa14793a19411ff7cd9b, type: 3}
 --- !u!208 &8465284371775654892
 NavMeshObstacle:
   m_ObjectHideFlags: 0
