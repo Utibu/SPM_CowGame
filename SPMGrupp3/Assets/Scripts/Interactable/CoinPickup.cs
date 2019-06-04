@@ -21,7 +21,10 @@ public class CoinPickup : DroppableObject
         GameManager.instance.coinCount += coinAmount;
         GameManager.instance.totalCoinCount += coinAmount;
         LevelManager.instance.pickedCoins += coinAmount;
-        EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetCoinClip(), 0.5f, 0.95f, 1.05f));
+        if (GameManager.instance.coinCount < 20)
+        {
+            EventSystem.Current.FireEvent(new PlaySoundEvent(transform.position, GetCoinClip(), 0.5f, 0.95f, 1.05f));
+        }
     }
 
     protected AudioClip GetCoinClip()
